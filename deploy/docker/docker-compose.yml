@@ -1,0 +1,14 @@
+---
+
+services: 
+  sq-flask:
+    image: jdolakk/sidequest
+    env_file: ../../.env
+    ports:
+      - ${HOST_PORT}:${APP_PORT}
+    restart: on-failure
+    deploy:
+      resources:    
+        limits:
+          memory: 200MB
+

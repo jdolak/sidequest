@@ -5,3 +5,10 @@
 **/.env
 **/.venv
 !**/.gitinclude
+**/.DS_Store
+**/.vscode
+**/bin/*
+**/ignore/*
+**/.env
+**/.venv
+!**/.gitinclude
