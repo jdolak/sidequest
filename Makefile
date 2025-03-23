@@ -20,7 +20,8 @@ lint:
 run-local:
 	@\
 	. ./.venv/bin/activate; \
-    python3 $(TARGET); \
+	. ./.env; \
+    PROJECT=$(PROJECT) python3 $(TARGET); \
 
 
 up: build env-setup
@@ -36,4 +37,4 @@ run: env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
 
 env-setup:
-	sh ./scripts/env_setup.sh
+	sh ./tools/scripts/env_setup.sh
