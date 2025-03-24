@@ -4,7 +4,7 @@ TARGET = ./backend/run.py
 PROJECT = sidequest
 SOURCES = $(wildcard ./app/*)
 
-all: up
+all: flask-up
 
 install: requirements.txt
 	python3 -m venv ./.venv
@@ -24,8 +24,8 @@ run-local:
     PROJECT=$(PROJECT) python3 $(TARGET); \
 
 
-up: flask-build env-setup
-	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
+flask-up: flask-build env-setup
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d sq-flask
 
 flask-build: $(SOURCES) ./backend/Dockerfile
 	PROJECT=$(PROJECT) docker build -f ./backend/Dockerfile -t jdolakk/$(PROJECT) ./backend
@@ -35,6 +35,9 @@ down:
 
 run: env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
+
+nginx-up:
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d sq-nginx
 
 env-setup:
 	sh ./tools/scripts/env_setup.sh
