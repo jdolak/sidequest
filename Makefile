@@ -1,6 +1,6 @@
 #include ./.env
 
-TARGET = run.py
+TARGET = ./backend/run.py
 PROJECT = sidequest
 SOURCES = $(wildcard ./app/*)
 
@@ -24,14 +24,14 @@ run-local:
     PROJECT=$(PROJECT) python3 $(TARGET); \
 
 
-up: build env-setup
+up: flask-build env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
 
-build: $(SOURCES) Dockerfile
-	PROJECT=$(PROJECT) docker build -f Dockerfile -t jdolakk/$(PROJECT) .
+flask-build: $(SOURCES) ./backend/Dockerfile
+	PROJECT=$(PROJECT) docker build -f ./backend/Dockerfile -t jdolakk/$(PROJECT) ./backend
 
 down:
-	PROJECT=$(PROJECT) docker compose -f ./deploy/docker/docker-compose.yml -p $(PROJECT) down
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) down
 
 run: env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d

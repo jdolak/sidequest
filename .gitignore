@@ -11,4 +11,5 @@
 **/ignore/*
 **/.env
 **/.venv
+**/__pycache__
 !**/.gitinclude
