@@ -38,12 +38,21 @@ run: env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
 
 nginx-up: frontend-build
-	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d sq-nginx
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d sq-frontend
 
 env-setup:
 	sh ./tools/scripts/env_setup.sh
 
-frontend-build: $(REACT_SRCS) ./frontend/Dockerfile.react
-	PROJECT=$(PROJECT) docker build -f ./frontend/Dockerfile.react -t jdolakk/$(PROJECT)-frontend ./frontend
+frontend-build: $(REACT_SRCS) ./frontend/Dockerfile.frontend
+	PROJECT=$(PROJECT) docker build -f ./frontend/Dockerfile.frontend -t jdolakk/$(PROJECT)-frontend ./frontend
 
-.PHONY: all install lint run-local flask-up flask-build down run nginx-up env-setup react-build nginx-build
+dev-build: $(REACT_SRCS) ./frontend/Dockerfile.frontend.dev
+	PROJECT=$(PROJECT) docker build -f ./frontend/Dockerfile.frontend.dev -t jdolakk/$(PROJECT)-frontend-dev ./frontend
+
+dev: dev-build
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose-dev.yml -p $(PROJECT) up -d
+
+dev-down:
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose-dev.yml -p $(PROJECT) down
+
+.PHONY: all install lint run-local flask-up flask-build down run nginx-up env-setup frontend-build dev-build dev
