@@ -1,0 +1,43 @@
+@import url('../variables.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family, Arial, sans-serif);
+    background-color: var(--background-color, #f4f4f4);
+    color: var(--text-color, #333);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color, #222);
+    margin: 0;
+}
+
+a {
+    color: var(--link-color, #007BFF);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color, #0056b3);
+    text-decoration: underline;
+}
+
+button {
+    background-color: var(--button-bg-color, #007BFF);
+    color: var(--button-text-color, #fff);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color, #0056b3);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}

@@ -1,28 +1,30 @@
+@import '../../variables.css'; /* Import variables.css */
+
 /* Basic styles for a header bar */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1a1a1a;
-    color: white;
-    padding: 15px 30px;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: var(--spacing-medium) var(--spacing-large);
+    font-family: var(--font-family);
+    box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .header-title {
-    font-size: 1.8rem;
+    font-size: var(--font-size-large);
     font-weight: bold;
-    color: #f0a500;
+    color: var(--accent-color);
     margin: 0;
 }
 
 .header-nav {
     display: flex;
-    gap: 20px;
+    gap: var(--spacing-medium);
 }
 
 .nav-list {
@@ -37,15 +39,15 @@
 }
 
 .nav-link {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
-    font-size: 1rem;
-    padding: 8px 15px;
-    border-radius: 5px;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-link:hover {
-    background-color: #f0a500;
-    color: #1a1a1a;
+    background-color: var(--accent-color);
+    color: var(--background-color);
 }
