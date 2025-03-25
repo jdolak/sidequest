@@ -5,4 +5,4 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route("/")
 def home():
     #return render_template("index.html")
-    return "<h1>Sidequest</h1>"
+    return "<h1>Sidequest API</h1>"

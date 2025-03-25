@@ -12,3 +12,11 @@ RUN npm install
 COPY sidequest /${PROJECT}
 
 RUN npm run build
+
+FROM nginx:alpine
+
+ENV PROJECT=sidequest
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /${PROJECT}/build /usr/share/nginx/html
+EXPOSE 80

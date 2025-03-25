@@ -2,7 +2,7 @@
 
 services: 
   sq-flask:
-    image: jdolakk/sidequest
+    image: jdolakk/sidequest-flask
     env_file: ../../.env
     ports:
       - ${HOST_PORT}:${APP_PORT}
@@ -13,7 +13,7 @@ services:
           memory: 200MB
 
   sq-nginx:
-    image: nginx:latest
+    image: jdolakk/sidequest-frontend
     ports:
       - "80:80"
 #    volumes:
