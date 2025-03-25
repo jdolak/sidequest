@@ -2,7 +2,8 @@
 
 TARGET = ./backend/run.py
 PROJECT = sidequest
-SOURCES = $(wildcard ./app/*)
+FLASK_SRCS = $(wildcard ./backend/*)
+REACT_SRCS = $(wildcard ./frontend/*)
 
 all: flask-up
 
@@ -27,8 +28,8 @@ run-local:
 flask-up: flask-build env-setup
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d sq-flask
 
-flask-build: $(SOURCES) ./backend/Dockerfile
-	PROJECT=$(PROJECT) docker build -f ./backend/Dockerfile -t jdolakk/$(PROJECT) ./backend
+flask-build: $(FLASK_SRCS) ./backend/Dockerfile.flask
+	PROJECT=$(PROJECT) docker build -f ./backend/Dockerfile.flask -t jdolakk/$(PROJECT) ./backend
 
 down:
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) down
@@ -41,3 +42,6 @@ nginx-up:
 
 env-setup:
 	sh ./tools/scripts/env_setup.sh
+
+react-build: $(REACT_SRCS) ./frontend/Dockerfile.react
+	PROJECT=$(PROJECT) docker build -f ./frontend/Dockerfile.react -t jdolakk/$(PROJECT) ./frontend
