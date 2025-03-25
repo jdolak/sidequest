@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from './Main/MainPage.js';
+import Header from './Header/Header.js';
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
