@@ -1,0 +1,15 @@
+FROM node:18
+
+ENV PROJECT=sidequest
+
+RUN mkdir /${PROJECT}
+WORKDIR /${PROJECT}/
+
+COPY ./sidequest/package.json /${PROJECT}/
+COPY ./sidequest/package-lock.json /${PROJECT}/
+RUN npm install
+
+#COPY sidequest /${PROJECT}
+
+CMD [ "npm", "start" ]
+EXPOSE 3000
