@@ -8,6 +8,8 @@ WORKDIR /${PROJECT}/
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+COPY ./db/* /${PROJECT}/db/
+
 COPY ./run.py /${PROJECT}/
 ADD ./app /${PROJECT}/app
 

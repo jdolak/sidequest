@@ -3,7 +3,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+from app.db import db_connect
 
+DB = db_connect()
 
 def create_app():
 
@@ -14,4 +16,3 @@ def create_app():
     sq_app.register_blueprint(routes.main_bp)
 
     return sq_app
-
