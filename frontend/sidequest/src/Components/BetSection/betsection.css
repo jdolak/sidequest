@@ -60,6 +60,7 @@
     border-radius: 20px;
     border: 1px solid var(--Soft-Stroke);
     background: var(--Primary);
+    text-align: left;
 }
 
 .quest-desc {
@@ -70,6 +71,9 @@
 }
 
 .quest-title {
+
+    align-self: stretch; 
+
     color: #000;
 
     /* Card Subheading */
@@ -78,6 +82,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    text-align: left;
 }
 
 .quest-body {
