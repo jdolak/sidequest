@@ -4,7 +4,7 @@ services:
   sq-flask:
     image: jdolakk/sidequest-flask
     env_file: ../../.env
-    restart: none
+    restart: no
     deploy:
       resources:    
         limits:
