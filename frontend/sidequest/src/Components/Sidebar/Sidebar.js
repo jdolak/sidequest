@@ -1,6 +1,6 @@
 import React from 'react';
 import searchIcon from '../../assets/images/search.svg';
-import './styles.css';
+import './sidebar.css';
 
 const Sidebar = () => {
     return (
