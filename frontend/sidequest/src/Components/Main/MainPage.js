@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import Sidebar from '../Sidebar/Sidebar';
+import Dashboard from '../Dashboard/Dashboard';
 import './styles.css';
 
 const MainPage = () => {
     return (
-        <div className="main-page">
-            <h1>Welcome to SideQuest!</h1>
+        <div class="main-page">
+             <Sidebar />
+             <Dashboard />
         </div>
     );
 };

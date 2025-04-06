@@ -1,6 +1,15 @@
 @import url('../../variables.css');
 
-body {
+.main-page {
+    display: flex;
+    max-width: 1440px;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--White);
+}
+
+/* body {
     margin: 0;
     padding: 0;
     font-family: var(--font-family, Arial, sans-serif);
@@ -40,4 +49,4 @@ button:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
+} */

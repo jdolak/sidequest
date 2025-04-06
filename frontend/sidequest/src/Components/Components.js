@@ -1,12 +1,10 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Sidebar from './Sidebar/Sidebar.js';
 import MainPage from './Main/MainPage.js';
-import Header from './Header/Header.js';
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
     return (
-        <Sidebar />
+        <MainPage />
         // <Router style="background-color: #8CBA80;">
         //     <Header/>
         //     <br/>

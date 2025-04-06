@@ -1,6 +1,6 @@
 .sidebar {
     display: flex;
-    width: 102px;
+    width: 100px;
     height: 100vh;
     padding: 48px 16px;
     flex-direction: column;
@@ -8,8 +8,8 @@
     align-items: center;
     flex-shrink: 0;
 
-    border-right: 4px solid var(--Soft-Stroke, #EAECF9);
-    background: var(--White, #FAFAFA);
+    border-right: 4px solid var(--Soft-Stroke);
+    background: var(--White);
 }
 
 .groups {
