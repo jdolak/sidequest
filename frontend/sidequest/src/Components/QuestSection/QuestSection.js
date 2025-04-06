@@ -5,29 +5,29 @@ const QuestSection = () => {
     return (
         <div class="main-section">
             <div class="header">
-                    <p class="subheading-text">Quests</p>
-                    <p class="view-quest-button">View all quests</p>
+                    <div class="subheading-text">Quests</div>
+                    <div class="view-quest-button">View all quests</div>
             </div>
             <div class="quest-list">
                 <div class="quest-card">
-                    <p>Read 50 pages by Sunday</p>
+                    <div class="quest-title">Read 50 pages by Sunday</div>
                     <div class="quest-desc">
-                        <p>Created by csuwita</p>
-                        <p>100 coins</p>
+                        <div>Created by csuwita</div>
+                        <div>100 coins</div>
                     </div>
                 </div>
                 <div class="quest-card">
-                    <p>Read 50 pages by Sunday</p>
+                    <div class="quest-title">Read 50 pages by Sunday</div>
                     <div class="quest-desc">
-                        <p>Created by csuwita</p>
-                        <p>100 coins</p>
+                        <div>Created by csuwita</div>
+                        <div>100 coins</div>
                     </div>
                 </div>
                 <div class="quest-card">
-                    <p>Read 50 pages by Sunday</p>
+                    <div class="quest-title">Read 50 pages by Sunday</div>
                     <div class="quest-desc">
-                        <p>Created by csuwita</p>
-                        <p>100 coins</p>
+                        <div>Created by csuwita</div>
+                        <div>100 coins</div>
                     </div>
                 </div>
             </div>

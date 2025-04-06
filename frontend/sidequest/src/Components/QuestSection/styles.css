@@ -69,3 +69,25 @@
     gap: 4px;
 }
 
+.quest-title {
+    color: #000;
+
+    /* Card Subheading */
+    font-family: "Karla", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.quest-body {
+    color: #000;
+
+    /* Body */
+    font-family: Karla;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
