@@ -1,18 +1,25 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import MainPage from './Main/MainPage.js';
-import Header from './Header/Header.js';
+import MainPage from './Pages/MainPage.js';
+import QuestPage from './Pages/QuestPage.js'
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
     return (
-        <Router style="background-color: #8CBA80;">
-            <Header/>
-            <br/>
+        <Router>
             <Routes>
-                <Route path="/" element={<MainPage/>} />
-                <Route path="*" element={<Navigate to="/auth" replace />} /> 
+                <Route path="/" element={<MainPage />} />
+                <Route path="quests" element={<QuestPage />} />
             </Routes>
-            <br/>
         </Router>
+
+        // <Router style="background-color: #8CBA80;">
+        //     <Header/>
+        //     <br/>
+        //     <Routes>
+        //         <Route path="/" element={<MainPage/>} />
+        //         <Route path="*" element={<Navigate to="/auth" replace />} /> 
+        //     </Routes>
+        //     <br/>
+        // </Router>
     );
 }

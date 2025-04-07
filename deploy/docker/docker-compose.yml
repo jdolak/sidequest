@@ -4,9 +4,7 @@ services:
   sq-flask:
     image: jdolakk/sidequest-flask
     env_file: ../../.env
-    ports:
-      - ${HOST_PORT}:${APP_PORT}
-    restart: on-failure
+    restart: no
     deploy:
       resources:    
         limits:
@@ -14,5 +12,6 @@ services:
 
   sq-frontend:
     image: jdolakk/sidequest-frontend
+    env_file: ../../.env
     ports:
-      - "80:80"
+      - ${HOST_PORT}:80
