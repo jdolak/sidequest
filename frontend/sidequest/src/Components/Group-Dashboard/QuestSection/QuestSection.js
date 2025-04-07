@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './questsection.css';
 
 const QuestSection = () => {
@@ -6,7 +7,7 @@ const QuestSection = () => {
         <div class="main-section">
             <div class="header">
                     <div class="subheading-text">Quests</div>
-                    <div class="view-quest-button">View all quests</div>
+                    <Link to="/quests" class="view-quest-button">View all quests</Link>
             </div>
             <div class="quest-list">
                 <div class="quest-card">

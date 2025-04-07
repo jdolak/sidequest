@@ -32,6 +32,7 @@
 .view-quest-button {
     color: var(--Secondary);
     text-align: right;
+    text-decoration: none;
 
     /* Action */
     font-family: "Karla", sans-serif;

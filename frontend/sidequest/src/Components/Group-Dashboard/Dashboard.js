@@ -1,5 +1,5 @@
-import QuestSection from "../QuestSection/QuestSection";
-import BetSection from "../BetSection/BetSection";
+import QuestSection from "./QuestSection/QuestSection";
+import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 
 const Dashboard = () => {
