@@ -1,0 +1,66 @@
+.section {
+    background-color: #fafafa;
+    border-radius: 16px;
+    width: 100%;
+    margin-top: 60px;
+    padding: 20px 24px;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    color: #000;
+    font-family:
+      DM Sans,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .action {
+    color: #2667ff;
+    font-family:
+      Karla,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .content {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+  
+  @media (width <= 991px) {
+    .section {
+      max-width: 100%;
+      margin-top: 40px;
+      padding: 20px;
+    }
+  
+    .content {
+      max-width: 100%;
+    }
+  }
+  
