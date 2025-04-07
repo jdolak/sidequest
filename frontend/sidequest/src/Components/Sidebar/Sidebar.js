@@ -8,14 +8,14 @@ const Sidebar = () => {
             <div class="menu">
                 <img src={searchIcon} />
                 <div class="groups">
-                <div class="group">
+                    <div class="group">
+                    </div>
                 </div>
             </div>
-            </div>
             <div class="profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
                     <circle cx="32" cy="32" r="30" fill="#F3F4FB" stroke="#EAECF9" stroke-width="4"/>
-                </svg>
+                    </svg>
             </div>
         </div>
     );

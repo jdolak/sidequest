@@ -6,7 +6,7 @@
     display: flex;
     width: 100px;
     height: 100vh;
-    padding: 48px 16px;
+    padding: 32px 16px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -14,6 +14,7 @@
 
     border-right: 4px solid var(--Soft-Stroke);
     background: var(--White);
+    box-sizing: border-box;
 }
 
 .menu {
@@ -21,6 +22,17 @@
     flex-direction: column;
     align-items: center;
     gap: 32px;
+}
+
+.profile {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+
+    fill: var(--Primary);
+    stroke-width: 4px;
+    stroke: var(--Soft-Stroke);
 }
 
 .groups {
