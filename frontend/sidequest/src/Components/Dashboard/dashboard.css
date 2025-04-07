@@ -1,4 +1,6 @@
 .dashboard {
+    margin-left: 100px;
+    
     display: flex;
     width: 1200px;
     padding: 60px 48px;
@@ -11,3 +13,45 @@
     background: var(--White);
 }
 
+.group-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.heading {
+    text-align: left;
+    align-self: stretch;
+    color: #000;
+
+    /* Heading */
+    font-family: "DM Sans";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+}
+
+.coins {
+    display: flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 8px;
+    background: var(--Secondary);
+}
+
+.coin-text {
+    color: var(--White);
+
+    /* Body */
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
