@@ -1,0 +1,249 @@
+.mainContainer {
+    background-color: #fafafa;
+    align-self: stretch;
+    padding: 60px 48px;
+    overflow: hidden;
+  }
+  
+  .contentWrapper {
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    width: 100%;
+    display: flex;
+  }
+  
+  .dashboardHeader {
+    color: #2f184b;
+    white-space: nowrap;
+    justify-content: start;
+    align-self: start;
+    align-items: center;
+    font-family:
+      Karla,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+  }
+  
+  .dashboardIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    width: 36px;
+    margin: auto 0;
+  }
+  
+  .dashboard {
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  .navigationSection {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .tabsContainer {
+    color: #2f184b;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    font-family:
+      DM Sans,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+  }
+  
+  .tab {
+    border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0 0;
+    border-bottom: 2px solid #2667ff;
+    color: #2667ff;
+    align-self: stretch;
+    margin: auto 0;
+    padding: 4px 12px;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .tab2 {
+    border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0 0;
+    border-bottom: 2px solid #2f184b;
+    align-self: stretch;
+    margin: auto 0;
+    padding: 4px 12px;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .questHeaderSection {
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    width: 717px;
+    max-width: 100%;
+    margin-top: 48px;
+    display: flex;
+  }
+  
+  .myQuests {
+    color: #000;
+    font-family:
+      DM Sans,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+  
+  .coins {
+    color: #fafafa;
+    background-color: #2667ff;
+    border-radius: 8px;
+    align-self: start;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 12px;
+    font-family:
+      Karla,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .questsSection {
+    color: #000;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    width: 100%;
+    margin-top: 60px;
+    font-family:
+      Karla,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    display: flex;
+  }
+  
+  .questsGrid {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }
+  
+  .questRow {
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+    display: flex;
+  }
+  
+  .quest {
+    border: 2px solid #eaecf9;
+    background-color: #f3f4fb;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: start;
+    align-self: stretch;
+    align-items: stretch;
+    width: 300px;
+    min-width: 240px;
+    min-height: 200px;
+    margin: auto 0;
+    padding: 16px 20px;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .read50PagesBySunday {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .questDetails {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .questCreator {
+    margin: 0;
+  }
+  
+  .questCoins {
+    margin: 4px 0 0;
+  }
+  
+  @media (width <= 991px) {
+    .mainContainer {
+      padding: 60px 20px;
+    }
+  
+    .contentWrapper {
+      max-width: 100%;
+    }
+  
+    .dashboardHeader {
+      white-space: initial;
+    }
+  
+    .navigationSection {
+      max-width: 100%;
+    }
+  
+    .tabsContainer {
+      max-width: 100%;
+    }
+  
+    .questHeaderSection {
+      margin-top: 40px;
+    }
+  
+    .myQuests {
+      max-width: 100%;
+    }
+  
+    .questsSection {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .questsGrid {
+      max-width: 100%;
+    }
+  
+    .questRow {
+      max-width: 100%;
+    }
+  
+    .quest {
+      padding-bottom: 100px;
+    }
+  }
+  
