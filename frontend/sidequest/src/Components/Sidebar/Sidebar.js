@@ -5,8 +5,12 @@ import './sidebar.css';
 const Sidebar = () => {
     return (
         <div class="sidebar">
-            <div class="groups">
+            <div class="menu">
                 <img src={searchIcon} />
+                <div class="groups">
+                <div class="group">
+                </div>
+            </div>
             </div>
             <div class="profile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
