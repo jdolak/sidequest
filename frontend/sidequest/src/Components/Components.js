@@ -1,6 +1,9 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from './Pages/MainPage.js';
-import QuestPage from './Pages/QuestPage.js'
+import QuestDetailsPage from './QuestDetails/QuestDetailsPage.js'
+import MyQuests from './MyQuests/MyQuests.js';
+import GroupPage from './Group/GroupPage.js';
+import BetDetailsPage from './BetDetails/BetDetailsPage.js';
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
@@ -8,18 +11,11 @@ export default function Components() {
         <Router>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="quests" element={<QuestPage />} />
+                <Route path="quests/:id" element={<QuestDetailsPage />} />
+                <Route path="bets/:id" element={<BetDetailsPage />} />
+                <Route path="myquests" element={<MyQuests />} />
+                <Route path="groups" element={<GroupPage />} />
             </Routes>
         </Router>
-
-        // <Router style="background-color: #8CBA80;">
-        //     <Header/>
-        //     <br/>
-        //     <Routes>
-        //         <Route path="/" element={<MainPage/>} />
-        //         <Route path="*" element={<Navigate to="/auth" replace />} /> 
-        //     </Routes>
-        //     <br/>
-        // </Router>
     );
 }

@@ -1,10 +1,10 @@
 "use client";
 import * as React from "react";
-import styles from "styles.css";
+import "./styles.css"; // Updated to use standard CSS import
 import Card from "../Card/Card";
 
 function InputDesign() {
-  const [activeTab, setActiveTab] = useState("myQuests");
+  const [activeTab, setActiveTab] = React.useState("myQuests");
 
   const tabs = [
     { id: "myQuests", label: "My Quests" },
@@ -19,26 +19,26 @@ function InputDesign() {
   });
 
   return (
-    <main className={styles.mainContainer}>
-      <div className={styles.contentWrapper}>
-        <header className={styles.dashboardHeader}>
+    <main className="mainContainer">
+      <div className="contentWrapper">
+        <header className="dashboardHeader">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/6cd6f55de12b126ccbaea183ff2be563d1842724?placeholderIfAbsent=true&apiKey=3d8cc3c677d843f3b683e43ca9c35c9d"
             alt="Dashboard Icon"
-            className={styles.dashboardIcon}
+            className="dashboardIcon"
           />
-          <h2 className={styles.dashboard}>Dashboard</h2>
+          <h2 className="dashboard">Dashboard</h2>
         </header>
 
-        <nav className={styles.navigationSection}>
-          <div className={styles.tabsContainer} role="tablist">
+        <nav className="navigationSection">
+          <div className="tabsContainer" role="tablist">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 role="tab"
                 aria-selected={activeTab === tab.id}
                 aria-controls={`${tab.id}-panel`}
-                className={activeTab === tab.id ? styles.tab : styles.tab2}
+                className={activeTab === tab.id ? "tab" : "tab2"}
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
@@ -46,10 +46,10 @@ function InputDesign() {
             ))}
           </div>
 
-          <section className={styles.questHeaderSection}>
-            <h1 className={styles.myQuests}>My Quests</h1>
+          <section className="questHeaderSection">
+            <h1 className="myQuests">My Quests</h1>
             <div
-              className={styles.coins}
+              className="coins"
               role="status"
               aria-label="Available coins"
             >
@@ -58,9 +58,9 @@ function InputDesign() {
           </section>
         </nav>
 
-        <section className={styles.questsSection}>
-          <div className={styles.questsGrid}>
-            <div className={styles.questRow}>
+        <section className="questsSection">
+          <div className="questsGrid">
+            <div className="questRow">
               {quests.slice(0, 4).map((quest, index) => (
                 <Card
                   key={index}
@@ -70,7 +70,7 @@ function InputDesign() {
                 />
               ))}
             </div>
-            <div className={styles.questRow}>
+            <div className="questRow">
               {quests.slice(4, 8).map((quest, index) => (
                 <Card
                   key={index + 4}

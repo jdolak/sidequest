@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import styles from "./styles.css";
+import "./styles.css";
 
 function BettingPage() {
   const handleBack = () => {
@@ -16,12 +16,12 @@ function BettingPage() {
   };
 
   return (
-    <main className={styles.pageContainer}>
-      <section className={styles.headerSection}>
-        <nav className={styles.navigation}>
+    <main className="pageContainer">
+      <section className="headerSection">
+        <nav className="navigation">
           <button
             onClick={handleBack}
-            className={styles.backButton}
+            className="backButton"
             aria-label="Go back"
           >
             <svg
@@ -53,37 +53,37 @@ function BettingPage() {
             </svg>
           </button>
         </nav>
-        <article className={styles.betInfo}>
-          <h1 className={styles.betTitle}>
+        <article className="betInfo">
+          <h1 className="betTitle">
             Is Notre Dame Winning the WBB Championship?
           </h1>
-          <p className={styles.creator}>Created by csuwita</p>
-          <p className={styles.closingDate}>Bet closes on March 30, 2025</p>
+          <p className="creator">Created by csuwita</p>
+          <p className="closingDate">Bet closes on March 30, 2025</p>
         </article>
       </section>
 
-      <section className={styles.betContent}>
-        <div className={styles.betDetails}>
-          <article className={styles.descriptionSection}>
-            <h2 className={styles.sectionTitle}>Description</h2>
-            <p className={styles.descriptionText}>
+      <section className="betContent">
+        <div className="betDetails">
+          <article className="descriptionSection">
+            <h2 className="sectionTitle">Description</h2>
+            <p className="descriptionText">
               Place your bets on whether Notre Dame will win the Final
               Championship.
             </p>
           </article>
 
-          <article className={styles.oddsSection}>
-            <h2 className={styles.sectionTitle}>Odds</h2>
-            <p className={styles.oddsText}>64-36</p>
+          <article className="oddsSection">
+            <h2 className="sectionTitle">Odds</h2>
+            <p className="oddsText">64-36</p>
           </article>
 
-          <article className={styles.betAmountSection}>
-            <h2 className={styles.sectionTitle}>
+          <article className="betAmountSection">
+            <h2 className="sectionTitle">
               Number of bets you'd like to place
             </h2>
             <input
               type="number"
-              className={styles.betInput}
+              className="betInput"
               aria-label="Enter number of bets"
               min="1"
               placeholder="Value"
@@ -91,17 +91,17 @@ function BettingPage() {
           </article>
         </div>
 
-        <div className={styles.actionButtons}>
+        <div className="actionButtons">
           <button
             onClick={handleBetYes}
-            className={styles.betYesButton}
+            className="betYesButton"
             aria-label="Place bet for Yes"
           >
             Buy yes
           </button>
           <button
             onClick={handleBetNo}
-            className={styles.betNoButton}
+            className="betNoButton"
             aria-label="Place bet for No"
           >
             Buy no

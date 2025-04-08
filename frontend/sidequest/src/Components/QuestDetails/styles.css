@@ -1,3 +1,10 @@
+.layoutContainer {
+  display: flex;
+  flex-direction: row; /* Ensure sidebar and content are side by side */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent overflow issues */
+}
+
 .questContainer {
     background-color: #fafafa;
     flex-direction: column;
@@ -9,7 +16,8 @@
     margin-right: auto;
     padding: 60px 48px;
     display: flex;
-  }
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
   
   @media (width<=991px) {
     .questContainer {
@@ -142,4 +150,3 @@
       width: 100%;
     }
   }
-  

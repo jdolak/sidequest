@@ -1,6 +1,6 @@
-import styles from "styles.css";
-("use client");
+import "./styles.css";
 import * as React from "react";
+import Sidebar from "../Sidebar/Sidebar.js";
 
 function QuestDetails() {
   const handleBackClick = () => {
@@ -14,16 +14,17 @@ function QuestDetails() {
   };
 
   return (
-    <>
+    <div className="layoutContainer">
       <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Karla:wght@400;700&display=swap"
         rel="stylesheet"
       />
-      <main className={styles.questContainer}>
-        <header className={styles.headerSection}>
+      <Sidebar />
+      <div className="questContainer">
+        <header className="headerSection">
           <button
             onClick={handleBackClick}
-            className={styles.backButton}
+            className="backButton"
             aria-label="Go back"
           >
             <svg
@@ -56,36 +57,36 @@ function QuestDetails() {
           </button>
         </header>
 
-        <section className={styles.questHeader}>
-          <h1 className={styles.questTitle}>Read 50 Pages by Sunday</h1>
-          <p className={styles.questCreator}>Created by csuwita</p>
-          <p className={styles.questDueDate}>Due Date: March 30, 2025</p>
+        <section className="questHeader">
+          <h1 className="questTitle">Read 50 Pages by Sunday</h1>
+          <p className="questCreator">Created by csuwita</p>
+          <p className="questDueDate">Due Date: March 30, 2025</p>
         </section>
 
-        <section className={styles.questContent}>
-          <div className={styles.descriptionSection}>
-            <h2 className={styles.sectionTitle}>Description</h2>
-            <p className={styles.sectionText}>
+        <section className="questContent">
+          <div className="descriptionSection">
+            <h2 className="sectionTitle">Description</h2>
+            <p className="sectionText">
               Read 50 pages of the following book and give me an accurate
               summary. Winner gets 100 coins and a free dining hall meal swipe.
             </p>
           </div>
 
-          <div className={styles.incentiveSection}>
-            <h2 className={styles.sectionTitle}>Incentive</h2>
-            <p className={styles.sectionText}>Free dining hall meal swipe</p>
+          <div className="incentiveSection">
+            <h2 className="sectionTitle">Incentive</h2>
+            <p className="sectionText">Free dining hall meal swipe</p>
           </div>
 
           <button
-            className={styles.acceptButton}
+            className="acceptButton"
             onClick={handleAcceptQuest}
             aria-label="Accept quest to read 50 pages"
           >
             Accept quest
           </button>
         </section>
-      </main>
-    </>
+      </div>
+    </div>
   );
 }
 

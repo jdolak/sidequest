@@ -1,10 +1,8 @@
 "use client";
 import React from "react";
-import styles from "styles.css";
-import "./CardHolder/Section.js";
-import "../Card/Card.js";
-import Menu from "../Menu/Menu.js";
-
+import "./styles.css"; 
+import Holder from "./CardHolder/Holder.js";
+import Card from "../Card/Card.js";
 
 const Dashboard = () => {
   const quests = [
@@ -25,12 +23,12 @@ const Dashboard = () => {
   ];
 
   return (
-    <main className={styles.dashboard}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Flaherty Hall</h1>
-        <p className={styles.members}>20 members</p>
+    <main className="dashboard">
+      <header className="header">
+        <h1 className="title">Flaherty Hall</h1>
+        <p className="members">20 members</p>
         <div
-          className={styles.coinsContainer}
+          className="coinsContainer"
           role="status"
           aria-label="100 coins available"
         >
@@ -38,7 +36,7 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <Section
+      <Holder
         title="Quests"
         actionText="View all quests"
         onActionClick={() => {}}
@@ -51,13 +49,13 @@ const Dashboard = () => {
             coins={quest.coins}
           />
         ))}
-      </Section>
+      </Holder>
 
-      <Section title="Bets" actionText="View all" onActionClick={() => {}}>
+      <Holder title="Bets" actionText="View all" onActionClick={() => {}}>
         {bets.map((bet, index) => (
           <Card key={index} title={bet.title} creator={bet.creator} />
         ))}
-      </Section>
+      </Holder>
     </main>
   );
 };

@@ -1,20 +1,20 @@
 import React from "react";
-import styles from "./styles.css";
+import "./styles.css";
 
 const Section = ({ title, actionText, onActionClick, children }) => {
   return (
-    <section className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+    <section className="section">
+      <div className="header">
+        <h2 className="title">{title}</h2>
         <button
-          className={styles.action}
+          className="action"
           onClick={onActionClick}
           aria-label={`${actionText} for ${title}`}
         >
           {actionText}
         </button>
       </div>
-      <div className={styles.content} role="list">
+      <div className="content" role="list">
         {children}
       </div>
     </section>
