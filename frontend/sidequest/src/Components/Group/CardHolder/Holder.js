@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Section.module.css";
+import styles from "./styles.css";
 
 const Section = ({ title, actionText, onActionClick, children }) => {
   return (

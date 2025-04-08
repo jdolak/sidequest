@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import styles from "./InputDesign.module.css";
+import styles from "styles.css";
 import Card from "../Card/Card";
 
 function InputDesign() {

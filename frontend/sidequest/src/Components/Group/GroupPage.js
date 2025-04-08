@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import "styles.css";
+import styles from "styles.css";
 import "./CardHolder/Section.js";
 import "../Card/Card.js";
 import Menu from "../Menu/Menu.js";

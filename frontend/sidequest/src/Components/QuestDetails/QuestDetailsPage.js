@@ -1,4 +1,4 @@
-import styles from "./QuestDetails.module.css";
+import styles from "styles.css";
 ("use client");
 import * as React from "react";
 

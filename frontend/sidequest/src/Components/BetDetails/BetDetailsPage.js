@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import styles from "./BettingPage.module.css";
+import styles from "./styles.css";
 
 function BettingPage() {
   const handleBack = () => {
