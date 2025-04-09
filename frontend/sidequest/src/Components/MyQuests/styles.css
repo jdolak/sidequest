@@ -1,7 +1,9 @@
+@import url('../../variables.css');
+
 .mainContainer {
     background-color: #fafafa;
     align-self: stretch;
-    padding: 60px 48px;
+    padding: 10px 48px;
     overflow: hidden;
   }
   
@@ -25,7 +27,7 @@
       Roboto,
       Helvetica,
       sans-serif;
-    font-size: 16px;
+    font-size: var(--font-size-base, 16px);
     font-weight: 700;
     display: flex;
   }
@@ -43,6 +45,7 @@
   .dashboard {
     align-self: stretch;
     margin: auto 0;
+    padding: 0px 12px;
   }
   
   .navigationSection {
@@ -63,15 +66,15 @@
       Roboto,
       Helvetica,
       sans-serif;
-    font-size: 20px;
+    font-size: var(--font-size-large);
     font-weight: 600;
     display: flex;
   }
   
   .tab {
-    border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0 0;
-    border-bottom: 2px solid #2667ff;
-    color: #2667ff;
+    border: None;
+    border-bottom: 2px solid var(--Secondary);
+    color: var(--Secondary);
     align-self: stretch;
     margin: auto 0;
     padding: 4px 12px;
@@ -80,7 +83,7 @@
   }
   
   .tab2 {
-    border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0 0;
+    border: None;
     border-bottom: 2px solid #2f184b;
     align-self: stretch;
     margin: auto 0;
@@ -95,7 +98,7 @@
     align-items: stretch;
     width: 717px;
     max-width: 100%;
-    margin-top: 48px;
+    margin-top: 24px;
     display: flex;
   }
   
@@ -107,10 +110,12 @@
       Roboto,
       Helvetica,
       sans-serif;
-    font-size: 32px;
+    font-size: var(--font-size-title);
     font-weight: 700;
     line-height: 1.2;
     margin: 0;
+    margin-bottom: 8px;
+    text-align: left;
   }
   
   .coins {
@@ -127,7 +132,7 @@
       Roboto,
       Helvetica,
       sans-serif;
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 400;
   }
   
@@ -181,14 +186,14 @@
   }
   
   .read50PagesBySunday {
-    font-size: 20px;
+    font-size: var(--font-size-large);
     font-weight: 600;
     margin: 0;
   }
   
   .questDetails {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 400;
   }
   
@@ -224,11 +229,11 @@
     .questHeaderSection {
       margin-top: 40px;
     }
-  
+
     .myQuests {
       max-width: 100%;
     }
-  
+
     .questsSection {
       max-width: 100%;
       margin-top: 40px;
