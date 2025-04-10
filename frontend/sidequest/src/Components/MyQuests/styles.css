@@ -1,7 +1,7 @@
 @import url('../../variables.css');
 
 .mainContainer {
-    background-color: #fafafa;
+    background-color: var(--White);
     align-self: stretch;
     padding: 10px 48px;
     overflow: hidden;
@@ -16,7 +16,7 @@
   }
   
   .dashboardHeader {
-    color: #2f184b;
+    color: var(--Dark);
     white-space: nowrap;
     justify-content: start;
     align-self: start;
@@ -42,9 +42,9 @@
     margin: auto 0;
   }
   
-  .dashboard {
+  .myquests-dashboard {
     align-self: stretch;
-    margin: auto 0;
+    margin: 10 0;
     padding: 0px 12px;
   }
   
@@ -54,7 +54,7 @@
   }
   
   .tabsContainer {
-    color: #2f184b;
+    color: var(--Dark);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -100,10 +100,11 @@
     max-width: 100%;
     margin-top: 24px;
     display: flex;
+    margin-left: 7%;
   }
   
   .myQuests {
-    color: #000;
+    color: var(--Dark);
     font-family:
       DM Sans,
       -apple-system,
@@ -119,8 +120,8 @@
   }
   
   .coins {
-    color: #fafafa;
-    background-color: #2667ff;
+    color: var(--White);
+    background-color: var(--Secondary);
     border-radius: 8px;
     align-self: start;
     gap: 10px;
@@ -137,7 +138,7 @@
   }
   
   .questsSection {
-    color: #000;
+    color: var(--Dark);
     flex-direction: column;
     justify-content: start;
     align-items: stretch;
@@ -166,11 +167,12 @@
     align-items: center;
     gap: 16px;
     display: flex;
+    margin: 1%;
   }
   
   .quest {
     border: 2px solid #eaecf9;
-    background-color: #f3f4fb;
+    background-color: var(--Primary);
     border-radius: 20px;
     flex-direction: column;
     justify-content: start;

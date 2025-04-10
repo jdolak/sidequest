@@ -27,7 +27,7 @@ function InputDesign() {
             alt="Dashboard Icon"
             className="dashboardIcon"
           />
-          <h2 className="dashboard">Dashboard</h2>
+          <h2 className="myquests-dashboard">Dashboard</h2>
         </header>
 
         <nav className="navigationSection">
