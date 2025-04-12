@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  width: 300px;
+  height: 200px;
+  padding: 16px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  border-radius: 20px;
+  border: 1px solid var(--Soft-Stroke, #EAECF9);
+  background: var(--Primary, #F3F4FB);
+}
+  
+.card-title {
+  color: #000;
+
+  /* Card Subheading */
+  font-family: "Karla";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+  
+.card-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
