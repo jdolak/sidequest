@@ -1,4 +1,5 @@
 import './betsection.css';
+import BetCard from '../../Cards/BetCard';
 
 const BetSection = () => {
     return (
@@ -8,24 +9,9 @@ const BetSection = () => {
                     <div class="view-quest-button">View all bets</div>
             </div>
             <div class="quest-list">
-                <div class="quest-card">
-                    <div class="quest-title">Is Notre Dame Winning the Fencing Championship?</div>
-                    <div class="quest-desc">
-                        <div>Created by csuwita</div>
-                    </div>
-                </div>
-                <div class="quest-card">
-                    <div class="quest-title">Is Notre Dame Winning the Fencing Championship?</div>
-                    <div class="quest-desc">
-                        <div>Created by csuwita</div>
-                    </div>
-                </div>
-                <div class="quest-card">
-                    <div class="quest-title">Is Notre Dame Winning the Fencing Championship?</div>
-                    <div class="quest-desc">
-                        <div>Created by csuwita</div>
-                    </div>
-                </div>
+                <BetCard />
+                <BetCard />
+                <BetCard />
             </div>
         </div>
     )

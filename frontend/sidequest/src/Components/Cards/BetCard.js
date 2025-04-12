@@ -13,16 +13,15 @@ import "./card.css";
 //   );
 // };
 
-const Card = () => {
+const BetCard = () => {
   return (
     <div class="card">
-      <div class="card-title">Read 50 pages by Sunday</div>
+      <div class="card-title">Is Notre Dame Winning the Fencing Championship?</div>
       <div class="card-desc">
         <div>Created by csuwita</div>
-        <div>100 coins</div>
       </div>
     </div>
   )
 }
 
-export default Card;
+export default BetCard;
