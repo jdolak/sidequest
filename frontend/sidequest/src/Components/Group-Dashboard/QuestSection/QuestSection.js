@@ -5,12 +5,12 @@ import QuestCard from '../../Cards/QuestCard';
 
 const QuestSection = () => {
     return (
-        <div class="main-section">
-            <div class="header">
-                    <div class="subheading-text">Quests</div>
-                    <Link to="/quests" class="view-quest-button">View all quests</Link>
+        <div className="main-section">
+            <div className="header">
+                    <div className="subheading-text">Quests</div>
+                    <Link to="/quests" className="view-quest-button">View all quests</Link>
             </div>
-            <div class="quest-list">
+            <div className="quest-list">
                 <QuestCard />
                 <QuestCard />
                 <QuestCard />
