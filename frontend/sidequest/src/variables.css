@@ -14,13 +14,12 @@
     --font-size-title: 32px;
 
     /* Spacing */
-    /* --spacing-small: 8px;
-    --spacing-medium: 16px;
-    --spacing-large: 24px; */
+    --sds-size-space-100: 0.25rem;
+    --sds-size-space-300: 0.75rem;
 
     /* Border */
-    /* --border-radius: 4px;
-    --border-color: #dddddd; */
+    --sds-size-radius-100: 0.25rem;
+
 
     /* Shadows */
     /* --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */ 

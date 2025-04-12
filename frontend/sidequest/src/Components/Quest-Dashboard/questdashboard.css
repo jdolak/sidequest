@@ -1,11 +1,126 @@
 @import url('../../variables.css');
 
 .mainContainer {
-    background-color: var(--White);
-    align-self: stretch;
-    padding: 10px 48px;
-    overflow: hidden;
-  }
+    display: flex;
+    width: 1440px;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--White);
+}
+
+.questDashboard {
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  flex: 1 0 0;
+  align-self: stretch;
+
+  background: var(--White);
+}
+
+.dashboardHeader {
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  flex: 1 0 0;
+  align-self: stretch;
+
+  background: var(--White);
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+}
+
+.backText {
+  color: var(--Action, #2F184B);
+
+  /* Action */
+  font-family: Karla;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.headerContents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  align-self: stretch;
+}
+
+.questTabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.tab {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  padding: var(--sds-size-space-100) var(--sds-size-space-300);
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0px 0px;
+  border-bottom: 2px solid var(--Secondary, #2667FF);
+
+  color: var(--Secondary, #2667FF);
+
+  /* Subheading */
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tab2 {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  padding: var(--sds-size-space-100) var(--sds-size-space-300);
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0px 0px;
+  color: var(--Action, #2F184B);
+
+  /* Subheading */
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tabHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* .quests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  align-self: stretch;
+}
   
   .contentWrapper {
     flex-direction: column;
@@ -253,4 +368,4 @@
       padding-bottom: 100px;
     }
   }
-  
+   */
