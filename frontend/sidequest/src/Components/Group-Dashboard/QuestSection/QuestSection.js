@@ -14,6 +14,7 @@ const QuestSection = () => {
                 <QuestCard />
                 <QuestCard />
                 <QuestCard />
+                <QuestCard />
             </div>
         </div>
     )

@@ -39,11 +39,17 @@ const QuestDashboard = () => {
               ))}
             </div>
             <div class="tabHeader">
+              <div>My Quests</div>
             </div>
           </div>
         </div>
         <div class="quests">
-
+              <div class="quest-row">
+                <QuestCard />
+                <QuestCard />
+                <QuestCard />
+                <QuestCard />
+              </div>
         </div>
       </div>
     </div>

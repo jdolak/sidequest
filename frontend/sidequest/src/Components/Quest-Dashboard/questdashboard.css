@@ -2,20 +2,23 @@
 
 .mainContainer {
     display: flex;
-    width: 1440px;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
 
     background: var(--White);
 }
 
 .questDashboard {
+  margin-left: 100px;
   display: flex;
   padding: 60px 48px;
   flex-direction: column;
   align-items: flex-start;
   gap: 60px;
   flex: 1 0 0;
+  overflow-y: auto;
   align-self: stretch;
 
   background: var(--White);
@@ -112,16 +115,32 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+
+  color: #000;
+
+  /* Heading */
+  font-family: "DM Sans";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 38.4px */
 }
 
-/* .quests {
+.quests {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   align-self: stretch;
 }
-  
+
+.quest-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 
   .contentWrapper {
     flex-direction: column;
     justify-content: start;

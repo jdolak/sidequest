@@ -12,6 +12,7 @@ const BetSection = () => {
                 <BetCard />
                 <BetCard />
                 <BetCard />
+                <BetCard />
             </div>
         </div>
     )
