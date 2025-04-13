@@ -1,4 +1,6 @@
-
+import sqapp
+from sqlalchemy import text
+from flask import Response, jsonify
 
 def db_connect():
     from sqlalchemy import create_engine
@@ -31,3 +33,24 @@ def init_example_db(engine):
                 conn.execute(text(command))
 
         conn.commit()
+
+def sql_one(session, query, params):
+    sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
+    result = session.execute(text(query), params)
+    row = result.fetchone()
+
+    if row:
+            row_dict = dict(row._mapping)
+            return jsonify(row_dict)
+
+    return Response(status=204)
+
+def sql_many(session, query, params):
+    sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
+    result = session.execute(text(query), params)
+    row_dict = [dict(row._mapping) for row in result]
+    if result:
+        return jsonify(row_dict)
+    else:
+        return Response(status=204)
+

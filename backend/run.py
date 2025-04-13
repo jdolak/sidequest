@@ -1,4 +1,4 @@
-from app import create_app
+from sqapp import create_app
 
 sq_app = create_app()
 

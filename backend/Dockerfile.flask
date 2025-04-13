@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 COPY ./db/* /${PROJECT}/db/
 
 COPY ./run.py /${PROJECT}/
-ADD ./app /${PROJECT}/app
+ADD ./sqapp /${PROJECT}/sqapp
 
 CMD ["python3", "run.py"]
 #CMD ["python3", "-m", "flask", "run"]
