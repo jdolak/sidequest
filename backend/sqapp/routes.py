@@ -14,6 +14,8 @@ Session = scoped_session(SessionFactory)
 API endpoints:
 - /quests/<int:quest_id>
 - /quests
+- /quests/open
+- /quests/accepted/<int:user_id>
 - /users/<int:user_id>
 - /users
 - /groups/<int:group_id>
@@ -51,6 +53,14 @@ def get_quest_id(quest_id):
 @main_bp.route("/quests", methods=["GET"])
 def get_quest():
     return sql_many(g.db_session, "SELECT * FROM QUESTS", None)
+
+@main_bp.route("/quests/accepted/<int:user_id>", methods=["GET"])
+def get_quest_accepted(user_id):
+    return sql_many(g.db_session, "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.user_id = :user_id AND qs.status = 'Accepted' AND q.quest_id = qs.quest_id", {"user_id": user_id})
+
+@main_bp.route("/quests/open", methods=["GET"])
+def get_quest_open():
+    return sql_many(g.db_session, "SELECT * FROM QUESTS WHERE quest_status = 'Open'", None)
 
 @main_bp.route("/users/<int:user_id>", methods=["GET"])
 def get_user_id(user_id):
