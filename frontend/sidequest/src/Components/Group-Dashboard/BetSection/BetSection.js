@@ -10,7 +10,9 @@ const BetSection = () => {
                     <Link to="/bets" className='view-quest-button'>View all bets</Link>
             </div>
             <div class="quest-list">
-                <BetCard />
+                <Link to="/bets/1" className="bet-card-link">
+                    <BetCard />
+                </Link>
                 <BetCard />
                 <BetCard />
                 <BetCard />

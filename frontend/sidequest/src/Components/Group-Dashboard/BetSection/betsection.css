@@ -96,3 +96,8 @@
     line-height: normal;
 }
 
+.bet-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+

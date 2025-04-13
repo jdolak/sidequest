@@ -17,9 +17,12 @@
     /* Spacing */
     --sds-size-space-100: 0.25rem;
     --sds-size-space-300: 0.75rem;
+    --sds-size-space-400: 1rem;
 
     /* Border */
     --sds-size-radius-100: 0.25rem;
+    --sds-size-radius-200: 0.5rem;
+    --sds-size-stroke-border: 0.0625rem;
 
 
     /* Shadows */

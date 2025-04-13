@@ -140,3 +140,8 @@
   align-items: center;
   gap: 16px;
 }
+
+.bet-card-link {
+  text-decoration: none;
+  color: inherit;
+}

@@ -46,7 +46,9 @@ const BetDashboard = () => {
         </div>
         <div class="bets">
               <div class="bet-row">
-                <BetCard />
+                <Link to="/bets/1" className="bet-card-link">
+                  <BetCard />
+                </Link>
                 <BetCard />
                 <BetCard />
                 <BetCard />
