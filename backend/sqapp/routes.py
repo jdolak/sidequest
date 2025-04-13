@@ -15,10 +15,10 @@ API endpoints:
 - /quests/<int:quest_id>
 - /quests
 - /quests/open
-- /quests/accepted/<int:user_id>
+- /quests/accepted/<int:user_id> * will be depreciated in favor of account variable
 - /users/<int:user_id>
 - /users
-- /groups/<int:group_id>
+- /groups/<int:group_id> * will be depreciated in favor of account variable
 - /groups
 - /groups_user/<int:group_id>/<int:user_id>
 - /groups_user
