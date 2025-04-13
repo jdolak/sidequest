@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainPage from './Pages/MainPage.js';
 import QuestDetailsPage from './QuestDetails/QuestDetailsPage.js'
-import QuestDashboard from "./Quest-Dashboard/QuestDashboard.js";
+import QuestDashboard from "./QuestDashboard/QuestDashboard.js";
 // import GroupPage from './Group/GroupPage.js';
 import BetDetailsPage from './BetDetails/BetDetailsPage.js';
 import { Navigate } from 'react-router-dom';

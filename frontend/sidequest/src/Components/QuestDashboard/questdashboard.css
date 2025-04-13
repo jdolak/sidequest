@@ -1,0 +1,139 @@
+@import url('../../variables.css');
+
+.mainContainer {
+    display: inline-flex;
+    width: 100vw;
+    /* height: 100vh; */
+    align-items: center;
+      
+    background: var(--White);
+}
+
+.questDashboard {
+  margin-left: 100px;
+  display: flex;
+  flex: 1;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+
+  /* flex-shrink: 0; */
+
+  background: var(--White);
+}
+
+.dashboardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.backText {
+  color: var(--Action, #2F184B);
+
+  /* Action */
+  font-family: Karla;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.headerContents {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  align-self: stretch;
+}
+
+.questTabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.tab {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  padding: var(--sds-size-space-100) var(--sds-size-space-300);
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0px 0px;
+  border-bottom: 2px solid var(--Secondary, #2667FF);
+
+  color: var(--Secondary, #2667FF);
+
+  /* Subheading */
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tab2 {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  padding: var(--sds-size-space-100) var(--sds-size-space-300);
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0px 0px;
+  color: var(--Action, #2F184B);
+
+  /* Subheading */
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tabHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+
+  color: #000;
+
+  /* Heading */
+  font-family: "DM Sans";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 38.4px */
+}
+
+.quests {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.quest-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

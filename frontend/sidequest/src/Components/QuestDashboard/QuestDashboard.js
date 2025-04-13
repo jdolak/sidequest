@@ -19,9 +19,9 @@ const QuestDashboard = () => {
       <Sidebar />
       <div class="questDashboard">
         <div class="dashboardHeader">
-          <div class="backButton">
+          <div className="backButton">
             <img src={backIcon} />
-            <div class="backText">Dashboard</div>
+            <div className="backText">Dashboard</div>
           </div>
           <div class="headerContents">
             <div class="questTabs">
