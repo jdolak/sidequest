@@ -4,6 +4,7 @@ import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import QuestCard from "../Cards/QuestCard";
+import { Link } from "react-router-dom";
 
 const QuestDashboard = () => {
 
@@ -19,10 +20,10 @@ const QuestDashboard = () => {
       <Sidebar />
       <div class="questDashboard">
         <div class="dashboardHeader">
-          <div className="backButton">
+          <Link to="/" className="backButton">
             <img src={backIcon} />
             <div className="backText">Dashboard</div>
-          </div>
+          </Link>
           <div class="headerContents">
             <div class="questTabs">
               {tabs.map((tab) => (

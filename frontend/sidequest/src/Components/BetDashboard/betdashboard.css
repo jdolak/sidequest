@@ -11,7 +11,7 @@
     background: var(--White);
 }
 
-.questDashboard {
+.betDashboard {
   margin-left: 100px;
   display: flex;
   flex: 1;
@@ -61,7 +61,7 @@
   align-self: stretch;
 }
 
-.questTabs {
+.betTabs {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,7 +127,7 @@
   line-height: 120%; /* 38.4px */
 }
 
-.quests {
+.bets {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -135,7 +135,7 @@
   align-self: stretch;
 }
 
-.quest-row {
+.bet-row {
   display: flex;
   align-items: center;
   gap: 16px;

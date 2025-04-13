@@ -1,4 +1,5 @@
 import './betsection.css';
+import { Link } from 'react-router-dom';
 import BetCard from '../../Cards/BetCard';
 
 const BetSection = () => {
@@ -6,7 +7,7 @@ const BetSection = () => {
         <div class="main-section">
             <div class="header">
                     <div class="subheading-text">Bets</div>
-                    <div class="view-quest-button">View all bets</div>
+                    <Link to="/bets" className='view-quest-button'>View all bets</Link>
             </div>
             <div class="quest-list">
                 <BetCard />
