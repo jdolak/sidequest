@@ -49,3 +49,7 @@
     align-self: stretch;
 }
 
+.quest-card-link {
+    text-decoration: none;
+    color: inherit;
+}

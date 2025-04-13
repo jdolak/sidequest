@@ -11,7 +11,9 @@ const QuestSection = () => {
                     <Link to="/quests" className="view-quest-button">View all quests</Link>
             </div>
             <div className="quest-list">
-                <QuestCard />
+                <Link to="/quests/1" className="quest-card-link">
+                    <QuestCard />
+                </Link>
                 <QuestCard />
                 <QuestCard />
                 <QuestCard />

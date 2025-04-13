@@ -12,6 +12,7 @@
     --font-size-small: 14px;
     --font-size-large: 20px;
     --font-size-title: 32px;
+    --sds-typography-subtitle-size-base: 2rem;
 
     /* Spacing */
     --sds-size-space-100: 0.25rem;
