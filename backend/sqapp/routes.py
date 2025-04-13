@@ -10,6 +10,22 @@ main_bp = Blueprint('main', __name__)
 SessionFactory = sessionmaker(bind=DB)
 Session = scoped_session(SessionFactory)
 
+"""
+API endpoints:
+- /quests/<int:quest_id>
+- /quests
+- /users/<int:user_id>
+- /users
+- /groups/<int:group_id>
+- /groups
+- /groups_user/<int:group_id>/<int:user_id>
+- /groups_user
+- /bought_bets/<int:bet_id>/<int:buyer_id>
+- /bought_bets
+- /quest_submissions/<int:submission_id>
+- /quest_submissions
+"""
+
 @main_bp.route("/")
 def home():
     return "<h1>Sidequest API</h1>"
@@ -27,21 +43,6 @@ def cleanup_session(exception):
             g.db_session.commit()
     finally:
         g.db_session.close()
-
-"""
-API endpoints:
-- /quests/<int:quest_id>
-- /quests
-- /users/<int:user_id>
-- /users
-- /groups/<int:group_id>
-- /groups
-- /groups_user/<int:group_id>/<int:user_id>
-- /groups_user
-- /bought_bets/<int:bet_id>/<int:buyer_id>
-- /bought_bets
-- /quest_submissions/<int:submission_id>
-"""
 
 @main_bp.route("/quests/<int:quest_id>", methods=["GET"])
 def get_quest_id(quest_id):
