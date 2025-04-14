@@ -3,14 +3,14 @@
 - [ ] Finish wireframes
 - [ ] Upload component html as components
 ### Jachob
-- [ ] Create endpoints
-    - [ ] Users
-    - [ ] Quests
-        - [ ] Userquests
-        - [ ] Openquests
-    - [ ] Bets
-    - [ ] Groups
-- [ ] logging
+- [x] Create endpoints
+    - [x] Users
+    - [x] Quests
+        - [x] Userquests
+        - [x] Openquests
+    - [x] Bets
+    - [x] Groups
+- [x] logging
 ### Patrick
 - [ ] Help out
 

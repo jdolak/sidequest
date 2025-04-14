@@ -15,6 +15,8 @@ API endpoints:
 - /quests/<int:quest_id>
 - /quests
 - /quests/open
+- /quests/author_id/<int:author_id> * will be depreciated in favor of account variable
+- /quests/accepted
 - /quests/accepted/<int:user_id> * will be depreciated in favor of account variable
 - /users/<int:user_id>
 - /users
@@ -55,8 +57,16 @@ def get_quest():
     return sql_many(g.db_session, "SELECT * FROM QUESTS", None)
 
 @main_bp.route("/quests/accepted/<int:user_id>", methods=["GET"])
-def get_quest_accepted(user_id):
+def get_quest_accepted_user(user_id):
     return sql_many(g.db_session, "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.user_id = :user_id AND qs.status = 'Accepted' AND q.quest_id = qs.quest_id", {"user_id": user_id})
+
+@main_bp.route("/quests/accepted", methods=["GET"])
+def get_quest_accepted():
+    return sql_many(g.db_session, "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id", None)
+
+@main_bp.route("/quests/author_id/<int:author_id>", methods=["GET"])
+def get_quest_user(author_id):
+    return sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": author_id})
 
 @main_bp.route("/quests/open", methods=["GET"])
 def get_quest_open():

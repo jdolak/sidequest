@@ -44,11 +44,13 @@ CREATE TABLE BOUGHT_BETS (
 
 CREATE TABLE QUESTS (
     quest_id NUMBER PRIMARY KEY,
+    author_id NUMBER,
     group_id NUMBER,
     quest_desc VARCHAR2(4000) NOT NULL,
     reward_amount NUMBER NOT NULL,
     due_date DATE NOT NULL,
     quest_status VARCHAR2(255) NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES USERS(user_id) ON DELETE CASCADE,
     FOREIGN KEY (group_id) REFERENCES GROUPS(group_id) ON DELETE CASCADE
 );
 
