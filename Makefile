@@ -49,7 +49,7 @@ frontend-build: $(REACT_SRCS) ./frontend/Dockerfile.frontend
 dev-build: $(REACT_SRCS) ./frontend/Dockerfile.frontend.dev
 	PROJECT=$(PROJECT) docker build -f ./frontend/Dockerfile.frontend.dev -t jdolakk/$(PROJECT)-frontend-dev ./frontend
 
-dev: dev-build
+dev: dev-build flask-build
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose-dev.yml -p $(PROJECT) up -d
 
 dev-down:
