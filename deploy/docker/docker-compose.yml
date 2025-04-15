@@ -15,3 +15,11 @@ services:
     env_file: ../../.env
     ports:
       - ${HOST_PORT}:80
+
+  sq-s3:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"  # S3 API
+      - "9001:9001"  # Web console
+    env_file: ../../.env
+    command: server /data --console-address ":9001"

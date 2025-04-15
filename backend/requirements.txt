@@ -2,3 +2,4 @@ Flask
 SQLAlchemy
 dotenv
 gunicorn
+boto3

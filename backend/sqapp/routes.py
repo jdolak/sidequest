@@ -1,14 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, Blueprint, jsonify, g
-from sqlalchemy import text, inspect
+from flask import Blueprint, jsonify, g, session, request, Response
+from sqlalchemy import inspect
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 from sqapp  import DB, LOG
 from sqapp.db import sql_many, sql_one
+from sqapp.src.uploads import S3_CLIENT
 
 main_bp = Blueprint('main', __name__)
 
 SessionFactory = sessionmaker(bind=DB)
-Session = scoped_session(SessionFactory)
+DB_session = scoped_session(SessionFactory)
 
 """
 API endpoints:
@@ -36,7 +37,13 @@ def home():
 
 @main_bp.before_request
 def start_session():
-    g.db_session = Session()
+    g.db_session = DB_session()
+
+    user_id = session.get('user_id')
+    if user_id:
+        g.user = user_id
+    else:
+        g.user = None
 
 @main_bp.teardown_request
 def cleanup_session(exception):
@@ -122,8 +129,11 @@ def get_quest_submission_id(submission_id):
 def get_all_quest_submissions():
     return sql_many(g.db_session, "SELECT submission_id, u.user_id, user_name, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE q.user_id = u.user_id", None)
 
-
-
+@main_bp.route('/quest-upload', methods=['POST'])
+def upload():
+    file = request.files['file']
+    S3_CLIENT.upload_fileobj(file, 'quest-submissions', file.filename)
+    return Response(status=201)
 
 @main_bp.route("/debug")
 def test_db():

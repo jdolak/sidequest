@@ -7,6 +7,7 @@ cat << EOF >> ./.env
 HOST_PORT=8080
 APP_PORT=8080
 FLASK_APP=run.py
+FLASK_SECRET_KEY=$(openssl rand -base64 32)
 EOF
 
 fi

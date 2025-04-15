@@ -7,16 +7,16 @@ graph TD;
     subgraph Server
         Nginx
 				Flask
-				Database@{ shape: cyl, label: "OracleDB" }
+				db@{ shape: cyl, label: "OracleDB\n(RDMS)" }
 				static@{ shape: docs, label: "Static Files" }
+        obj@{ shape: cyl, label: "Minio\n(Object Storage)" }
     end
 
     Browser --> Nginx
     Nginx --> Browser
     Nginx -->|/api| Flask
-    Flask -->|SQL| Database
+    Flask -->|SQL| db
     Nginx -->|/index.html| static
-
-
+    Nginx -->|/uploads| obj
 ```
 
