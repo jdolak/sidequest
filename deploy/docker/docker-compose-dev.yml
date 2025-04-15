@@ -6,24 +6,6 @@ services:
     image: jdolakk/sidequest-frontend-dev
     env_file: ../../.env
     ports:
-      - 3000:3000
+      - ${HOST_PORT}:3000
     volumes:
       - ../../frontend/sidequest:/sidequest
-
-  sq-nginx:
-    image: nginx
-    env_file: ../../.env
-    ports:
-      - ${HOST_PORT}:80
-    volumes:
-      - ../../frontend/nginx-dev.conf:/etc/nginx/conf.d/default.conf
-
-  sq-flask:
-    image: jdolakk/sidequest-flask
-    env_file: ../../.env
-    restart: no
-    deploy:
-      resources:    
-        limits:
-          memory: 200MB
-
