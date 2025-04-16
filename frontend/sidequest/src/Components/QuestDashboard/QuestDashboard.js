@@ -4,11 +4,11 @@ import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import QuestCard from "../Cards/QuestCard";
 import { Link } from "react-router-dom";
-import { getAllQuests } from "../../Services/Quests";
-import { all } from 'axios'
+// import { getAllQuests } from "../../Services/Quests";
+// import { all } from 'axios'
 
 const QuestDashboard = () => {
-  const axios = useAxios();
+  // const axios = useAxios();
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
