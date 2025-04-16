@@ -23,15 +23,17 @@ const AuthLogin = ({onSubmit}) => {
             <div>Login</div>
                 <label>
                     Username:
-                    <input type="text" name="username" value={credentials.username} onChange={handlechange} required />
+                    <input type="text" name="username" value={credentials.username} onChange={handleChange} required />
                 </label>
 
                 <label>
                     Password:
-                    <input type="password" name="password" value={credentials.password} onChange={handlechange} required />
+                    <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
                 </label>
 
                 <button type="submit">Log in</button>
         </form>
     )
 }
+
+export default AuthLogin;
