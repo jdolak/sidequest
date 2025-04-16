@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import AuthRegister from "./Auth/AuthRegister.js";
 import AuthLogin from "./Auth/AuthLogin.js";
-import MainPage from './Pages/MainPage.js';
+import GroupPage from "./Pages/GroupPage.js"
 import QuestDetails from './QuestDetails/QuestDetails.js'
 import QuestDashboard from "./QuestDashboard/QuestDashboard.js";
 import BetDashboard from "./BetDashboard/BetDashboard.js";
@@ -13,7 +13,7 @@ export default function Components() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<MainPage />} />
+                <Route path="/group/1" element={<GroupPage />} />
                 <Route path="/register" element={<AuthRegister />} />
                 <Route path="/login" element={<AuthLogin />} />
                 <Route path="quests/1" element={<QuestDetails />} />

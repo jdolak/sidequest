@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import Dashboard from '../Group-Dashboard/Dashboard';
-import './mainpage.css';
+import Dashboard from '../GroupDashboard/Dashboard';
+import './grouppage.css';
 
-const MainPage = () => {
+const GroupPage = () => {
     return (
         <div class="main-page">
              <Sidebar />
@@ -12,4 +12,4 @@ const MainPage = () => {
     );
 };
   
-export default MainPage;
+export default GroupPage;
