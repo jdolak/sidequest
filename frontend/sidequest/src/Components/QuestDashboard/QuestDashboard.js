@@ -43,8 +43,7 @@ const QuestDashboard = () => {
         console.error("Error fetching quests:", error);
       });
     }
-
-  }, []);
+  }, [activeTab]);
 
 
   return (
