@@ -1,14 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import QuestCard from "../Cards/QuestCard";
-import { Link } from "react-router-dom";
-// import { getAllQuests } from "../../Services/Quests";
-// import { all } from 'axios'
+import { data, Link } from "react-router-dom";
+import { getAllQuests } from "../../Services/Quests";
 
 const QuestDashboard = () => {
-  // const axios = useAxios();
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
@@ -16,6 +14,14 @@ const QuestDashboard = () => {
         { id: "acceptedQuests", label: "Accepted Quests" },
         { id: "openQuests", label: "Open Quests" },
   ];
+
+  useEffect(() => {
+    getAllQuests().then((response) => {
+      console.log("Response:", response);
+    }).catch((error) => {
+      console.error("Error fetching quests:", error);
+    });
+  }, []);
 
   return (
     <div class="mainContainer">
@@ -27,6 +33,7 @@ const QuestDashboard = () => {
             <div className="backText">Dashboard</div>
           </Link>
           <div class="headerContents">
+          <h5>Hello World</h5>
             <div class="questTabs">
               {tabs.map((tab) => (
                 <button
