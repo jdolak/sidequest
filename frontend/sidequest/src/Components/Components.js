@@ -8,12 +8,14 @@ import BetDashboard from "./BetDashboard/BetDashboard.js";
 // import GroupPage from './Group/GroupPage.js';
 import BetDetails from "./BetDetails/BetDetails.js";
 import AcceptedQuests from "./AcceptedQuests/AcceptedQuests.js";
+import Home from "./Home/home.js";
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
     return (
         <Router>
             <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/group/1" element={<GroupPage />} />
                 <Route path="/register" element={<AuthRegister />} />
                 <Route path="/login" element={<AuthLogin />} />
