@@ -13,11 +13,32 @@ const AuthRegister = ({ onSubmit }) => {
         setFormData((prev) => ({...prev, [name]: value}));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (onSubmit) {
-            onSubmit(formData);
-        }
+
+        try {
+            const response = await fetch("https://sq.jdolak.com/api/auth/register", {
+                method :"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to register");
+            }
+
+            const data = await response.json();
+            console.log("Registration successful:", data);
+
+            if (onSubmit) {
+                onSubmit(formData);
+            }
+        }  catch (error) {
+            console.error("Registration failed:", error);
+        };
     };
 
     return (
