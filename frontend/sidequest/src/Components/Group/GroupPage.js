@@ -1,10 +1,30 @@
 "use client";
-import React from "react";
+import React, {useEffect,useState} from "react";
 import "./styles.css"; 
 import Holder from "./CardHolder/Holder.js";
 import Card from "../Card/Card.js";
+import { getOpenQuests } from "../../Services/Quests.js";
+import { getOpenBets } from "../../Services/Bets.js";
 
 const Dashboard = () => {
+  const [openQuests, setOpenQuests] = useState([]);
+  const [openBets, setOpenBets] = useState([]);
+
+  useEffect(() => {
+    getOpenQuests().then((response) => {
+      console.log("OpenQuests:", response);
+      setOpenQuests(response);
+    }).catch((error) => {
+      console.error("Error fetching quests:", error);
+    });
+    // getOpenBets().then((response) => {
+    //   console.log("OpenBets:", response);
+    //   setOpenBets(response);
+    // }).catch((error) => {
+    //   console.error("Error fetching bets:", error);
+    // });
+  }, []);
+
   const quests = [
     { title: "Read 50 Pages By Sunday", creator: "csuwita", coins: 100 },
     { title: "Read 50 Pages By Sunday", creator: "csuwita", coins: 100 },

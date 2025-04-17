@@ -11,14 +11,14 @@ const BetDetails = () => {
     const { betID } = useParams();
     const [bet, setBet] = useState(null);
 
-    useEffect(() => {
-        getBet(betID).then((response) => {
-            console.log("bet:", response);
-            setBet(response);
-        }).catch((error) => {
-            console.error("Error fetching bet:", error);
-        });
-    }, [betID]);
+    // useEffect(() => {
+    //     getBet(betID).then((response) => {
+    //         console.log("bet:", response);
+    //         setBet(response);
+    //     }).catch((error) => {
+    //         console.error("Error fetching bet:", error);
+    //     });
+    // }, [betID]);
 
   return (
     <div className="page-layout">
