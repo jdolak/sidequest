@@ -93,7 +93,7 @@ const AcceptedQuests = () => {
 
                             <button type="submit">Submit Quest</button>
 
-                            {status && <div>{status}</div>}
+                            {/* {status && <div>{status}</div>} */}
 
                         </form>
 
