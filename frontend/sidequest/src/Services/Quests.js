@@ -48,6 +48,54 @@ export const getQuest = async (questID) => {
     }
 };
 
+export const getMyQuests = async (authorID) => {
+    const config = {
+        method: 'GET',
+    };
+    try {
+        const response = await fetch(baseURL + `/quests/author_id/${authorID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching quests by author with ID ${authorID}:`, error);
+        throw error;
+    }
+};
+
+export const getAcceptedQuests = async () => {
+    const config = {
+        method: 'GET',
+    };
+    try {
+        const response = await fetch(baseURL + '/quests/accepted', config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching accepted quests:", error);
+        throw error;
+    }
+};
+
+export const getAcceptedQuestsByUser = async (userID) => {
+    const config = {
+        method: 'GET',
+    };
+    try {
+        const response = await fetch(baseURL + `/quests/accepted/${userID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching accepted quests for user with ID ${userID}:`, error);
+        throw error;
+    }
+};
+
 export const getQuestSubmission = async (submissionID) => {
     const config = {
         method: 'GET',

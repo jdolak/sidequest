@@ -1,12 +1,15 @@
-import React, {useEffect} from "react";
+import React, {useEffect,useState} from "react";
 import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import QuestCard from "../Cards/QuestCard";
 import { data, Link } from "react-router-dom";
-import { getAllQuests } from "../../Services/Quests";
+import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 
 const QuestDashboard = () => {
+  const [openQuests, setOpenQuests] = useState([]);
+  const [acceptedQuests, setAcceptedQuests] = useState([]);
+  const [myQuests, setMyQuests] = useState([]);
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
@@ -16,12 +19,33 @@ const QuestDashboard = () => {
   ];
 
   useEffect(() => {
-    getAllQuests().then((response) => {
-      console.log("Response:", response);
-    }).catch((error) => {
-      console.error("Error fetching quests:", error);
-    });
+    if (activeTab === "openQuests" && openQuests.length === 0) {
+      getOpenQuests().then((response) => {
+        console.log("OpenQuests:", response);
+        setOpenQuests(response);
+      }).catch((error) => {
+        console.error("Error fetching quests:", error);
+      });
+    }
+    else if (activeTab === "myQuests" && myQuests.length === 0) {
+      getMyQuests().then((response) => {
+        console.log("myQuests:", response);
+        setMyQuests(response);
+      }).catch((error) => {
+        console.error("Error fetching quests:", error);
+      });
+    }
+    else if (activeTab === "acceptedQuests" && acceptedQuests.length === 0) {
+      getAcceptedQuestsByUser().then((response) => {
+        console.log("acceptedQuests:", response);
+        setAcceptedQuests(response);
+      }).catch((error) => {
+        console.error("Error fetching quests:", error);
+      });
+    }
+
   }, []);
+
 
   return (
     <div class="mainContainer">
@@ -33,7 +57,6 @@ const QuestDashboard = () => {
             <div className="backText">Dashboard</div>
           </Link>
           <div class="headerContents">
-          <h5>Hello World</h5>
             <div class="questTabs">
               {tabs.map((tab) => (
                 <button
