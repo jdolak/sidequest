@@ -1,5 +1,5 @@
 import "./acceptedquests.css";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 
 const AcceptedQuests = () => {
     const fileInputRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [comment, setComment] = useState("");
+    const [status, setStatus] = useState("");
 
     const handleClick = () => {
         fileInputRef.current.click();
@@ -15,7 +18,37 @@ const AcceptedQuests = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log("Uploaded file: ", file);
+            setSelectedFile(file);
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("Submitting");
+
+        const formData = new FormData();
+        if (selectedFile) {
+            formData.append("image", selectedFile);
+        }
+
+        if (comment) {
+            formData.append("comment", comment);
+        }
+
+        try {
+            const response = await fetch("https://sq.jdolak.com/api/quest-upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) throw new Error("Upload failed");
+
+            const result = await response.json();
+            setStatus("Submission successful.");
+            console.log(result);
+        } catch (err) {
+            setStatus("Submission failed.");
+            console.error(err);
         }
     };
 
@@ -47,10 +80,23 @@ const AcceptedQuests = () => {
                             </div>
                         </div>
 
-                        <div className="upload-button" onClick={handleClick}>
-                            Upload submission
-                        </div>
-                        <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
+                        {/* Submission Form */}
+                        <form onSubmit={handleSubmit}>
+                            <div className="upload-button" onClick={handleClick}>
+                                Upload submission
+                            </div>
+                            <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
+
+                            {selectedFile && <div>Selected: {selectedFile.name}</div>}
+
+                            <textarea placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
+
+                            <button type="submit">Submit Quest</button>
+
+                            {status && <div>{status}</div>}
+
+                        </form>
+
                     </div>
                 </div>
             </div>
