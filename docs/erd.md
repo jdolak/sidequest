@@ -3,7 +3,6 @@ erDiagram
     USERS {
         int user_id PK
         string user_name
-        string email
         string password_hash
     }
 
@@ -52,6 +51,7 @@ erDiagram
         int quest_id FK
         string submission_photo
         datetime submission_date_time
+        string comments
         string status
     }
 
