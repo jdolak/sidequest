@@ -7,6 +7,7 @@ import QuestDashboard from "./QuestDashboard/QuestDashboard.js";
 import BetDashboard from "./BetDashboard/BetDashboard.js";
 // import GroupPage from './Group/GroupPage.js';
 import BetDetails from "./BetDetails/BetDetails.js";
+import AcceptedQuests from "./AcceptedQuests/AcceptedQuests.js";
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
@@ -21,6 +22,9 @@ export default function Components() {
                 <Route path="quests" element={<QuestDashboard />} />
                 <Route path="bets" element={<BetDashboard />} />
                 {/* <Route path="groups" element={<GroupPage />} /> */}
+
+                <Route path="acceptedquest" element={<AcceptedQuests />} />
+                
             </Routes>
         </Router>
     );

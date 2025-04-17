@@ -1,0 +1,129 @@
+.page-layout {
+    display: flex;
+    max-width: 1440px;
+    padding-right: 240px;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+  
+    background: var(--White);
+  }
+  
+  .main-container {
+    display: flex;
+    height: 100%
+  }
+  
+  .quest-detail-container {
+    margin-left: 100px;
+    display: flex;
+    flex: 1;
+    padding: 60px 48px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+    align-self: stretch;
+  }
+  
+  .quest-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+  }
+  
+  .quest-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    align-self: stretch;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    text-decoration: none;
+  }
+  
+  .back-text {
+    color: var(--Action, #2F184B);
+  
+    /* Action */
+    font-family: Karla;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .header-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+  }
+  
+  .quest-title {
+    color: #000;
+  
+    /* Heading */
+    font-family: "DM Sans";
+    font-size: var(--sds-typography-subtitle-size-base);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+  }
+  
+  .quest-detail-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    align-self: stretch;
+  }
+  
+  .quest-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+  }
+  
+  .quest-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+  }
+  
+  .quest-subheading {
+    color: #000;
+  
+    /* Card Subheading */
+    font-family: Karla;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  
+  .upload-button {
+    display: flex;
+    padding: 24px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+  
+    border-radius: 12px;
+    background: var(--Secondary);
+  }
