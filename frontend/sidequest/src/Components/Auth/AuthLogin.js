@@ -11,11 +11,32 @@ const AuthLogin = ({onSubmit}) => {
         setCredentials((prev) => ({...prev, [name]: value}));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (onSubmit) {
-            onSubmit(credentials);
-        }
+
+        try {
+            const response = await fetch("https://sq.jdolak.com/api/auth/login", {
+                method :"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(credentials),
+
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to log in");
+            }
+
+            const data = await response.json();
+            console.log("Log in successful:", data);
+
+            if (onSubmit) {
+                onSubmit(credentials);
+            }
+        }  catch (error) {
+            console.error("Log in failed:", error);
+        };
     };
 
     return (
