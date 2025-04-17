@@ -61,4 +61,6 @@ class ob react;
 class nb react;
 ```
 
-*purple blocks represent pages with dedicated routes, blue blocks represent logical pages that share the route of their parent*
+*purple blocks represent pages with dedicated routes*
+
+*blue blocks represent logical pages that share the route of their parent*

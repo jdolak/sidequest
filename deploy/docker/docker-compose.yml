@@ -19,7 +19,11 @@ services:
   sq-s3:
     image: minio/minio:latest
     ports:
-      - "9000:9000"  # S3 API
       - "9001:9001"  # Web console
     env_file: ../../.env
     command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+
+volumes:
+  minio-data:
