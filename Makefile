@@ -55,4 +55,7 @@ dev: dev-build
 dev-down:
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose-dev.yml -p $(PROJECT) down
 
+prod:
+	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
+
 .PHONY: all install lint run-local flask-up flask-build down run nginx-up env-setup frontend-build dev-build dev

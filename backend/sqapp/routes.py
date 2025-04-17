@@ -6,6 +6,8 @@ from sqapp  import DB, LOG
 from sqapp.db import sql_many, sql_one
 from sqapp.src.uploads import S3_CLIENT
 
+from sqapp.src.auth import register_user
+
 main_bp = Blueprint('main', __name__)
 
 SessionFactory = sessionmaker(bind=DB)
@@ -134,6 +136,20 @@ def upload():
     file = request.files['file']
     S3_CLIENT.upload_fileobj(file, 'quest-submissions', file.filename)
     return Response(status=201)
+
+@main_bp.route("/register", methods=["POST"])
+def register():
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Invalid input"}), 400
+
+    user_id = register_user(data)
+    
+    if user_id:
+        session['user_id'] = user_id
+        return jsonify({"message": "User registered successfully", "user_id": user_id}), 201
+    else:
+        return jsonify({"error": "Registration failed"}), 500
 
 @main_bp.route("/debug")
 def test_db():
