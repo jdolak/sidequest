@@ -1,7 +1,19 @@
 import React from "react";
 import "./home.css";
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
+
+    const navigate = useNavigate();
+
+    const handleSignUp = () => {
+        navigate("/register");
+    }
+
+    const handleLogIn = () => {
+        navigate("/login");
+    }
+
     return (
         <div className="home-container">
             <div className="main-container">
@@ -10,14 +22,13 @@ const Home = () => {
                     <div className="slogan">The social way to check off your bucket list</div>
                 </div>
                 <div className="auth-buttons">
-                    <button className="sign-up">Sign up</button>
-                    <button className="log-in">Log in</button>
+                    <button className="sign-up" onClick={handleSignUp}>Sign up</button>
+                    <button className="log-in" onClick={handleLogIn}>Log in</button>
                 </div>
             </div>
             <div className="footer">
-                <div className="footer-text">CSE 40746 - Advanced Database Concepts</div>
-                <div className="footer-text">Spring 2025</div>
-                <div className="footer-text">Jachob Dolak, Patrick Schlosser, Calista Suwita</div>
+                <div className="footer-text">CSE 40746 Spring 2025</div>
+                <div className="footer-text">By Jachob Dolak, Patrick Schlosser, and Calista Suwita</div>
             </div>
         </div>
     )
