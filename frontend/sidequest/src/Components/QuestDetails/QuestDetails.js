@@ -1,11 +1,24 @@
 import "./questdetails.css";
-import * as React from "react";
+import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
-
+import { getQuest } from "../../Services/Quests.js";
+import { useParams } from "react-router-dom";
 
 const QuestDetails = () => {
+    const { questID } = useParams();
+    const [quest, setQuest] = useState(null);
+
+    useEffect(() => {
+        getQuest(questID).then((response) => {
+            console.log("quest:", response);
+            setQuest(response);
+        }).catch((error) => {
+            console.error("Error fetching quest:", error);
+        });
+    }, [questID]);
+
   return (
     <div className="page-layout">
         <div className="main-container">

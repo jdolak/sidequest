@@ -1,11 +1,25 @@
 import "./betdetails.css";
-import * as React from "react";
+import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
+import { getBet } from "../../Services/Bets.js";
+import { useParams } from "react-router-dom";
 
 
 const BetDetails = () => {
+    const { betID } = useParams();
+    const [bet, setBet] = useState(null);
+
+    useEffect(() => {
+        getBet(betID).then((response) => {
+            console.log("bet:", response);
+            setBet(response);
+        }).catch((error) => {
+            console.error("Error fetching bet:", error);
+        });
+    }, [betID]);
+
   return (
     <div className="page-layout">
         <div className="main-container">
