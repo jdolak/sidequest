@@ -3,3 +3,4 @@ SQLAlchemy
 dotenv
 gunicorn
 boto3
+flask_bcrypt
