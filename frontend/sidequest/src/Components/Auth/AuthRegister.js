@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import "./authregister.css";
 
 const AuthRegister = ({ onSubmit }) => {
+
+    // const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -44,31 +47,32 @@ const AuthRegister = ({ onSubmit }) => {
 
     return (
         <div className="main-container">
-            <div className="title">Sign Up</div>
-            <form onSubmit={handleSubmit} className="auth-form">
-                <div>Register</div>
-                <label>
-                    First Name:
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                </label>
+            <div className="main-title">Sign Up</div>
+            <div className="auth-content">
+                <form onSubmit={handleSubmit} className="auth-form">
+                    <div className="form-data">
+                        <label className="form-label">
+                            First Name
+                            <input className="form-input" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                        </label>
+                        <label className="form-label">
+                            Last Name
+                            <input className="form-input" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                        </label>
 
-                <label>
-                    Last Name:
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                </label>
-
-                <label>
-                    Username:
-                    <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-                </label>
-
-                <label>
-                    Password:
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                </label>
-
-                <button type="submit">Sign up</button>
-            </form>
+                        <label className="form-label">
+                            Username
+                            <input className="form-input" type="text" name="username" value={formData.username} onChange={handleChange} required />
+                        </label>
+                        <label className="form-label">
+                            Password
+                            <input className="form-input" type="password" name="password" value={formData.password} onChange={handleChange} required />
+                        </label>
+                    </div>
+                    <button className="submit-button" type="submit">Sign up</button>
+                </form>
+                <div className="redirect">Have an account with us? Log in here.</div>
+            </div>
         </div>
     )
 }
