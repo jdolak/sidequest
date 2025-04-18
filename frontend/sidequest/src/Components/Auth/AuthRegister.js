@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./authregister.css";
 
 const AuthRegister = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -42,30 +43,33 @@ const AuthRegister = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="auth-form">
-            <div>Register</div>
-            <label>
-                First Name:
-                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-            </label>
+        <div className="main-container">
+            <div className="title">Sign Up</div>
+            <form onSubmit={handleSubmit} className="auth-form">
+                <div>Register</div>
+                <label>
+                    First Name:
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+                </label>
 
-            <label>
-                Last Name:
-                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-            </label>
+                <label>
+                    Last Name:
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+                </label>
 
-            <label>
-                Username:
-                <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-            </label>
+                <label>
+                    Username:
+                    <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+                </label>
 
-            <label>
-                Password:
-                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-            </label>
+                <label>
+                    Password:
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+                </label>
 
-            <button type="submit">Sign up</button>
-        </form>
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
     )
 }
 
