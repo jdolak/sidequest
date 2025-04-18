@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 import "./authregister.css";
 
 const AuthRegister = ({ onSubmit }) => {
@@ -71,7 +72,7 @@ const AuthRegister = ({ onSubmit }) => {
                     </div>
                     <button className="submit-button" type="submit">Sign up</button>
                 </form>
-                <div className="redirect">Have an account with us? Log in here.</div>
+                <div className="redirect">Have an account with us? <Link to="/login" className="redirect-link">Log in here.</Link></div>
             </div>
         </div>
     )
