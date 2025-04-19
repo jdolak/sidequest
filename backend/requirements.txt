@@ -4,4 +4,3 @@ dotenv
 gunicorn
 boto3
 flask_bcrypt
-flask_cors
