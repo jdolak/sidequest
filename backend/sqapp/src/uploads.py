@@ -8,6 +8,8 @@ import os
 from sqlalchemy import text
 from time import time
 from sqapp import LOG
+from urllib.parse import urlparse, urlunparse
+
 
 load_dotenv()
 
@@ -28,10 +30,10 @@ def get_upload_url(filename):
     
     url = S3_CLIENT.generate_presigned_url(
         'get_object',
-        Params={'Bucket': 'quest-submissions', 'Key': filename},
+        Params={'Bucket': 'uploads', 'Key': filename},
         ExpiresIn=3600  # 1 hour
     )
-    return url
+    return rewrite_url_host(url)
 
 def allowed_file(file):
     mime = magic.from_buffer(file.read(2048), mime=True)
@@ -51,7 +53,7 @@ def upload_file(file, quest_id):
         # Create safe filename
         internal_filename = f"{g.user}-{quest_id}.jpg"
 
-        S3_CLIENT.upload_fileobj(buffer, 'quest-submissions', internal_filename, ExtraArgs={'ContentType': 'image/jpeg'})
+        S3_CLIENT.upload_fileobj(buffer, 'uploads', internal_filename, ExtraArgs={'ContentType': 'image/jpeg'})
 
     except Exception as e:
         LOG.error(f"Error uploading file: {e}")
@@ -79,6 +81,11 @@ def quest_submission(rq, quest_id):
     
     return jsonify({"message": "submission created"}), 201
 
+
+def rewrite_url_host(url):
+    parsed = urlparse(url)
+    new_url = urlunparse(parsed._replace(netloc="sq.jdolak.com", scheme='https'))
+    return new_url
 
 
 
