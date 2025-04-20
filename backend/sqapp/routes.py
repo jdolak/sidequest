@@ -84,11 +84,11 @@ def get_quest_open():
 
 @main_bp.route("/users/<int:user_id>", methods=["GET"])
 def get_user_id(user_id):
-    return sql_response(sql_one(g.db_session, "SELECT * FROM USERS WHERE user_id = :user_id", {"user_id": user_id}))
+    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM USERS WHERE user_id = :user_id", {"user_id": user_id}))
 
 @main_bp.route("/users", methods=["GET"])
 def get_users():
-    return sql_response(sql_many(g.db_session, "SELECT * FROM USERS", None))
+    return sql_response(sql_many(g.db_session, "SELECT user_id, username FROM USERS", None))
 
 @main_bp.route("/groups/<int:group_id>", methods=["GET"])
 def get_group_id(group_id):
@@ -100,12 +100,12 @@ def get_groups():
 
 @main_bp.route("/groups_user/<int:group_id>/<int:user_id>", methods=["GET"])
 def get_group_user(user_id, group_id):
-    sql = "SELECT * FROM GROUPS_USER gu, USERS u WHERE gu.user_id = :user_id AND gu.group_id = :group_id AND gu.user_id = u.user_id"
+    sql = "SELECT user_id, username, currency, group_id FROM GROUPS_USER gu, USERS u WHERE gu.user_id = :user_id AND gu.group_id = :group_id AND gu.user_id = u.user_id"
     return sql_response(sql_one(g.db_session, sql, {"user_id": user_id, "group_id": group_id}))
 
 @main_bp.route("/groups_user", methods=["GET"])
 def get_all_groups_user():
-    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS_USER gu, USERS u WHERE gu.user_id = u.user_id", None))
+    return sql_response(sql_many(g.db_session, "SELECT user_id, username, currency, group_id FROM GROUPS_USER gu, USERS u WHERE gu.user_id = u.user_id", None))
 
 @main_bp.route("/bets/<int:bet_id>", methods=["GET"])
 def get_bet_id(bet_id):

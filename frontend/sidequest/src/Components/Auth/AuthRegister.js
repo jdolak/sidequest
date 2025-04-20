@@ -22,7 +22,7 @@ const AuthRegister = ({ onSubmit }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://sq.jdolak.com/api/auth/register", {
+            const response = await fetch("https://sq.jdolak.com/auth/register", {
                 method :"POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,6 +37,7 @@ const AuthRegister = ({ onSubmit }) => {
 
             const data = await response.json();
             console.log("Registration successful:", data);
+            //window.location.replace("/");
 
             if (onSubmit) {
                 onSubmit(formData);
