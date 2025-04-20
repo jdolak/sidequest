@@ -146,9 +146,16 @@ def register():
 def login():
     return login_user(request)
 
-@main_bp.route("/logout", methods=["POST"])
+@main_bp.route("/logout", methods=["POST", "GET"])
 def logout():
     return logout_user(request)
+
+@main_bp.route("/whoami", methods=["GET"])
+def whoami():
+    if g.user:
+        sql = "SELECT user_id, username FROM USERS WHERE user_id = :user_id"
+        return sql_response(sql_one(g.db_session, sql, {"user_id": g.user}))
+    return jsonify({"message": "User not logged in"}), 200
 
 @main_bp.route("/debug")
 def test_db():

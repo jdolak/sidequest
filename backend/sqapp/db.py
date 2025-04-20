@@ -1,9 +1,8 @@
 import sqapp
-from sqlalchemy import text
+from sqlalchemy import text, create_engine
 from flask import Response, jsonify
 
 def db_connect():
-    from sqlalchemy import create_engine
 
     engine = create_engine("sqlite:///example.db")#create_engine("sqlite:///sidequest/data.db")
     init_example_db(engine)
@@ -11,7 +10,7 @@ def db_connect():
 
 def init_example_db(engine):
     print("Initializing database...")
-    from sqlalchemy import text
+
 
     with engine.connect() as conn:
         with open('db/tables.sql', 'r') as file:
@@ -57,5 +56,5 @@ def sql_response(value):
     if value is None:
         return Response(status=204)
     else:
-        return jsonify(value)
+        return jsonify(value), 200
 
