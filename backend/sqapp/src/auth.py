@@ -51,7 +51,7 @@ def register_user(rq):
     user_id = result["user_id"]
     
     if user_id:
-        session['user_id'] = user_id
+        session['sq_user_id'] = user_id
         return jsonify({"message": "User registered successfully", "user_id": user_id}), 201
     else:
         return jsonify({"error": "Registration failed"}), 500
@@ -62,12 +62,14 @@ def login_user(rq):
     if not data:
         return jsonify({"error": "Invalid input"}), 400
     
-    if session.user_id:
-        return jsonify({"message": "User already logged in", "user_id": session.user_id}), 200
+    if session.get('sq_user_id'):
+        LOG.debug(f"User already logged in: {session['sq_user_id']}")
+        return jsonify({"message": "User already logged in", "user_id": session["sq_user_id"]}), 200
 
     required_fields = ["username", "password"]
     for field in required_fields:
         if field not in data:
+            LOG.warning(f"Missing field: {field}")
             return jsonify({"error": f"Missing field: {field}"}), 400
 
     sql = "SELECT * FROM USERS WHERE username = :username"
@@ -83,7 +85,9 @@ def login_user(rq):
         return jsonify({"error": "Invalid password"}), 401
     
     # Store the user ID in the session
-    session['user_id'] = existing_user["user_id"]
+    session['sq_user_id'] = existing_user["user_id"]
+    g.user = existing_user["user_id"]
+
     LOG.info(f"User logged in successfully: {data['username']}")
     return jsonify({"message": "User logged in successfully", "user_id": existing_user["user_id"]}), 200
 
@@ -91,9 +95,9 @@ def logout_user():
     """
     Log out the user.
     """
-    if 'user_id' in session:
-        LOG.info(f"User logged out: {session['user_id']}")
-        session.pop('user_id', None)
+    if 'sq_user_id' in session:
+        LOG.info(f"User logged out: {session['sq_user_id']}")
+        session.pop('sq_user_id', None)
         return jsonify({"message": "User logged out successfully"}), 200
     else:
         LOG.warning("No user is currently logged in")

@@ -33,9 +33,9 @@ def init_example_db(engine):
 
         conn.commit()
 
-def sql_one(session, query, params):
+def sql_one(db_session, query, params):
     sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
-    result = session.execute(text(query), params)
+    result = db_session.execute(text(query), params)
     row = result.fetchone()
 
     if row:
@@ -43,9 +43,9 @@ def sql_one(session, query, params):
     else:
         return None
 
-def sql_many(session, query, params):
+def sql_many(db_session, query, params):
     sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
-    result = session.execute(text(query), params)
+    result = db_session.execute(text(query), params)
     row_dict = [dict(row._mapping) for row in result]
     if result:
         return row_dict

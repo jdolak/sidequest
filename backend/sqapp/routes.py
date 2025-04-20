@@ -41,7 +41,7 @@ def home():
 def start_session():
     g.db_session = DB_session()
 
-    user_id = session.get('user_id')
+    user_id = session.get('sq_user_id')
     if user_id:
         g.user = user_id
     else:
