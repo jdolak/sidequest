@@ -40,7 +40,7 @@ def allowed_file(file):
     file.seek(0)
     return mime in ALLOWED_MIME
 
-def upload_file(file, quest_id):
+def upload_file(file, id, name=None):
 
     try:
         if not allowed_file(file):
@@ -55,7 +55,7 @@ def upload_file(file, quest_id):
         buffer.seek(0)
 
         # Create safe filename
-        internal_filename = f"{g.user}-{quest_id}.jpg"
+        internal_filename = f"{g.user}-{id}{name}.jpg"
 
         S3_CLIENT.upload_fileobj(buffer, 'uploads', internal_filename, ExtraArgs={'ContentType': 'image/jpeg'})
 
