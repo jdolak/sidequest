@@ -22,7 +22,8 @@ const AuthRegister = ({ onSubmit }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://sq.jdolak.com/api/auth/register", {
+            const response = await fetch("http://localhost/auth/register", {
+            //const response = await fetch("https://sq.jdolak.com/api/auth/register", {
                 method :"POST",
                 headers: {
                     "Content-Type": "application/json",

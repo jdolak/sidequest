@@ -18,6 +18,7 @@ const AuthLogin = ({onSubmit}) => {
 
         try {
             const response = await fetch("https://sq.jdolak.com/api/auth/login", {
+            //const response = await fetch("https://sq.jdolak.com/api/auth/login", {
                 method :"POST",
                 headers: {
                     "Content-Type": "application/json",

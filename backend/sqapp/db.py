@@ -40,17 +40,22 @@ def sql_one(session, query, params):
     row = result.fetchone()
 
     if row:
-            row_dict = dict(row._mapping)
-            return jsonify(row_dict)
-
-    return Response(status=204)
+        return dict(row._mapping)
+    else:
+        return None
 
 def sql_many(session, query, params):
     sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
     result = session.execute(text(query), params)
     row_dict = [dict(row._mapping) for row in result]
     if result:
-        return jsonify(row_dict)
+        return row_dict
     else:
+        return None
+    
+def sql_response(value):
+    if value is None:
         return Response(status=204)
+    else:
+        return jsonify(value)
 

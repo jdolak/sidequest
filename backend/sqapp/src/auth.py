@@ -17,13 +17,11 @@ def register_user(data):
         if field not in data:
             return jsonify({"error": f"Missing field: {field}"}), 400
         
-    data["email"] = ""
-
     # Check if the user already exists
-    sql = "SELECT * FROM USERS WHERE user_name = :username OR email = :email"
-    existing_user = sql_one(g.db_session, sql, {"username": data["username"], "email": data["email"]})
+    sql = "SELECT * FROM USERS WHERE username = :username"
+    existing_user = sql_one(g.db_session, sql, {"username": data["username"]})
     
-    if existing_user:
+    if existing_user is not None:
         LOG.error(f"User already exists: {data['username']}")
         return 0
 
@@ -35,18 +33,16 @@ def register_user(data):
 
 
     # Insert the new user into the database
-    sql = "INSERT INTO USERS (username, password, email) VALUES (:username, :password, :email)"
-    result = g.db_session.execute(text(sql), {"username": data["username"], "password": hashed_password, "email": data["email"]},)
-
-    if not result:
-        LOG.error(f"User registration failed for {data['username']}")
-        return 0
+    sql = "INSERT INTO USERS (username, password_hash) VALUES (:username, :password_hash)"
+    result = g.db_session.execute(text(sql), {"username": data["username"], "password_hash": hashed_password})
 
     result = sql_one(g.db_session, "SELECT user_id FROM USERS WHERE username = :username", {"username": data["username"]})
 
-    if not result["user_id"]:
+    if result is None:
         LOG.error(f"User registration failed for {data['username']}")
         return 0
+    
+    LOG.info(f"User registered successfully: {data['username']}")
     
     return result["user_id"]
 
