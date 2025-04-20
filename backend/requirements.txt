@@ -6,3 +6,4 @@ boto3
 flask_bcrypt
 pillow
 python-magic
+Werkzeug

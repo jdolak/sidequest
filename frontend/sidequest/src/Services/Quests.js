@@ -51,9 +51,10 @@ export const getQuest = async (questID) => {
 export const getMyQuests = async (authorID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quests/author_id/${authorID}`, config);
+        const response = await fetch(baseURL + `/quests/my_quests`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
