@@ -31,6 +31,12 @@ API endpoints:
 - /bought_bets
 - /quest_submissions/<int:submission_id>
 - /quest_submissions
+- /quest_submit/<int:quest_id>
+- /register
+- /login
+- /logout
+- /whoami
+- /debug
 """
 
 @main_bp.route("/")
@@ -77,6 +83,10 @@ def get_quest_accepted():
 @main_bp.route("/quests/author_id/<int:author_id>", methods=["GET"])
 def get_quest_user(author_id):
     return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": author_id}))
+
+@main_bp.route("/quests/my_quests", methods=["GET"])
+def get_my_quest():
+    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": g.user}))
 
 @main_bp.route("/quests/open", methods=["GET"])
 def get_quest_open():
@@ -137,6 +147,8 @@ def get_all_quest_submissions():
 
 @main_bp.route('/quest_submit/<int:quest_id>', methods=['POST'])
 def quest_submit(quest_id):
+    if not g.user:
+        return jsonify({"message": "User not logged in"}), 401
     return  quest_submission(request, quest_id)
 
 @main_bp.route("/register", methods=["POST"])

@@ -1,6 +1,6 @@
 import sqapp
 from sqlalchemy import text, create_engine
-from flask import Response, jsonify
+from flask import Response, jsonify, g
 
 def db_connect():
 
@@ -52,7 +52,11 @@ def sql_many(db_session, query, params):
     else:
         return None
     
-def sql_response(value):
+def sql_response(value, public=False):
+
+    if not g.user and not public:
+        return jsonify({"error": "Unauthorized"}), 401
+    
     if value is None:
         return Response(status=204)
     else:
