@@ -135,7 +135,7 @@ def get_quest_submission_id(submission_id):
 def get_all_quest_submissions():
     return sql_response(sql_many(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE q.user_id = u.user_id", None))
 
-@main_bp.route('/quest-submit/<int:quest_id>', methods=['POST'])
+@main_bp.route('/quest_submit/<int:quest_id>', methods=['POST'])
 def quest_submit(quest_id):
     return  quest_submission(request, quest_id)
 

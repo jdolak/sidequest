@@ -64,7 +64,7 @@ def quest_submission(rq, quest_id):
     if 'file' in rq.files:
         image = upload_file(rq.files['file'], quest_id)
         
-    sql = "INSERT INTO quest_submissions (quest_id, user_id, submission_photo, submission_date_time, comments, status) VALUES (:quest_id, :user_id, :submission_photo, :submission_date_time, :comments :status)"
+    sql = "INSERT INTO quest_submissions (quest_id, user_id, submission_photo, submission_date_time, comments, status) VALUES (:quest_id, :user_id, :submission_photo, :submission_date_time, :comments, :status)"
     g.db_session.execute(text(sql), {
         'quest_id': quest_id,
         'user_id': g.user,
