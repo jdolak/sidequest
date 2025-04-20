@@ -148,13 +148,18 @@ def login():
 
 @main_bp.route("/logout", methods=["POST", "GET"])
 def logout():
-    return logout_user(request)
+    return logout_user()
 
 @main_bp.route("/whoami", methods=["GET"])
 def whoami():
     if g.user:
         sql = "SELECT user_id, username FROM USERS WHERE user_id = :user_id"
-        return sql_response(sql_one(g.db_session, sql, {"user_id": g.user}))
+        LOG.info(f"User {g.user} is logged in")
+        result = sql_one(g.db_session, sql, {"user_id": g.user})
+        if result:
+            return sql_response(result)
+        else:
+            return jsonify({"message": f"Session logged in for {g.user}, but user doesn't exist in database"}), 200
     return jsonify({"message": "User not logged in"}), 200
 
 @main_bp.route("/debug")
