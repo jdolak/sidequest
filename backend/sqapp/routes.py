@@ -127,7 +127,7 @@ def get_all_bought_bets():
 @main_bp.route("/quest_submissions/<int:submission_id>", methods=["GET"])
 def get_quest_submission_id(submission_id):
     result = sql_one(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE submission_id = :submission_id AND q.user_id = u.user_id", {"submission_id": submission_id})
-    if result:
+    if result and result['submission_photo']:
         result['photo_url'] = get_upload_url(result['submission_photo'])
     return sql_response(result)
 

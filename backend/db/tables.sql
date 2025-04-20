@@ -5,14 +5,14 @@ CREATE TABLE USERS (
 );
 
 CREATE TABLE GROUPS (
-    group_id NUMBER PRIMARY KEY,
+    group_id INTEGER PRIMARY KEY,
     group_name VARCHAR2(255) NOT NULL,
     group_desc VARCHAR2(4000),
     group_visibility CHAR(1) CHECK (group_visibility IN ('Y', 'N'))
 );
 
 CREATE TABLE GROUPS_USER (
-    user_id NUMBER,
+    user_id INTEGER,
     group_id NUMBER,
     currency NUMBER,
     PRIMARY KEY (user_id, group_id),
@@ -21,7 +21,7 @@ CREATE TABLE GROUPS_USER (
 );
 
 CREATE TABLE AVAILABLE_BETS (
-    bet_id NUMBER PRIMARY KEY,
+    bet_id INTEGER PRIMARY KEY,
     group_id NUMBER,
     seller_id NUMBER,
     question VARCHAR2(4000) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE AVAILABLE_BETS (
 );
 
 CREATE TABLE BOUGHT_BETS (
-    buyer_id NUMBER,
+    buyer_id INTEGER,
     bet_id NUMBER,
     quantity NUMBER NOT NULL,
     result VARCHAR2(255),
@@ -42,7 +42,7 @@ CREATE TABLE BOUGHT_BETS (
 );
 
 CREATE TABLE QUESTS (
-    quest_id NUMBER PRIMARY KEY,
+    quest_id INTEGER PRIMARY KEY,
     author_id NUMBER,
     group_id NUMBER,
     quest_desc VARCHAR2(4000) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE QUESTS (
 );
 
 CREATE TABLE QUEST_SUBMISSIONS (
-    submission_id NUMBER PRIMARY KEY,
+    submission_id INTEGER PRIMARY KEY,
     user_id NUMBER,
     quest_id NUMBER,
     submission_photo VARCHAR2(4000),
