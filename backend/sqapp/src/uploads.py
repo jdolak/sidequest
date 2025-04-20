@@ -43,6 +43,10 @@ def allowed_file(file):
 def upload_file(file, quest_id):
 
     try:
+        if not allowed_file(file):
+            LOG.error(f"File type not allowed")
+            return None
+        
         img = Image.open(file.stream)
         img = img.convert('RGB')
         img.thumbnail((720, 720))
