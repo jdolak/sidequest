@@ -28,7 +28,7 @@ const AcceptedQuests = () => {
 
         const formData = new FormData();
         if (selectedFile) {
-            formData.append("image", selectedFile);
+            formData.append("file", selectedFile);
         }
 
         if (comment) {
