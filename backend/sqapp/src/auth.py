@@ -14,7 +14,6 @@ def register_user(data):
     if not data:
         return jsonify({"error": "Invalid input"}), 400
 
-    user_id = register_user(data)
     required_fields = ["username", "password"]
     for field in required_fields:
         if field not in data:
