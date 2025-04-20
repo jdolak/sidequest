@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 from sqapp  import DB, LOG
 from sqapp.db import sql_many, sql_one, sql_response
-from sqapp.src.uploads import S3_CLIENT
+from sqapp.src.uploads import quest_submission, get_upload_url
 
 from sqapp.src.auth import register_user, login_user, logout_user
 
@@ -126,17 +126,18 @@ def get_all_bought_bets():
 
 @main_bp.route("/quest_submissions/<int:submission_id>", methods=["GET"])
 def get_quest_submission_id(submission_id):
-    return sql_response(sql_one(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE submission_id = :submission_id AND q.user_id = u.user_id", {"submission_id": submission_id}))
+    result = sql_one(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE submission_id = :submission_id AND q.user_id = u.user_id", {"submission_id": submission_id})
+    if result:
+        result['photo_url'] = get_upload_url(result['submission_photo'])
+    return sql_response(result)
 
 @main_bp.route("/quest_submissions", methods=["GET"])
 def get_all_quest_submissions():
     return sql_response(sql_many(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE q.user_id = u.user_id", None))
 
-@main_bp.route('/quest-upload', methods=['POST'])
-def upload():
-    file = request.files['file']
-    S3_CLIENT.upload_fileobj(file, 'quest-submissions', file.filename)
-    return Response(status=201)
+@main_bp.route('/quest-submit/<int:quest_id>', methods=['POST'])
+def quest_submit(quest_id):
+    return  quest_submission(request, quest_id)
 
 @main_bp.route("/register", methods=["POST"])
 def register():
