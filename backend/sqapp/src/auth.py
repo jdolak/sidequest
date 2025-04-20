@@ -7,11 +7,10 @@ from sqapp import LOG
 
 BCRYPT = Bcrypt()
 
-def register_user(r):
+def register_user(data):
     """
     Register a new user.
     """
-    data = r.get_json()
     if not data:
         return jsonify({"error": "Invalid input"}), 400
 
@@ -56,9 +55,7 @@ def register_user(r):
     else:
         return jsonify({"error": "Registration failed"}), 500
 
-def login_user(r):
-        
-    data = r.get_json()
+def login_user(data):
 
     if not data:
         return jsonify({"error": "Invalid input"}), 400
