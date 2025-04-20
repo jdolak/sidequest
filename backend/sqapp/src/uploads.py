@@ -43,7 +43,7 @@ def upload_file(file, quest_id):
     try:
         img = Image.open(file.stream)
         img = img.convert('RGB')
-        img.thumbnail((500, 500))
+        img.thumbnail((720, 720))
         buffer = io.BytesIO()
         img.save(buffer, format='JPEG', quality=85)
         buffer.seek(0)

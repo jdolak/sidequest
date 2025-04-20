@@ -36,7 +36,7 @@ const AcceptedQuests = () => {
         }
 
         try {
-            const response = await fetch("https://sq.jdolak.com/api/quest-upload", {
+            const response = await fetch("https://sq.jdolak.com/api/quest-upload/1", {
                 method: "POST",
                 body: formData,
             });
