@@ -6,7 +6,7 @@ from sqapp  import DB, LOG
 from sqapp.db import sql_many, sql_one, sql_response
 from sqapp.src.uploads import S3_CLIENT
 
-from sqapp.src.auth import register_user
+from sqapp.src.auth import register_user, login_user, logout_user
 
 main_bp = Blueprint('main', __name__)
 
@@ -140,17 +140,15 @@ def upload():
 
 @main_bp.route("/register", methods=["POST"])
 def register():
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "Invalid input"}), 400
-
-    user_id = register_user(data)
+    return register_user(request)
     
-    if user_id:
-        session['user_id'] = user_id
-        return jsonify({"message": "User registered successfully", "user_id": user_id}), 201
-    else:
-        return jsonify({"error": "Registration failed"}), 500
+@main_bp.route("/login", methods=["POST"])
+def login():
+    return login_user(request)
+
+@main_bp.route("/logout", methods=["POST"])
+def logout():
+    return logout_user(request)
 
 @main_bp.route("/debug")
 def test_db():
