@@ -56,7 +56,9 @@
     justify-content: center;
     align-items: center;
     gap: 2px;
+    cursor: pointer;
 
+    border: none;
     border-radius: 8px;
     background: var(--Secondary, #2667FF);
 }
