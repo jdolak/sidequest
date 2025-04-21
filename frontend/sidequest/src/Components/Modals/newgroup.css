@@ -1,0 +1,28 @@
+.modal-container {
+    display: inline-flex;
+    padding: 48px 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.modal-heading {
+    width: 400px;
+
+    color: #000;
+
+    /* Subheading */
+    font-family: "DM Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
