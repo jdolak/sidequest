@@ -1,12 +1,15 @@
 import React from 'react';
 import searchIcon from '../../assets/images/search.svg';
+import {Link} from "react-router-dom";
 import './sidebar.css';
 
 const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="menu">
-                <img src={searchIcon} />
+                <Link to="/search">
+                    <img src={searchIcon} />
+                </Link>
                 <div className="groups">
                     <div className="group">
                     </div>

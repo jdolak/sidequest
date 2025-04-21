@@ -1,0 +1,64 @@
+.card {
+    display: flex;
+    width: 240px;
+    height: 160px;
+    padding: 16px 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  
+    border-radius: 20px;
+    border: 1px solid var(--Soft-Stroke, #EAECF9);
+    background: var(--Primary, #F3F4FB);
+  }
+
+.card-desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+  
+.card-title {
+    color: #000;
+    text-align: left;
+
+    /* Card Subheading */
+    font-family: "Karla";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.join-btn {
+    border-radius: 8px;
+    border: 2px solid var(--Secondary, #2667FF);
+    background: none;
+    cursor: pointer;
+
+    color: var(--Secondary, #2667FF);
+
+    /* Action */
+    font-family: Karla;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    display: flex;
+    padding: 12px 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.join-btn:hover {
+    background: var(--Secondary);
+    color: var(--White);
+
+}
+
