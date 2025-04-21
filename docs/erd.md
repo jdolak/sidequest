@@ -11,6 +11,7 @@ erDiagram
         string group_name
         string group_desc
         boolean group_visibility
+        char(64) invite_url
     }
 
     GROUPS_USER {
