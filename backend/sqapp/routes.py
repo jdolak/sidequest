@@ -25,6 +25,8 @@ API endpoints:
 - /users
 - /groups/<int:group_id> * will be depreciated in favor of account variable
 - /groups
+- /groups/search/<query>
+- /groups/my_groups
 - /groups_user/<int:group_id>/<int:user_id>
 - /groups_user
 - /bought_bets/<int:bet_id>/<int:buyer_id>
@@ -80,9 +82,10 @@ def get_quest_accepted_user(user_id):
 def get_quest_accepted():
     return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id", None))
 
-@main_bp.route("/quests/author_id/<int:author_id>", methods=["GET"])
-def get_quest_user(author_id):
-    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": author_id}))
+# deprecated in favor of /quests/my_quests
+#@main_bp.route("/quests/author_id/<int:author_id>", methods=["GET"])
+#def get_quest_user(author_id):
+#    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": author_id}))
 
 @main_bp.route("/quests/my_quests", methods=["GET"])
 def get_my_quest():
@@ -92,10 +95,16 @@ def get_my_quest():
 def get_quest_open():
     return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS WHERE quest_status = 'Open'", None))
 
-@main_bp.route("/users/<int:user_id>", methods=["GET"])
-def get_user_id(user_id):
-    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM USERS WHERE user_id = :user_id", {"user_id": user_id}))
+# deprecated in favor of /users/my_user
+#@main_bp.route("/users/<int:user_id>", methods=["GET"])
+#def get_user_id(user_id):
+#    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM USERS WHERE user_id = :user_id", {"user_id": user_id}))
 
+@main_bp.route("/users/my_user", methods=["GET"])
+def get_my_user():
+    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM USERS WHERE user_id = :user_id", {"user_id": g.user}))
+
+# will be disabled in prod
 @main_bp.route("/users", methods=["GET"])
 def get_users():
     return sql_response(sql_many(g.db_session, "SELECT user_id, username FROM USERS", None))
@@ -106,7 +115,15 @@ def get_group_id(group_id):
 
 @main_bp.route("/groups", methods=["GET"])
 def get_groups():
-    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS", None))
+    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS WHERE public = 'Y'", None))
+
+@main_bp.route("/groups/search/<query>", methods=["GET"])
+def search_groups(query):
+    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS WHERE public = 'Y' AND group_name LIKE '%:query%' OR group_desc LIKE '%:query%' ", {"query": query}))
+
+@main_bp.route("/groups/my_groups", methods=["GET"])
+def get_my_groups():
+    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS NATURAL JOIN GROUPS_USER WHERE user_id = :user_id", {"user_id": g.user}))
 
 @main_bp.route("/groups_user/<int:group_id>/<int:user_id>", methods=["GET"])
 def get_group_user(user_id, group_id):

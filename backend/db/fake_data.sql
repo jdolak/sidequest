@@ -3,7 +3,7 @@ INSERT INTO USERS (user_id, username, password_hash) VALUES
 (2, 'Bob', 'hash2'),
 (3, 'Charlie', 'hash3');
 
-INSERT INTO GROUPS (group_id, group_name, group_desc, group_visibility) VALUES
+INSERT INTO GROUPS (group_id, group_name, group_desc, public) VALUES
 (1, 'Sports Fans', 'A group for sports enthusiasts', 'Y'),
 (2, 'Gamers United', 'For people who love gaming', 'N'),
 (3, 'Book Club', 'A place to discuss books', 'Y');
