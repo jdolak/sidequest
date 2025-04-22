@@ -117,7 +117,7 @@ def process_invite(code):
     group_id = result["group_id"]
     
     
-    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS g JOIN GROUPS_USER gu ON g.group_id = gu.group_id WHERE gu.user_id = :user_id AND g.group_id = :group_id", {"user_id": g.user, "group_id": group_id})
+    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
     if result:
         return jsonify({"error": "User already in group"}), 400
     
