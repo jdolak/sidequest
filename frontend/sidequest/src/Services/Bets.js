@@ -3,6 +3,7 @@ import { baseURL } from './Constants.js';
 export const getBoughtBet = async (betID, buyerID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/bought_bets/${betID}/${buyerID}`, config);
@@ -19,6 +20,7 @@ export const getBoughtBet = async (betID, buyerID) => {
 export const getAllBoughtBets = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/bought_bets`, config);

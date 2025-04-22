@@ -3,6 +3,7 @@ import { baseURL } from './Constants.js';
 export const getUser = async (userID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/users/${userID}`, config);
@@ -19,6 +20,7 @@ export const getUser = async (userID) => {
 export const getAllUsers = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/users`, config);

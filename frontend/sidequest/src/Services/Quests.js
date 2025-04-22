@@ -3,6 +3,7 @@ import {baseURL} from './Constants.js';
 export const getAllQuests = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL+'/quests', config);
@@ -19,6 +20,7 @@ export const getAllQuests = async () => {
 export const getOpenQuests = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL+'/quests/open', config);
@@ -35,6 +37,7 @@ export const getOpenQuests = async () => {
 export const getQuest = async (questID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL+`/quests/${questID}`, config);
@@ -68,6 +71,7 @@ export const getMyQuests = async (authorID) => {
 export const getAcceptedQuests = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL + '/quests/accepted', config);
@@ -84,6 +88,7 @@ export const getAcceptedQuests = async () => {
 export const getAcceptedQuestsByUser = async (userID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL + `/quests/accepted/${userID}`, config);
@@ -100,6 +105,7 @@ export const getAcceptedQuestsByUser = async (userID) => {
 export const getQuestSubmission = async (submissionID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL + `/quest_submissions/${submissionID}`, config);
@@ -116,6 +122,7 @@ export const getQuestSubmission = async (submissionID) => {
 export const getAllQuestSubmissions = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(baseURL + '/quest_submissions', config);

@@ -3,6 +3,7 @@ import { baseURL } from './Constants.js';
 export const getGroup = async (groupID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/groups/${groupID}`, config);
@@ -19,6 +20,7 @@ export const getGroup = async (groupID) => {
 export const getAllGroups = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/groups`, config);
@@ -35,6 +37,7 @@ export const getAllGroups = async () => {
 export const getGroupUser = async (groupID, userID) => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/groups_user/${groupID}/${userID}`, config);
@@ -51,6 +54,7 @@ export const getGroupUser = async (groupID, userID) => {
 export const getAllGroupUsers = async () => {
     const config = {
         method: 'GET',
+        credentials: 'include',
     };
     try {
         const response = await fetch(`${baseURL}/groups_user`, config);
