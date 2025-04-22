@@ -2,7 +2,7 @@ import React, {useEffect,useState} from "react";
 import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
-import Card from "../Cards/QuestCard";
+import Card from "../Cards/Card";
 import { data, Link } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 
