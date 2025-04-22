@@ -5,6 +5,10 @@
 - [ ] CSS styling
 - [ ] Sidebar goes over the page when not full screen
 - [ ] Remove hard coding from bet details/quest details
+- [ ] protect routs so that if you are not logged in, redirect to login 
+page
+- [ ] Add buttons to close bet: resolve yes and resolve no
+- [ ] In bet details, add quantity available (100 coin incremeents)
 ### Jachob
 - [x] Create endpoints
     - [x] Users
@@ -14,6 +18,7 @@
     - [x] Bets
     - [x] Groups
 - [x] logging
+- [ ] bet resolution endpoints
 ### Patrick
 - [x] Help Create Pages
 - [x] Create Services to connect backend to frontend
@@ -22,7 +27,9 @@
     - [x] Users
     - [x] Groups
 - [ ] Pull and store data on front end (useEffect,useState)
+    - [ ] add bets apis that jachob added
 - [ ] add group id to relevant api requests adn the end of the url
+- [ ] endpoints for bet resolution
 
 # Bugs and improvements
 
