@@ -18,6 +18,7 @@ erDiagram
         int user_id PK,FK
         int group_id PK,FK
         int currency
+        string role
     }
 
     AVAILABLE_BETS {
