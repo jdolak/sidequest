@@ -79,33 +79,36 @@ const QuestDashboard = () => {
               <div className="quest-row">
                 {activeTab === "myQuests" &&
                 myQuests.map((quest) => (
-                  <Card
-                    key={quest.quest_id}
-                    title={quest.quest_desc}
-                    creator={quest.author_id}
-                    coins={quest.reward_amount}
-                    date={quest.due_date}
-                  />
+                  <Link to={`/quests/${quest.quest_id}`} className="card-link" key={quest.quest_id}>
+                    <Card
+                      title={quest.quest_desc}
+                      creator={quest.author_id}
+                      coins={quest.reward_amount}
+                      date={quest.due_date}
+                    />
+                  </Link>
                 ))}
               {activeTab === "acceptedQuests" &&
                 acceptedQuests.map((quest) => (
-                  <Card
-                    key={quest.quest_id}
-                    title={quest.quest_desc}
-                    creator={quest.author_id}
-                    coins={quest.reward_amount}
-                    date={quest.due_date}
-                  />
+                  <Link to={`/quests/${quest.quest_id}`} className="card-link" key={quest.quest_id}>
+                    <Card
+                      title={quest.quest_desc}
+                      creator={quest.author_id}
+                      coins={quest.reward_amount}
+                      date={quest.due_date}
+                    />
+                  </Link>
                 ))}
               {activeTab === "openQuests" &&
                 openQuests.map((quest) => (
-                  <Card
-                    key={quest.quest_id}
-                    title={quest.quest_desc}
-                    creator={quest.author_id}
-                    coins={quest.reward_amount}
-                    date={quest.due_date}
-                  />
+                  <Link to={`/quests/${quest.quest_id}`} className="card-link" key={quest.quest_id}>
+                    <Card
+                      title={quest.quest_desc}
+                      creator={quest.author_id}
+                      coins={quest.reward_amount}
+                      date={quest.due_date}
+                    />
+                  </Link>
                 ))}
               </div>
         </div>
