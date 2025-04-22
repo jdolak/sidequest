@@ -27,13 +27,13 @@ def register_user(rq):
     
     if existing_user is not None:
         LOG.error(f"User already exists: {data['username']}")
-        return 0
+        return jsonify({"error": f"User already exists: {data['username']}"}), 400
 
     # Hash the password
     hashed_password = BCRYPT.generate_password_hash(data["password"]).decode('utf-8')
     if not BCRYPT.check_password_hash(hashed_password, data["password"]):
         LOG.error(f"Password hashing failed for {data['username']}")
-        return 0
+        return jsonify({"error": f"error creating account"}), 500
 
 
     # Insert the new user into the database
@@ -44,7 +44,7 @@ def register_user(rq):
 
     if result is None:
         LOG.error(f"User registration failed for {data['username']}")
-        return 0
+        return jsonify({"error": f"error creating account"}), 500
     
     LOG.info(f"User registered successfully: {data['username']}")
     
@@ -52,6 +52,9 @@ def register_user(rq):
     
     if user_id:
         session['sq_user_id'] = user_id
+        g.user = user_id
+
+        LOG.info(f"Set session user_id to {user_id}")
         return jsonify({"message": "User registered successfully", "user_id": user_id}), 201
     else:
         return jsonify({"error": "Registration failed"}), 500
@@ -102,6 +105,30 @@ def logout_user():
     else:
         LOG.warning("No user is currently logged in")
         return jsonify({"error": "No user is currently logged in"}), 400
+    
+def process_invite(code):
+    if not g.user:
+        return jsonify({"error": "User not logged in"}), 401
+    
+    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS WHERE invite_code = :invite_code", {"invite_code": code})
+
+    if not result:
+        return jsonify({"error": "Invalid invite code"}), 400
+    group_id = result["group_id"]
+    
+    
+    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS g JOIN GROUPS_USER gu ON g.group_id = gu.group_id WHERE gu.user_id = :user_id AND g.group_id = :group_id", {"user_id": g.user, "group_id": group_id})
+    if result:
+        return jsonify({"error": "User already in group"}), 400
+    
+    sql = "INSERT INTO GROUPS_USER (user_id, group_id) VALUES (:user_id, :group_id)"
+    g.db_session.execute(text(sql), {"user_id": g.user, "group_id": group_id})
+
+    # Check if the user was added successfully
+    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
+    if result:
+        LOG.info(f"User {g.user} added to group {group_id} successfully")
+        return jsonify({"message": "User added to group successfully"}), 200
      
     
 

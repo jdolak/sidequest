@@ -3,10 +3,10 @@ INSERT INTO USERS (user_id, username, password_hash) VALUES
 (2, 'Bob', 'hash2'),
 (3, 'Charlie', 'hash3');
 
-INSERT INTO GROUPS (group_id, group_name, group_desc, public) VALUES
-(1, 'Sports Fans', 'A group for sports enthusiasts', 'Y'),
-(2, 'Gamers United', 'For people who love gaming', 'N'),
-(3, 'Book Club', 'A place to discuss books', 'Y');
+INSERT INTO GROUPS (group_id, group_name, group_desc, public, invite_code) VALUES
+(1, 'Sports Fans', 'A group for sports enthusiasts', 'Y', '123'),
+(2, 'Gamers United', 'For people who love gaming', 'N', '456'),
+(3, 'Book Club', 'A place to discuss books', 'Y', '789');
 
 INSERT INTO GROUPS_USER (user_id, group_id, currency) VALUES
 (1, 1, 100),

@@ -8,7 +8,8 @@ CREATE TABLE GROUPS (
     group_id INTEGER PRIMARY KEY,
     group_name VARCHAR2(255) NOT NULL,
     group_desc VARCHAR2(4000),
-    public CHAR(1) CHECK (public IN ('Y', 'N'))
+    public CHAR(1) CHECK (public IN ('Y', 'N')),
+    invite_code CHAR(64) UNIQUE
 );
 
 CREATE TABLE GROUPS_USER (

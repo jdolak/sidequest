@@ -10,8 +10,8 @@ erDiagram
         int group_id PK
         string group_name
         string group_desc
-        boolean group_visibility
-        char(64) invite_url
+        boolean public
+        char(64) invite_code
     }
 
     GROUPS_USER {
