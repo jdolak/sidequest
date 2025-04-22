@@ -32,6 +32,7 @@ const AuthLogin = ({onSubmit}) => {
 
             const data = await response.json();
             console.log("Log in successful:", data);
+            window.location.replace("/search");
 
             if (onSubmit) {
                 onSubmit(formData);
