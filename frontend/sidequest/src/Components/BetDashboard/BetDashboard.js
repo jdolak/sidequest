@@ -78,7 +78,7 @@ const BetDashboard = () => {
               <div class="bet-row">
               {activeTab === "myBets" &&
                 myBets.map((bet) => (
-                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <BetCard
                       author_id={bet.author_id}
                       bet_desc={bet.bet_desc}
@@ -89,7 +89,7 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "acceptedBets" &&
                 acceptedBets.map((bet) => (
-                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <BetCard
                       author_id={bet.author_id}
                       bet_desc={bet.bet_desc}
@@ -100,7 +100,7 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "openBets" &&
                 openBets.map((bet) => (
-                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <BetCard
                       author_id={bet.author_id}
                       bet_desc={bet.bet_desc}
