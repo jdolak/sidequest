@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './questsection.css';
 import Card from '../../Cards/Card';
 
-const QuestSection = (quests) => {
+const QuestSection = ({quests}) => {
     return (
         <div className="main-section">
             <div className="header">

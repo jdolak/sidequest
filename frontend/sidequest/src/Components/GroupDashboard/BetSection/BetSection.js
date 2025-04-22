@@ -2,7 +2,7 @@ import './betsection.css';
 import { Link } from 'react-router-dom';
 import Card from '../../Cards/Card';
 
-const BetSection = (bets) => {
+const BetSection = ({bets}) => {
     return (
         <div class="main-section">
             <div class="header">
