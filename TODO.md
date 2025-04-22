@@ -4,6 +4,7 @@
 - [x] Upload component html as components
 - [ ] CSS styling
 - [ ] Sidebar goes over the page when not full screen
+- [ ] Remove hard coding from bet details/quest details
 ### Jachob
 - [x] Create endpoints
     - [x] Users
