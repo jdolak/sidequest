@@ -17,15 +17,15 @@ export default function Components() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/group/1" element={<GroupPage />} />
+                <Route path="/groups/:id" element={<GroupPage />} />
                 <Route path="/register" element={<AuthRegister />} />
                 <Route path="/login" element={<AuthLogin />} />
                 <Route path="search" element={<SearchPage />} />
-                <Route path="quests/1" element={<QuestDetails />} />
-                <Route path="bets/1" element={<BetDetails />} />
+                <Route path="quests/:id" element={<QuestDetails />} />
+                <Route path="bets/:id" element={<BetDetails />} />
                 <Route path="quests" element={<QuestDashboard />} />
                 <Route path="bets" element={<BetDashboard />} />
-                {/* <Route path="groups" element={<GroupPage />} /> */}
+                <Route path="groups" element={<GroupPage />} />
 
                 <Route path="acceptedquest" element={<AcceptedQuests />} />
                 
