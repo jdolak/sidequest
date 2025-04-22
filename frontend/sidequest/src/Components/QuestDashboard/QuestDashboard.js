@@ -47,16 +47,16 @@ const QuestDashboard = () => {
 
 
   return (
-    <div class="mainContainer">
+    <div className="mainContainer">
       <Sidebar />
-      <div class="questDashboard">
-        <div class="dashboardHeader">
+      <div className="questDashboard">
+        <div className="dashboardHeader">
           <Link to="/" className="backButton">
             <img src={backIcon} />
             <div className="backText">Dashboard</div>
           </Link>
-          <div class="headerContents">
-            <div class="questTabs">
+          <div className="headerContents">
+            <div className="questTabs">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -70,13 +70,13 @@ const QuestDashboard = () => {
                 </button>
               ))}
             </div>
-            <div class="tabHeader">
+            <div className="tabHeader">
               <div>My Quests</div>
             </div>
           </div>
         </div>
-        <div class="quests">
-              <div class="quest-row">
+        <div className="quests">
+              <div className="quest-row">
                 <QuestCard />
                 <QuestCard />
                 <QuestCard />
