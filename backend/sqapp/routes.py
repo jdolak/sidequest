@@ -148,6 +148,17 @@ def get_bought_bet(buyer_id, bet_id):
     sql = "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS AND USERS WHERE buyer_id = :buyer_id AND bet_id = :bet_id AND buyer_id = user_id"
     return sql_response(sql_one(g.db_session, sql, {"buyer_id": buyer_id, "bet_id": bet_id}))
 
+# needs to be modified to use user_id
+@main_bp.route("/bets/accepted", methods=["GET"])
+def get_bet_accepted():
+    return sql_response(sql_many(g.db_session, "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE AND ab.bet_id = bb.bet_id", None))
+
+# needs to be modified to use user_id
+@main_bp.route("/bets/my_bets", methods=["GET"])
+def get_bet_mybets():
+    return sql_response(sql_many(g.db_session, "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE AND ab.bet_id = bb.bet_id AND ab.seller_id = :user_id", {"user_id": g.user}))
+
+
 @main_bp.route("/bought_bets", methods=["GET"])
 def get_all_bought_bets():
     return sql_response(sql_many(g.db_session, "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS, USERS WHERE buyer_id = user_id", None))
