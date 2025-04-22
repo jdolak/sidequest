@@ -29,3 +29,4 @@
 - [ ] Price negotiation on bets (offer of a lower price)
 - [ ] Quests expire after a certain amount of time
 - [ ] Bets/Quests history on group dashboard
+- [ ] Universal group?
