@@ -3,6 +3,7 @@
 - [x] Finish wireframes
 - [x] Upload component html as components
 - [ ] CSS styling
+- [ ] Sidebar goes over the page when not full screen
 ### Jachob
 - [x] Create endpoints
     - [x] Users
