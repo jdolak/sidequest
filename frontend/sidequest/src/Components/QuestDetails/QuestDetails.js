@@ -25,7 +25,7 @@ const QuestDetails = () => {
             <Sidebar />
             <div className="quest-detail-container">
                 <div className="quest-header">
-                    <Link to="/" className="back-button">
+                    <Link to="/quests/" className="back-button">
                         <img src={backIcon} />
                         <div className="back-text">Back</div>
                     </Link>

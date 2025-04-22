@@ -1,3 +1,4 @@
+import React, {useEffect,useState} from "react";
 import QuestSection from "./QuestSection/QuestSection";
 import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
