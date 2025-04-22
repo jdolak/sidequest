@@ -119,7 +119,8 @@ def get_groups():
 
 @main_bp.route("/groups/search/<query>", methods=["GET"])
 def search_groups(query):
-    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS WHERE public = 'Y' AND group_name LIKE '%:query%' OR group_desc LIKE '%:query%' ", {"query": query}))
+    pattern = f"%{query}%"
+    return sql_response(sql_many(g.db_session, "SELECT * FROM GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)", {"pattern": pattern}))
 
 @main_bp.route("/groups/my_groups", methods=["GET"])
 def get_my_groups():

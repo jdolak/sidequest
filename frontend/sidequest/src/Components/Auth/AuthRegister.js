@@ -37,7 +37,7 @@ const AuthRegister = ({ onSubmit }) => {
 
             const data = await response.json();
             console.log("Registration successful:", data);
-            //window.location.replace("/");
+            window.location.replace("/search");
 
             if (onSubmit) {
                 onSubmit(formData);
