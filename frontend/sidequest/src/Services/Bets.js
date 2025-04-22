@@ -33,3 +33,37 @@ export const getAllBoughtBets = async () => {
         throw error;
     }
 };
+
+export const getAllBets = async () => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching all bets:", error);
+        throw error;
+    }
+};
+
+export const getBet = async (betID) => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/${betID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching bet with ID ${betID}:`, error);
+        throw error;
+    }
+};
