@@ -22,6 +22,7 @@
     - [x] Users
     - [x] Groups
 - [ ] Pull and store data on front end (useEffect,useState)
+- [ ] add group id to relevant api requests adn the end of the url
 
 # Bugs and improvements
 
