@@ -2,7 +2,7 @@ import React, {useEffect,useState} from "react";
 import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
-import QuestCard from "../Cards/QuestCard";
+import Card from "../Cards/QuestCard";
 import { data, Link } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 
@@ -77,10 +77,36 @@ const QuestDashboard = () => {
         </div>
         <div className="quests">
               <div className="quest-row">
-                <QuestCard />
-                <QuestCard />
-                <QuestCard />
-                <QuestCard />
+                {activeTab === "myQuests" &&
+                myQuests.map((quest) => (
+                  <Card
+                    key={quest.quest_id}
+                    title={quest.quest_desc}
+                    creator={quest.author_id}
+                    coins={quest.reward_amount}
+                    date={quest.due_date}
+                  />
+                ))}
+              {activeTab === "acceptedQuests" &&
+                acceptedQuests.map((quest) => (
+                  <Card
+                    key={quest.quest_id}
+                    title={quest.quest_desc}
+                    creator={quest.author_id}
+                    coins={quest.reward_amount}
+                    date={quest.due_date}
+                  />
+                ))}
+              {activeTab === "openQuests" &&
+                openQuests.map((quest) => (
+                  <Card
+                    key={quest.quest_id}
+                    title={quest.quest_desc}
+                    creator={quest.author_id}
+                    coins={quest.reward_amount}
+                    date={quest.due_date}
+                  />
+                ))}
               </div>
         </div>
       </div>
