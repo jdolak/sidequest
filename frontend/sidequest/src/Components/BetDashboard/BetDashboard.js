@@ -2,8 +2,9 @@ import React, {useEffect,useState} from "react";
 import "./betdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
-import BetCard from "../Cards/BetCard";
+import Card from "../Cards/QuestCard";
 import { Link } from "react-router-dom";
+import { getAllBets } from "../../Services/Bets";
 
 const BetDashboard = () => {
   const [openBets, setOpenBets] = useState([]);
@@ -17,32 +18,32 @@ const BetDashboard = () => {
         { id: "openBets", label: "Open Bets" },
   ];
   
-  // useEffect(() => {
-  //     if (activeTab === "openBets" && openBets.length === 0) {
-  //       getOpenBets().then((response) => {
-  //         console.log("OpenBets:", response);
-  //         setOpenBets(response);
-  //       }).catch((error) => {
-  //         console.error("Error fetching Bets:", error);
-  //       });
-  //     }
-  //     else if (activeTab === "myBets" && myBets.length === 0) {
-  //       getMyBets().then((response) => {
-  //         console.log("myBets:", response);
-  //         setMyBets(response);
-  //       }).catch((error) => {
-  //         console.error("Error fetching Bets:", error);
-  //       });
-  //     }
-  //     else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
-  //       getAcceptedBetsByUser().then((response) => {
-  //         console.log("acceptedBets:", response);
-  //         setAcceptedBets(response);
-  //       }).catch((error) => {
-  //         console.error("Error fetching Bets:", error);
-  //       });
-  //     }
-  //   }, [activeTab]);
+  useEffect(() => {
+      if (activeTab === "openBets" && openBets.length === 0) {
+        getAllBets().then((response) => {
+          console.log("OpenBets:", response);
+          setOpenBets(response);
+        }).catch((error) => {
+          console.error("Error fetching Bets:", error);
+        });
+      }
+      // else if (activeTab === "myBets" && myBets.length === 0) {
+      //   getMyBets().then((response) => {
+      //     console.log("myBets:", response);
+      //     setMyBets(response);
+      //   }).catch((error) => {
+      //     console.error("Error fetching Bets:", error);
+      //   });
+      // }
+      // else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
+      //   getAcceptedBetsByUser().then((response) => {
+      //     console.log("acceptedBets:", response);
+      //     setAcceptedBets(response);
+      //   }).catch((error) => {
+      //     console.error("Error fetching Bets:", error);
+      //   });
+      // }
+    }, [activeTab]);
 
   return (
     <div class="mainContainer">
@@ -75,12 +76,39 @@ const BetDashboard = () => {
         </div>
         <div class="bets">
               <div class="bet-row">
-                <Link to="/bets/1" className="bet-card-link">
-                  <BetCard />
-                </Link>
-                <BetCard />
-                <BetCard />
-                <BetCard />
+              {activeTab === "myBets" &&
+                myBets.map((bet) => (
+                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                    <BetCard
+                      author_id={bet.author_id}
+                      bet_desc={bet.bet_desc}
+                      due_date={bet.due_date}
+                      reward_amount={bet.reward_amount}
+                    />
+                  </Link>
+                ))}
+              {activeTab === "acceptedBets" &&
+                acceptedBets.map((bet) => (
+                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                    <BetCard
+                      author_id={bet.author_id}
+                      bet_desc={bet.bet_desc}
+                      due_date={bet.due_date}
+                      reward_amount={bet.reward_amount}
+                    />
+                  </Link>
+                ))}
+              {activeTab === "openBets" &&
+                openBets.map((bet) => (
+                  <Link to={`/bets/${bet.id}`} className="bet-card-link" key={bet.id}>
+                    <BetCard
+                      author_id={bet.author_id}
+                      bet_desc={bet.bet_desc}
+                      due_date={bet.due_date}
+                      reward_amount={bet.reward_amount}
+                    />
+                  </Link>
+                ))}
               </div>
         </div>
       </div>
