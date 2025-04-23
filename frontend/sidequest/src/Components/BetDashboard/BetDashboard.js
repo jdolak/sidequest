@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { Link } from "react-router-dom";
-import { getAllBets } from "../../Services/Bets";
+import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
 
 const BetDashboard = () => {
   const [openBets, setOpenBets] = useState([]);
@@ -27,22 +27,22 @@ const BetDashboard = () => {
           console.error("Error fetching Bets:", error);
         });
       }
-      // else if (activeTab === "myBets" && myBets.length === 0) {
-      //   getMyBets().then((response) => {
-      //     console.log("myBets:", response);
-      //     setMyBets(response);
-      //   }).catch((error) => {
-      //     console.error("Error fetching Bets:", error);
-      //   });
-      // }
-      // else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
-      //   getAcceptedBetsByUser().then((response) => {
-      //     console.log("acceptedBets:", response);
-      //     setAcceptedBets(response);
-      //   }).catch((error) => {
-      //     console.error("Error fetching Bets:", error);
-      //   });
-      // }
+      else if (activeTab === "myBets" && myBets.length === 0) {
+        getMyBets().then((response) => {
+          console.log("myBets:", response);
+          setMyBets(response);
+        }).catch((error) => {
+          console.error("Error fetching Bets:", error);
+        });
+      }
+      else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
+        getAcceptedBets().then((response) => {
+          console.log("acceptedBets:", response);
+          setAcceptedBets(response);
+        }).catch((error) => {
+          console.error("Error fetching Bets:", error);
+        });
+      }
     }, [activeTab]);
 
   return (

@@ -17,6 +17,42 @@ export const getBoughtBet = async (betID, buyerID) => {
     }
 };
 
+// Needs to take user ID
+export const getAcceptedBets = async () => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/accepted`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching accepted bets:", error);
+        throw error;
+    }
+};
+
+// Needs to take user ID
+export const getMyBets = async () => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/my_bets`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching my bets:", error);
+        throw error;
+    }
+};
+
 export const getAllBoughtBets = async () => {
     const config = {
         method: 'GET',

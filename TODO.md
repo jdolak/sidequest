@@ -26,8 +26,8 @@ page
     - [x] Quests
     - [x] Users
     - [x] Groups
-- [ ] Pull and store data on front end (useEffect,useState)
-    - [ ] add bets apis that jachob added
+- [x] Pull and store data on front end (useEffect,useState)
+    - [x] add bets apis that jachob added
 - [ ] add group id to relevant api requests adn the end of the url
 - [ ] endpoints for bet resolution
 
