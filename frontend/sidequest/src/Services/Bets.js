@@ -1,4 +1,6 @@
 import { baseURL } from './Constants.js';
+import { useGlobalStore } from '../stores/globalStore.js';
+
 
 export const getBoughtBet = async (betID, buyerID) => {
     const config = {

@@ -1,6 +1,10 @@
 import {baseURL} from './Constants.js';
+import { useGlobalStore } from '../stores/globalStore.js';
 
 export const getAllQuests = async () => {
+    const { groupID } = useGlobalStore.getState();
+    console.log("group id: "+groupID);
+    
     const config = {
         method: 'GET',
         credentials: 'include',
