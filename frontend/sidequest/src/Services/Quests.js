@@ -3,14 +3,12 @@ import { useGlobalStore } from '../stores/globalStore.js';
 
 export const getAllQuests = async () => {
     const { groupID } = useGlobalStore.getState();
-    console.log("group id: "+groupID);
-    
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL+'/quests', config);
+        const response = await fetch(baseURL + '/quests/' + groupID, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -22,12 +20,14 @@ export const getAllQuests = async () => {
 };
 
 export const getOpenQuests = async () => {
+    const { groupID } = useGlobalStore.getState();
+    console.log("group id: " + groupID);
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL+'/quests/open', config);
+        const response = await fetch(baseURL + '/quests/open/' + groupID, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -39,12 +39,13 @@ export const getOpenQuests = async () => {
 };
 
 export const getQuest = async (questID) => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL+`/quests/${questID}`, config);
+        const response = await fetch(baseURL + `/quests/${questID}/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -56,12 +57,13 @@ export const getQuest = async (questID) => {
 };
 
 export const getMyQuests = async (authorID) => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quests/my_quests`, config);
+        const response = await fetch(baseURL + `/quests/my_quests/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -73,12 +75,13 @@ export const getMyQuests = async (authorID) => {
 };
 
 export const getAcceptedQuests = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + '/quests/accepted', config);
+        const response = await fetch(baseURL + `/quests/accepted/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -90,12 +93,13 @@ export const getAcceptedQuests = async () => {
 };
 
 export const getAcceptedQuestsByUser = async (userID) => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quests/accepted/${userID}`, config);
+        const response = await fetch(baseURL + `/quests/accepted/${userID}/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -107,12 +111,13 @@ export const getAcceptedQuestsByUser = async (userID) => {
 };
 
 export const getQuestSubmission = async (submissionID) => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quest_submissions/${submissionID}`, config);
+        const response = await fetch(baseURL + `/quest_submissions/${submissionID}/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -124,12 +129,13 @@ export const getQuestSubmission = async (submissionID) => {
 };
 
 export const getAllQuestSubmissions = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + '/quest_submissions', config);
+        const response = await fetch(baseURL + `/quest_submissions/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

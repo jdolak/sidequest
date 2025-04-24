@@ -19,14 +19,14 @@ export const getBoughtBet = async (betID, buyerID) => {
     }
 };
 
-// Needs to take user ID
 export const getAcceptedBets = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/bets/accepted`, config);
+        const response = await fetch(`${baseURL}/bets/accepted/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -37,14 +37,14 @@ export const getAcceptedBets = async () => {
     }
 };
 
-// Needs to take user ID
 export const getMyBets = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/bets/my_bets`, config);
+        const response = await fetch(`${baseURL}/bets/my_bets/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -56,12 +56,13 @@ export const getMyBets = async () => {
 };
 
 export const getAllBoughtBets = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/bought_bets`, config);
+        const response = await fetch(`${baseURL}/bought_bets/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -73,12 +74,13 @@ export const getAllBoughtBets = async () => {
 };
 
 export const getAllBets = async () => {
+    const { groupID } = useGlobalStore.getState();
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/bets`, config);
+        const response = await fetch(`${baseURL}/bets/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

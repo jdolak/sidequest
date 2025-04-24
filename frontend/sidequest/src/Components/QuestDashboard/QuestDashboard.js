@@ -5,11 +5,13 @@ import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { data, Link } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
+import { useGlobalStore } from '../../stores/globalStore.js';
 
 const QuestDashboard = () => {
   const [openQuests, setOpenQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [myQuests, setMyQuests] = useState([]);
+  const { groupID } = useGlobalStore.getState();
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
@@ -43,7 +45,7 @@ const QuestDashboard = () => {
         console.error("Error fetching quests:", error);
       });
     }
-  }, [activeTab]);
+  }, [activeTab, groupID]);
 
 
   return (
