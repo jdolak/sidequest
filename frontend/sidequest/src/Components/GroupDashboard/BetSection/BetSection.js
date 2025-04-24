@@ -13,10 +13,10 @@ const BetSection = ({bets}) => {
                 {bets.map((bet) => (
                   <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
-                      author_id={bet.author_id}
-                      bet_desc={bet.bet_desc}
-                      due_date={bet.due_date}
-                      reward_amount={bet.reward_amount}
+                      title={bet.question}
+                      creator={bet.username}
+                      date={bet.due_date}
+                      coins={bet.reward_amount}
                     />
                   </Link>
                 ))}

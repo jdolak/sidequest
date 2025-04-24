@@ -52,7 +52,7 @@ const BetDashboard = () => {
       <Sidebar />
       <div class="bet-dashboard-content-container">
         <div class="dashboardHeader">
-          <Link to="/" className="backButton">
+          <Link to={`/groups/${groupID}`} className="backButton">
             <img src={backIcon} />
             <div className="backText">Dashboard</div>
           </Link>

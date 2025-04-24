@@ -1,10 +1,9 @@
 import React, {useEffect,useState} from "react";
-// import { useParams } from "react-router-dom";
 import QuestSection from "./QuestSection/QuestSection";
 import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests } from "../../Services/Quests";
-import { getAllBets } from "../../Services/Bets";
+import { getOpenBets } from "../../Services/Bets";
 import { getGroup } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 
@@ -14,15 +13,16 @@ const Dashboard = () => {
     const [group, setGroup] = useState({});
     const groupID = useGlobalStore((state) => state.currGroupID);
 
-    // const { id } = useParams();
-
     useEffect(() => {
         getGroup(groupID).then((response) => {
             setGroup(response);
         }).catch((error) => {
             console.error("Error fetching group:", error);
         });
-        getAllBets().then((response) => {
+        getOpenBets().then((response) => {
+                // if (typeof response !== "list") {
+                //     response = [response];
+                // }
                 setOpenBets(response);
             }).catch((error) => {
                 console.error("Error fetching Bets:", error);
