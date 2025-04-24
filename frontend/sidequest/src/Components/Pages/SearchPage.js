@@ -9,18 +9,34 @@ import { getAllGroups } from "../../Services/Groups";
 
 const SearchPage = () => {
     const [groups, setGroups] = useState([]);
+    const [allGroups, setAllGroups] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         getAllGroups()
             .then((data) => {
+                setAllGroups(data);
                 setGroups(data);
-                console.log("Groups:", data);
+                console.log("All groups:", data);
             })
             .catch((error) => {
                 console.error("Error fetching groups:", error);
             });
     }, []);
+
+    const filterGroups = (event) => {
+        setSearchTerm(event.target.value);
+        if (event.target.value === "") {
+            setGroups(allGroups);
+        } else {
+            const filteredGroups = allGroups.filter((group) =>
+                group.group_name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+                group.group_desc.toLowerCase().includes(event.target.value.toLowerCase())
+            );
+            setGroups(filteredGroups);
+        }
+    }
 
     return (
         <div className="search-main-container">
@@ -29,7 +45,13 @@ const SearchPage = () => {
                 <div className="search-page-header">
                     <div className="search-bar">
                         <img src={searchBarIcon} />
-                        <input type="text" className="search-input" placeholder="Search for a group"></input>
+                        <input
+                            type="text"
+                            className="search-input"
+                            placeholder="Search for a group"
+                            value={searchTerm}
+                            onChange={filterGroups} // Update state on input change
+                        />
                     </div>
                     <button className="create-group-btn" onClick={() => setShowModal(true)}>
                         <img src={addIcon} />

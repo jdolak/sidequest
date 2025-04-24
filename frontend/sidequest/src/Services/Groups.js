@@ -85,3 +85,21 @@ export const joinGroup = async (joinCode) => {
         throw error;
     }
 };
+
+export const searchGroups = async (query) => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        // const response = await fetch(`${baseURL}/groups/search/${encodeURIComponent(query)}`, config);
+        const response = await fetch(`${baseURL}/groups/search/${query}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error searching groups with query "${query}":`, error);
+        throw error;
+    }
+};

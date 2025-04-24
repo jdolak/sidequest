@@ -31,7 +31,7 @@ page
     - [x] add bets apis that jachob added
 - [x] add group id to relevant api requests and the end of the url
 - [ ] endpoints for bet resolution
-- [ ] implement search page
+- [x] implement search page
     - [ ] send data when searching
     - [ ] display results properly
 - [x] enable endpoints for joining groups
