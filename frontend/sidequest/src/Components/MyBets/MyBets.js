@@ -1,6 +1,14 @@
 import React from "react";
 import "./mybets.css";
 
+const MyBets = () => {
+    return (
+        <div>Hello World!</div>
+    )
+}
+
+export default MyBets;
+
 // whether or not it has been resolved
 // who takes your bet, how many quantities (cannot exceed the quantity we put down
 

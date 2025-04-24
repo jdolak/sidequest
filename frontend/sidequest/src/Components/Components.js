@@ -1,15 +1,22 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+
+// Auth
+import Home from "./Home/home.js";
 import AuthRegister from "./Auth/AuthRegister.js";
 import AuthLogin from "./Auth/AuthLogin.js";
+
+// Main Pages
+import SearchPage from "./Pages/SearchPage.js";
 import GroupPage from "./Pages/GroupPage.js"
-import QuestDetails from './QuestDetails/QuestDetails.js'
 import QuestDashboard from "./QuestDashboard/QuestDashboard.js";
 import BetDashboard from "./BetDashboard/BetDashboard.js";
-// import GroupPage from './Group/GroupPage.js';
+
+// Quest Details
+import QuestDetails from "./QuestDetails/QuestDetails.js";
 import BetDetails from "./BetDetails/BetDetails.js";
+
 import AcceptedQuests from "./AcceptedQuests/AcceptedQuests.js";
-import Home from "./Home/home.js";
-import SearchPage from "./Pages/SearchPage.js";
+
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {
