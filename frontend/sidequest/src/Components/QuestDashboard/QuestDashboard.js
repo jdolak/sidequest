@@ -47,9 +47,9 @@ const QuestDashboard = () => {
 
 
   return (
-    <div className="mainContainer">
+    <div className="quest-dashboard-main-container">
       <Sidebar />
-      <div className="questDashboard">
+      <div className="quest-dashboard-content-container">
         <div className="dashboardHeader">
           <Link to="/" className="backButton">
             <img src={backIcon} />

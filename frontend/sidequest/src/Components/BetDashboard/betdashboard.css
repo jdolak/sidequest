@@ -1,21 +1,17 @@
 @import url('../../variables.css');
 
-.mainContainer {
+.bet-dashboard-main-container {
     display: flex;
-    width: 100vw;
+    /* width: 100vw; */
     max-width: 1440px;
-    justify-content: center;
-    align-items: center;
-    /* height: 100vh; */
+    height: 100vh;
       
     background: var(--White);
 }
 
-.betDashboard {
-  margin-left: 100px;
+.bet-dashboard-content-container {
   display: flex;
   flex: 1;
-  width: 100vw;
   height: 100vh;
   padding: 60px 48px;
   flex-direction: column;

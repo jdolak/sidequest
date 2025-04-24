@@ -1,22 +1,23 @@
-.page-layout {
+.quest-details-main-container {
   display: flex;
   max-width: 1440px;
-  padding-right: 240px;
-  width: 100vw;
+  /* padding-right: 240px; */
+  /* width: 100vw; */
   height: 100vh;
-  align-items: center;
+  /* align-items: center; */
 
   background: var(--White);
 }
 
-.main-container {
+/* .quest-details-main-container {
   display: flex;
   height: 100%
-}
+} */
 
-.quest-detail-container {
-  margin-left: 100px;
+.quest-details-content-container {
+  /* margin-left: 100px; */
   display: flex;
+  overflow-y: auto;
   flex: 1;
   padding: 60px 48px;
   flex-direction: column;
@@ -25,7 +26,7 @@
   align-self: stretch;
 }
 
-.quest-header {
+.quest-details-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +62,7 @@
   line-height: normal;
 }
 
-.header-contents {
+.quest-details-header-contents {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -69,7 +70,7 @@
   align-self: stretch;
 }
 
-.quest-title {
+.quest-details-title {
   color: #000;
 
   /* Heading */
@@ -80,7 +81,7 @@
   line-height: 120%; /* 38.4px */
 }
 
-.quest-detail-body {
+.quest-details-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -88,7 +89,7 @@
   align-self: stretch;
 }
 
-.quest-details {
+.quest-details-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -96,7 +97,7 @@
   align-self: stretch;
 }
 
-.quest-text {
+.quest-details-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -104,7 +105,7 @@
   align-self: stretch;
 }
 
-.quest-subheading {
+.quest-details-subheading {
   color: #000;
 
   /* Card Subheading */
@@ -117,12 +118,13 @@
 
 .accept-button {
   display: flex;
-  padding: 24px 32px;
+  padding: 16px 32px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
+  cursor: pointer;
 
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--Secondary);
 }

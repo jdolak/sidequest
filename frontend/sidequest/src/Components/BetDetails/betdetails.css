@@ -1,22 +1,15 @@
-.page-layout {
+.bet-details-main-container {
   display: flex;
   max-width: 1440px;
-  padding-right: 240px;
-  width: 100vw;
   height: 100vh;
-  align-items: center;
 
   background: var(--White);
 }
 
-.main-container {
+.bet-details-content-container {
+  /* margin-left: 100px; */
   display: flex;
-  height: 100%
-}
-
-.bet-detail-container {
-  margin-left: 100px;
-  display: flex;
+  overflow-y: auto;
   flex: 1;
   padding: 60px 48px;
   flex-direction: column;
@@ -138,25 +131,25 @@
 
 .yes-button {
   display: flex;
-  padding: 24px 32px;
+  padding: 16px 32px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
 
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--Secondary);
 }
 
 .no-button {
   display: flex;
-  padding: 24px 32px;
+  padding: 16px 32px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
 
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--Red---No, #FF4D43);
 }
 

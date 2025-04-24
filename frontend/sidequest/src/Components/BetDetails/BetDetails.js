@@ -21,44 +21,42 @@ const BetDetails = () => {
     }, [betID]);
 
   return (
-    <div className="page-layout">
-        <div className="main-container">
-            <Sidebar />
-            <div className="bet-detail-container">
-                <div className="bet-header">
-                    <Link to="/bets/" className="back-button">
-                        <img src={backIcon} />
-                        <div className="back-text">Back</div>
-                    </Link>
-                    <div className="header-contents"> 
-                        <div className="bet-title">Is Notre Dame Winning the Fencing Championship?</div>
-                        <div>Created by csuwita</div>
-                        <div>Bet closes on March 30, 2025</div>
+    <div className="bet-details-main-container">
+        <Sidebar />
+        <div className="bet-details-content-container">
+            <div className="bet-header">
+                <Link to="/bets/" className="back-button">
+                    <img src={backIcon} />
+                    <div className="back-text">Back</div>
+                </Link>
+                <div className="header-contents"> 
+                    <div className="bet-title">Is Notre Dame Winning the Fencing Championship?</div>
+                    <div>Created by csuwita</div>
+                    <div>Bet closes on March 30, 2025</div>
+                </div>
+            </div>
+            <div className="bet-detail-body">
+                <div className="bet-details">
+                    <div className="bet-text">
+                        <div className="bet-subheading">Description</div>
+                        <div>Place your bets on whether Notre Dame will win the Final Championship.</div>
+                    </div>
+                    <div className="bet-text">
+                        <div className="bet-subheading">Odds</div>
+                        <div>64-36</div>
+                    </div>
+                    <div className="bet-text">
+                        <div className="bet-subheading">Number of bets you'd like to place</div>
+                        <input type="number" placeholder="Value" />
                     </div>
                 </div>
-                <div className="bet-detail-body">
-                    <div className="bet-details">
-                        <div className="bet-text">
-                            <div className="bet-subheading">Description</div>
-                            <div>Place your bets on whether Notre Dame will win the Final Championship.</div>
-                        </div>
-                        <div className="bet-text">
-                            <div className="bet-subheading">Odds</div>
-                            <div>64-36</div>
-                        </div>
-                        <div className="bet-text">
-                            <div className="bet-subheading">Number of bets you'd like to place</div>
-                            <input type="number" placeholder="Value" />
-                        </div>
-                    </div>
 
-                    <div className="button-group">
-                      <div className="yes-button">
-                          Buy yes
-                      </div>
-                      <div className="no-button">
-                          Buy no
-                      </div>
+                <div className="button-group">
+                    <div className="yes-button">
+                        Buy yes
+                    </div>
+                    <div className="no-button">
+                        Buy no
                     </div>
                 </div>
             </div>

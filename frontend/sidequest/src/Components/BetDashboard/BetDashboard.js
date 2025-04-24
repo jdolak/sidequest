@@ -46,9 +46,9 @@ const BetDashboard = () => {
     }, [activeTab]);
 
   return (
-    <div class="mainContainer">
+    <div class="bet-dashboard-main-container">
       <Sidebar />
-      <div class="questDashboard">
+      <div class="bet-dashboard-content-container">
         <div class="dashboardHeader">
           <Link to="/" className="backButton">
             <img src={backIcon} />
