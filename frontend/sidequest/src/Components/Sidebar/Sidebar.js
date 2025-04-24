@@ -10,6 +10,12 @@ const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const setCurrGroup = useGlobalStore((state) => state.setGroup);
 
+    const setGroup = (groupID) => {
+        console.log("Group ID: " + groupID);
+        setCurrGroup(groupID);
+        console.log("Current Group ID: " + useGlobalStore.getState().currGroupID);
+    }
+
     useEffect(() => {
         getAllGroups().then((response) => {
             setGroups(response);
@@ -27,9 +33,10 @@ const Sidebar = () => {
                 </Link>
                 <div className="groups">
                     {groups.map((group, index) => (
-                        <button className="group-button" key={index} onClick={() => setCurrGroup(group.group_id)}>
+                        // <button className="group-button" key={index} onClick={() => setCurrGroup(group.group_id)}>
+                        <button className="group-button" key={index} onClick={() => setGroup(group.group_id)}>
                             <div className="group">
-                                {group.name.slice(0, 2).toUpperCase()}
+                                {group?.group_name?.slice(0, 2).toUpperCase()}
                             </div>
                         </button>
                     ))}

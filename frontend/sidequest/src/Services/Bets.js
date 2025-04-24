@@ -20,7 +20,7 @@ export const getBoughtBet = async (betID, buyerID) => {
 };
 
 export const getAcceptedBets = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const { groupID } = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -38,7 +38,7 @@ export const getAcceptedBets = async () => {
 };
 
 export const getMyBets = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const { groupID } = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -56,7 +56,7 @@ export const getMyBets = async () => {
 };
 
 export const getAllBoughtBets = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const { groupID } = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -74,7 +74,7 @@ export const getAllBoughtBets = async () => {
 };
 
 export const getAllBets = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const { groupID } = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',

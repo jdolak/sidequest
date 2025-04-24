@@ -1,8 +1,8 @@
-import {baseURL} from './Constants.js';
+import { baseURL } from './Constants.js';
 import { useGlobalStore } from '../stores/globalStore.js';
 
 export const getAllQuests = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -20,8 +20,7 @@ export const getAllQuests = async () => {
 };
 
 export const getOpenQuests = async () => {
-    const { groupID } = useGlobalStore.getState();
-    console.log("group id: " + groupID);
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -39,7 +38,7 @@ export const getOpenQuests = async () => {
 };
 
 export const getQuest = async (questID) => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -57,7 +56,7 @@ export const getQuest = async (questID) => {
 };
 
 export const getMyQuests = async (authorID) => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -75,7 +74,7 @@ export const getMyQuests = async (authorID) => {
 };
 
 export const getAcceptedQuests = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -93,7 +92,23 @@ export const getAcceptedQuests = async () => {
 };
 
 export const getAcceptedQuestsByUser = async (userID) => {
-    const { groupID } = useGlobalStore.getState();
+    // TODO: get useID in a better way
+    if (!userID) {
+        try {
+            const response = await fetch('https://sq.jdolak.com/api/whoami', { method: 'GET', credentials: 'include' });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            userID = data.user_id;
+        } catch (error) {
+            console.error("Error fetching user ID from whoami endpoint:", error);
+            throw error;
+        }
+    }
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    console.log("group id: " + groupID);
+    console.log("user id: " + userID);
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -111,7 +126,7 @@ export const getAcceptedQuestsByUser = async (userID) => {
 };
 
 export const getQuestSubmission = async (submissionID) => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -129,7 +144,7 @@ export const getQuestSubmission = async (submissionID) => {
 };
 
 export const getAllQuestSubmissions = async () => {
-    const { groupID } = useGlobalStore.getState();
+    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',

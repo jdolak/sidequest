@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
@@ -11,13 +11,13 @@ const QuestDashboard = () => {
   const [openQuests, setOpenQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [myQuests, setMyQuests] = useState([]);
-  const { groupID } = useGlobalStore.getState();
+  const groupID = useGlobalStore((state) => state.currGroupID); // Subscribe to groupID
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
-        { id: "myQuests", label: "My Quests" },
-        { id: "acceptedQuests", label: "Accepted Quests" },
-        { id: "openQuests", label: "Open Quests" },
+    { id: "myQuests", label: "My Quests" },
+    { id: "acceptedQuests", label: "Accepted Quests" },
+    { id: "openQuests", label: "Open Quests" },
   ];
 
   useEffect(() => {
@@ -28,16 +28,14 @@ const QuestDashboard = () => {
       }).catch((error) => {
         console.error("Error fetching quests:", error);
       });
-    }
-    else if (activeTab === "myQuests" && myQuests.length === 0) {
+    } else if (activeTab === "myQuests" && myQuests.length === 0) {
       getMyQuests().then((response) => {
         console.log("myQuests:", response);
         setMyQuests(response);
       }).catch((error) => {
         console.error("Error fetching quests:", error);
       });
-    }
-    else if (activeTab === "acceptedQuests" && acceptedQuests.length === 0) {
+    } else if (activeTab === "acceptedQuests" && acceptedQuests.length === 0) {
       getAcceptedQuestsByUser().then((response) => {
         console.log("acceptedQuests:", response);
         setAcceptedQuests(response);
@@ -45,8 +43,7 @@ const QuestDashboard = () => {
         console.error("Error fetching quests:", error);
       });
     }
-  }, [activeTab, groupID]);
-
+  }, [activeTab, groupID]); // Ensure groupID is included in the dependency array
 
   return (
     <div className="quest-dashboard-main-container">
