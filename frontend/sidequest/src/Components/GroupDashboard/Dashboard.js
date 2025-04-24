@@ -1,21 +1,23 @@
 import React, {useEffect,useState} from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import QuestSection from "./QuestSection/QuestSection";
 import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests } from "../../Services/Quests";
 import { getAllBets } from "../../Services/Bets";
 import { getGroup } from "../../Services/Groups";
+import { useGlobalStore } from '../../stores/globalStore.js';
 
 const Dashboard = () => {
     const [openBets, setOpenBets] = useState([]);
     const [openQuests, setOpenQuests] = useState([]);
     const [group, setGroup] = useState({});
+    const groupID = useGlobalStore((state) => state.currGroupID);
 
-    const { id } = useParams();
+    // const { id } = useParams();
 
     useEffect(() => {
-        getGroup(id).then((response) => {
+        getGroup(groupID).then((response) => {
             setGroup(response);
         }).catch((error) => {
             console.error("Error fetching group:", error);
@@ -30,7 +32,7 @@ const Dashboard = () => {
             }).catch((error) => {
             console.error("Error fetching quests:", error);
         });
-    }, []);
+    }, [groupID]);
           
     return (
         <div class="group-page-dashboard">
@@ -41,8 +43,8 @@ const Dashboard = () => {
                     <div class="group-page-my-coins-text">{group.coins} coins</div>
                 </div>
             </div>
-            <QuestSection quests={openQuests.slice(0,4)}/>
-            <BetSection bets={openBets.slice(0,4)}/>
+            <QuestSection quests={openQuests?.slice(0,4)}/>
+            <BetSection bets={openBets?.slice(0,4)}/>
         </div>
     )
 }

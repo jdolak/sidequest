@@ -5,11 +5,13 @@ import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { Link } from "react-router-dom";
 import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
+import { useGlobalStore } from '../../stores/globalStore.js';
 
 const BetDashboard = () => {
   const [openBets, setOpenBets] = useState([]);
   const [acceptedBets, setAcceptedBets] = useState([]);
   const [myBets, setMyBets] = useState([]);
+  const groupID = useGlobalStore((state) => state.currGroupID);
 
   const [activeTab, setActiveTab] = React.useState("myBets");
   const tabs = [
@@ -43,7 +45,7 @@ const BetDashboard = () => {
           console.error("Error fetching Bets:", error);
         });
       }
-    }, [activeTab]);
+    }, [activeTab, groupID]);
 
   return (
     <div class="bet-dashboard-main-container">

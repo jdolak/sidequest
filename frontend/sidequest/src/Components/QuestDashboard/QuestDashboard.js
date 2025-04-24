@@ -11,7 +11,7 @@ const QuestDashboard = () => {
   const [openQuests, setOpenQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [myQuests, setMyQuests] = useState([]);
-  const groupID = useGlobalStore((state) => state.currGroupID); // Subscribe to groupID
+  const groupID = useGlobalStore((state) => state.currGroupID);
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
