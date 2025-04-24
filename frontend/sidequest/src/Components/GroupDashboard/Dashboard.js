@@ -33,12 +33,12 @@ const Dashboard = () => {
     }, []);
           
     return (
-        <div class="dashboard">
-            <div class="group-header">
-                <div class="heading">{group.group_desc}</div>
+        <div class="group-page-dashboard">
+            <div class="group-page-header">
+                <div class="group-page-heading">{group.group_desc}</div>
                 <div>{group.members} members</div>
-                <div class="coins">
-                    <div class="coin-text">{group.coins} coins</div>
+                <div class="group-page-my-coins">
+                    <div class="group-page-my-coins-text">{group.coins} coins</div>
                 </div>
             </div>
             <QuestSection quests={openQuests.slice(0,4)}/>

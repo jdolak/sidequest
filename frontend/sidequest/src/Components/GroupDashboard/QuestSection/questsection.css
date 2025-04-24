@@ -1,4 +1,4 @@
-.main-section {
+.main-quest-section {
     display: flex;
     padding: 20px 24px;
     flex-direction: column;
@@ -11,14 +11,14 @@
     box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.10);
 }
 
-.header {
+.quest-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
 }
 
-.subheading-text {
+.quest-section-subheading-text {
     color: #000;
 
     /* Subheading */

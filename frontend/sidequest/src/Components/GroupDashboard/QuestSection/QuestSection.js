@@ -5,9 +5,9 @@ import Card from '../../Cards/Card';
 
 const QuestSection = ({quests}) => {
     return (
-        <div className="main-section">
-            <div className="header">
-                    <div className="subheading-text">Quests</div>
+        <div className="main-quest-section">
+            <div className="quest-section-header">
+                    <div className="quest-section-subheading-text">Quests</div>
                     <Link to="/quests" className="view-quest-button">View all quests</Link>
             </div>
             <div className="quest-list">

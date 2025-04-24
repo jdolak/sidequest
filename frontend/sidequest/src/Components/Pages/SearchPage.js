@@ -12,9 +12,9 @@ const SearchPage = () => {
 
 
     return (
-        <div className="main-container">
+        <div className="search-main-container">
             <Sidebar />
-            <div className="content-container">
+            <div className="search-content-container">
                 <div className="search-page-header">
                     <div className="search-bar">
                         <img src={searchBarIcon} />
@@ -25,14 +25,14 @@ const SearchPage = () => {
                         <div className="create-group-btn-text">Create a group</div>
                     </button>
                 </div>
-                <div className="groups">
-                    <div className="group-row">
+                <div className="search-groups">
+                    <div className="search-group-row">
                         <GroupCard />
                         <GroupCard />
                         <GroupCard />
                         <GroupCard />
                     </div>
-                    <div className="group-row">
+                    <div className="search-group-row">
                         <GroupCard />
                         <GroupCard />
                         <GroupCard />

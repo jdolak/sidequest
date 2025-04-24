@@ -1,16 +1,17 @@
 .sidebar {
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
+    left: 0; */
 
-    display: flex;
     width: 100px; /* Fixed width for the sidebar */
     height: 100vh; /* Full viewport height */
     padding: 32px 16px;
+    flex-shrink: 0;
+
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    flex-shrink: 0;
 
     border-right: 4px solid var(--Soft-Stroke);
     background: var(--White);
@@ -22,17 +23,6 @@
     flex-direction: column;
     align-items: center;
     gap: 32px;
-}
-
-.profile {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-    aspect-ratio: 1/1;
-
-    fill: var(--Primary);
-    stroke-width: 4px;
-    stroke: var(--Soft-Stroke);
 }
 
 .groups {

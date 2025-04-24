@@ -5,7 +5,7 @@ import './grouppage.css';
 
 const GroupPage = () => {
     return (
-        <div class="main-page">
+        <div class="group-main-page">
              <Sidebar />
              <Dashboard />
         </div>

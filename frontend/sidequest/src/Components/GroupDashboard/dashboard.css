@@ -1,6 +1,4 @@
-.dashboard {
-    margin-left: 100px;
-    
+.group-page-dashboard {
     display: flex;
     width: 1200px;
     padding: 60px 48px;
@@ -13,7 +11,7 @@
     background: var(--White);
 }
 
-.group-header {
+.group-page-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,7 +19,7 @@
     align-self: stretch;
 }
 
-.heading {
+.group-page-heading {
     text-align: left;
     align-self: stretch;
     color: #000;
@@ -34,7 +32,7 @@
     line-height: 120%; /* 38.4px */
 }
 
-.coins {
+.group-page-my-coins {
     display: flex;
     padding: 12px;
     justify-content: center;
@@ -45,7 +43,7 @@
     background: var(--Secondary);
 }
 
-.coin-text {
+.group-page-my-coins-text {
     color: var(--White);
 
     /* Body */

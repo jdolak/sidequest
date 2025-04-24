@@ -1,5 +1,6 @@
-.main-container {
+.search-main-container {
     display: flex;
+    height: 100vh;
     /* flex-direction: row; */
     /* height: 100vh; */
     /* align-items: center; */
@@ -8,14 +9,14 @@
     background: var(--White, #FAFAFA);
 }
 
-.content-container {
+.search-content-container {
     display: flex;
-    margin-left: 100px;
-    padding: 0px 0px 0px 48px;
+    padding: 60px 48px;
     flex-direction: column;
     align-items: flex-start;
     gap: 48px;
-    flex: 1 0 0;
+    flex: 1;
+    overflow-y: auto;
     align-self: stretch;
 }
 
@@ -74,14 +75,14 @@
     line-height: normal;
 }
 
-.groups {
+.search-groups {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
 }
 
-.group-row {
+.search-group-row {
     display: flex;
     align-items: flex-start;
     gap: 16px;
