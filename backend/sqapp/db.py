@@ -1,11 +1,25 @@
 import sqapp
 from sqlalchemy import text, create_engine
 from flask import Response, jsonify, g
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def db_connect():
 
-    engine = create_engine("sqlite:///example.db")#create_engine("sqlite:///sidequest/data.db")
-    init_example_db(engine)
+    rdms = os.getenv("RDMS", "sqlite")
+
+    if rdms == "oracle":
+        engine = create_engine("oracle+oracledb://guest:guest@localhost:1539/xe")
+
+    else:
+        engine = create_engine("sqlite:///example.db")
+        init_example_db(engine)
+
+    
+
+
     return engine
 
 def init_example_db(engine):
