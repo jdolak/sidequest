@@ -88,29 +88,29 @@ def get_quest_id(quest_id):
     )
 
 
-@main_bp.route("/quests", methods=["GET"])
-def get_quest():
-    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS", None))
+@main_bp.route("/quests/<int:group_id>", methods=["GET"])
+def get_quest(group_id):
+    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS WHERE group_id = :group_id", {"group_id": group_id}))
 
 
-@main_bp.route("/quests/accepted/<int:user_id>", methods=["GET"])
-def get_quest_accepted_user(user_id):
+#@main_bp.route("/quests/accepted/<int:user_id>", methods=["GET"])
+#def get_quest_accepted_user(user_id):
+#    return sql_response(
+#        sql_many(
+#            g.db_session,
+#            "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.user_id = :user_id AND qs.status = 'Accepted' AND q.quest_id = qs.quest_id",
+#            {"user_id": user_id},
+#        )
+#    )
+
+
+@main_bp.route("/quests/accepted/<int:group_id>", methods=["GET"])
+def get_quest_accepted(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.user_id = :user_id AND qs.status = 'Accepted' AND q.quest_id = qs.quest_id",
-            {"user_id": user_id},
-        )
-    )
-
-
-@main_bp.route("/quests/accepted", methods=["GET"])
-def get_quest_accepted():
-    return sql_response(
-        sql_many(
-            g.db_session,
-            "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id",
-            None,
+            "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id AND q.group_id = :group_id",
+            {"group_id": group_id},
         )
     )
 
@@ -121,21 +121,21 @@ def get_quest_accepted():
 #    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS q WHERE q.author_id = :author_id", {"author_id": author_id}))
 
 
-@main_bp.route("/quests/my_quests", methods=["GET"])
-def get_my_quest():
+@main_bp.route("/quests/my_quests/<int:group_id>", methods=["GET"])
+def get_my_quest(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM QUESTS q WHERE q.author_id = :author_id",
-            {"author_id": g.user},
+            "SELECT * FROM QUESTS q WHERE q.author_id = :author_id AND q.group_id = :group_id",
+            {"author_id": g.user, "group_id": group_id},
         )
     )
 
 
-@main_bp.route("/quests/open", methods=["GET"])
-def get_quest_open():
+@main_bp.route("/quests/open/<int:group_id>", methods=["GET"])
+def get_quest_open(group_id):
     return sql_response(
-        sql_many(g.db_session, "SELECT * FROM QUESTS WHERE quest_status = 'Open'", None)
+        sql_many(g.db_session, "SELECT * FROM QUESTS WHERE quest_status = 'Open' AND group_id = :group_id", {"group_id": group_id})
     )
 
 
@@ -235,13 +235,13 @@ def get_bet_id(bet_id):
     )
 
 
-@main_bp.route("/bets", methods=["GET"])
-def get_bets():
+@main_bp.route("/bets/<int:group_id>", methods=["GET"])
+def get_bets(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT bet_id, group_id, seller_id, username, question FROM AVAILABLE_BETS b, USERS u WHERE b.seller_id = u.user_id",
-            None,
+            "SELECT bet_id, group_id, seller_id, username, question FROM AVAILABLE_BETS b, USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id",
+            {"group_id": group_id},
         )
     )
 
@@ -255,25 +255,25 @@ def get_bought_bet(buyer_id, bet_id):
 
 
 # needs to be modified to use user_id
-@main_bp.route("/bets/accepted", methods=["GET"])
-def get_bet_accepted():
+@main_bp.route("/bets/accepted/<int:group_id>", methods=["GET"])
+def get_bet_accepted(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE ab.bet_id = bb.bet_id",
-            None,
+            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE ab.bet_id = bb.bet_id AND ab.seller_id = :user_id AND ab.group_id = :group_id",
+            {"user_id": g.user, "group_id": group_id},
         )
     )
 
 
 # needs to be modified to use user_id
-@main_bp.route("/bets/my_bets", methods=["GET"])
-def get_bet_mybets():
+@main_bp.route("/bets/my_bets/<int:group_id>", methods=["GET"])
+def get_bet_mybets(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE ab.bet_id = bb.bet_id AND ab.seller_id = :user_id",
-            {"user_id": g.user},
+            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE ab.bet_id = bb.bet_id AND ab.seller_id = :user_id AND ab.group_id = :group_id",
+            {"user_id": g.user, "group_id": group_id},
         )
     )
 
