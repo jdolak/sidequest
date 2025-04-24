@@ -5,6 +5,7 @@
 - [x] Sidebar goes over the page when not full screen
 - [x] Remove hard coding from bet details/quest details
 - [ ] Front-End for: Accepted Quests, Accepted Bets, My Quests, My Bets (resolve yes/no, add quantity available)
+- [ ] Group profile on sidebar
 - [ ] Protected route so that if you are not logged in, redirect to login 
 - [ ] Make project responsive
 page
