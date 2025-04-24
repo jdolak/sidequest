@@ -30,20 +30,20 @@ const QuestDetails = () => {
                     <div className="back-text">Back</div>
                 </Link>
                 <div className="quest-details-header-contents"> 
-                    <div className="quest-details-title">Read 50 pages by Sunday</div>
-                    <div>Created by csuwita</div>
-                    <div>Due Date: March 30, 2025</div>
+                    <div className="quest-details-title"></div>
+                    <div>Created by</div>
+                    <div>Quest closes on </div>
                 </div>
             </div>
             <div className="quest-details-body">
                 <div className="quest-details-content">
                     <div className="quest-details-text">
                         <div className="quest-details-subheading">Description</div>
-                        <div>Read 50 pages of the following book and give me an accurate summary. Winner gets 100 coins and a free dining hall meal swipe.</div>
+                        <div></div>
                     </div>
                     <div className="quest-details-text">
                         <div className="quest-details-subheading">Incentive</div>
-                        <div>Free dining hall meal swipe.</div>
+                        <div></div>
                     </div>
                 </div>
 

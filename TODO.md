@@ -2,8 +2,8 @@
 ### Callie
 - [x] Finish wireframes
 - [x] Upload component html as components
-- [ ] CSS styling
-- [ ] Sidebar goes over the page when not full screen
+- [ ] CSS styling for the accepted quests section
+- [x] Sidebar goes over the page when not full screen
 - [ ] Remove hard coding from bet details/quest details
 - [ ] protect routs so that if you are not logged in, redirect to login 
 page

@@ -30,20 +30,20 @@ const BetDetails = () => {
                     <div className="back-text">Back</div>
                 </Link>
                 <div className="header-contents"> 
-                    <div className="bet-title">Is Notre Dame Winning the Fencing Championship?</div>
-                    <div>Created by csuwita</div>
-                    <div>Bet closes on March 30, 2025</div>
+                    <div className="bet-title"></div>
+                    <div>Created by </div>
+                    <div>Bet closes on </div>
                 </div>
             </div>
             <div className="bet-detail-body">
                 <div className="bet-details">
                     <div className="bet-text">
                         <div className="bet-subheading">Description</div>
-                        <div>Place your bets on whether Notre Dame will win the Final Championship.</div>
+                        <div></div>
                     </div>
                     <div className="bet-text">
                         <div className="bet-subheading">Odds</div>
-                        <div>64-36</div>
+                        <div> - </div>
                     </div>
                     <div className="bet-text">
                         <div className="bet-subheading">Number of bets you'd like to place</div>
