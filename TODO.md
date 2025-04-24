@@ -28,8 +28,12 @@ page
     - [x] Groups
 - [x] Pull and store data on front end (useEffect,useState)
     - [x] add bets apis that jachob added
-- [ ] add group id to relevant api requests adn the end of the url
+- [x] add group id to relevant api requests and the end of the url
 - [ ] endpoints for bet resolution
+- [ ] implement search page
+    - [ ] send data when searching
+    - [ ] display results properly
+- [ ] figure out the best way to include userID in requests
 
 # Bugs and improvements
 
