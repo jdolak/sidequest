@@ -58,4 +58,10 @@ dev-down:
 prod:
 	PROJECT=$(PROJECT) docker compose --env-file .env -f ./deploy/docker/docker-compose.yml -p $(PROJECT) up -d
 
+chrome-windows:
+	"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:/ChromeDevSession"
+
+chrome-mac:
+	open -na "Google Chrome" --args --disable-web-security --user-data-dir="/tmp/ChromeDevSession"
+
 .PHONY: all install lint run-local flask-up flask-build down run nginx-up env-setup frontend-build dev-build dev
