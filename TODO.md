@@ -44,3 +44,5 @@ page
 - [ ] Quests expire after a certain amount of time
 - [ ] Bets/Quests history on group dashboard
 - [ ] Universal group?
+- [ ] Allow the number of lots in a bet to be split between different takers
+- [ ] When searching for groups filter server side rather than client side
