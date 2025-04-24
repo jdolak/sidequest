@@ -34,7 +34,7 @@ page
 - [ ] implement search page
     - [ ] send data when searching
     - [ ] display results properly
-- [ ] enable endpoints for joining groups
+- [x] enable endpoints for joining groups
 - [ ] enable endpoints for creating groups
 # Bugs and improvements
 

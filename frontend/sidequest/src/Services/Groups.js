@@ -68,3 +68,20 @@ export const getAllGroupUsers = async () => {
         throw error;
     }
 };
+
+export const joinGroup = async (joinCode) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/invite/${joinCode}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching all group users:", error);
+        throw error;
+    }
+};
