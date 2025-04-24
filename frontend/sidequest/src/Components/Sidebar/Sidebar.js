@@ -4,16 +4,18 @@ import {Link} from "react-router-dom";
 import './sidebar.css';
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getAllGroups } from "../../Services/Groups.js";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const setCurrGroup = useGlobalStore((state) => state.setGroup);
+    const navigate = useNavigate();
 
     const setGroup = (groupID) => {
-        console.log("Group ID: " + groupID);
         setCurrGroup(groupID);
-        console.log("Current Group ID: " + useGlobalStore.getState().currGroupID);
+        navigate(`/groups/${groupID}`);
     }
 
     useEffect(() => {

@@ -6,6 +6,7 @@
 - [x] Sidebar goes over the page when not full screen
 - [ ] Remove hard coding from bet details/quest details
 - [ ] protect routs so that if you are not logged in, redirect to login 
+- [ ] make project responsive
 page
 - [ ] Add buttons to close bet: resolve yes and resolve no
 - [ ] In bet details, add quantity available (100 coin incremeents)
@@ -33,8 +34,8 @@ page
 - [ ] implement search page
     - [ ] send data when searching
     - [ ] display results properly
-- [ ] figure out the best way to include userID in requests
-
+- [ ] enable endpoints for joining groups
+- [ ] enable endpoints for creating groups
 # Bugs and improvements
 
 ## Nice to haves

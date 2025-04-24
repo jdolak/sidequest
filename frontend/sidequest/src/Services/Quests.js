@@ -91,36 +91,20 @@ export const getAcceptedQuests = async () => {
     }
 };
 
-export const getAcceptedQuestsByUser = async (userID) => {
-    // TODO: get useID in a better way
-    if (!userID) {
-        try {
-            const response = await fetch('https://sq.jdolak.com/api/whoami', { method: 'GET', credentials: 'include' });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            userID = data.user_id;
-        } catch (error) {
-            console.error("Error fetching user ID from whoami endpoint:", error);
-            throw error;
-        }
-    }
+export const getAcceptedQuestsByUser = async () => {
     const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
-    console.log("group id: " + groupID);
-    console.log("user id: " + userID);
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quests/accepted/${userID}/${groupID}`, config);
+        const response = await fetch(baseURL + `/quests/accepted/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         return await response.json();
     } catch (error) {
-        console.error(`Error fetching accepted quests for user with ID ${userID}:`, error);
+        console.error(`Error fetching accepted quests: `, error);
         throw error;
     }
 };
