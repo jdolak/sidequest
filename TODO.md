@@ -2,14 +2,12 @@
 ### Callie
 - [x] Finish wireframes
 - [x] Upload component html as components
-- [ ] CSS styling for the accepted quests section
 - [x] Sidebar goes over the page when not full screen
-- [ ] Remove hard coding from bet details/quest details
-- [ ] protect routs so that if you are not logged in, redirect to login 
-- [ ] make project responsive
+- [x] Remove hard coding from bet details/quest details
+- [ ] Front-End for: Accepted Quests, Accepted Bets, My Quests, My Bets (resolve yes/no, add quantity available)
+- [ ] Protected route so that if you are not logged in, redirect to login 
+- [ ] Make project responsive
 page
-- [ ] Add buttons to close bet: resolve yes and resolve no
-- [ ] In bet details, add quantity available (100 coin incremeents)
 ### Jachob
 - [x] Create endpoints
     - [x] Users
