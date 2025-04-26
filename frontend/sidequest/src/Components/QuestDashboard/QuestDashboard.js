@@ -6,11 +6,13 @@ import Card from "../Cards/Card";
 import { data, Link } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 import { useGlobalStore } from '../../stores/globalStore.js';
+import NewQuestModal from "../Modals/NewQuest.js";
 
 const QuestDashboard = () => {
   const [openQuests, setOpenQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [myQuests, setMyQuests] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const groupID = useGlobalStore((state) => state.currGroupID);
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
@@ -47,6 +49,11 @@ const QuestDashboard = () => {
     }
   }, [activeTab, groupID]); // Ensure groupID is included in the dependency array
 
+  // open quest functionality
+  const openQuestButton = () => {
+
+  }
+
   return (
     <div className="quest-dashboard-main-container">
       <Sidebar />
@@ -73,7 +80,7 @@ const QuestDashboard = () => {
             </div>
             <div className="tabHeader">
               <div>{activeTabLabel}</div>
-              <button className="open-quest-button">Open a quest</button>
+              <button className="open-quest-button" onClick={() => setShowModal(true)}>Open a quest</button>
             </div>
           </div>
         </div>
@@ -115,6 +122,9 @@ const QuestDashboard = () => {
               </div>
         </div>
       </div>
+
+    {showModal && <NewQuestModal onClose={() => setShowModal(false)} />}
+
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./newgroup.css";
+import "./modal.css";
 import Close from "../../assets/images/close.svg";
 
 const NewGroupModal = ({ onClose }) => {

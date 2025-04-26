@@ -99,7 +99,8 @@ const QuestDetails = () => {
     }
 
     const MyQuestContent = () => {
-
+        // Delete Quest
+        // Open or Closed
     }
 
   return (
