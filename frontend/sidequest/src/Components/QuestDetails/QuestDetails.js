@@ -4,11 +4,16 @@ import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
 import { getQuest } from "../../Services/Quests.js";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const QuestDetails = () => {
+    const navigate = useNavigate();
     const { questID } = useParams();
     const [quest, setQuest] = useState(null);
+
+    const goBack = () => {
+        navigate(-1);
+    }
 
     useEffect(() => {
         getQuest(questID).then((response) => {
@@ -25,7 +30,7 @@ const QuestDetails = () => {
         <Sidebar />
         <div className="quest-details-content-container">
             <div className="quest-details-header">
-                <Link to="/quests/" className="back-button">
+                <Link onClick={goBack} className="back-button">
                     <img src={backIcon} />
                     <div className="back-text">Back</div>
                 </Link>
