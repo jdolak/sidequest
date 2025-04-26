@@ -20,6 +20,8 @@ const QuestDashboard = () => {
     { id: "openQuests", label: "Open Quests" },
   ];
 
+  const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label;
+
   useEffect(() => {
     if (activeTab === "openQuests" && openQuests.length === 0) {
       getOpenQuests().then((response) => {
@@ -70,7 +72,7 @@ const QuestDashboard = () => {
               ))}
             </div>
             <div className="tabHeader">
-              <div>My Quests</div>
+              <div>{activeTabLabel}</div>
               <button className="open-quest-button">Open a quest</button>
             </div>
           </div>

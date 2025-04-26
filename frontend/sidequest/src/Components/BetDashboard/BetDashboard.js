@@ -19,6 +19,8 @@ const BetDashboard = () => {
         { id: "acceptedBets", label: "Accepted Bets" },
         { id: "openBets", label: "Open Bets" },
   ];
+
+  const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label;
   
   useEffect(() => {
       if (activeTab === "openBets" && openBets.length === 0) {
@@ -72,7 +74,7 @@ const BetDashboard = () => {
               ))}
             </div>
             <div class="tabHeader">
-              <div>My Bets</div>
+              <div>{activeTabLabel}</div>
               <button className="open-bet-button">Open a bet</button>
             </div>
           </div>
