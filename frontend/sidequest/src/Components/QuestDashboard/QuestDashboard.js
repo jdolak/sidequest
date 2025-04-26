@@ -24,6 +24,11 @@ const QuestDashboard = () => {
 
   const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label;
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+}
+
   useEffect(() => {
     if (activeTab === "openQuests" && openQuests.length === 0) {
       getOpenQuests().then((response) => {
@@ -59,9 +64,9 @@ const QuestDashboard = () => {
       <Sidebar />
       <div className="quest-dashboard-content-container">
         <div className="dashboardHeader">
-          <Link to={`/groups/${groupID}`} className="backButton">
+          <Link onClick={goBack} className="backButton">
             <img src={backIcon} />
-            <div className="backText">Dashboard</div>
+            <div className="backText">Back</div>
           </Link>
           <div className="headerContents">
             <div className="questTabs">

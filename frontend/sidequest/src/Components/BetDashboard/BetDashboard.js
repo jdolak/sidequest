@@ -9,6 +9,7 @@ import { useGlobalStore } from '../../stores/globalStore.js';
 import NewBetModal from "../Modals/NewBet.js";
 
 const BetDashboard = () => {
+
   const [openBets, setOpenBets] = useState([]);
   const [acceptedBets, setAcceptedBets] = useState([]);
   const [myBets, setMyBets] = useState([]);
@@ -23,6 +24,11 @@ const BetDashboard = () => {
   ];
 
   const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label;
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+}
   
   useEffect(() => {
       if (activeTab === "openBets" && openBets.length === 0) {
@@ -56,9 +62,9 @@ const BetDashboard = () => {
       <Sidebar />
       <div class="bet-dashboard-content-container">
         <div class="dashboardHeader">
-          <Link to={`/groups/${groupID}`} className="backButton">
+          <Link onClick={goBack} className="backButton">
             <img src={backIcon} />
-            <div className="backText">Dashboard</div>
+            <div className="backText">Back</div>
           </Link>
           <div class="headerContents">
             <div class="betTabs">
