@@ -2,14 +2,15 @@ import "./questdetails.css";
 import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
-import { Link } from "react-router-dom";
 import { getQuest } from "../../Services/Quests.js";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const QuestDetails = () => {
     const navigate = useNavigate();
     const { questID } = useParams();
     const [quest, setQuest] = useState(null);
+    const location = useLocation();
+    const sourceTab = location.state?.sourceTab;
 
     const goBack = () => {
         navigate(-1);
@@ -24,9 +25,14 @@ const QuestDetails = () => {
         });
     }, [questID]);
 
+    const OpenQuestContent = () => (
+        <div className="accept-button">
+            Accept quest
+        </div>
+    )
+
   return (
     <div className="quest-details-main-container">
-        {/* <div className="quest-details-main-container"> */}
         <Sidebar />
         <div className="quest-details-content-container">
             <div className="quest-details-header">
@@ -51,13 +57,9 @@ const QuestDetails = () => {
                         <div></div>
                     </div>
                 </div>
-
-                <div className="accept-button">
-                    Accept quest
-                </div>
+                {sourceTab === 'OpenQuests' && <OpenQuestContent />}
             </div>
         </div>
-        {/* </div> */}
     </div>
   )
 }

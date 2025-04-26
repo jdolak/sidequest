@@ -73,6 +73,7 @@ const BetDashboard = () => {
             </div>
             <div class="tabHeader">
               <div>My Bets</div>
+              <button className="open-bet-button">Open a bet</button>
             </div>
           </div>
         </div>
