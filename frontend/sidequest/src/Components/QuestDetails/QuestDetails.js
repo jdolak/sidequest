@@ -1,5 +1,5 @@
 import "./questdetails.css";
-import React, {useEffect,useState} from "react";
+import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { getQuest } from "../../Services/Quests.js";
@@ -25,11 +25,82 @@ const QuestDetails = () => {
         });
     }, [questID]);
 
+    // Open Quest Specific Content
     const OpenQuestContent = () => (
         <div className="accept-button">
             Accept quest
         </div>
     )
+
+    // Accepted Quest Content
+    const AcceptedQuestContent = () => {
+        const fileInputRef = useRef(null);
+        const [selectedFile, setSelectedFile] = useState(null);
+        const [comment, setComment] = useState("");
+        const [status, setStatus] = useState("");
+    
+        const handleClick = () => {
+            fileInputRef.current.click();
+        };
+    
+        const handleFileChange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                setSelectedFile(file);
+            }
+        }
+    
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setStatus("Submitting");
+    
+            const formData = new FormData();
+            if (selectedFile) {
+                formData.append("file", selectedFile);
+            }
+    
+            if (comment) {
+                formData.append("comment", comment);
+            }
+    
+            try {
+                const response = await fetch("https://sq.jdolak.com/api/quest_submit/1", {
+                    method: "POST",
+                    body: formData,
+                });
+    
+                if (!response.ok) throw new Error("Upload failed");
+    
+                const result = await response.json();
+                setStatus("Submission successful.");
+                console.log(result);
+            } catch (err) {
+                setStatus("Submission failed.");
+                console.error(err);
+            }
+        }
+
+        <form onSubmit={handleSubmit}>
+            <div className="upload-button" onClick={handleClick}>
+                Upload submission
+            </div>
+            <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
+
+            {selectedFile && <div>Selected: {selectedFile.name}</div>}
+
+            <textarea placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
+
+            <button type="submit">Submit Quest</button>
+            
+            {/* {status && <div>{status}</div>} */}
+
+        </form>
+
+    }
+
+    const MyQuestContent = () => {
+
+    }
 
   return (
     <div className="quest-details-main-container">
@@ -59,98 +130,10 @@ const QuestDetails = () => {
                 </div>
                 {sourceTab === 'OpenQuests' && <OpenQuestContent />}
             </div>
+            {sourceTab === 'AcceptedQuests' && <AcceptedQuestContent />}
         </div>
     </div>
   )
 }
 
 export default QuestDetails;
-
-// function QuestDetails() {
-//   const handleBackClick = () => {
-//     // Handle back navigation
-//     window.history.back();
-//   };
-
-//   const handleAcceptQuest = () => {
-//     // Handle quest acceptance
-//     console.log("Quest accepted");
-//   };
-
-//   return (
-//     <div className="layoutContainer">
-//       <link
-//         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Karla:wght@400;700&display=swap"
-//         rel="stylesheet"
-//       />
-//       <Sidebar />
-//       <div className="questContainer">
-//         <header className="headerSection">
-//           <button
-//             onClick={handleBackClick}
-//             className="backButton"
-//             aria-label="Go back"
-//           >
-//             <svg
-//               width="64"
-//               height="21"
-//               viewBox="0 0 64 21"
-//               fill="none"
-//               xmlns="http://www.w3.org/2000/svg"
-//             >
-//               <path
-//                 d="M10 19.5L1 10.5L10 1.5"
-//                 stroke="#2F184B"
-//                 strokeWidth="2"
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//               />
-//               <text
-//                 fill="#2F184B"
-//                 xmlSpace="preserve"
-//                 style={{ whiteSpace: "pre" }}
-//                 fontFamily="Karla"
-//                 fontSize="16"
-//                 fontWeight="bold"
-//               >
-//                 <tspan x="26" y="15.82">
-//                   Back
-//                 </tspan>
-//               </text>
-//             </svg>
-//           </button>
-//         </header>
-
-//         <section className="questHeader">
-//           <h1 className="questTitle">Read 50 Pages by Sunday</h1>
-//           <p className="questCreator">Created by csuwita</p>
-//           <p className="questDueDate">Due Date: March 30, 2025</p>
-//         </section>
-
-//         <section className="questContent">
-//           <div className="descriptionSection">
-//             <h2 className="sectionTitle">Description</h2>
-//             <p className="sectionText">
-//               Read 50 pages of the following book and give me an accurate
-//               summary. Winner gets 100 coins and a free dining hall meal swipe.
-//             </p>
-//           </div>
-
-//           <div className="incentiveSection">
-//             <h2 className="sectionTitle">Incentive</h2>
-//             <p className="sectionText">Free dining hall meal swipe</p>
-//           </div>
-
-//           <button
-//             className="acceptButton"
-//             onClick={handleAcceptQuest}
-//             aria-label="Accept quest to read 50 pages"
-//           >
-//             Accept quest
-//           </button>
-//         </section>
-//       </div>
-//     </div>
-//   );
-// }
-
