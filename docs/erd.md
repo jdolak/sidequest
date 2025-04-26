@@ -25,6 +25,9 @@ erDiagram
         int bet_id PK
         int group_id FK
         int seller_id FK
+        int max_quantity
+        bool position
+        int odds
         string question
     }
 
@@ -32,6 +35,7 @@ erDiagram
         int buyer_id PK,FK
         int bet_id PK,FK
         int quantity
+        bool position
         string result
         date date_bought
         date date_resolved
