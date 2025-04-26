@@ -3,14 +3,16 @@ import "./betdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
 import { useGlobalStore } from '../../stores/globalStore.js';
+import NewBetModal from "../Modals/NewBet.js";
 
 const BetDashboard = () => {
   const [openBets, setOpenBets] = useState([]);
   const [acceptedBets, setAcceptedBets] = useState([]);
   const [myBets, setMyBets] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const groupID = useGlobalStore((state) => state.currGroupID);
 
   const [activeTab, setActiveTab] = React.useState("myBets");
@@ -75,7 +77,7 @@ const BetDashboard = () => {
             </div>
             <div class="tabHeader">
               <div>{activeTabLabel}</div>
-              <button className="open-bet-button">Open a bet</button>
+              <button className="open-bet-button" onClick={() => setShowModal(true)}>Open a bet</button>
             </div>
           </div>
         </div>
@@ -117,6 +119,9 @@ const BetDashboard = () => {
               </div>
         </div>
       </div>
+    
+    {showModal && <NewBetModal onClose={() => setShowModal(false)} />}
+
     </div>
   )
 }
