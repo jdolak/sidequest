@@ -32,10 +32,24 @@
     gap: 24px;
 }
 
-.group {
+.group-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
     width: 64px;
     height: 64px;
     aspect-ratio: 1/1;
     border-radius: 8px;
+    border: 4px solid var(--Soft-Stroke);
+    background: var(--Primary);
+    cursor: pointer;
+
+    font-family: "Karla", sans-serif;
+    
+}
+
+.group-button.active {
     background: var(--Soft-Stroke);
+    color: var(--White);
 }

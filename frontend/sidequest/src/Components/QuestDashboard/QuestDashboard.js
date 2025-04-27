@@ -3,7 +3,7 @@ import "./questdashboard.css"; // Updated to use standard CSS import
 import Sidebar from "../Sidebar/Sidebar";
 import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
-import { data, Link } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import NewQuestModal from "../Modals/NewQuest.js";

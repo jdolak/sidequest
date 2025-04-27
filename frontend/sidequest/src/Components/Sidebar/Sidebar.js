@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const setCurrGroup = useGlobalStore((state) => state.setGroup);
+    const currGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
 
     const setGroup = (groupID) => {
@@ -36,8 +37,8 @@ const Sidebar = () => {
                 <div className="groups">
                     {groups.map((group, index) => (
                         // <button className="group-button" key={index} onClick={() => setCurrGroup(group.group_id)}>
-                        <button className="group-button" key={index} onClick={() => setGroup(group.group_id)}>
-                            <div className="group">
+                        <button className={`group-button ${currGroupID === group.group_id ? "active" : ""}`} key={index} onClick={() => setGroup(group.group_id)}>
+                            <div>
                                 {group?.group_name?.slice(0, 2).toUpperCase()}
                             </div>
                         </button>
