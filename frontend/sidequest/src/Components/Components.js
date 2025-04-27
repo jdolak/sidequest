@@ -1,4 +1,6 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute.js";
+import PublicRoute from "./PublicRoute.js";
 
 // Auth
 import Home from "./Home/home.js";
@@ -23,19 +25,25 @@ export default function Components() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/groups/:id" element={<GroupPage />} />
-                <Route path="/register" element={<AuthRegister />} />
-                <Route path="/login" element={<AuthLogin />} />
-                <Route path="search" element={<SearchPage />} />
-                <Route path="quests/:id" element={<QuestDetails />} />
-                <Route path="bets/:id" element={<BetDetails />} />
-                <Route path="quests" element={<QuestDashboard />} />
-                <Route path="bets" element={<BetDashboard />} />
-                {/* <Route path="groups" element={<GroupPage />} /> */}
-
-                <Route path="acceptedquest" element={<AcceptedQuests />} />
+                {/* Public Routes */}
+                <Route element={<PublicRoute />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/register" element={<AuthRegister />} />
+                    <Route path="/login" element={<AuthLogin />} />
+                </Route>
                 
+                {/* Protected Routes */}
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/groups/:id" element={<GroupPage />} />
+                    <Route path="search" element={<SearchPage />} />
+                    <Route path="quests/:id" element={<QuestDetails />} />
+                    <Route path="bets/:id" element={<BetDetails />} />
+                    <Route path="quests" element={<QuestDashboard />} />
+                    <Route path="bets" element={<BetDashboard />} />
+
+                    {/* will fix this later, but for now will have accepted quests */}
+                    <Route path="acceptedquest" element={<AcceptedQuests />} />
+                </Route>              
             </Routes>
         </Router>
     );

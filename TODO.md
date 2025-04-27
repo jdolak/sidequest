@@ -4,10 +4,9 @@
 - [x] Upload component html as components
 - [x] Sidebar goes over the page when not full screen
 - [x] Remove hard coding from bet details/quest details
+- [x] Group profile on sidebar
+- [x] Protected route so that if you are not logged in, redirect to login 
 - [ ] Front-End for: Accepted Quests, Accepted Bets, My Quests, My Bets (resolve yes/no, add quantity available)
-- [ ] Group profile on sidebar
-- [ ] Protected route so that if you are not logged in, redirect to login 
-- [ ] Make project responsive
 
 ### Jachob
 - [x] Create endpoints
@@ -45,3 +44,4 @@
 - [ ] Universal group?
 - [ ] Allow the number of lots in a bet to be split between different takers
 - [ ] When searching for groups filter server side rather than client side
+- [ ] Make project responsive

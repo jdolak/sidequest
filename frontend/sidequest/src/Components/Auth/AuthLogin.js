@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import "./authlogin.css";
 
@@ -7,7 +7,7 @@ const AuthLogin = ({onSubmit}) => {
         username: "",
         password: "",
     });
-
+    
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData((prev) => ({...prev, [name]: value}));
@@ -32,6 +32,11 @@ const AuthLogin = ({onSubmit}) => {
 
             const data = await response.json();
             console.log("Log in successful:", data);
+
+            localStorage.setItem("authenticated", "true");
+
+            alert("You have logged in successfully!");
+
             window.location.replace("/search");
 
             if (onSubmit) {
