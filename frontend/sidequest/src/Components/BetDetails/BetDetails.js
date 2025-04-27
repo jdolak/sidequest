@@ -46,6 +46,10 @@ const BetDetails = () => {
                         <div> - </div>
                     </div>
                     <div className="bet-text">
+                        <div className="bet-subheading">Bets Available</div>
+                        <div>10</div>
+                    </div>
+                    <div className="bet-text">
                         <div className="bet-subheading">Number of bets you'd like to place</div>
                         <input type="number" placeholder="Value" />
                     </div>

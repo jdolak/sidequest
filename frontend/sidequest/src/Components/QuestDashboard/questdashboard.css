@@ -143,6 +143,11 @@
   gap: 16px;
 }
 
+.quest-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .open-quest-button {
   display: flex;
   padding: 16px 20px;

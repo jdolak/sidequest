@@ -93,7 +93,7 @@ const QuestDashboard = () => {
               <div className="quest-row">
                 {activeTab === "myQuests" &&
                 myQuests.map((quest) => (
-                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="card-link" key={quest.quest_id}>
+                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
                       title={quest.quest_desc}
                       creator={quest.author_id}
@@ -104,7 +104,7 @@ const QuestDashboard = () => {
                 ))}
               {activeTab === "acceptedQuests" &&
                 acceptedQuests.map((quest) => (
-                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="card-link" key={quest.quest_id}>
+                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
                       title={quest.quest_desc}
                       creator={quest.author_id}
@@ -115,7 +115,7 @@ const QuestDashboard = () => {
                 ))}
               {activeTab === "openQuests" &&
                 openQuests.map((quest) => (
-                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="card-link" key={quest.quest_id}>
+                  <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
                       title={quest.quest_desc}
                       creator={quest.author_id}
