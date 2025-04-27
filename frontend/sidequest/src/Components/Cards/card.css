@@ -10,6 +10,12 @@
   border-radius: 20px;
   border: 1px solid var(--Soft-Stroke, #EAECF9);
   background: var(--Primary, #F3F4FB);
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:visited {
+  color: inherit;
 }
   
 .card-title {
@@ -22,9 +28,12 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  text-decoration: none;
 }
   
 .card-desc {
+  text-decoration: none;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
