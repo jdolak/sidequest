@@ -4,12 +4,19 @@ import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
 import { getBet } from "../../Services/Bets.js";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 
 const BetDetails = () => {
     const { betID } = useParams();
     const [bet, setBet] = useState(null);
+    const location = useLocation();
+    const sourceTab = location.state?.sourceTab;
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1);
+    }
 
     useEffect(() => {
         getBet(betID).then((response) => {
@@ -20,12 +27,54 @@ const BetDetails = () => {
         });
     }, [betID]);
 
+    const OpenBetContent = () => {
+        return (
+            <div className="button-group">
+                <div className="yes-button">
+                    Buy yes
+                </div>
+                <div className="no-button">
+                    Buy no
+                </div>
+            </div>
+        )
+    }
+
+    const AcceptedBetContent = () => {
+        return (
+            <div className="bet-text">
+                <div className="bet-subheading">Bets Bought</div>
+                <div></div>
+            </div>
+        )
+    }
+
+    const MyBetContent = () => {
+        // if accepted, 
+        return (
+            <div>
+                <div>*number* bet(s) accepted by *username*</div>
+                <button>Win</button>
+                <button>Lose</button>
+            </div>
+        )
+
+        // if resolved, 
+        return (
+            <div>
+                *Winner* won!
+            </div>
+        )
+
+        // if open, return nothing
+    }
+
   return (
     <div className="bet-details-main-container">
         <Sidebar />
         <div className="bet-details-content-container">
             <div className="bet-header">
-                <Link to="/bets/" className="back-button">
+                <Link onClick={goBack} className="back-button">
                     <img src={backIcon} />
                     <div className="back-text">Back</div>
                 </Link>
@@ -38,6 +87,10 @@ const BetDetails = () => {
             <div className="bet-detail-body">
                 <div className="bet-details">
                     <div className="bet-text">
+                        <div className="bet-subheading">Status</div>
+                        <div></div>
+                    </div>
+                    <div className="bet-text">
                         <div className="bet-subheading">Description</div>
                         <div></div>
                     </div>
@@ -49,20 +102,13 @@ const BetDetails = () => {
                         <div className="bet-subheading">Bets Available</div>
                         <div>10</div>
                     </div>
+                    {sourceTab === 'AcceptedBets' && <AcceptedBetContent />}
                     <div className="bet-text">
                         <div className="bet-subheading">Number of bets you'd like to place</div>
                         <input type="number" placeholder="Value" />
                     </div>
                 </div>
-
-                <div className="button-group">
-                    <div className="yes-button">
-                        Buy yes
-                    </div>
-                    <div className="no-button">
-                        Buy no
-                    </div>
-                </div>
+                {sourceTab === 'OpenBets' && <OpenBetContent />}
             </div>
         </div>
     </div>

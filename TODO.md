@@ -6,8 +6,8 @@
 - [x] Remove hard coding from bet details/quest details
 - [x] Group profile on sidebar
 - [x] Protected route so that if you are not logged in, redirect to login 
-- [ ] Front-end for Accepted Quests
-- [x] Front-end for Accepted Bets
+- [x] Front-end for Accepted Quests
+- [ ] Front-end for Accepted Bets
 - [x] Front-end for My Quests
 - [ ] Front-end for My Bets (resolve yes/no, add quantity available)
 
