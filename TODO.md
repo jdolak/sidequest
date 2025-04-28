@@ -6,7 +6,10 @@
 - [x] Remove hard coding from bet details/quest details
 - [x] Group profile on sidebar
 - [x] Protected route so that if you are not logged in, redirect to login 
-- [ ] Front-End for: Accepted Quests, Accepted Bets, My Quests, My Bets (resolve yes/no, add quantity available)
+- [ ] Front-end for Accepted Quests
+- [x] Front-end for Accepted Bets
+- [x] Front-end for My Quests
+- [ ] Front-end for My Bets (resolve yes/no, add quantity available)
 
 ### Jachob
 - [x] Create endpoints
@@ -34,7 +37,10 @@
     - [ ] display results properly
 - [x] enable endpoints for joining groups
 - [ ] enable endpoints for creating groups
+
 # Bugs and improvements
+- Profile initial does not accurately reflect group name
+- Once a group is joined, it still shows up on the screen.
 
 ## Nice to haves
 - [ ] Duplicate bet at a different price option
@@ -45,3 +51,4 @@
 - [ ] Allow the number of lots in a bet to be split between different takers
 - [ ] When searching for groups filter server side rather than client side
 - [ ] Make project responsive
+

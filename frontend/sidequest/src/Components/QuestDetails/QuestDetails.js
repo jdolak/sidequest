@@ -26,11 +26,13 @@ const QuestDetails = () => {
     }, [questID]);
 
     // Open Quest Specific Content
-    const OpenQuestContent = () => (
-        <div className="accept-button">
-            Accept quest
-        </div>
-    )
+    const OpenQuestContent = () => {
+        return (
+            <div className="accept-button">
+                Accept quest
+            </div>
+        )
+    }
 
     // Accepted Quest Content
     const AcceptedQuestContent = () => {
@@ -80,27 +82,35 @@ const QuestDetails = () => {
             }
         }
 
-        <form onSubmit={handleSubmit}>
-            <div className="upload-button" onClick={handleClick}>
-                Upload submission
-            </div>
-            <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
+        return (
+            <form onSubmit={handleSubmit}>
+                <div className="upload-button" onClick={handleClick}>
+                    Upload submission
+                </div>
+                <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
 
-            {selectedFile && <div>Selected: {selectedFile.name}</div>}
+                {selectedFile && <div>Selected: {selectedFile.name}</div>}
 
-            <textarea placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
+                <textarea placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
 
-            <button type="submit">Submit Quest</button>
-            
-            {/* {status && <div>{status}</div>} */}
+                <button type="submit">Submit Quest</button>
+                
+                {/* {status && <div>{status}</div>} */}
+            </form>
 
-        </form>
-
+        )
     }
 
     const MyQuestContent = () => {
-        // Delete Quest
-        // Open or Closed
+        // if quest has been accepted
+        return (
+            <div className="quest-details-text">
+                <div className="quest-details-subheading">Submission</div>
+                <div>Completed by jdolak</div>
+                {/* insert img submission */}
+                <div>{/* insert comment submission */}</div>
+        </div>
+        )
     }
 
   return (
@@ -121,6 +131,10 @@ const QuestDetails = () => {
             <div className="quest-details-body">
                 <div className="quest-details-content">
                     <div className="quest-details-text">
+                        <div className="quest-details-subheading">Status</div>
+                        <div></div>
+                    </div>
+                    <div className="quest-details-text">
                         <div className="quest-details-subheading">Description</div>
                         <div></div>
                     </div>
@@ -128,6 +142,7 @@ const QuestDetails = () => {
                         <div className="quest-details-subheading">Incentive</div>
                         <div></div>
                     </div>
+                    {/* <MyQuestContent /> */}
                 </div>
                 {sourceTab === 'OpenQuests' && <OpenQuestContent />}
             </div>
