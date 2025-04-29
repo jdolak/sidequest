@@ -55,15 +55,6 @@ const AuthRegister = ({ onSubmit }) => {
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="form-data">
                         <label className="form-label">
-                            First Name
-                            <input className="form-input" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                        </label>
-                        <label className="form-label">
-                            Last Name
-                            <input className="form-input" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                        </label>
-
-                        <label className="form-label">
                             Username
                             <input className="form-input" type="text" name="username" value={formData.username} onChange={handleChange} required />
                         </label>

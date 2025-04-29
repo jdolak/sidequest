@@ -16,8 +16,27 @@ const NewGroupModal = ({ onClose }) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus("Submitting");
+
+        const formData = new FormData();
+
+        try {
+            const response = await fetch("https://sq.jdolak.com/api/quest_submit/1", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) throw new Error("Upload failed");
+
+            const result = await response.json();
+            setStatus("Submission successful.");
+            console.log(result);
+        } catch (err) {
+            setStatus("Submission failed.");
+            console.error(err);
+        }
         onClose();
     }
 
@@ -33,11 +52,11 @@ const NewGroupModal = ({ onClose }) => {
                     <div className="form-data">
                         <label className="form-label">
                                 Group name
-                                <input className="form-input" type="text" name="groupname" value={formData.groupname} onChange={handleChange} required />
+                                <input className="form-input" type="text" name="groupname" value={formData.group_name} onChange={handleChange} required />
                         </label>
                         <label className="form-label">
                                 Group description
-                                <textarea className="form-input" name="groupdesc" value={formData.groupdesc} onChange={handleChange} rows={4} />
+                                <textarea className="form-input" name="groupdesc" value={formData.group_desc} onChange={handleChange} rows={4} />
                         </label>
                     </div>
                     <button className="submit-button" type="submit">Create group</button>
