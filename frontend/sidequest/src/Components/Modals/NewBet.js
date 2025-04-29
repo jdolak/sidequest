@@ -50,6 +50,7 @@ const NewBetModal = ({ onClose }) => {
                 console.log("Bet created successfully:", response);
             }).catch((error) => {
                 console.error("Error creating bet:", error);
+                alert("Error creating Bet. "+error.message);
             });
             onClose();
         } else { // Cancel the submission

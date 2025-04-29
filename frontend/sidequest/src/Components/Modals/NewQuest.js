@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./modal.css";
 import Close from "../../assets/images/close.svg";
+import { createQuest } from "../../Services/Quests";
 
 const NewQuestModal = ({ onClose }) => {
 
@@ -19,8 +20,31 @@ const NewQuestModal = ({ onClose }) => {
         }));
     };
 
+    function verifyQuestCreationCost(questReward) {
+        if (!Number.isInteger(Number(questReward)) || questReward < 0) {
+            throw new Error("questReward must be a positive integer.");
+        }
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        try {
+            verifyQuestCreationCost(formData.questreward);
+        }
+        catch (error) {
+            console.error(error);
+            alert("Invalid quest reward. Please check your input.");
+            return;
+        }
+
+        createQuest(formData).then((response) => {
+            console.log("Quest created successfully:", response);
+        }).catch((error) => {
+            console.error("Error creating quest:", error);
+            alert("Error creating Quest. "+error.message);
+        });
+
         onClose();
     }
 
