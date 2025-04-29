@@ -91,9 +91,68 @@ def rewrite_url_host(url):
     new_url = urlunparse(parsed._replace(netloc="sq.jdolak.com", scheme='https'))
     return new_url
 
+def create_quest(rq):
+    try:
+        group_id = rq.form['group_id']
+        quest_title = rq.form['quest_title']
+        quest_desc = rq.form['quest_desc']
+        reward_amount = rq.form['reward_amount']
+        due_date = rq.form['due_date']
+        
+        if not group_id or not quest_title or not quest_desc or not reward_amount or not due_date:
+            return jsonify({"message": "missing parameters"}), 400
 
+        if not g.user:
+            return jsonify({"message": "User not logged in"}), 401
 
+        sql = "INSERT INTO quests (group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status) VALUES (:group_id, :author_id, :quest_title, :quest_desc, :reward_amount, :due_date, :quest_status)"
+        g.db_session.execute(text(sql), {
+            'group_id': group_id,
+            'author_id': g.user,
+            'quest_title': quest_title,
+            'quest_desc': quest_desc,
+            'reward_amount': reward_amount,
+            'due_date': due_date,
+            'quest_status': 'Open'
+        })
+        return jsonify({"message": "quest created"}), 201
+    
+    except Exception as e:
+        LOG.error(f"Error creating quest: {e}")
+        return jsonify({"message": "error creating quest"}), 500
+    
 
+def create_bet(rq):
+    try:
+        group_id = rq.form['group_id']
+        question = rq.form['question']
+        description = rq.form['description']
+        max_quantity = rq.form['max_quantity']
+        side = rq.form['side']
+        odds = rq.form['odds']
+
+        if not group_id or not question or not description or not max_quantity or not side or not odds:
+            return jsonify({"message": "missing parameters"}), 400
+
+        if not g.user:
+            return jsonify({"message": "User not logged in"}), 401
+
+        sql = "INSERT INTO available_bets (group_id, seller_id, max_quantity, side, odds, question, descriptio, status) VALUES (:group_id, :seller_id, :max_quantity, :side, :odds, :question, :description, :status)"
+        g.db_session.execute(text(sql), {
+            'group_id': group_id,
+            'seller_id': g.user,
+            'max_quantity': max_quantity,
+            'side': side,
+            'odds': odds,
+            'question': question,
+            'description': description,
+            'status': 'Open'
+        })
+        return jsonify({"message": "bet created"}), 201
+    
+    except Exception as e:
+        LOG.error(f"Error creating bet: {e}")
+        return jsonify({"message": "error creating bet"}), 500
 
 
 
