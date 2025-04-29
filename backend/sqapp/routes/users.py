@@ -5,6 +5,7 @@ from flask import Blueprint, jsonify, g, session, request, Response
 from sqapp.db import sql_many, sql_one, sql_response
 
 from sqapp.src.auth import register_user, login_user, logout_user, process_invite
+from sqapp.src.uploads import create_group
 
 # deprecated in favor of /users/my_user
 # @main_bp.route("/users/<int:user_id>", methods=["GET"])
@@ -107,3 +108,7 @@ def logout():
 @main_bp.route("/invite/<invite_code>", methods=["POST", "GET"])
 def post_invite(invite_code):
     return process_invite(invite_code)
+
+@main_bp.route("groups/create", methods=["POST"])
+def post_create_group():
+    return create_group(request)

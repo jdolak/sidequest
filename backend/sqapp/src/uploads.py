@@ -9,6 +9,7 @@ from sqlalchemy import text
 from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
+import secrets
 
 
 load_dotenv()
@@ -153,6 +154,34 @@ def create_bet(rq):
     except Exception as e:
         LOG.error(f"Error creating bet: {e}")
         return jsonify({"message": "error creating bet"}), 500
+    
+def create_group(rq):
+    try:
+        group_name = rq.form['group_name']
+        group_desc = rq.form['group_desc']
+        public = rq.form['public']
+        currency = rq.form['currency']
+
+        if not group_name or not group_desc or not public or not currency:
+            return jsonify({"message": "missing parameters"}), 400
+
+        if not g.user:
+            return jsonify({"message": "User not logged in"}), 401
+        
+        invite_code = secrets.token_urlsafe(64)
+
+        sql = "INSERT INTO groups (group_name, group_desc, public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
+        g.db_session.execute(text(sql), {
+            'group_name': group_name,
+            'group_desc': group_desc,
+            'public': public,
+            'invite_code': invite_code
+        })
+        return jsonify({"message": "group created"}), 201
+    
+    except Exception as e:
+        LOG.error(f"Error creating group: {e}")
+        return jsonify({"message": "error creating group"}), 500
 
 
 

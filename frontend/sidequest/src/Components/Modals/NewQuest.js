@@ -42,7 +42,7 @@ const NewQuestModal = ({ onClose }) => {
                                 Quest description
                                 <textarea className="form-input" name="questdesc" value={formData.questdesc} onChange={handleChange} rows={2} />
                         </label>
-                         <label className="form-label">
+                        <label className="form-label">
                                 Quest incentive
                                 <textarea className="form-input" name="questincentive" value={formData.questincentive} onChange={handleChange} rows={2} />
                         </label>
