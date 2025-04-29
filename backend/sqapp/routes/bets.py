@@ -17,7 +17,7 @@ def get_bet_id(bet_id):
     )
 
 
-@bet_bp.route("/bets/<int:group_id>", methods=["GET"])
+@bet_bp.route("/bets/all/<int:group_id>", methods=["GET"])
 def get_bets(group_id):
     return sql_response(
         sql_many(

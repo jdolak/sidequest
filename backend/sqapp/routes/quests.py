@@ -17,7 +17,7 @@ def get_quest_id(quest_id):
     )
 
 
-@quest_bp.route("/quests/<int:group_id>", methods=["GET"])
+@quest_bp.route("/quests/all/<int:group_id>", methods=["GET"])
 def get_quest(group_id):
     return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS WHERE group_id = :group_id", {"group_id": group_id}))
 

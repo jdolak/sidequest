@@ -129,6 +129,15 @@ def process_invite(code):
     if result:
         LOG.info(f"User {g.user} added to group {group_id} successfully")
         return jsonify({"message": "User added to group successfully"}), 200
+    
+def group_member_count(group_id):
+    if not group_id:
+        return 0
+    
+    sql = "SELECT COUNT(*) num FROM GROUPS_USER WHERE group_id = :group_id"
+    return sql_one(g.db_session, sql, {"group_id": group_id})["num"]
+
+
      
     
 

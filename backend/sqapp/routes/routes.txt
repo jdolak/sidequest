@@ -1,0 +1,39 @@
+bets.py
+- GET /bets/<int:bet_id>
+- GET /bets/all/<int:group_id>
+- GET /bought_bets/<int:bet_id>/<int:buyer_id>
+- GET /bets/accepted/<int:group_id>
+- GET /bets/my_bets/<int:group_id>
+- GET /bought_bets
+- POST /bets/create
+
+users.py
+- GET /users/my_user
+- GET /users
+- GET /groups/<int:group_id>
+- GET /groups
+- GET /groups/search/<query>
+- GET /groups/my_groups
+- GET /groups_user/<int:group_id>
+- GET /groups_user
+- POST /register
+- POST /login
+- POST /logout
+- POST /invite/<invite_code>
+- POST /groups/create
+
+quests.py
+- GET /quests/<int:quest_id>
+- GET /quests/all/<int:group_id>
+- GET /quests/accepted/<int:group_id>
+- GET /quests/my_quests/<int:group_id>
+- GET /quests/open/<int:group_id>
+- GET /quest_submissions/<int:submission_id>
+- GET /quest_submissions
+- POST /quest_submit/<int:quest_id>
+- POST /quests/create
+
+main.py
+- GET /
+- GET /whoami
+- GET /debug

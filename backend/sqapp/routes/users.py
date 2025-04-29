@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, g, session, request, Response
 
 from sqapp.db import sql_many, sql_one, sql_response
 
-from sqapp.src.auth import register_user, login_user, logout_user, process_invite
+from sqapp.src.auth import register_user, login_user, logout_user, process_invite, group_member_count
 from sqapp.src.uploads import create_group
 
 # deprecated in favor of /users/my_user
@@ -34,43 +34,39 @@ def get_users():
 
 @user_bp.route("/groups/<int:group_id>", methods=["GET"])
 def get_group_id(group_id):
-    return sql_response(
-        sql_one(
-            g.db_session,
-            "SELECT * FROM GROUPS WHERE group_id = :group_id",
-            {"group_id": group_id},
-        )
-    )
+    sql = "SELECT * FROM GROUPS WHERE group_id = :group_id"
+    group = sql_one(g.db_session, sql, {"group_id": group_id})
+    group["size"] = group_member_count(group["group_id"])
+    return sql_response(group)
+        
 
 
 @user_bp.route("/groups", methods=["GET"])
 def get_groups():
-    return sql_response(
-        sql_many(g.db_session, "SELECT * FROM GROUPS WHERE public = 'Y'", None)
-    )
+    sql = "SELECT * FROM GROUPS WHERE public = 'Y'"
+    result = sql_many(g.db_session, sql, None)
+    for group in result:
+        group["size"] = group_member_count(group["group_id"])
+    return sql_response(result)
 
 
 @user_bp.route("/groups/search/<query>", methods=["GET"])
 def search_groups(query):
     pattern = f"%{query}%"
-    return sql_response(
-        sql_many(
-            g.db_session,
-            "SELECT * FROM GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)",
-            {"pattern": pattern},
-        )
-    )
+    sql = "SELECT * FROM GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)"
+    result = sql_many(g.db_session, sql, {"pattern": pattern})
+    for group in result:
+        group["size"] = group_member_count(group["group_id"])
+    return sql_response(result)
 
 
 @user_bp.route("/groups/my_groups", methods=["GET"])
 def get_my_groups():
-    return sql_response(
-        sql_many(
-            g.db_session,
-            "SELECT * FROM GROUPS NATURAL JOIN GROUPS_USER WHERE user_id = :user_id",
-            {"user_id": g.user},
-        )
-    )
+    sql = "SELECT * FROM GROUPS NATURAL JOIN GROUPS_USER WHERE user_id = :user_id"
+    result = sql_many(g.db_session, sql, {"user_id": g.user})
+    for group in result:
+        group["size"] = group_member_count(group["group_id"])
+    return sql_response(result)
 
 
 @user_bp.route("/groups_user/<int:group_id>", methods=["GET"])
@@ -108,6 +104,7 @@ def logout():
 @user_bp.route("/invite/<invite_code>", methods=["POST", "GET"])
 def post_invite(invite_code):
     return process_invite(invite_code)
+
 
 @user_bp.route("/groups/create", methods=["POST"])
 def post_create_group():
