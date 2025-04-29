@@ -7,8 +7,6 @@ const AuthRegister = ({ onSubmit }) => {
     // const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
         username: "",
         password: "",
     });

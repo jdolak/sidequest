@@ -18,12 +18,11 @@ const NewGroupModal = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus("Submitting");
 
         const formData = new FormData();
 
         try {
-            const response = await fetch("https://sq.jdolak.com/api/quest_submit/1", {
+            const response = await fetch("https://sq.jdolak.com/api/groups/create", {
                 method: "POST",
                 body: formData,
             });
@@ -31,10 +30,8 @@ const NewGroupModal = ({ onClose }) => {
             if (!response.ok) throw new Error("Upload failed");
 
             const result = await response.json();
-            setStatus("Submission successful.");
             console.log(result);
         } catch (err) {
-            setStatus("Submission failed.");
             console.error(err);
         }
         onClose();
