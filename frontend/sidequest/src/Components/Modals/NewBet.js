@@ -21,9 +21,9 @@ const NewBetModal = ({ onClose }) => {
     };
 
     function betCreationCost(betYesOdds, betQuantity, betPosition) {
-
-        if (!Number.isInteger(betYesOdds) || betYesOdds < 1 || betYesOdds > 99) {
-            throw new Error("betYesOdds must be an integer between 0 and 100");
+        if (!Number.isInteger(Number(betYesOdds)) || betYesOdds < 1 || betYesOdds > 99 || !Number.isInteger(Number(betQuantity)) || betQuantity < 0) {
+            console.log("betYesOdds:", betYesOdds, typeof(betYesOdds));
+            throw new Error("betYesOdds must be an integer between 0 and 100, quantity must be a positive integer.");
         }
 
         if (betPosition === "yes") {
@@ -36,7 +36,7 @@ const NewBetModal = ({ onClose }) => {
         e.preventDefault();
         var isConfirmed = false;
         try{
-            const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}?`;
+            const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}. Would you like to continue?`;
             isConfirmed = window.confirm(confirmMessage);
         } catch (error) {
             console.error("Error calculating bet creation cost:", error);

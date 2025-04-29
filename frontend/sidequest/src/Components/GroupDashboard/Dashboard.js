@@ -20,8 +20,12 @@ const Dashboard = () => {
             console.error("Error fetching group:", error);
         });
         getAllBets().then((response) => {
-                console.log("OpenBets:", response);
-                setOpenBets(response);
+                // console.log("OpenBets:", response);
+                if (typeof(response) !== "list") {
+                    setOpenBets([response]);
+                } else {
+                    setOpenBets(response);
+                }
             }).catch((error) => {
                 setOpenBets([]);
                 console.error("Error fetching Bets:", error);
