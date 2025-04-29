@@ -74,7 +74,7 @@ export const getMyQuests = async (authorID) => {
 };
 
 export const getAcceptedQuests = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = useGlobalStore.getState().currGroupID; // Access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -92,7 +92,7 @@ export const getAcceptedQuests = async () => {
 };
 
 export const getAcceptedQuestsByUser = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -110,7 +110,7 @@ export const getAcceptedQuestsByUser = async () => {
 };
 
 export const getQuestSubmission = async (submissionID) => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = useGlobalStore.getState().currGroupID;
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -128,7 +128,7 @@ export const getQuestSubmission = async (submissionID) => {
 };
 
 export const getAllQuestSubmissions = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = useGlobalStore.getState().currGroupID; // Access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -141,6 +141,51 @@ export const getAllQuestSubmissions = async () => {
         return await response.json();
     } catch (error) {
         console.error("Error fetching all quest submissions:", error);
+        throw error;
+    }
+};
+
+export const submitQuest = async (questID, submissionData) => {
+    const groupID = useGlobalStore.getState().currGroupID;
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+    };
+    try {
+        const response = await fetch(baseURL + `/quest_submit/${questID}/${groupID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error submitting quest with ID ${questID}:`, error);
+        throw error;
+    }
+};
+
+export const createQuest = async (questData) => {
+    // expect json data
+    const groupID = useGlobalStore.getState().currGroupID;
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...questData, groupID }),
+    };
+    try {
+        const response = await fetch(baseURL + '/quests/create', config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error creating quest:", error);
         throw error;
     }
 };

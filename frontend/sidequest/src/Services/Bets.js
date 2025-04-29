@@ -125,3 +125,25 @@ export const getBet = async (betID) => {
         throw error;
     }
 };
+
+export const createBet = async (betData) => {
+    // Expect json data input
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(betData),
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/create`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error creating bet:", error);
+        throw error;
+    }
+};
