@@ -48,7 +48,7 @@ def init_example_db(engine):
         conn.commit()
 
 def sql_one(db_session, query, params):
-    sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
+    #sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
     result = db_session.execute(text(query), params)
     row = result.fetchone()
 
@@ -58,7 +58,7 @@ def sql_one(db_session, query, params):
         return None
 
 def sql_many(db_session, query, params):
-    sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
+    #sqapp.LOG.debug(f"Executing SQL: {query} with params: {params}")
     result = db_session.execute(text(query), params)
     row_dict = [dict(row._mapping) for row in result]
     if result:
