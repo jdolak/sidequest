@@ -4,6 +4,8 @@ from flask import Response, jsonify, g
 from dotenv import load_dotenv
 import os
 
+from sqapp import LOG
+
 load_dotenv()
 
 def db_connect():
@@ -12,13 +14,12 @@ def db_connect():
 
     if rdms == "oracle":
         engine = create_engine("oracle+oracledb://guest:guest@localhost:1539/xe")
+        LOG.info("Using Oracle DB")
 
     else:
         engine = create_engine("sqlite:///example.db")
+        LOG.info("Using SQLite DB")
         init_example_db(engine)
-
-    
-
 
     return engine
 

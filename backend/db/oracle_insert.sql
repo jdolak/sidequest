@@ -1,37 +1,87 @@
-INSERT INTO USERS (user_id, username, password_hash) VALUES
-(1, 'Alice', 'hash1'),
-(2, 'Bob', 'hash2'),
-(3, 'Charlie', 'hash3');
+-- Insert Users
+INSERT INTO USERS (username, password_hash) VALUES ('alice', 'hash1');
+INSERT INTO USERS (username, password_hash) VALUES ('bob', 'hash2');
+INSERT INTO USERS (username, password_hash) VALUES ('carol', 'hash3');
+INSERT INTO USERS (username, password_hash) VALUES ('dave', 'hash4');
+INSERT INTO USERS (username, password_hash) VALUES ('eve', 'hash5');
 
-INSERT INTO GROUPS (group_id, group_name, group_desc, public, invite_code) VALUES
-(1, 'Sports Fans', 'A group for sports enthusiasts', 'Y', '123'),
-(2, 'Gamers United', 'For people who love gaming', 'N', '456'),
-(3, 'Book Club', 'A place to discuss books', 'Y', '789');
+-- Insert Groups
+INSERT INTO GROUPS (group_name, group_desc, public, invite_code) VALUES ('Hiking Club', 'A club for hiking enthusiasts.', 'Y', 'INV1234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO GROUPS (group_name, group_desc, public, invite_code) VALUES ('Cooking Squad', 'For those who love to cook!', 'N', 'INV2234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO GROUPS (group_name, group_desc, public, invite_code) VALUES ('Gamers Unite', 'All about gaming.', 'Y', 'INV3234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO GROUPS (group_name, group_desc, public, invite_code) VALUES ('Bookworms', 'Reading challenges and discussions.', 'Y', 'INV4234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO GROUPS (group_name, group_desc, public, invite_code) VALUES ('Fitness Freaks', 'Fitness and wellbeing community.', 'N', 'INV5234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
 
-INSERT INTO GROUPS_USER (user_id, group_id, currency) VALUES
-(1, 1, 100),
-(2, 2, 200),
-(3, 3, 300);
+-- Insert Group Memberships
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 1, 1000, 'admin');
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (2, 1, 500, 'member');
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (3, 2, 750, 'admin');
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (4, 3, 300, 'admin');
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (5, 4, 400, 'member');
+INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 5, 600, 'member');
 
-INSERT INTO AVAILABLE_BETS (bet_id, group_id, seller_id, question) VALUES
-(1, 1, 1, 'Will Team A win the match?'),
-(2, 2, 2, 'Will the new game be released this year?'),
-(3, 3, 3, 'Will this book become a bestseller?');
+-- Insert Quests (5 per group)
+BEGIN
+  FOR i IN 1..5 LOOP
+    INSERT INTO QUESTS (author_id, group_id, quest_title, quest_desc, reward_amount, due_date, quest_status)
+    VALUES (MOD(i,5)+1, 1, 'Quest ' || i || ' for Hiking', 'Complete hike #' || i, 100*i, SYSDATE+10*i, 'open');
 
-INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, result, date_bought, date_resolved) VALUES
-(1, 1, 10, NULL, TO_DATE('2025-03-01', 'YYYY-MM-DD'), NULL),
-(2, 2, 5, NULL, TO_DATE('2025-03-02', 'YYYY-MM-DD'), NULL),
-(3, 3, 20, NULL, TO_DATE('2025-03-03', 'YYYY-MM-DD'), NULL);
+    INSERT INTO QUESTS (author_id, group_id, quest_title, quest_desc, reward_amount, due_date, quest_status)
+    VALUES (MOD(i+1,5)+1, 2, 'Quest ' || i || ' for Cooking', 'Cook dish #' || i, 200*i, SYSDATE+8*i, 'open');
 
-INSERT INTO QUESTS (quest_id, author_id, group_id, quest_desc, reward_amount, due_date, quest_status) VALUES
-(1, 1, 1, 'Complete a sports trivia quiz', 50, TO_DATE('2025-04-01', 'YYYY-MM-DD'), 'Open'),
-(2, 2, 2, 'Win a gaming tournament', 100, TO_DATE('2025-04-05', 'YYYY-MM-DD'), 'Open'),
-(3, 3, 3, 'Read and review a book', 75, TO_DATE('2025-04-10', 'YYYY-MM-DD'), 'Closed');
+    INSERT INTO QUESTS (author_id, group_id, quest_title, quest_desc, reward_amount, due_date, quest_status)
+    VALUES (MOD(i+2,5)+1, 3, 'Quest ' || i || ' for Gaming', 'Win match #' || i, 150*i, SYSDATE+7*i, 'open');
 
-INSERT INTO QUEST_SUBMISSIONS (submission_id, user_id, quest_id, submission_photo, submission_date_time, comments, status) VALUES
-(1, 1, 1, 'photo1.jpg', CURRENT_TIMESTAMP, '', 'Pending'),
-(2, 2, 2, 'photo2.jpg', CURRENT_TIMESTAMP, '', 'Pending'),
-(3, 3, 3, 'photo3.jpg', CURRENT_TIMESTAMP, '', 'Pending'),
-(4, 1, 2, 'photo4.jpg', CURRENT_TIMESTAMP, '', 'Accepted'),
-(5, 2, 3, 'photo5.jpg', CURRENT_TIMESTAMP, '', 'Accepted'),
-(6, 3, 1, 'photo6.jpg', CURRENT_TIMESTAMP, '', 'Accepted');
+    INSERT INTO QUESTS (author_id, group_id, quest_title, quest_desc, reward_amount, due_date, quest_status)
+    VALUES (MOD(i+3,5)+1, 4, 'Quest ' || i || ' for Bookworms', 'Read book #' || i, 180*i, SYSDATE+9*i, 'open');
+
+    INSERT INTO QUESTS (author_id, group_id, quest_title, quest_desc, reward_amount, due_date, quest_status)
+    VALUES (MOD(i+4,5)+1, 5, 'Quest ' || i || ' for Fitness', 'Workout session #' || i, 120*i, SYSDATE+6*i, 'open');
+  END LOOP;
+END;
+/
+
+-- Insert Available Bets (5 per group)
+BEGIN
+  FOR i IN 1..5 LOOP
+    INSERT INTO AVAILABLE_BETS (group_id, seller_id, max_quantity, side, odds, question, description, status)
+    VALUES (1, MOD(i,5)+1, 100, 'Y', 2, 'Will it rain on hike #'||i||'?', 'Weather bet #'||i, 'open');
+
+    INSERT INTO AVAILABLE_BETS (group_id, seller_id, max_quantity, side, odds, question, description, status)
+    VALUES (2, MOD(i+1,5)+1, 50, 'N', 3, 'Will dish #'||i||' be spicy?', 'Cooking bet #'||i, 'open');
+
+    INSERT INTO AVAILABLE_BETS (group_id, seller_id, max_quantity, side, odds, question, description, status)
+    VALUES (3, MOD(i+2,5)+1, 70, 'Y', 4, 'Will player beat boss #'||i||'?', 'Gaming bet #'||i, 'open');
+
+    INSERT INTO AVAILABLE_BETS (group_id, seller_id, max_quantity, side, odds, question, description, status)
+    VALUES (4, MOD(i+3,5)+1, 60, 'N', 5, 'Will book #'||i||' have happy ending?', 'Book bet #'||i, 'open');
+
+    INSERT INTO AVAILABLE_BETS (group_id, seller_id, max_quantity, side, odds, question, description, status)
+    VALUES (5, MOD(i+4,5)+1, 80, 'Y', 2, 'Will workout session #'||i||' be under 30 minutes?', 'Fitness bet #'||i, 'open');
+  END LOOP;
+END;
+/
+
+-- Insert Bought Bets (5 examples)
+INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status, date_bought, date_resolved, submission_photo)
+VALUES (1, 1, 2, 'Y', 'pending', SYSDATE, NULL, NULL);
+INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status, date_bought, date_resolved, submission_photo)
+VALUES (2, 2, 1, 'N', 'pending', SYSDATE, NULL, NULL);
+INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status, date_bought, date_resolved, submission_photo)
+VALUES (3, 3, 5, 'Y', 'pending', SYSDATE, NULL, NULL);
+INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status, date_bought, date_resolved, submission_photo)
+VALUES (4, 4, 3, 'N', 'pending', SYSDATE, NULL, NULL);
+INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status, date_bought, date_resolved, submission_photo)
+VALUES (5, 5, 4, 'Y', 'pending', SYSDATE, NULL, NULL);
+
+-- Insert Quest Submissions (5 examples)
+INSERT INTO QUEST_SUBMISSIONS (user_id, quest_id, submission_photo, comments, status)
+VALUES (1, 1, 'photo1.jpg', 'Had fun!', 'submitted');
+INSERT INTO QUEST_SUBMISSIONS (user_id, quest_id, submission_photo, comments, status)
+VALUES (2, 2, 'photo2.jpg', 'It was tough!', 'submitted');
+INSERT INTO QUEST_SUBMISSIONS (user_id, quest_id, submission_photo, comments, status)
+VALUES (3, 3, 'photo3.jpg', 'Great experience!', 'submitted');
+INSERT INTO QUEST_SUBMISSIONS (user_id, quest_id, submission_photo, comments, status)
+VALUES (4, 4, 'photo4.jpg', 'Awesome!', 'submitted');
+INSERT INTO QUEST_SUBMISSIONS (user_id, quest_id, submission_photo, comments, status)
+VALUES (5, 5, 'photo5.jpg', 'Would do it again!', 'submitted');
