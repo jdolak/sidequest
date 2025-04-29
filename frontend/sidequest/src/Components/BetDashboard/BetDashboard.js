@@ -28,7 +28,7 @@ const BetDashboard = () => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
-}
+  }
   
   useEffect(() => {
       if (activeTab === "openBets" && openBets.length === 0) {

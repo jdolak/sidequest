@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./modal.css";
 import Close from "../../assets/images/close.svg";
+import { createBet } from "../../Services/Bets";
 
 const NewBetModal = ({ onClose }) => {
 
@@ -33,12 +34,22 @@ const NewBetModal = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}?`;
+        try{
+            const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}?`;
+        } catch (error) {
+            console.error("Error calculating bet creation cost:", error);
+            alert("Invalid bet odds. Please check your input.");
+            return;
+        }
         const isConfirmed = window.confirm(confirmMessage);
         
         if (isConfirmed) { // Proceed with the submission
             console.log("Bet submitted:", formData);
+            createBet(formData).then((response) => {
+                console.log("Bet created successfully:", response);
+            }).catch((error) => {
+                console.error("Error creating bet:", error);
+            });
             onClose();
         } else { // Cancel the submission
             console.log("Bet submission canceled.");
