@@ -5,8 +5,8 @@ import Close from "../../assets/images/close.svg";
 const NewGroupModal = ({ onClose }) => {
 
     const [formData, setFormData] = useState({
-        groupname: "",
-        groupdesc: ""
+        group_name: "",
+        group_desc: ""
     });
 
     const handleChange = (e) => {
