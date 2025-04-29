@@ -21,6 +21,7 @@
     - [x] Groups
 - [x] logging
 - [ ] bet resolution endpoints
+
 ### Patrick
 - [x] Help Create Pages
 - [x] Create Services to connect backend to frontend
