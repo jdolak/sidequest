@@ -7,4 +7,4 @@ flask_bcrypt
 pillow
 python-magic
 Werkzeug
-python-oracledb
+oracledb
