@@ -10,6 +10,7 @@ from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
 import secrets
+from sqapp.db import sql_many, sql_one, sql_response
 
 
 load_dotenv()
@@ -182,6 +183,40 @@ def create_group(rq):
     except Exception as e:
         LOG.error(f"Error creating group: {e}")
         return jsonify({"message": "error creating group"}), 500
+    
+def bet_resolve(rq):
+    try:
+        bet_id = rq.form['bet_id']
+        winning_side = rq.form['winning_side']
+        sql = "SELECT * FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE bet_id = :bet_id"
+        data = sql_many(g.db_session, sql, {'bet_id': bet_id})
+        if not data:
+            return jsonify({"message": "bet not found"}), 404
+        
+        coins = data[0]["bb.quantity"] * 100
+
+        if data[0]["ab.side"] == winning_side:
+            winner = data[0]["ab.seller_id"]
+        else:
+            winner = data[0]["bb.buyer_id"]
+
+        sql = "UPDATE GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
+        g.db_session.execute(text(sql), {
+            'coins': coins,
+            'user_id': winner,
+            'group_id': data[0]["ab.group_id"]
+        })
+            
+        sql = "UPDATE available_bets SET status = 'Resolved' WHERE bet_id = :bet_id"
+        g.db_session.execute(text(sql), {'bet_id': bet_id})
+
+        LOG.info(f"Bet {bet_id} resolved. Winner: {winner}, Coins: {coins}")
+
+        return jsonify({"message": "bet resolved"}), 200
+    
+    except Exception as e:
+        LOG.error(f"Error resolving bet: {e}")
+        return jsonify({"message": "error resolving bet"}), 500
 
 
 
