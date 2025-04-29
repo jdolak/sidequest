@@ -34,14 +34,15 @@ const NewBetModal = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        var isConfirmed = false;
         try{
             const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}?`;
+            isConfirmed = window.confirm(confirmMessage);
         } catch (error) {
             console.error("Error calculating bet creation cost:", error);
             alert("Invalid bet odds. Please check your input.");
             return;
         }
-        const isConfirmed = window.confirm(confirmMessage);
         
         if (isConfirmed) { // Proceed with the submission
             console.log("Bet submitted:", formData);

@@ -3,7 +3,7 @@ import QuestSection from "./QuestSection/QuestSection";
 import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests } from "../../Services/Quests";
-import { getOpenBets } from "../../Services/Bets";
+import { getAllBets } from "../../Services/Bets";
 import { getGroup, getGroupUser } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 
@@ -19,12 +19,11 @@ const Dashboard = () => {
         }).catch((error) => {
             console.error("Error fetching group:", error);
         });
-        getOpenBets().then((response) => {
-                // if (typeof response !== "list") {
-                //     response = [response];
-                // }
+        getAllBets().then((response) => {
+                console.log("OpenBets:", response);
                 setOpenBets(response);
             }).catch((error) => {
+                setOpenBets([]);
                 console.error("Error fetching Bets:", error);
         });
         getOpenQuests().then((response) => {
@@ -35,12 +34,12 @@ const Dashboard = () => {
     }, [groupID]);
           
     return (
-        <div class="group-page-dashboard">
-            <div class="group-page-header">
-                <div class="group-page-heading">{group.group_desc}</div>
+        <div className="group-page-dashboard">
+            <div className="group-page-header">
+                <div className="group-page-heading">{group.group_desc}</div>
                 <div>{group.members} members</div>
-                <div class="group-page-my-coins">
-                    <div class="group-page-my-coins-text">{group.coins} coins</div>
+                <div className="group-page-my-coins">
+                    <div className="group-page-my-coins-text">{group.coins} coins</div>
                 </div>
             </div>
             <QuestSection quests={openQuests?.slice(0,4)}/>
