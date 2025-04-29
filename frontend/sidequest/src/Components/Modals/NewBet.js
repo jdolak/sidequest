@@ -19,9 +19,30 @@ const NewBetModal = ({ onClose }) => {
         }));
     };
 
+    function betCreationCost(betYesOdds, betQuantity, betPosition) {
+
+        if (!Number.isInteger(betYesOdds) || betYesOdds < 1 || betYesOdds > 99) {
+            throw new Error("betYesOdds must be an integer between 0 and 100");
+        }
+
+        if (betPosition === "yes") {
+            return betYesOdds * betQuantity;
+        }
+        return (100 - betYesOdds) * betQuantity;
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        onClose();
+
+        const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}?`;
+        const isConfirmed = window.confirm(confirmMessage);
+        
+        if (isConfirmed) { // Proceed with the submission
+            console.log("Bet submitted:", formData);
+            onClose();
+        } else { // Cancel the submission
+            console.log("Bet submission canceled.");
+        }
     }
 
     return (

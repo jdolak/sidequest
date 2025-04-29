@@ -56,4 +56,5 @@
 - [ ] When searching for groups filter server side rather than client side
 - [ ] Make project responsive
 - [ ] send data when searching for groups
+- [ ] pretty way to display alert and confirm popups
 

@@ -4,7 +4,7 @@ import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests } from "../../Services/Quests";
 import { getOpenBets } from "../../Services/Bets";
-import { getGroup } from "../../Services/Groups";
+import { getGroup, getGroupUser } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 
 const Dashboard = () => {
