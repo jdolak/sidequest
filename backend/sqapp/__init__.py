@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Blueprint
 import os
 from dotenv import load_dotenv
 import logging
@@ -10,6 +10,8 @@ DB = db_connect()
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(funcName)s() - %(message)s')
 LOG = logging.getLogger()
+
+main_bp = Blueprint("main", __name__)
 
 def create_app():
 

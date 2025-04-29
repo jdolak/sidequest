@@ -2,10 +2,9 @@ from flask import Blueprint, jsonify, g, session, request, Response
 from sqlalchemy import inspect
 from sqlalchemy.orm import sessionmaker, scoped_session
 
-from sqapp import DB, LOG
+from sqapp import DB, LOG, main_bp
 from sqapp.db import sql_many, sql_one, sql_response
 
-main_bp = Blueprint("main", __name__)
 
 SessionFactory = sessionmaker(bind=DB)
 DB_session = scoped_session(SessionFactory)
