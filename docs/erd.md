@@ -48,6 +48,7 @@ erDiagram
         int quest_id PK
         int group_id FK
         int author_id FK
+        string quest_title
         string quest_desc
         int reward_amount
         date due_date
