@@ -49,28 +49,28 @@ API endpoints:
 def home():
     return "<h1>Sidequest API</h1>"
 
+def init_app(sq_app):
+    @sq_app.before_request
+    def start_session():
+        g.db_session = DB_session()
 
-@main_bp.before_request
-def start_session():
-    g.db_session = DB_session()
-
-    user_id = session.get("sq_user_id")
-    if user_id:
-        g.user = user_id
-    else:
-        g.user = None
-
-
-@main_bp.teardown_request
-def cleanup_session(exception):
-    try:
-        if exception:
-            LOG.error(f"Exception occurred, rolling back: {exception}")
-            g.db_session.rollback()
+        user_id = session.get("sq_user_id")
+        if user_id:
+            g.user = user_id
         else:
-            g.db_session.commit()
-    finally:
-        g.db_session.close()
+            g.user = None
+
+
+    @sq_app.teardown_request
+    def cleanup_session(exception):
+        try:
+            if exception:
+                LOG.error(f"Exception occurred, rolling back: {exception}")
+                g.db_session.rollback()
+            else:
+                g.db_session.commit()
+        finally:
+            g.db_session.close()
 
 
 @main_bp.route("/whoami", methods=["GET"])
