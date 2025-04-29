@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask
 import os
 from dotenv import load_dotenv
 import logging
@@ -11,14 +11,16 @@ DB = db_connect()
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(funcName)s() - %(message)s')
 LOG = logging.getLogger()
 
-main_bp = Blueprint("main", __name__)
-
 def create_app():
 
     PROJECT = os.getenv('PROJECT')
     sq_app = Flask(PROJECT)
 
-    from sqapp import routes
-    sq_app.register_blueprint(routes.main_bp)
+    from sqapp.routes import main, users, bets, quests
+
+    sq_app.register_blueprint(main.main_bp)
+    sq_app.register_blueprint(users.user_bp)
+    sq_app.register_blueprint(bets.bet_bp)
+    sq_app.register_blueprint(quests.quest_bp)
 
     return sq_app

@@ -1,12 +1,12 @@
-from sqapp import main_bp
-
 from flask import Blueprint, jsonify, g, session, request, Response
 
 from sqapp.db import sql_many, sql_one, sql_response
 from sqapp.src.uploads import create_bet
 
+bet_bp = Blueprint("bet_bp", __name__)
 
-@main_bp.route("/bets/<int:bet_id>", methods=["GET"])
+
+@bet_bp.route("/bets/<int:bet_id>", methods=["GET"])
 def get_bet_id(bet_id):
     return sql_response(
         sql_one(
@@ -17,7 +17,7 @@ def get_bet_id(bet_id):
     )
 
 
-@main_bp.route("/bets/<int:group_id>", methods=["GET"])
+@bet_bp.route("/bets/<int:group_id>", methods=["GET"])
 def get_bets(group_id):
     return sql_response(
         sql_many(
@@ -28,7 +28,7 @@ def get_bets(group_id):
     )
 
 
-@main_bp.route("/bought_bets/<int:bet_id>/<int:buyer_id>", methods=["GET"])
+@bet_bp.route("/bought_bets/<int:bet_id>/<int:buyer_id>", methods=["GET"])
 def get_bought_bet(buyer_id, bet_id):
     sql = "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS AND USERS WHERE buyer_id = :buyer_id AND bet_id = :bet_id AND buyer_id = user_id"
     return sql_response(
@@ -37,7 +37,7 @@ def get_bought_bet(buyer_id, bet_id):
 
 
 # needs to be modified to use user_id
-@main_bp.route("/bets/accepted/<int:group_id>", methods=["GET"])
+@bet_bp.route("/bets/accepted/<int:group_id>", methods=["GET"])
 def get_bet_accepted(group_id):
     return sql_response(
         sql_many(
@@ -49,7 +49,7 @@ def get_bet_accepted(group_id):
 
 
 # needs to be modified to use user_id
-@main_bp.route("/bets/my_bets/<int:group_id>", methods=["GET"])
+@bet_bp.route("/bets/my_bets/<int:group_id>", methods=["GET"])
 def get_bet_mybets(group_id):
     return sql_response(
         sql_many(
@@ -60,7 +60,7 @@ def get_bet_mybets(group_id):
     )
 
 
-@main_bp.route("/bought_bets", methods=["GET"])
+@bet_bp.route("/bought_bets", methods=["GET"])
 def get_all_bought_bets():
     return sql_response(
         sql_many(
@@ -70,6 +70,6 @@ def get_all_bought_bets():
         )
     )
 
-@main_bp.route("/bets/create", methods=["POST"])
+@bet_bp.route("/bets/create", methods=["POST"])
 def post_create_bet():
     return create_bet(request)
