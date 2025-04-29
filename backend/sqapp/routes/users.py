@@ -73,11 +73,11 @@ def get_my_groups():
     )
 
 
-@user_bp.route("/groups_user/<int:group_id>/<int:user_id>", methods=["GET"])
-def get_group_user(user_id, group_id):
+@user_bp.route("/groups_user/<int:group_id>", methods=["GET"])
+def get_group_user(group_id):
     sql = "SELECT user_id, username, currency, group_id FROM GROUPS_USER gu, USERS u WHERE gu.user_id = :user_id AND gu.group_id = :group_id AND gu.user_id = u.user_id"
     return sql_response(
-        sql_one(g.db_session, sql, {"user_id": user_id, "group_id": group_id})
+        sql_one(g.db_session, sql, {"user_id": g.user, "group_id": group_id})
     )
 
 @user_bp.route("/groups_user", methods=["GET"])
