@@ -31,12 +31,15 @@
 - [x] Pull and store data on front end (useEffect,useState)
     - [x] add bets apis that jachob added
 - [x] add group id to relevant api requests and the end of the url
-- [ ] endpoints for bet resolution
 - [x] implement search page
-    - [ ] send data when searching
-    - [ ] display results properly
+    - [x] display results properly
 - [x] enable endpoints for joining groups
+- [ ] endpoints for bet resolution
+- [ ] endpoints/implementation for creation
+    - [ ] quests
+    - [ ] groups
 - [ ] enable endpoints for creating groups
+- [ ] enable theme change or light mode/dark mode
 
 # Bugs and improvements
 - Profile initial does not accurately reflect group name
@@ -51,4 +54,5 @@
 - [ ] Allow the number of lots in a bet to be split between different takers
 - [ ] When searching for groups filter server side rather than client side
 - [ ] Make project responsive
+- [ ] send data when searching for groups
 

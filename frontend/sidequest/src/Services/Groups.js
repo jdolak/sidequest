@@ -103,3 +103,24 @@ export const searchGroups = async (query) => {
         throw error;
     }
 };
+
+export const createGroup = async (groupData) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(groupData),
+    };
+    try {
+        const response = await fetch(`${baseURL}/groups/create`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error creating group:", error);
+        throw error;
+    }
+};
