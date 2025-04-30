@@ -3,7 +3,7 @@ import searchIcon from '../../assets/images/search.svg';
 import {Link} from "react-router-dom";
 import './sidebar.css';
 import { useGlobalStore } from '../../stores/globalStore.js';
-import { getAllGroups } from "../../Services/Groups.js";
+import { getMyGroups } from "../../Services/Groups.js";
 import { useNavigate } from "react-router-dom";
 
 
@@ -20,7 +20,8 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
-        getAllGroups().then((response) => {
+        getMyGroups().then((response) => {
+            console.log("Groups:", response);
             setGroups(response);
         }).catch((error) => {
             console.error("Error fetching groups:", error);

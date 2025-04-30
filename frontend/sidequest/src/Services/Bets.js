@@ -130,6 +130,8 @@ export const getBet = async (betID) => {
 
 export const createBet = async (betData) => {
     // Expect json data input
+    const groupID = useGlobalStore.getState().currGroupID;
+    betData.groupID = groupID;
     const config = {
         method: 'POST',
         credentials: 'include',

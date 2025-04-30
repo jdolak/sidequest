@@ -35,6 +35,23 @@ export const getAllGroups = async () => {
     }
 };
 
+export const getMyGroups = async () => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/groups/my_groups`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching user's groups:", error);
+        throw error;
+    }
+};
+
 // export const getGroupUser = async (groupID, userID) => {
 //     const config = {
 //         method: 'GET',
