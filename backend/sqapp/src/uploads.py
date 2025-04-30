@@ -97,11 +97,11 @@ def create_quest(rq):
     try:
         data = rq.get_json()
 
-        group_id = data['group_id']
-        quest_title = data['quest_title']
-        quest_desc = data['quest_desc']
-        reward_amount = data['reward_amount']
-        due_date = data['due_date']
+        group_id = data['groupID']
+        quest_title = data['questname']
+        quest_desc = data['questdesc']
+        reward_amount = data['questreward']
+        due_date = data['questdate']
         
         if not group_id or not quest_title or not quest_desc or not reward_amount or not due_date:
             return jsonify({"message": "missing parameters"}), 400
@@ -130,12 +130,12 @@ def create_bet(rq):
     try:
         data = rq.get_json()
 
-        group_id = data['group_id']
-        question = data['question']
-        description = data['description']
-        max_quantity = data['max_quantity']
-        side = data['side']
-        odds = data['odds']
+        group_id = data['groupID']
+        question = data['betname']
+        description = data['betdesc']
+        max_quantity = data['betquantity']
+        side = data['betposition']
+        odds = data['betodds']
 
         if not group_id or not question or not description or not max_quantity or not side or not odds:
             LOG.error(f"Missing parameters: {group_id}, {question}, {description}, {max_quantity}, {side}, {odds}")
