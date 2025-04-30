@@ -37,14 +37,14 @@
 - [x] implement search page
     - [x] display results properly
 - [x] enable endpoints for joining groups
-- [ ] only display accessible groups in sidebar
-- [ ] endpoints for bet resolution
+- [x] only display accessible groups in sidebar
 - [x] endpoints/implementation for creation
     - [x] quests
     - [x] groups
 - [x] enable endpoints for creating groups
+- [x] alert users on login fail
 - [ ] enable theme change or light mode/dark mode
-- [ ] alert users on login fail
+- [ ] endpoints for bet resolution
 
 # Bugs and improvements
 - Profile initial does not accurately reflect group name
