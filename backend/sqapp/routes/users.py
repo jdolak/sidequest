@@ -64,8 +64,8 @@ def search_groups(query):
 def get_my_groups():
     sql = "SELECT * FROM SQ_GROUPS NATURAL JOIN SQ_GROUPS_USER WHERE user_id = :user_id"
     result = sql_many(g.db_session, sql, {"user_id": g.user})
-    for group in result:
-        group["size"] = group_member_count(group["group_id"])
+    for i in range(len(result)):
+        result[i]["size"] = group_member_count(result[i]["group_id"])
     return sql_response(result)
 
 
