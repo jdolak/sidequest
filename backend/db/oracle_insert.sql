@@ -6,11 +6,11 @@ INSERT INTO SQ_USERS (username, password_hash) VALUES ('dave', 'hash4');
 INSERT INTO SQ_USERS (username, password_hash) VALUES ('eve', 'hash5');
 
 -- Insert SQ_GROUPS
-INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Hiking Club', 'A club for hiking enthusiasts.', 'Y', 'INV1234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Cooking Squad', 'For those who love to cook!', 'N', 'INV2234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Gamers Unite', 'All about gaming.', 'Y', 'INV3234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Bookworms', 'Reading challenges and discussions.', 'Y', 'INV4234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Fitness Freaks', 'Fitness and wellbeing community.', 'N', 'INV5234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Hiking Club', 'A club for hiking enthusiasts.', 'Y', '1234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Cooking Squad', 'For those who love to cook!', 'N', '2234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Gamers Unite', 'All about gaming.', 'Y', '3234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Bookworms', 'Reading challenges and discussions.', 'Y', 'I234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Fitness Freaks', 'Fitness and wellbeing community.', 'N', 'IN34567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
 
 -- Insert Group Memberships
 INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 1, 1000, 'admin');
