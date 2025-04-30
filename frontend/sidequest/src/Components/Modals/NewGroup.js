@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./modal.css";
 import Close from "../../assets/images/close.svg";
+import { createGroup } from "../../Services/Groups";
 
 const NewGroupModal = ({ onClose }) => {
 
@@ -21,19 +22,13 @@ const NewGroupModal = ({ onClose }) => {
 
         const formData = new FormData();
 
-        try {
-            const response = await fetch("https://sq.jdolak.com/api/groups/create", {
-                method: "POST",
-                body: formData,
-            });
-
-            if (!response.ok) throw new Error("Upload failed");
-
-            const result = await response.json();
-            console.log(result);
-        } catch (err) {
-            console.error(err);
-        }
+        createGroup(formData).then((response) => {
+            console.log("Group created successfully:", response);
+        }).catch((error) => {
+            console.error("Error creating group:", error);
+            alert("Error creating group.", error.message);
+        });
+        
         onClose();
     }
 
