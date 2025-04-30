@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Card from '../../Cards/Card';
 
 const BetSection = ({bets}) => {
-    console.log("Bets in BetSection:", bets);
     return (
         <div class="bets-main-section">
             <div class="bets-section-header">
@@ -18,7 +17,6 @@ const BetSection = ({bets}) => {
                       creator={bet.username}
                       date={bet.due_date}
                       odds={bet.odds}
-                      quantity={bet.max_quantity}
                     />
                   </Link>
                 ))}

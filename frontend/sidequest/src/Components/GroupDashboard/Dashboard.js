@@ -35,20 +35,17 @@ const Dashboard = () => {
             return;
         });
         // get group data
-        // getUsersGroupProfile(groupID).then((response) => {
-        //     console.log("My Profile data:", response);
-        //     setMyProfile(response);
-        // }).catch((error) => {
-        //     console.error("Error fetching my profile:", error);
-        // });
+        getUsersGroupProfile(groupID).then((response) => {
+            setMyProfile(response);
+        }).catch((error) => {
+            console.error("Error fetching my profile:", error);
+        });
         getGroup(groupID).then((response) => {
             setGroup(response);
-            console.log("Group data:", response);
         }).catch((error) => {
             console.error("Error fetching group:", error);
         });
         getAllBets().then((response) => {
-                // console.log("OpenBets:", response);
                 if (typeof(response) !== "list") {
                     setOpenBets([response]);
                 } else {
@@ -71,7 +68,7 @@ const Dashboard = () => {
                 <div className="group-page-heading">{group.group_desc}</div>
                 <div>{group.size} members</div>
                 <div className="group-page-my-coins">
-                    <div className="group-page-my-coins-text">{group.coins} coins</div>
+                    <div className="group-page-my-coins-text">{myProfile.currency} coins</div>
                 </div>
             </div>
             <QuestSection quests={openQuests?.slice(0,4)}/>

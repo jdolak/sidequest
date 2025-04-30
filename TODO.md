@@ -43,6 +43,7 @@
     - [x] groups
 - [x] enable endpoints for creating groups
 - [x] alert users on login fail
+- [x] logout process
 - [ ] enable theme change or light mode/dark mode
 - [ ] endpoints for bet resolution
 
@@ -61,5 +62,4 @@
 - [ ] Make project responsive
 - [ ] send data when searching for groups
 - [ ] pretty way to display alert and confirm popups
-- [ ] logout process
-
+- [ ] bet expected resolution date added through stack
