@@ -52,8 +52,6 @@ const AuthLogin = ({onSubmit}) => {
 
             localStorage.setItem("authenticated", "true");
 
-            alert("You have logged in successfully!");
-
             window.location.replace("/search");
 
             if (onSubmit) {
@@ -61,6 +59,7 @@ const AuthLogin = ({onSubmit}) => {
             }
         }  catch (error) {
             console.error("Log in failed:", error);
+            alert("Username or Password may be incorrect. "+error.message);
         };
     };
 

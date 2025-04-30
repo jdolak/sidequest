@@ -59,6 +59,7 @@ const AuthRegister = ({ onSubmit }) => {
             }
         }  catch (error) {
             console.error("Registration failed:", error);
+            alert(error.message);
         };
     };
 
