@@ -64,7 +64,7 @@ def sql_many(db_session, query, params):
     result = db_session.execute(text(query), params)
     row_dict = [dict(row._mapping) for row in result]
     if result:
-        sqapp.LOG.debug(f"SQL result: {result}")
+        sqapp.LOG.debug(f"SQL result: {row_dict}")
         return row_dict
     else:
         sqapp.LOG.debug("No results found")
