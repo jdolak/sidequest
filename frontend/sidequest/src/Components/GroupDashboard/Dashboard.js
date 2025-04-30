@@ -65,7 +65,7 @@ const Dashboard = () => {
     return (
         <div className="group-page-dashboard">
             <div className="group-page-header">
-                <div className="group-page-heading">{group.group_desc}</div>
+                <div className="group-page-heading">{group.group_name}</div>
                 <div>{group.size} members</div>
                 <div className="group-page-my-coins">
                     <div className="group-page-my-coins-text">{myProfile.currency} coins</div>
