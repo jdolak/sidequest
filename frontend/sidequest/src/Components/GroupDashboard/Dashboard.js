@@ -68,10 +68,9 @@ const Dashboard = () => {
     return (
         <div className="group-page-dashboard">
             <div className="group-page-header">
-                <div className="group-page-heading">{group.group_desc}</div>
-                <div>{group.size} members</div>
-                <div className="group-page-my-coins">
-                    <div className="group-page-my-coins-text">{group.coins} coins</div>
+                <div className="group-page-heading">{group.group_name}</div>
+                <div>{group.members} members</div>
+                <div className="group-page-my-coins-text">{group.coins} coins
                 </div>
             </div>
             <QuestSection quests={openQuests?.slice(0,4)}/>
