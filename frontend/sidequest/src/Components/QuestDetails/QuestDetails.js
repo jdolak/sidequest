@@ -7,7 +7,7 @@ import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const QuestDetails = () => {
     const navigate = useNavigate();
-    const { questID } = useParams();
+    const questID = useParams().id;
     const [quest, setQuest] = useState(null);
     const location = useLocation();
     const sourceTab = location.state?.sourceTab;
@@ -33,6 +33,12 @@ const QuestDetails = () => {
             </div>
         )
     }
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString(undefined, options);
+    };
 
     // Accepted Quest Content
     const AcceptedQuestContent = () => {
@@ -125,22 +131,22 @@ const QuestDetails = () => {
                 <div className="quest-details-header-contents"> 
                     <div className="quest-details-title"></div>
                     <div>Created by</div>
-                    <div>Quest closes on </div>
+                    <div>Quest closes on {formatDate(quest.due_date)}</div>
                 </div>
             </div>
             <div className="quest-details-body">
                 <div className="quest-details-content">
                     <div className="quest-details-text">
                         <div className="quest-details-subheading">Status</div>
-                        <div></div>
+                        <div>{quest?.quest_status}</div>
                     </div>
                     <div className="quest-details-text">
                         <div className="quest-details-subheading">Description</div>
-                        <div></div>
+                        <div>{quest?.quest_desc}</div>
                     </div>
                     <div className="quest-details-text">
                         <div className="quest-details-subheading">Incentive</div>
-                        <div></div>
+                        <div>{quest?.reward_amount} coin{quest?.reward_amount === 1 ? "" : "s"}</div>
                     </div>
                     {/* <MyQuestContent /> */}
                 </div>

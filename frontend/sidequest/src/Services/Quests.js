@@ -38,13 +38,12 @@ export const getOpenQuests = async () => {
 };
 
 export const getQuest = async (questID) => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quests/${questID}/${groupID}`, config);
+        const response = await fetch(baseURL + `/quests/${questID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
