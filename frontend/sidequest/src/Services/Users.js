@@ -17,22 +17,22 @@ export const getUser = async (userID) => {
     }
 };
 
-export const getAllUsers = async () => {
-    const config = {
-        method: 'GET',
-        credentials: 'include',
-    };
-    try {
-        const response = await fetch(`${baseURL}/users`, config);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching all users:", error);
-        throw error;
-    }
-};
+// export const getAllUsers = async () => {
+//     const config = {
+//         method: 'GET',
+//         credentials: 'include',
+//     };
+//     try {
+//         const response = await fetch(`${baseURL}/users`, config);
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         return await response.json();
+//     } catch (error) {
+//         console.error("Error fetching all users:", error);
+//         throw error;
+//     }
+// };
 
 export const getLoggedInUser = async () => {
     const config = {
@@ -64,6 +64,23 @@ export const logout = async () => {
         return await response.json();
     } catch (error) {
         console.error("Error logging out:", error);
+        throw error;
+    }
+};
+
+export const getUsersGroupProfile = async (groupID) => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/groups_user/${groupID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching users for group with ID ${groupID}:`, error);
         throw error;
     }
 };

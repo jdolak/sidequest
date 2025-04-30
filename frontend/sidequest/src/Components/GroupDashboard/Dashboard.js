@@ -8,11 +8,13 @@ import { getGroup, getGroupUser } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getLoggedInUser } from "../../Services/Users.js";
 import { useNavigate } from "react-router-dom";
+import { getUsersGroupProfile } from "../../Services/Users.js";
 
 const Dashboard = () => {
     const [openBets, setOpenBets] = useState([]);
     const [openQuests, setOpenQuests] = useState([]);
     const [group, setGroup] = useState({});
+    const [myProfile, setMyProfile] = useState({});
     const groupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
 
@@ -33,8 +35,15 @@ const Dashboard = () => {
             return;
         });
         // get group data
+        // getUsersGroupProfile(groupID).then((response) => {
+        //     console.log("My Profile data:", response);
+        //     setMyProfile(response);
+        // }).catch((error) => {
+        //     console.error("Error fetching my profile:", error);
+        // });
         getGroup(groupID).then((response) => {
             setGroup(response);
+            console.log("Group data:", response);
         }).catch((error) => {
             console.error("Error fetching group:", error);
         });
@@ -60,7 +69,7 @@ const Dashboard = () => {
         <div className="group-page-dashboard">
             <div className="group-page-header">
                 <div className="group-page-heading">{group.group_desc}</div>
-                <div>{group.members} members</div>
+                <div>{group.size} members</div>
                 <div className="group-page-my-coins">
                     <div className="group-page-my-coins-text">{group.coins} coins</div>
                 </div>

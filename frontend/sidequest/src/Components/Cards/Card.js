@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ title, creator, coins, date }) => {
+const Card = ({ title, creator, coins, date, odds }) => {
   return (
 
     <article class="card" role="listitem">
@@ -9,7 +9,8 @@ const Card = ({ title, creator, coins, date }) => {
        <div class="card-desc">
         <div>Quest closes on {date}</div>
          <div>Created by {creator}</div>
-         <div>{coins} coins</div>
+         {coins && <div>{coins} coins</div>}
+         {odds && <div>Odds: {odds}</div>}
        </div>
      </article>
 
