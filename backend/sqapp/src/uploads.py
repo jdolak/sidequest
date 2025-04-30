@@ -109,7 +109,7 @@ def create_quest(rq):
         if not g.user:
             return jsonify({"message": "User not logged in"}), 401
 
-        sql = "INSERT INTO quests (group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status) VALUES (:group_id, :author_id, :quest_title, :quest_desc, :reward_amount, :due_date, :quest_status)"
+        sql = "INSERT INTO quests (group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status) VALUES (:group_id, :author_id, :quest_title, :quest_desc, :reward_amount, SELECT TO_DATE (:due_date, 'yyyy-mm-dd'), :quest_status)"
         g.db_session.execute(text(sql), {
             'group_id': group_id,
             'author_id': g.user,
