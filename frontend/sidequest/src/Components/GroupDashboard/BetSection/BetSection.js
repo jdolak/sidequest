@@ -11,7 +11,7 @@ const BetSection = ({bets}) => {
             </div>
             <div class="bet-list">
                 {bets.map((bet) => (
-                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id} state={ bet.bet_id}>
                     <Card
                       title={bet.question}
                       creator={bet.username}

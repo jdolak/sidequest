@@ -5,26 +5,42 @@ import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
 import { getBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-
+import { getUser } from "../../Services/Users.js";
 
 const BetDetails = () => {
-    const { betID } = useParams();
-    const [bet, setBet] = useState(null);
     const location = useLocation();
+    const [bet, setBet] = useState(null);
+    const [seller, setSeller] = useState({});
     const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
-
+    
     const goBack = () => {
         navigate(-1);
     }
+    
+    const betID = useParams().id;
 
+    console.log("Bet ID from URL:", betID); // Log the betID to check its value
     useEffect(() => {
-        getBet(betID).then((response) => {
-            console.log("bet:", response);
-            setBet(response);
-        }).catch((error) => {
-            console.error("Error fetching bet:", error);
-        });
+        console.log("Bet ID:", betID); // Log the betID to check its value
+        if (betID){
+            getBet(betID).then((response) => {
+                console.log("bet:", response);
+                setBet(response);
+                // if (response?.seller_id) {
+                //     getUser(response.seller_id).then((user) => {
+                //         console.log("seller:", user);
+                //         setBet(user);
+                //     }).catch((error) => {
+                //         console.error("Error fetching user:", error);
+                //     });
+                // }
+            }).catch((error) => {
+                console.error("Error fetching bet:", error);
+            });
+        } else {
+            console.error("betID is null or undefined");
+        }
     }, [betID]);
 
     const OpenBetContent = () => {
@@ -80,27 +96,27 @@ const BetDetails = () => {
                 </Link>
                 <div className="header-contents"> 
                     <div className="bet-title"></div>
-                    <div>Created by </div>
-                    <div>Bet closes on </div>
+                    <div>Created by {seller?.username}</div>
+                    {/* <div>Bet closes on </div> */}
                 </div>
             </div>
             <div className="bet-detail-body">
                 <div className="bet-details">
                     <div className="bet-text">
                         <div className="bet-subheading">Status</div>
-                        <div></div>
+                        <div>{bet?.status}</div>
                     </div>
                     <div className="bet-text">
                         <div className="bet-subheading">Description</div>
-                        <div></div>
+                        <div>{bet?.description}</div>
                     </div>
                     <div className="bet-text">
                         <div className="bet-subheading">Odds</div>
-                        <div> - </div>
+                        <div>{bet?.odds}%</div>
                     </div>
                     <div className="bet-text">
                         <div className="bet-subheading">Bets Available</div>
-                        <div>10</div>
+                        <div>{bet?.max_quantity}</div>
                     </div>
                     {sourceTab === 'AcceptedBets' && <AcceptedBetContent />}
                     <div className="bet-text">

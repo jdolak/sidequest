@@ -37,7 +37,7 @@ export default function Components() {
                     <Route path="/groups/:id" element={<GroupPage />} />
                     <Route path="search" element={<SearchPage />} />
                     <Route path="quests/:id" element={<QuestDetails />} />
-                    <Route path="bets/:id" element={<BetDetails />} />
+                    <Route path="/bets/:id" element={<BetDetails />} />
                     <Route path="quests" element={<QuestDashboard />} />
                     <Route path="bets" element={<BetDashboard />} />
 

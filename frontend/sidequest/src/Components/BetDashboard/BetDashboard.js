@@ -50,15 +50,17 @@ const BetDashboard = () => {
     // get bets data
       if (activeTab === "openBets" && openBets.length === 0) {
         getAllBets().then((response) => {
-          console.log("OpenBets:", response);
-          setOpenBets(response);
+          if (typeof(response) !== "list") {
+            setOpenBets([response]);
+          } else {
+            setOpenBets(response);
+          }
         }).catch((error) => {
           console.error("Error fetching Bets:", error);
         });
       }
       else if (activeTab === "myBets" && myBets.length === 0) {
         getMyBets().then((response) => {
-          console.log("myBets:", response);
           setMyBets(response);
         }).catch((error) => {
           console.error("Error fetching Bets:", error);
@@ -66,7 +68,6 @@ const BetDashboard = () => {
       }
       else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
         getAcceptedBets().then((response) => {
-          console.log("acceptedBets:", response);
           setAcceptedBets(response);
         }).catch((error) => {
           console.error("Error fetching Bets:", error);
