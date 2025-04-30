@@ -1,5 +1,7 @@
 import React, {useEffect,useState} from "react";
 import searchIcon from '../../assets/images/search.svg';
+import logoutIcon from '../../assets/images/logout.svg';
+import settingsIcon from '../../assets/images/settings.svg';
 import {Link} from "react-router-dom";
 import './sidebar.css';
 import { useGlobalStore } from '../../stores/globalStore.js';
@@ -64,12 +66,15 @@ const Sidebar = () => {
                         </button>
                     ))}
                 </div>
-                <div className="user-icon">
+            </div>
+            <div className="sidebar-user-actions">
                     <button className="logout-button" onClick={() => { handleLogout() }}>
-                        {username?.slice(0, 2).toUpperCase()}
+                        <img src={logoutIcon} />
+                    </button>
+                    <button className="settings-button">
+                        <img src={settingsIcon} />
                     </button>
                 </div>
-            </div>
         </div>
     );
 };

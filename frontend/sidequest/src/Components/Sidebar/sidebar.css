@@ -52,3 +52,27 @@
 .group-button.active {
     background: var(--Soft-Stroke);
 }
+
+.logout-button,
+.settings-button {
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.logout-button img,
+.settings-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sidebar-user-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
