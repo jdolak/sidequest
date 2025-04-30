@@ -6,8 +6,8 @@ import { createGroup } from "../../Services/Groups";
 const NewGroupModal = ({ onClose }) => {
 
     const [formData, setFormData] = useState({
-        group_name: "",
-        group_desc: ""
+        groupname: "",
+        groupdesc: ""
     });
 
     const handleChange = (e) => {
@@ -20,9 +20,7 @@ const NewGroupModal = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formDatas = new FormData();
-
-        createGroup(formDatas).then((response) => {
+        createGroup(formData).then((response) => {
             console.log("Group created successfully:", response);
         }).catch((error) => {
             console.error("Error creating group:", error);
@@ -44,11 +42,11 @@ const NewGroupModal = ({ onClose }) => {
                     <div className="form-data">
                         <label className="form-label">
                                 Group name
-                                <input className="form-input" type="text" name="groupname" value={formData.group_name} onChange={handleChange} required />
+                                <input className="form-input" type="text" name="groupname" value={formData.groupname} onChange={handleChange} required />
                         </label>
                         <label className="form-label">
                                 Group description
-                                <textarea className="form-input" name="groupdesc" value={formData.group_desc} onChange={handleChange} rows={4} />
+                                <textarea className="form-input" name="groupdesc" value={formData.groupdesc} onChange={handleChange} rows={4} />
                         </label>
                     </div>
                     <button className="submit-button" type="submit">Create group</button>

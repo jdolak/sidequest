@@ -110,7 +110,7 @@ def process_invite(code):
     if not g.user:
         return jsonify({"error": "User not logged in"}), 401
     
-    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS WHERE invite_code = :invite_code", {"invite_code": code})
+    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS WHERE TRIM(invite_code) = :invite_code", {"invite_code": code})
 
     if not result:
         return jsonify({"error": "Invalid invite code"}), 400

@@ -168,15 +168,17 @@ def create_group(rq):
     try:
         data = rq.get_json()
 
-        group_name = data['group_name']
-        group_desc = data['group_desc']
-        public = data['public']
-        currency = data['currency']
+        group_name = data['groupname']
+        group_desc = data['groupdesc']
+        public = data.get('public', 'Y')
+        #currency = data.get('currency', 'USD')
 
-        if not group_name or not group_desc or not public or not currency:
+        if not group_name or not group_desc or not public:
+            LOG.error(f"Missing parameters: {group_name}, {group_desc}, {public}")
             return jsonify({"message": "missing parameters"}), 400
 
         if not g.user:
+            LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
         
         invite_code = secrets.token_urlsafe(64)
@@ -188,6 +190,7 @@ def create_group(rq):
             'public': public,
             'invite_code': invite_code
         })
+        LOG.info(f"Group created: {group_name}, {group_desc}, {public}, {invite_code}")
         return jsonify({"message": "group created"}), 201
     
     except Exception as e:
