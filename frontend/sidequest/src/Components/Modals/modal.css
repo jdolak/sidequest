@@ -84,3 +84,12 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.form-radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-input-group input[type="radio"] {
+    accent-color: black;
+}

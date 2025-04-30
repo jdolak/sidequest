@@ -6,6 +6,7 @@ import { createGroup } from "../../Services/Groups";
 const NewGroupModal = ({ onClose }) => {
 
     const [formData, setFormData] = useState({
+        groupvisibility: "public",
         groupname: "",
         groupdesc: ""
     });
@@ -40,6 +41,19 @@ const NewGroupModal = ({ onClose }) => {
 
                 <form onSubmit={handleSubmit} className="group-form">
                     <div className="form-data">
+                        <label className="form-label">
+                                Visibility
+                                <div className="form-radio-group">
+                                    <label>
+                                        <input type="radio" name="groupvisibility" value="public" checked={formData.groupvisibility === "public"} onChange={handleChange} />
+                                        Public
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="groupvisibility" value="private" checked={formData.groupvisibility === "private"} onChange={handleChange} />
+                                        Private
+                                    </label>
+                                </div>
+                        </label>
                         <label className="form-label">
                                 Group name
                                 <input className="form-input" type="text" name="groupname" value={formData.groupname} onChange={handleChange} required />
