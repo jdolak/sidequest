@@ -12,7 +12,7 @@ def db_connect():
     rdms = os.getenv("RDMS", "sqlite")
 
     if rdms == "oracle":
-        engine = create_engine("oracle+oracledb://guest:guest@localhost:1539/XE")
+        engine = create_engine("oracle+oracledb://guest:guest@172.22.132.15:1539/XE")
         #sqapp.LOG.info("Using Oracle DB")
 
     else:
