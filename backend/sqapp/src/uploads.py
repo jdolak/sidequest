@@ -171,7 +171,7 @@ def create_group(rq):
         
         invite_code = secrets.token_urlsafe(64)
 
-        sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
+        sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
         g.db_session.execute(text(sql), {
             'group_name': group_name,
             'group_desc': group_desc,

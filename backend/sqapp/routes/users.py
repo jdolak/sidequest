@@ -43,7 +43,7 @@ def get_group_id(group_id):
 
 @user_bp.route("/groups", methods=["GET"])
 def get_groups():
-    sql = "SELECT * FROM SQ_GROUPS WHERE public = 'Y'"
+    sql = "SELECT * FROM SQ_GROUPS WHERE is_public = 'Y'"
     result = sql_many(g.db_session, sql, None)
     for group in result:
         group["size"] = group_member_count(group["group_id"])
@@ -53,7 +53,7 @@ def get_groups():
 @user_bp.route("/groups/search/<query>", methods=["GET"])
 def search_groups(query):
     pattern = f"%{query}%"
-    sql = "SELECT * FROM SQ_GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)"
+    sql = "SELECT * FROM SQ_GROUPS WHERE is_public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)"
     result = sql_many(g.db_session, sql, {"pattern": pattern})
     for group in result:
         group["size"] = group_member_count(group["group_id"])
