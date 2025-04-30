@@ -6,14 +6,33 @@ import { getOpenQuests } from "../../Services/Quests";
 import { getAllBets } from "../../Services/Bets";
 import { getGroup, getGroupUser } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
+import { getLoggedInUser } from "../../Services/Users.js";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [openBets, setOpenBets] = useState([]);
     const [openQuests, setOpenQuests] = useState([]);
     const [group, setGroup] = useState({});
     const groupID = useGlobalStore((state) => state.currGroupID);
+    const navigate = useNavigate();
 
     useEffect(() => {
+         getLoggedInUser().then((user) => {
+            console.log("Logged-in user:", user, "currGroupID:", groupID);
+            if (user.status === "false") {
+                navigate("/login");
+                return;
+            }
+            if (groupID === null){
+                navigate("/search");
+                return;
+            }
+        }).catch((error) => {
+            console.error("Error checking logged-in user:", error);
+            navigate("/login");
+            return;
+        });
+        // get group data
         getGroup(groupID).then((response) => {
             setGroup(response);
         }).catch((error) => {

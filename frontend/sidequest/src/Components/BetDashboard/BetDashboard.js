@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import NewBetModal from "../Modals/NewBet.js";
+import { getLoggedInUser } from "../../Services/Users.js";
 
 const BetDashboard = () => {
 
@@ -31,6 +32,19 @@ const BetDashboard = () => {
   }
   
   useEffect(() => {
+    // double check user is logged in
+    getLoggedInUser().then((user) => {
+        if (user.status === "false") {
+            navigate("/login");
+        }
+        if (groupID === null){
+            navigate("/search");
+        }
+    }).catch((error) => {
+        console.error("Error checking logged-in user:", error);
+        navigate("/login");
+    });
+    // get bets data
       if (activeTab === "openBets" && openBets.length === 0) {
         getAllBets().then((response) => {
           console.log("OpenBets:", response);

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./home.css";
 import {useNavigate} from "react-router-dom";
+import { getLoggedInUser } from "../../Services/Users";
 
 const Home = () => {
 
@@ -13,6 +14,23 @@ const Home = () => {
     const handleLogIn = () => {
         navigate("/login");
     }
+
+    useEffect(() => {
+        const checkLoggedInUser = async () => {
+            try {
+                const user = await getLoggedInUser();
+                console.log("Logged-in user:", user);
+                if (user.status === "true") {
+                    navigate("/search");
+                }
+            } catch (error) {
+                console.error("Error checking logged-in user:", error);
+            }
+        };
+        checkLoggedInUser();
+    }
+    , []);
+
 
     return (
         <div className="home-container">

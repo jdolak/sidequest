@@ -1,15 +1,31 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useState,useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./authregister.css";
+import {getLoggedInUser} from "../../Services/Users.js";
 
 const AuthRegister = ({ onSubmit }) => {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
+
+    useEffect(() => {
+            const checkLoggedInUser = async () => {
+                try {
+                    const user = await getLoggedInUser();
+                    console.log("Logged-in user:", user);
+                    if (user.status === "true") {
+                        navigate("/search");
+                    }
+                } catch (error) {
+                    console.error("Error checking logged-in user:", error);
+                }
+            };
+            checkLoggedInUser();
+        }, []);
 
     const handleChange = (e) => {
         const {name, value} = e.target;

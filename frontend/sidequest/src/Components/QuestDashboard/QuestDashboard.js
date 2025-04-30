@@ -7,6 +7,7 @@ import { data, Link, useNavigate } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import NewQuestModal from "../Modals/NewQuest.js";
+import { getLoggedInUser } from "../../Services/Users";
 
 const QuestDashboard = () => {
   const [openQuests, setOpenQuests] = useState([]);
@@ -30,6 +31,18 @@ const QuestDashboard = () => {
 }
 
   useEffect(() => {
+    console.log("Group ID:", groupID); // Log the groupID to check its value
+    getLoggedInUser().then((user) => {
+        if (user.status === "false") {
+            navigate("/login");
+        }
+        if (groupID === null){
+          navigate("/search");
+      }
+    }).catch((error) => {
+        console.error("Error checking logged-in user:", error);
+        navigate("/login");
+    });
     if (activeTab === "openQuests" && openQuests.length === 0) {
       getOpenQuests().then((response) => {
         console.log("OpenQuests:", response);

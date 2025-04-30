@@ -41,6 +41,7 @@
     - [ ] groups
 - [ ] enable endpoints for creating groups
 - [ ] enable theme change or light mode/dark mode
+- [ ] alert users on login fail
 
 # Bugs and improvements
 - Profile initial does not accurately reflect group name
@@ -57,4 +58,5 @@
 - [ ] Make project responsive
 - [ ] send data when searching for groups
 - [ ] pretty way to display alert and confirm popups
+- [ ] logout process
 

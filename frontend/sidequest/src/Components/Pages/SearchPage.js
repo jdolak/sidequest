@@ -6,14 +6,26 @@ import addIcon from "../../assets/images/add.svg";
 import GroupCard from "../Cards/GroupCard";
 import NewGroupModal from "../Modals/NewGroup";
 import { getAllGroups } from "../../Services/Groups";
+import { getLoggedInUser } from "../../Services/Users";
+import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
     const [groups, setGroups] = useState([]);
     const [allGroups, setAllGroups] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        getLoggedInUser().then((user) => {
+            if (user.status === "false") {
+                navigate("/login");
+            }
+        }).catch((error) => {
+            console.error("Error checking logged-in user:", error);
+            navigate("/login");
+        });
+        
         getAllGroups()
             .then((data) => {
                 setAllGroups(data);

@@ -33,3 +33,20 @@ export const getAllUsers = async () => {
         throw error;
     }
 };
+
+export const getLoggedInUser = async () => {
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/whoami`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching logged-in user:", error);
+        throw error;
+    }
+};
