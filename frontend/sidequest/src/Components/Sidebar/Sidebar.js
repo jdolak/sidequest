@@ -50,6 +50,15 @@ const Sidebar = () => {
         }
     }
 
+    function getGroupTag(groupName) {
+        const words = groupName.split(" ");
+        if (words.length >= 2) {
+            return words[0][0].toUpperCase() + words[1][0].toUpperCase();
+        } else {
+            return groupName.slice(0, 2).toUpperCase();
+        }
+    }
+
     return (
         <div className="sidebar">
             <div className="menu">
@@ -61,7 +70,7 @@ const Sidebar = () => {
                         // <button className="group-button" key={index} onClick={() => setCurrGroup(group.group_id)}>
                         <button className={`group-button ${currGroupID === group.group_id ? "active" : ""}`} key={index} onClick={() => setGroup(group.group_id)}>
                             <div>
-                                {group?.group_name?.slice(0, 2).toUpperCase()}
+                                {getGroupTag(group?.group_name)}
                             </div>
                         </button>
                     ))}
