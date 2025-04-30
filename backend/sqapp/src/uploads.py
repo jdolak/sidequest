@@ -171,7 +171,7 @@ def create_group(rq):
         
         invite_code = secrets.token_urlsafe(64)
 
-        sql = "INSERT INTO groups (group_name, group_desc, public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
+        sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
         g.db_session.execute(text(sql), {
             'group_name': group_name,
             'group_desc': group_desc,
@@ -200,7 +200,7 @@ def bet_resolve(rq):
         else:
             winner = data[0]["bb.buyer_id"]
 
-        sql = "UPDATE GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
             'coins': coins,
             'user_id': winner,

@@ -1,24 +1,24 @@
--- Insert Users
-INSERT INTO USERS (username, password_hash) VALUES ('alice', 'hash1');
-INSERT INTO USERS (username, password_hash) VALUES ('bob', 'hash2');
-INSERT INTO USERS (username, password_hash) VALUES ('carol', 'hash3');
-INSERT INTO USERS (username, password_hash) VALUES ('dave', 'hash4');
-INSERT INTO USERS (username, password_hash) VALUES ('eve', 'hash5');
+-- Insert SQ_USERS
+INSERT INTO SQ_USERS (username, password_hash) VALUES ('alice', 'hash1');
+INSERT INTO SQ_USERS (username, password_hash) VALUES ('bob', 'hash2');
+INSERT INTO SQ_USERS (username, password_hash) VALUES ('carol', 'hash3');
+INSERT INTO SQ_USERS (username, password_hash) VALUES ('dave', 'hash4');
+INSERT INTO SQ_USERS (username, password_hash) VALUES ('eve', 'hash5');
 
--- Insert Groups
-INSERT INTO GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Hiking Club', 'A club for hiking enthusiasts.', 'Y', 'INV1234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Cooking Squad', 'For those who love to cook!', 'N', 'INV2234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Gamers Unite', 'All about gaming.', 'Y', 'INV3234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Bookworms', 'Reading challenges and discussions.', 'Y', 'INV4234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
-INSERT INTO GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Fitness Freaks', 'Fitness and wellbeing community.', 'N', 'INV5234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+-- Insert SQ_GROUPS
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Hiking Club', 'A club for hiking enthusiasts.', 'Y', 'INV1234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Cooking Squad', 'For those who love to cook!', 'N', 'INV2234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Gamers Unite', 'All about gaming.', 'Y', 'INV3234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Bookworms', 'Reading challenges and discussions.', 'Y', 'INV4234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
+INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES ('Fitness Freaks', 'Fitness and wellbeing community.', 'N', 'INV5234567890ABCDEFGH1234567890ABCDEFGH1234567890ABCDEFGH12345678');
 
 -- Insert Group Memberships
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 1, 1000, 'admin');
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (2, 1, 500, 'member');
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (3, 2, 750, 'admin');
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (4, 3, 300, 'admin');
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (5, 4, 400, 'member');
-INSERT INTO GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 5, 600, 'member');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 1, 1000, 'admin');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (2, 1, 500, 'member');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (3, 2, 750, 'admin');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (4, 3, 300, 'admin');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (5, 4, 400, 'member');
+INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency, role) VALUES (1, 5, 600, 'member');
 
 -- Insert Quests (5 per group)
 BEGIN

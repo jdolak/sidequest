@@ -22,7 +22,7 @@ def register_user(rq):
             return jsonify({"error": f"Missing field: {field}"}), 400
         
     # Check if the user already exists
-    sql = "SELECT * FROM USERS WHERE username = :username"
+    sql = "SELECT * FROM SQ_USERS WHERE username = :username"
     existing_user = sql_one(g.db_session, sql, {"username": data["username"]})
     
     if existing_user is not None:
@@ -37,10 +37,10 @@ def register_user(rq):
 
 
     # Insert the new user into the database
-    sql = "INSERT INTO USERS (username, password_hash) VALUES (:username, :password_hash)"
+    sql = "INSERT INTO SQ_USERS (username, password_hash) VALUES (:username, :password_hash)"
     result = g.db_session.execute(text(sql), {"username": data["username"], "password_hash": hashed_password})
 
-    result = sql_one(g.db_session, "SELECT user_id FROM USERS WHERE username = :username", {"username": data["username"]})
+    result = sql_one(g.db_session, "SELECT user_id FROM SQ_USERS WHERE username = :username", {"username": data["username"]})
 
     if result is None:
         LOG.error(f"User registration failed for {data['username']}")
@@ -75,7 +75,7 @@ def login_user(rq):
             LOG.warning(f"Missing field: {field}")
             return jsonify({"error": f"Missing field: {field}"}), 400
 
-    sql = "SELECT * FROM USERS WHERE username = :username"
+    sql = "SELECT * FROM SQ_USERS WHERE username = :username"
     existing_user = sql_one(g.db_session, sql, {"username": data["username"]})
 
     if existing_user is None:
@@ -110,22 +110,22 @@ def process_invite(code):
     if not g.user:
         return jsonify({"error": "User not logged in"}), 401
     
-    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS WHERE invite_code = :invite_code", {"invite_code": code})
+    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS WHERE invite_code = :invite_code", {"invite_code": code})
 
     if not result:
         return jsonify({"error": "Invalid invite code"}), 400
     group_id = result["group_id"]
     
     
-    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
+    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
     if result:
         return jsonify({"error": "User already in group"}), 400
     
-    sql = "INSERT INTO GROUPS_USER (user_id, group_id) VALUES (:user_id, :group_id)"
+    sql = "INSERT INTO SQ_GROUPS_USER (user_id, group_id) VALUES (:user_id, :group_id)"
     g.db_session.execute(text(sql), {"user_id": g.user, "group_id": group_id})
 
     # Check if the user was added successfully
-    result = sql_one(g.db_session, "SELECT group_id FROM GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
+    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
     if result:
         LOG.info(f"User {g.user} added to group {group_id} successfully")
         return jsonify({"message": "User added to group successfully"}), 200
@@ -134,7 +134,7 @@ def group_member_count(group_id):
     if not group_id:
         return 0
     
-    sql = "SELECT COUNT(*) num FROM GROUPS_USER WHERE group_id = :group_id"
+    sql = "SELECT COUNT(*) num FROM SQ_GROUPS_USER WHERE group_id = :group_id"
     return sql_one(g.db_session, sql, {"group_id": group_id})["num"]
 
 

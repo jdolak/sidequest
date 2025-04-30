@@ -11,7 +11,7 @@ def get_bet_id(bet_id):
     return sql_response(
         sql_one(
             g.db_session,
-            "SELECT bet_id, group_id, seller_id, username, question  FROM AVAILABLE_BETS b, USERS u WHERE bet_id = :bet_id AND b.seller_id = u.user_id",
+            "SELECT bet_id, group_id, seller_id, username, question  FROM AVAILABLE_BETS b, SQ_USERS u WHERE bet_id = :bet_id AND b.seller_id = u.user_id",
             {"bet_id": bet_id},
         )
     )
@@ -22,7 +22,7 @@ def get_bets(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT bet_id, group_id, seller_id, username, question FROM AVAILABLE_BETS b, USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id",
+            "SELECT bet_id, group_id, seller_id, username, question FROM AVAILABLE_BETS b, SQ_USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id",
             {"group_id": group_id},
         )
     )
@@ -30,7 +30,7 @@ def get_bets(group_id):
 
 @bet_bp.route("/bought_bets/<int:bet_id>/<int:buyer_id>", methods=["GET"])
 def get_bought_bet(buyer_id, bet_id):
-    sql = "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS AND USERS WHERE buyer_id = :buyer_id AND bet_id = :bet_id AND buyer_id = user_id"
+    sql = "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS AND SQ_USERS WHERE buyer_id = :buyer_id AND bet_id = :bet_id AND buyer_id = user_id"
     return sql_response(
         sql_one(g.db_session, sql, {"buyer_id": buyer_id, "bet_id": bet_id})
     )
@@ -65,7 +65,7 @@ def get_all_bought_bets():
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS, USERS WHERE buyer_id = user_id",
+            "SELECT buyer_id, username, bet_id, quantity, result, date_bought, date_resolved FROM BOUGHT_BETS, SQ_USERS WHERE buyer_id = user_id",
             None,
         )
     )

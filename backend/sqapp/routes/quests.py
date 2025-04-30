@@ -72,7 +72,7 @@ def get_quest_open(group_id):
 def get_quest_submission_id(submission_id):
     result = sql_one(
         g.db_session,
-        "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE submission_id = :submission_id AND q.user_id = u.user_id",
+        "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE submission_id = :submission_id AND q.user_id = u.user_id",
         {"submission_id": submission_id},
     )
     if result and result["submission_photo"]:
@@ -85,7 +85,7 @@ def get_all_quest_submissions():
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, USERS u WHERE q.user_id = u.user_id",
+            "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE q.user_id = u.user_id",
             None,
         )
     )

@@ -1,12 +1,12 @@
 ```mermaid
 erDiagram
-    USERS {
+    SQ_USERS {
         int user_id PK
         string username
         string password_hash
     }
 
-    GROUPS {
+    SQ_GROUPS {
         int group_id PK
         string group_name
         string group_desc
@@ -14,7 +14,7 @@ erDiagram
         char(64) invite_code
     }
 
-    GROUPS_USER {
+    SQ_GROUPS_USER {
         int user_id PK,FK
         int group_id PK,FK
         int currency
@@ -65,14 +65,14 @@ erDiagram
         string status
     }
 
-    USERS ||--o{ GROUPS_USER : "is in"
-    GROUPS ||--o{ GROUPS_USER : "has"
-    USERS ||--o{ AVAILABLE_BETS : "sells"
-    GROUPS ||--o{ AVAILABLE_BETS : "has"
-    USERS ||--o{ BOUGHT_BETS : "buys"
+    SQ_USERS ||--o{ SQ_GROUPS_USER : "is in"
+    SQ_GROUPS ||--o{ SQ_GROUPS_USER : "has"
+    SQ_USERS ||--o{ AVAILABLE_BETS : "sells"
+    SQ_GROUPS ||--o{ AVAILABLE_BETS : "has"
+    SQ_USERS ||--o{ BOUGHT_BETS : "buys"
     AVAILABLE_BETS ||--o{ BOUGHT_BETS : "is bought in"
-    GROUPS ||--o{ QUESTS : "has"
-    USERS ||--o{ QUEST_SUBMISSIONS : "submits"
+    SQ_GROUPS ||--o{ QUESTS : "has"
+    SQ_USERS ||--o{ QUEST_SUBMISSIONS : "submits"
     QUESTS ||--o{ QUEST_SUBMISSIONS : "has"
 
 ```

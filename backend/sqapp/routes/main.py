@@ -76,7 +76,7 @@ def init_app(sq_app):
 @main_bp.route("/whoami", methods=["GET"])
 def whoami():
     if g.user:
-        sql = "SELECT user_id, username FROM USERS WHERE user_id = :user_id"
+        sql = "SELECT user_id, username FROM SQ_USERS WHERE user_id = :user_id"
         LOG.info(f"User {g.user} is logged in")
         result = sql_one(g.db_session, sql, {"user_id": g.user})
         if result:

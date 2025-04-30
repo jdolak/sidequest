@@ -8,7 +8,7 @@ from sqapp.src.uploads import create_group
 # deprecated in favor of /users/my_user
 # @user_bp.route("/users/<int:user_id>", methods=["GET"])
 # def get_user_id(user_id):
-#    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM USERS WHERE user_id = :user_id", {"user_id": user_id}))
+#    return sql_response(sql_one(g.db_session, "SELECT user_id, username FROM SQ_USERS WHERE user_id = :user_id", {"user_id": user_id}))
 
 user_bp = Blueprint("user_bp", __name__)
 
@@ -18,7 +18,7 @@ def get_my_user():
     return sql_response(
         sql_one(
             g.db_session,
-            "SELECT user_id, username FROM USERS WHERE user_id = :user_id",
+            "SELECT user_id, username FROM SQ_USERS WHERE user_id = :user_id",
             {"user_id": g.user},
         )
     )
@@ -28,13 +28,13 @@ def get_my_user():
 @user_bp.route("/users", methods=["GET"])
 def get_users():
     return sql_response(
-        sql_many(g.db_session, "SELECT user_id, username FROM USERS", None)
+        sql_many(g.db_session, "SELECT user_id, username FROM SQ_USERS", None)
     )
 
 
 @user_bp.route("/groups/<int:group_id>", methods=["GET"])
 def get_group_id(group_id):
-    sql = "SELECT * FROM GROUPS WHERE group_id = :group_id"
+    sql = "SELECT * FROM SQ_GROUPS WHERE group_id = :group_id"
     group = sql_one(g.db_session, sql, {"group_id": group_id})
     group["size"] = group_member_count(group["group_id"])
     return sql_response(group)
@@ -43,7 +43,7 @@ def get_group_id(group_id):
 
 @user_bp.route("/groups", methods=["GET"])
 def get_groups():
-    sql = "SELECT * FROM GROUPS WHERE public = 'Y'"
+    sql = "SELECT * FROM SQ_GROUPS WHERE public = 'Y'"
     result = sql_many(g.db_session, sql, None)
     for group in result:
         group["size"] = group_member_count(group["group_id"])
@@ -53,7 +53,7 @@ def get_groups():
 @user_bp.route("/groups/search/<query>", methods=["GET"])
 def search_groups(query):
     pattern = f"%{query}%"
-    sql = "SELECT * FROM GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)"
+    sql = "SELECT * FROM SQ_GROUPS WHERE public = 'Y' AND (group_name LIKE :pattern OR group_desc LIKE :pattern)"
     result = sql_many(g.db_session, sql, {"pattern": pattern})
     for group in result:
         group["size"] = group_member_count(group["group_id"])
@@ -62,7 +62,7 @@ def search_groups(query):
 
 @user_bp.route("/groups/my_groups", methods=["GET"])
 def get_my_groups():
-    sql = "SELECT * FROM GROUPS NATURAL JOIN GROUPS_USER WHERE user_id = :user_id"
+    sql = "SELECT * FROM SQ_GROUPS NATURAL JOIN SQ_GROUPS_USER WHERE user_id = :user_id"
     result = sql_many(g.db_session, sql, {"user_id": g.user})
     for group in result:
         group["size"] = group_member_count(group["group_id"])
@@ -71,7 +71,7 @@ def get_my_groups():
 
 @user_bp.route("/groups_user/<int:group_id>", methods=["GET"])
 def get_group_user(group_id):
-    sql = "SELECT user_id, username, currency, group_id FROM GROUPS_USER gu, USERS u WHERE gu.user_id = :user_id AND gu.group_id = :group_id AND gu.user_id = u.user_id"
+    sql = "SELECT user_id, username, currency, group_id FROM SQ_GROUPS_USER gu, SQ_USERS u WHERE gu.user_id = :user_id AND gu.group_id = :group_id AND gu.user_id = u.user_id"
     return sql_response(
         sql_one(g.db_session, sql, {"user_id": g.user, "group_id": group_id})
     )
@@ -81,7 +81,7 @@ def get_all_groups_user():
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT user_id, username, currency, group_id FROM GROUPS_USER gu, USERS u WHERE gu.user_id = u.user_id",
+            "SELECT user_id, username, currency, group_id FROM SQ_GROUPS_USER gu, SQ_USERS u WHERE gu.user_id = u.user_id",
             None,
         )
     )
