@@ -20,15 +20,15 @@ const NewGroupModal = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
+        const formDatas = new FormData();
 
-        createGroup(formData).then((response) => {
+        createGroup(formDatas).then((response) => {
             console.log("Group created successfully:", response);
         }).catch((error) => {
             console.error("Error creating group:", error);
             alert("Error creating group.", error.message);
         });
-        
+
         onClose();
     }
 
