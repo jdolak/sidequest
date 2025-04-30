@@ -53,8 +53,10 @@ def sql_one(db_session, query, params):
     row = result.fetchone()
 
     if row:
+        sqapp.LOG.debug(f"SQL result: {dict(row._mapping)}")
         return dict(row._mapping)
     else:
+        sqapp.LOG.debug("No results found")
         return None
 
 def sql_many(db_session, query, params):
@@ -62,8 +64,10 @@ def sql_many(db_session, query, params):
     result = db_session.execute(text(query), params)
     row_dict = [dict(row._mapping) for row in result]
     if result:
+        sqapp.LOG.debug(f"SQL result: {result}")
         return row_dict
     else:
+        sqapp.LOG.debug("No results found")
         return None
     
 def sql_response(value, public=False):

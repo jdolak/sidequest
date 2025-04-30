@@ -80,17 +80,19 @@ def whoami():
         LOG.info(f"User {g.user} is logged in")
         result = sql_one(g.db_session, sql, {"user_id": g.user})
         if result:
+            result["status"] = "true"
             return sql_response(result)
         else:
             return (
                 jsonify(
                     {
-                        "message": f"Session logged in for {g.user}, but user doesn't exist in database"
+                        "message": f"Session logged in for {g.user}, but user doesn't exist in database",
+                        "status": "false",
                     }
                 ),
                 200,
             )
-    return jsonify({"message": "User not logged in"}), 200
+    return jsonify({"message": "User not logged in", "status" : "false"}), 200
 
 
 @main_bp.route("/debug")
