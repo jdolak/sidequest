@@ -35,13 +35,16 @@ const QuestDashboard = () => {
     getLoggedInUser().then((user) => {
         if (user.status === "false") {
             navigate("/login");
+            return
         }
         if (groupID === null){
           navigate("/search");
+          return;
       }
     }).catch((error) => {
         console.error("Error checking logged-in user:", error);
         navigate("/login");
+        return;
     });
     if (activeTab === "openQuests" && openQuests.length === 0) {
       getOpenQuests().then((response) => {

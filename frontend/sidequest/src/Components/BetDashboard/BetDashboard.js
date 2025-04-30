@@ -36,13 +36,16 @@ const BetDashboard = () => {
     getLoggedInUser().then((user) => {
         if (user.status === "false") {
             navigate("/login");
+            return;
         }
         if (groupID === null){
             navigate("/search");
+            return;
         }
     }).catch((error) => {
         console.error("Error checking logged-in user:", error);
         navigate("/login");
+        return;
     });
     // get bets data
       if (activeTab === "openBets" && openBets.length === 0) {

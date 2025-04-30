@@ -35,11 +35,12 @@
 - [x] implement search page
     - [x] display results properly
 - [x] enable endpoints for joining groups
+- [ ] only display accessible groups in sidebar
 - [ ] endpoints for bet resolution
-- [ ] endpoints/implementation for creation
-    - [ ] quests
-    - [ ] groups
-- [ ] enable endpoints for creating groups
+- [x] endpoints/implementation for creation
+    - [x] quests
+    - [x] groups
+- [x] enable endpoints for creating groups
 - [ ] enable theme change or light mode/dark mode
 - [ ] alert users on login fail
 
