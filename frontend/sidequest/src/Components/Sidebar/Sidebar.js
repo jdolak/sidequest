@@ -5,11 +5,12 @@ import './sidebar.css';
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getMyGroups } from "../../Services/Groups.js";
 import { useNavigate } from "react-router-dom";
-
+import { getLoggedInUser, logout } from "../../Services/Users.js";
 
 
 const Sidebar = () => {
     const [groups, setGroups] = useState([]);
+    const [username, setUsername] = useState("");
     const setCurrGroup = useGlobalStore((state) => state.setGroup);
     const currGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
@@ -20,6 +21,13 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
+        getLoggedInUser().then((user) => {
+            if (user.status === "true") {
+                setUsername(user.username);
+            }
+        }).catch((error) => {
+            console.error("Error checking logged-in user:", error);
+        });
         getMyGroups().then((response) => {
             console.log("Groups:", response);
             setGroups(response);
@@ -28,6 +36,17 @@ const Sidebar = () => {
         });
     }, []);
 
+    function handleLogout() {
+        if (window.confirm("Are you sure you want to logout?")) {
+            logout().then((response) => {
+                console.log("Logout response:", response);
+            }).catch((error) => {
+                console.error("Error logging out:", error);
+            });
+            
+            navigate("/login");
+        }
+    }
 
     return (
         <div className="sidebar">
@@ -44,6 +63,11 @@ const Sidebar = () => {
                             </div>
                         </button>
                     ))}
+                </div>
+                <div className="user-icon">
+                    <button className="logout-button" onClick={() => { handleLogout() }}>
+                        {username?.slice(0, 2).toUpperCase()}
+                    </button>
                 </div>
             </div>
         </div>

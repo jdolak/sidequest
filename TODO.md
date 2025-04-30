@@ -10,6 +10,8 @@
 - [ ] Front-end for Accepted Bets
 - [x] Front-end for My Quests
 - [ ] Front-end for My Bets (resolve yes/no, add quantity available)
+- [ ] move logout button to bottom of sidebar
+- [ ] make a settings icon below the logout button on the sidebar
 
 ### Jachob
 - [x] Create endpoints

@@ -50,3 +50,20 @@ export const getLoggedInUser = async () => {
         throw error;
     }
 };
+
+export const logout = async () => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/logout`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error logging out:", error);
+        throw error;
+    }
+};
