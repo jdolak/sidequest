@@ -11,7 +11,7 @@ def get_bet_id(bet_id):
     return sql_response(
         sql_one(
             g.db_session,
-            "SELECT bet_id, group_id, seller_id, username, question  FROM AVAILABLE_BETS b, SQ_USERS u WHERE bet_id = :bet_id AND b.seller_id = u.user_id",
+            "SELECT bet_id, group_id, seller_id, username, max_quantity, side, odds, question, description, status FROM AVAILABLE_BETS b, SQ_USERS u WHERE bet_id = :bet_id AND b.seller_id = u.user_id",
             {"bet_id": bet_id},
         )
     )
@@ -22,7 +22,7 @@ def get_bets(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT bet_id, group_id, seller_id, username, question FROM AVAILABLE_BETS b, SQ_USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id",
+            "SELECT bet_id, group_id, seller_id, username, max_quantity, side, odds, question, description, status FROM AVAILABLE_BETS b, SQ_USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id",
             {"group_id": group_id},
         )
     )
