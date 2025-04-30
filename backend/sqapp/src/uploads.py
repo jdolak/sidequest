@@ -95,11 +95,13 @@ def rewrite_url_host(url):
 
 def create_quest(rq):
     try:
-        group_id = rq.form['group_id']
-        quest_title = rq.form['quest_title']
-        quest_desc = rq.form['quest_desc']
-        reward_amount = rq.form['reward_amount']
-        due_date = rq.form['due_date']
+        data = rq.get_json()
+
+        group_id = data['group_id']
+        quest_title = data['quest_title']
+        quest_desc = data['quest_desc']
+        reward_amount = data['reward_amount']
+        due_date = data['due_date']
         
         if not group_id or not quest_title or not quest_desc or not reward_amount or not due_date:
             return jsonify({"message": "missing parameters"}), 400
@@ -126,17 +128,21 @@ def create_quest(rq):
 
 def create_bet(rq):
     try:
-        group_id = rq.form['group_id']
-        question = rq.form['question']
-        description = rq.form['description']
-        max_quantity = rq.form['max_quantity']
-        side = rq.form['side']
-        odds = rq.form['odds']
+        data = rq.get_json()
+
+        group_id = data['group_id']
+        question = data['question']
+        description = data['description']
+        max_quantity = data['max_quantity']
+        side = data['side']
+        odds = data['odds']
 
         if not group_id or not question or not description or not max_quantity or not side or not odds:
+            LOG.error(f"Missing parameters: {group_id}, {question}, {description}, {max_quantity}, {side}, {odds}")
             return jsonify({"message": "missing parameters"}), 400
 
         if not g.user:
+            LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
 
         sql = "INSERT INTO available_bets (group_id, seller_id, max_quantity, side, odds, question, descriptio, status) VALUES (:group_id, :seller_id, :max_quantity, :side, :odds, :question, :description, :status)"
@@ -150,6 +156,8 @@ def create_bet(rq):
             'description': description,
             'status': 'Open'
         })
+
+        LOG.info(f"Bet created: {question}, {description}, {max_quantity}, {side}, {odds}")
         return jsonify({"message": "bet created"}), 201
     
     except Exception as e:
@@ -158,10 +166,12 @@ def create_bet(rq):
     
 def create_group(rq):
     try:
-        group_name = rq.form['group_name']
-        group_desc = rq.form['group_desc']
-        public = rq.form['public']
-        currency = rq.form['currency']
+        data = rq.get_json()
+
+        group_name = data['group_name']
+        group_desc = data['group_desc']
+        public = data['public']
+        currency = data['currency']
 
         if not group_name or not group_desc or not public or not currency:
             return jsonify({"message": "missing parameters"}), 400
