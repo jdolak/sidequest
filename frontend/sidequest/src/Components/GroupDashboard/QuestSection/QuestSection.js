@@ -14,8 +14,8 @@ const QuestSection = ({quests}) => {
                 {quests.map((quest) => (
                     <Link to={`/quests/${quest.quest_id}`} className="quest-card-link" key={quest.quest_id}>
                     <Card
-                        title={quest.quest_desc}
-                        creator={quest.author_id}
+                        title={quest.quest_title}
+                        creator={quest.username}
                         coins={quest.reward_amount}
                         date={quest.due_date}
                     />

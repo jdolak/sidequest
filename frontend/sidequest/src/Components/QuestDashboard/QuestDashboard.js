@@ -70,11 +70,6 @@ const QuestDashboard = () => {
     }
   }, [activeTab, groupID]); // Ensure groupID is included in the dependency array
 
-  // open quest functionality
-  const openQuestButton = () => {
-
-  }
-
   return (
     <div className="quest-dashboard-main-container">
       <Sidebar />
@@ -111,8 +106,8 @@ const QuestDashboard = () => {
                 myQuests.map((quest) => (
                   <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
-                      title={quest.quest_desc}
-                      creator={quest.author_id}
+                      title={quest.quest_title}
+                      creator={quest.username}
                       coins={quest.reward_amount}
                       date={quest.due_date}
                     />
@@ -122,8 +117,8 @@ const QuestDashboard = () => {
                 acceptedQuests.map((quest) => (
                   <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
-                      title={quest.quest_desc}
-                      creator={quest.author_id}
+                      title={quest.quest_title}
+                      creator={quest.username}
                       coins={quest.reward_amount}
                       date={quest.due_date}
                     />
@@ -133,8 +128,8 @@ const QuestDashboard = () => {
                 openQuests.map((quest) => (
                   <Link to={`/quests/${quest.quest_id}`} state={{ sourceTab: activeTab }} className="quest-card-link" key={quest.quest_id}>
                     <Card
-                      title={quest.quest_desc}
-                      creator={quest.author_id}
+                      title={quest.quest_title}
+                      creator={quest.username}
                       coins={quest.reward_amount}
                       date={quest.due_date}
                     />
