@@ -137,7 +137,7 @@ const QuestDetails = () => {
                 </Link>
                 <div className="quest-details-header-contents"> 
                     <div className="quest-details-title">{quest?.quest_title}</div>
-                    <div>Created by {quest?.quest_username}</div>
+                    <div>Created by {quest?.username}</div>
                     <div>Quest closes on {formatDate(quest?.due_date)}</div>
                 </div>
             </div>
