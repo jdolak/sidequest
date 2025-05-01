@@ -13,6 +13,8 @@
 - [x] move logout button to bottom of sidebar (Also maybe make this a circle?)
 - [x] make a settings icon below the logout button on the sidebar (themes)
 - [ ] invite link 
+- [ ] settings pop up to allow for more themes
+- [ ] only either buy yes or buy no button should appear
 
 ### Jachob
 - [x] Create endpoints
@@ -46,7 +48,7 @@
 - [x] enable endpoints for creating groups
 - [x] alert users on login fail
 - [x] logout process
-- [ ] enable theme change or light mode/dark mode
+- [x] enable theme change or light mode/dark mode
 - [ ] endpoints for bet resolution
 
 # Bugs and improvements
