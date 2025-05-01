@@ -11,6 +11,7 @@ const QuestDetails = () => {
     const questID = useParams().id;
     const [quest, setQuest] = useState(null);
     const location = useLocation();
+    const [submission, setSubmission] = useState(null);
     // const sourceTab = location.state?.sourceTab;
 
     const goBack = () => {
@@ -25,7 +26,11 @@ const QuestDetails = () => {
             console.error("Error fetching quest:", error);
         });
 
-        fetch (`https://sq.jdolak.com/api/quest_submissions/<int:submission_id>`)
+        getQuestSubmission(questID).then((submissionData) => {
+            setSubmission(submissionData);
+        }).catch((error) => {
+            console.error("Error fetching quest submission:", error);
+        });
     }, [questID]);
 
     // Open Quest Specific Content
@@ -111,13 +116,12 @@ const QuestDetails = () => {
     }
 
     const MyQuestContent = () => {
-        // if quest has been accepted, if not return nothing
+        if (!submission) return null;
         return (
             <div className="quest-details-text">
                 <div className="quest-details-subheading">Submission</div>
-                <div>Completed by jdolak</div>
-                {/* insert img submission */}
-                <div>{/* insert comment submission */}</div>
+                <div>Completed by {submission.username}</div>
+                <div>{submission.submission_photo}</div>
         </div>
         )
     }
@@ -156,6 +160,7 @@ const QuestDetails = () => {
                 {quest?.quest_status === 'Open' && <OpenQuestContent />}
             </div>
             {quest?.quest_status === 'Accepted' && <AcceptedQuestContent />}
+            {quest?.quest_status === 'Resolved' && <MyQuestContent />}
         </div>
     </div>
   )
