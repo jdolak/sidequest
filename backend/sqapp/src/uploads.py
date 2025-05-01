@@ -180,7 +180,7 @@ def create_group(rq):
             LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
         
-        invite_code = secrets.token_urlsafe(48)
+        invite_code = secrets.token_urlsafe(24)
 
         sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
         g.db_session.execute(text(sql), {

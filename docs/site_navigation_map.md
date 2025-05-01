@@ -3,7 +3,7 @@
 ```mermaid
 graph LR;
 
-dash@{ shape: rect	, label: "Dashboard\n /dashboard" }
+dash@{ shape: rect	, label: "Search\n /search" }
 home@{ shape: rect	, label: "Home\n /" }
 q@{ shape: rect	, label: "All Quests\n /quests" }
 b@{ shape: rect	, label: "All Bets\n /bets" }
