@@ -13,14 +13,16 @@ import "./card.css";
 //   );
 // };
 
-const BetCard = () => {
+const BetCard = ({ title, creator, coins, date, odds }) => {
   return (
-    <div class="card">
-      <div class="card-title">Is Notre Dame Winning the Fencing Championship?</div>
-      <div class="card-desc">
-        <div>Created by csuwita</div>
-      </div>
-    </div>
+    <article class="card" role="listitem">
+       <div class="card-title">{title}</div>
+       <div class="card-desc">
+         <div>Created by {creator}</div>
+         {coins && <div>{coins} coins</div>}
+         {odds && <div>Odds: {odds}</div>}
+       </div>
+     </article>
   )
 }
 

@@ -15,7 +15,6 @@ const BetSection = ({bets}) => {
                     <Card
                       title={bet.question}
                       creator={bet.username}
-                      date={bet.due_date}
                       odds={bet.odds}
                     />
                   </Link>
