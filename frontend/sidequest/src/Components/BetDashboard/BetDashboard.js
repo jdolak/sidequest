@@ -5,7 +5,6 @@ import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
-import { useGlobalStore } from '../../stores/globalStore.js';
 import NewBetModal from "../Modals/NewBet.js";
 import { getLoggedInUser } from "../../Services/Users.js";
 
@@ -15,7 +14,7 @@ const BetDashboard = () => {
   const [acceptedBets, setAcceptedBets] = useState([]);
   const [myBets, setMyBets] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const groupID = useGlobalStore((state) => state.currGroupID);
+  const groupID = sessionStorage.getItem("groupID");
 
   const [activeTab, setActiveTab] = React.useState("myBets");
   const tabs = [

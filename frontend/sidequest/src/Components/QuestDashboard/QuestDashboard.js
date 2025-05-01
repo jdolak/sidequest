@@ -5,7 +5,6 @@ import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { data, Link, useNavigate } from "react-router-dom";
 import { getOpenQuests, getAcceptedQuestsByUser, getMyQuests } from "../../Services/Quests";
-import { useGlobalStore } from '../../stores/globalStore.js';
 import NewQuestModal from "../Modals/NewQuest.js";
 import { getLoggedInUser } from "../../Services/Users";
 
@@ -14,7 +13,7 @@ const QuestDashboard = () => {
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [myQuests, setMyQuests] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const groupID = useGlobalStore((state) => state.currGroupID);
+  const groupID = sessionStorage.getItem("groupID");
 
   const [activeTab, setActiveTab] = React.useState("myQuests");
   const tabs = [
