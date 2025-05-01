@@ -23,6 +23,7 @@
     - [x] Groups
 - [x] logging
 - [ ] bet resolution endpoints
+- [ ] buy bets/quests endpoints
 
 ### Patrick
 - [x] Help Create Pages
