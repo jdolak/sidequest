@@ -4,6 +4,13 @@ import './questsection.css';
 import Card from '../../Cards/Card';
 
 const QuestSection = ({quests}) => {
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString(undefined, options);
+    };
+
     return (
         <div className="main-quest-section">
             <div className="quest-section-header">
@@ -17,7 +24,7 @@ const QuestSection = ({quests}) => {
                         title={quest.quest_title}
                         creator={quest.username}
                         coins={quest.reward_amount}
-                        date={quest.due_date}
+                        date={formatDate(quest.due_date)}
                     />
                     </Link>
                 ))}
