@@ -8,7 +8,7 @@ graph TD;
         Nginx
 				Flask
 				db@{ shape: cyl, label: "OracleDB\n(RDMS)" }
-				static@{ shape: docs, label: "Static Files" }
+				static@{ shape: docs, label: "React Components" }
         obj@{ shape: cyl, label: "Minio\n(Object Storage)" }
     end
 
@@ -16,7 +16,7 @@ graph TD;
     Nginx --> Browser
     Nginx -->|/api| Flask
     Flask -->|SQL| db
-    Nginx -->|/index.html| static
+    Nginx -->|/| static
     Nginx -->|/uploads| obj
 ```
 
