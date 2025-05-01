@@ -52,11 +52,12 @@ const AuthLogin = ({onSubmit}) => {
 
             localStorage.setItem("authenticated", "true");
 
-            window.location.replace("/search");
-
             if (onSubmit) {
                 onSubmit(formData);
             }
+
+            navigate("/search");
+            
         }  catch (error) {
             console.error("Log in failed:", error);
             alert("Username or Password may be incorrect. "+error.message);
