@@ -38,7 +38,7 @@ def get_quest_accepted(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM QUESTS q, QUEST_SUBMISSIONS qs WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id AND q.group_id = :group_id",
+            "SELECT q.quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, QUEST_SUBMISSIONS qs, SQ_USERS u WHERE qs.status = 'Accepted' AND q.quest_id = qs.quest_id AND q.group_id = :group_id AND u.user_id = q.author_id",
             {"group_id": group_id},
         )
     )
@@ -55,7 +55,7 @@ def get_my_quest(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM QUESTS q WHERE q.author_id = :author_id AND q.group_id = :group_id",
+            "SELECT quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, SQ_USERS u WHERE q.author_id = :author_id AND q.group_id = :group_id AND u.user_id = q.author_id",
             {"author_id": g.user, "group_id": group_id},
         )
     )
@@ -64,7 +64,7 @@ def get_my_quest(group_id):
 @quest_bp.route("/quests/open/<int:group_id>", methods=["GET"])
 def get_quest_open(group_id):
     return sql_response(
-        sql_many(g.db_session, "SELECT * FROM QUESTS WHERE quest_status = 'Open' AND group_id = :group_id", {"group_id": group_id})
+        sql_many(g.db_session, "SELECT quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, SQ_USERS u WHERE quest_status = 'Open' AND group_id = :group_id AND u.user_id = q.author_id", {"group_id": group_id})
     )
 
 
