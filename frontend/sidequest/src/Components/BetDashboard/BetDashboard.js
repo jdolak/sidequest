@@ -110,10 +110,10 @@ const BetDashboard = () => {
                 myBets.map((bet) => (
                   <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
                     <Card
-                      author_id={bet.author_id}
-                      bet_desc={bet.bet_desc}
-                      due_date={bet.due_date}
-                      reward_amount={bet.reward_amount}
+                      title={bet.question}
+                      creator={bet.username}
+                      bet_desc={bet.description}
+                      odds={bet.odds}
                     />
                   </Link>
                 ))}
@@ -121,21 +121,21 @@ const BetDashboard = () => {
                 acceptedBets.map((bet) => (
                   <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
                     <Card
-                      author_id={bet.author_id}
-                      bet_desc={bet.bet_desc}
-                      due_date={bet.due_date}
-                      reward_amount={bet.reward_amount}
+                      title={bet.question}
+                      creator={bet.username}
+                      bet_desc={bet.description}
+                      odds={bet.odds}
                     />
                   </Link>
                 ))}
               {activeTab === "openBets" &&
-                openBets.map((bet) => (
+                openBets.map((bet) => ( console.log(bet),
                   <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
                     <Card
-                      author_id={bet.author_id}
-                      bet_desc={bet.bet_desc}
-                      due_date={bet.due_date}
-                      reward_amount={bet.reward_amount}
+                      title={bet.question}
+                      creator={bet.username}
+                      bet_desc={bet.description}
+                      odds={bet.odds}
                     />
                   </Link>
                 ))}
