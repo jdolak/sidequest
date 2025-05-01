@@ -11,7 +11,7 @@ const QuestDetails = () => {
     const questID = useParams().id;
     const [quest, setQuest] = useState(null);
     const location = useLocation();
-    const sourceTab = location.state?.sourceTab;
+    // const sourceTab = location.state?.sourceTab;
 
     const goBack = () => {
         navigate(-1);
@@ -132,8 +132,8 @@ const QuestDetails = () => {
                     <div className="back-text">Back</div>
                 </Link>
                 <div className="quest-details-header-contents"> 
-                    <div className="quest-details-title"></div>
-                    <div>Created by</div>
+                    <div className="quest-details-title">{quest?.quest_title}</div>
+                    <div>Created by {quest?.quest_username}</div>
                     <div>Quest closes on {formatDate(quest?.due_date)}</div>
                 </div>
             </div>
