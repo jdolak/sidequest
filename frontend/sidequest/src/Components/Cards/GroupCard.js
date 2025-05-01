@@ -28,7 +28,7 @@ const GroupCard = (group) => {
     <div className="card">
         <div className="card-desc">
             <div className="card-title">{group.group.group_name}</div>
-            <div>{group.group.group_members} members</div>
+            <div>{group.group.size} members</div>
         </div>
         <button className="join-btn" onClick={() => {handleJoinGroup()}}>Join group</button>
     </div>
