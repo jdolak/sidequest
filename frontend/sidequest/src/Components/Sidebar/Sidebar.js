@@ -4,7 +4,7 @@ import logoutIcon from '../../assets/images/logout.svg';
 import settingsIcon from '../../assets/images/settings.svg';
 import {Link} from "react-router-dom";
 import './sidebar.css';
-import { useGlobalStore } from '../../stores/globalStore.js';
+// import { useGlobalStore } from '../../stores/globalStore.js';
 import { getMyGroups } from "../../Services/Groups.js";
 import { useNavigate } from "react-router-dom";
 import { getLoggedInUser, logout } from "../../Services/Users.js";
@@ -12,13 +12,16 @@ import { getLoggedInUser, logout } from "../../Services/Users.js";
 
 const Sidebar = () => {
     const [groups, setGroups] = useState([]);
+    const [groupID, setGroupID] = useState(null);
     const [username, setUsername] = useState("");
-    const setCurrGroup = useGlobalStore((state) => state.setGroup);
-    const currGroupID = useGlobalStore((state) => state.currGroupID);
+    // const setCurrGroup = useGlobalStore((state) => state.setGroup);
+    // const currGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
 
     const setGroup = (groupID) => {
-        setCurrGroup(groupID);
+        // setCurrGroup(groupID);
+        setGroupID(groupID);
+        sessionStorage.setItem("groupID", groupID);
         navigate(`/groups/${groupID}`);
     }
 
@@ -68,7 +71,7 @@ const Sidebar = () => {
                 <div className="groups">
                     {groups.map((group, index) => (
                         // <button className="group-button" key={index} onClick={() => setCurrGroup(group.group_id)}>
-                        <button className={`group-button ${currGroupID === group.group_id ? "active" : ""}`} key={index} onClick={() => setGroup(group.group_id)}>
+                        <button className={`group-button ${groupID === group.group_id ? "active" : ""}`} key={index} onClick={() => setGroup(group.group_id)}>
                             <div>
                                 {getGroupTag(group?.group_name)}
                             </div>

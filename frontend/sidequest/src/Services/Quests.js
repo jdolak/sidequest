@@ -2,7 +2,7 @@ import { baseURL } from './Constants.js';
 import { useGlobalStore } from '../stores/globalStore.js';
 
 export const getAllQuests = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = parseInt(sessionStorage.getItem("groupID")); // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -20,7 +20,7 @@ export const getAllQuests = async () => {
 };
 
 export const getOpenQuests = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = parseInt(sessionStorage.getItem("groupID")); // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -55,7 +55,7 @@ export const getQuest = async (questID) => {
 };
 
 export const getMyQuests = async (authorID) => {
-    const groupID = useGlobalStore.getState().currGroupID; // Correctly access currGroupID
+    const groupID = parseInt(sessionStorage.getItem("groupID")); // Correctly access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -73,7 +73,7 @@ export const getMyQuests = async (authorID) => {
 };
 
 export const getAcceptedQuests = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Access currGroupID
+    const groupID = parseInt(sessionStorage.getItem("groupID")); // Access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -91,7 +91,7 @@ export const getAcceptedQuests = async () => {
 };
 
 export const getAcceptedQuestsByUser = async () => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -109,7 +109,7 @@ export const getAcceptedQuestsByUser = async () => {
 };
 
 export const getQuestSubmission = async (submissionID) => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -127,7 +127,7 @@ export const getQuestSubmission = async (submissionID) => {
 };
 
 export const getAllQuestSubmissions = async () => {
-    const groupID = useGlobalStore.getState().currGroupID; // Access currGroupID
+    const groupID = parseInt(sessionStorage.getItem("groupID")); // Access currGroupID
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -145,7 +145,7 @@ export const getAllQuestSubmissions = async () => {
 };
 
 export const submitQuest = async (questID, submissionData) => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'POST',
         credentials: 'include',
@@ -168,7 +168,7 @@ export const submitQuest = async (questID, submissionData) => {
 
 export const createQuest = async (questData) => {
     // expect json data
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'POST',
         credentials: 'include',

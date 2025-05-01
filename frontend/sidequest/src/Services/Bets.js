@@ -20,7 +20,7 @@ export const getBoughtBet = async (betID, buyerID) => {
 };
 
 export const getAcceptedBets = async () => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -38,7 +38,7 @@ export const getAcceptedBets = async () => {
 };
 
 export const getMyBets = async () => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -56,7 +56,7 @@ export const getMyBets = async () => {
 };
 
 export const getAllBoughtBets = async () => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -76,7 +76,7 @@ export const getAllBoughtBets = async () => {
 // Depricaeted for getAllBets
 
 // export const getOpenBets = async () => {
-//     const groupID = useGlobalStore.getState().currGroupID;
+//     const groupID = parseInt(sessionStorage.getItem("groupID"));
 //     const config = {
 //         method: 'GET',
 //         credentials: 'include',
@@ -94,7 +94,7 @@ export const getAllBoughtBets = async () => {
 // };
 
 export const getAllBets = async () => {
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
@@ -130,7 +130,7 @@ export const getBet = async (betID) => {
 
 export const createBet = async (betData) => {
     // Expect json data input
-    const groupID = useGlobalStore.getState().currGroupID;
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     betData.groupID = groupID;
     const config = {
         method: 'POST',

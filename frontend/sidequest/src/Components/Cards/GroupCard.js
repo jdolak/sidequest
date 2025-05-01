@@ -2,15 +2,16 @@ import React from "react";
 import "./groupcard.css";
 import { joinGroup } from "../../Services/Groups";
 import { useNavigate } from "react-router-dom";
-import { useGlobalStore } from '../../stores/globalStore.js';
+// import { useGlobalStore } from '../../stores/globalStore.js';
 
 const GroupCard = (group) => {
-  const setCurrGroup = useGlobalStore((state) => state.setGroup);
+  // const setCurrGroup = useGlobalStore((state) => state.setGroup);
   // data is in group.group
   const navigate = useNavigate();
 
   const setGroup = (groupID) => {
-    setCurrGroup(groupID);
+    // setCurrGroup(groupID);
+    sessionStorage.setItem("groupID", groupID);
     navigate(`/groups/${group.group.group_id}`);
 }
 
