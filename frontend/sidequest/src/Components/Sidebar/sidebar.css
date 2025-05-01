@@ -2,9 +2,9 @@
     /* position: fixed;
     top: 0;
     left: 0; */
-
-    width: 100px; /* Fixed width for the sidebar */
-    height: 100vh; /* Full viewport height */
+    /* position: fixed; */
+    height: 100vh;
+    width: 100px;
     padding: 32px 16px;
     flex-shrink: 0;
 

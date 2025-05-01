@@ -15,26 +15,32 @@ const SearchPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [needsUpdate, setNeedsUpdate] = useState(false);
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        getLoggedInUser().then((user) => {
-            if (user.status === "false") {
-                navigate("/login");
-            }
-        }).catch((error) => {
-            console.error("Error checking logged-in user:", error);
-            navigate("/login");
-        });
-        
-        getAllGroups()
-            .then((data) => {
-                setAllGroups(data);
-                setGroups(data);
-                console.log("All groups:", data);
+        getLoggedInUser()
+            .then((user) => {
+                if (user.status === "false") {
+                    navigate("/login");
+                } else {
+                    setUser(user);
+                    getAllGroups()
+                        .then((data) => {
+                            const filtered = data.filter(group =>
+                                !group.members?.includes(user.user_id)
+                            );
+                            setAllGroups(filtered);
+                            setGroups(filtered);
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching groups:", error);
+                        });
+                }
             })
             .catch((error) => {
-                console.error("Error fetching groups:", error);
+                console.error("Error checking logged-in user:", error);
+                navigate("/login");
             });
     }, [needsUpdate]);
 

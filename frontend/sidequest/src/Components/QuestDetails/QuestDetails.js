@@ -131,7 +131,7 @@ const QuestDetails = () => {
                 <div className="quest-details-header-contents"> 
                     <div className="quest-details-title"></div>
                     <div>Created by</div>
-                    <div>Quest closes on {formatDate(quest.due_date)}</div>
+                    <div>Quest closes on {formatDate(quest?.due_date)}</div>
                 </div>
             </div>
             <div className="quest-details-body">
@@ -150,9 +150,9 @@ const QuestDetails = () => {
                     </div>
                     {/* <MyQuestContent /> */}
                 </div>
-                {sourceTab === 'OpenQuests' && <OpenQuestContent />}
+                {quest?.quest_status === 'Open' && <OpenQuestContent />}
             </div>
-            {sourceTab === 'AcceptedQuests' && <AcceptedQuestContent />}
+            {quest?.quest_status === 'Accepted' && <AcceptedQuestContent />}
         </div>
     </div>
   )

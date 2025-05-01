@@ -40,9 +40,6 @@ export default function Components() {
                     <Route path="/bets/:id" element={<BetDetails />} />
                     <Route path="quests" element={<QuestDashboard />} />
                     <Route path="bets" element={<BetDashboard />} />
-
-                    {/* will fix this later, but for now will have accepted quests */}
-                    <Route path="acceptedquest" element={<AcceptedQuests />} />
                 </Route>              
             </Routes>
         </Router>
