@@ -19,7 +19,7 @@ def get_quest_id(quest_id):
 
 @quest_bp.route("/quests/all/<int:group_id>", methods=["GET"])
 def get_quest(group_id):
-    return sql_response(sql_many(g.db_session, "SELECT * FROM QUESTS WHERE group_id = :group_id", {"group_id": group_id}))
+    return sql_response(sql_many(g.db_session, "SELECT quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, SQ_USERS u WHERE group_id = :group_id AND u.user_id = q.author_id", {"group_id": group_id}))
 
 
 #@quest_bp.route("/quests/accepted/<int:user_id>", methods=["GET"])
