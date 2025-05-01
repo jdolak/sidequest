@@ -14,6 +14,7 @@ const SearchPage = () => {
     const [allGroups, setAllGroups] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [needsUpdate, setNeedsUpdate] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const SearchPage = () => {
             .catch((error) => {
                 console.error("Error fetching groups:", error);
             });
-    }, []);
+    }, [needsUpdate]);
 
     const filterGroups = (event) => {
         setSearchTerm(event.target.value);
@@ -49,6 +50,15 @@ const SearchPage = () => {
             setGroups(filteredGroups);
         }
     }
+
+    const modalClose = () => {
+        setShowModal(false);
+    };
+
+    const handleModalSuccess = () => {
+        setNeedsUpdate((prev) => !prev); // Toggle the state to trigger useEffect
+        setShowModal(false); // Close the modal
+    };
 
     return (
         <div className="search-main-container">
@@ -91,7 +101,8 @@ const SearchPage = () => {
                     )}
                 </div>
 
-                {showModal && (<NewGroupModal onClose={() => setShowModal(false)} />
+                {showModal && (<NewGroupModal onClose={modalClose} 
+                        onSuccess={handleModalSuccess} />
 )}
             </div>
         </div>

@@ -3,7 +3,7 @@ import "./modal.css";
 import Close from "../../assets/images/close.svg";
 import { createGroup } from "../../Services/Groups";
 
-const NewGroupModal = ({ onClose }) => {
+const NewGroupModal = ({ onClose, onSuccess }) => {
 
     const [formData, setFormData] = useState({
         groupvisibility: "public",
@@ -23,12 +23,13 @@ const NewGroupModal = ({ onClose }) => {
 
         createGroup(formData).then((response) => {
             console.log("Group created successfully:", response);
+            onSuccess();
         }).catch((error) => {
             console.error("Error creating group:", error);
             alert("Error creating group.", error.message);
+            onClose();
         });
 
-        onClose();
     }
 
     return (
@@ -43,7 +44,7 @@ const NewGroupModal = ({ onClose }) => {
                     <div className="form-data">
                         <label className="form-label">
                                 Visibility
-                                <div className="form-radio-group">
+                                <div className="form-radio-group" required>
                                     <label>
                                         <input type="radio" name="groupvisibility" value="public" checked={formData.groupvisibility === "public"} onChange={handleChange} />
                                         Public
@@ -60,7 +61,7 @@ const NewGroupModal = ({ onClose }) => {
                         </label>
                         <label className="form-label">
                                 Group description
-                                <textarea className="form-input" name="groupdesc" value={formData.groupdesc} onChange={handleChange} rows={4} />
+                                <textarea className="form-input" name="groupdesc" value={formData.groupdesc} onChange={handleChange} rows={4} required />
                         </label>
                     </div>
                     <button className="submit-button" type="submit">Create group</button>
