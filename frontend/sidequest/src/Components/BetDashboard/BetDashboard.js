@@ -129,7 +129,7 @@ const BetDashboard = () => {
                   </Link>
                 ))}
               {activeTab === "openBets" &&
-                openBets.map((bet) => ( console.log(bet),
+                openBets.map((bet) => ( 
                   <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}

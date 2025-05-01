@@ -2,7 +2,6 @@ import React from "react";
 import "./card.css";
 
 const Card = ({ title, creator, coins, date, odds }) => {
-  console.log("Card component props:", { title, creator, coins, date, odds });
   return (
 
     <article class="card" role="listitem">

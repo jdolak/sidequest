@@ -25,7 +25,10 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
-        document.documentElement.classList.toggle("dark-theme", theme === "dark");
+        document.documentElement.classList.remove("light", "dracula", "dark", "nd");
+        document.documentElement.classList.toggle("dracula", theme === "dracula");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.classList.toggle("nd", theme === "nd");
         getLoggedInUser().then((user) => {
             if (user.status === "true") {
                 setUsername(user.username);
@@ -34,7 +37,6 @@ const Sidebar = () => {
             console.error("Error checking logged-in user:", error);
         });
         getMyGroups().then((response) => {
-            console.log("Groups:", response);
             setGroups(response);
         }).catch((error) => {
             console.error("Error fetching groups:", error);
@@ -42,11 +44,11 @@ const Sidebar = () => {
     }, [theme]);
 
     const toggleTheme = () => {
-        const newTheme = theme === "light" ? "dracula" : "light";
+        var newTheme = theme === "light" ? "dark" : theme === "dark" ? "dracula" : theme === "dracula" ? "nd" : "light";
         setTheme(newTheme);
         localStorage.setItem("theme", newTheme);
         console.log("Theme changed to:", newTheme);
-        document.documentElement.classList.toggle("dracula", newTheme === "dracula");
+        // document.documentElement.classList.toggle("dracula", newTheme === "dracula");
     };
 
     function handleLogout() {

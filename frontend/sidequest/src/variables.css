@@ -38,3 +38,21 @@
     --Secondary: #8be9fd;
     --Text: #ff5555;
 }
+
+.dark {
+    --Soft-Stroke: #778da9;
+    --White: #0d1b2a;
+    --Primary: #1b263b;
+    --Dark: #e0e1dd;
+    --Secondary: #415a77;
+    --Text: #e0e1dd;
+}
+
+.nd {
+    --Soft-Stroke: #c1cddd;
+    --White: #0c2340;
+    --Primary: #ae9142;
+    --Dark: #0a843d;
+    --Secondary: #8c7535;
+    --Text: #edf2f9;
+}
