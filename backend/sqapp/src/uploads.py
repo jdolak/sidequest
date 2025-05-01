@@ -103,7 +103,7 @@ def create_quest(rq):
         reward_amount = data['questreward']
         due_date = data['questdate']
         
-        if not group_id or not quest_title or not quest_desc or not reward_amount or not due_date:
+        if not group_id or not quest_title or not reward_amount:
             return jsonify({"message": "missing parameters"}), 400
 
         if not g.user:
@@ -137,7 +137,7 @@ def create_bet(rq):
         side = data['betposition']
         odds = data['betodds']
 
-        if not group_id or not question or not description or not max_quantity or not side or not odds:
+        if not group_id or not question or not max_quantity or not side or not odds:
             LOG.error(f"Missing parameters: {group_id}, {question}, {description}, {max_quantity}, {side}, {odds}")
             return jsonify({"message": "missing parameters"}), 400
 
@@ -170,8 +170,7 @@ def create_group(rq):
 
         group_name = data['groupname']
         group_desc = data['groupdesc']
-        public = data.get('public', 'Y')
-        #currency = data.get('currency', 'USD')
+        public = data.get('groupvisibility', 'Y')
 
         if not group_name or not group_desc or not public:
             LOG.error(f"Missing parameters: {group_name}, {group_desc}, {public}")

@@ -81,7 +81,7 @@ def get_all_groups_user():
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT user_id, username, currency, group_id FROM SQ_GROUPS_USER gu, SQ_USERS u WHERE gu.user_id = u.user_id",
+            "SELECT u.user_id, username, currency, group_id FROM SQ_GROUPS_USER gu, SQ_USERS u WHERE gu.user_id = u.user_id",
             None,
         )
     )
