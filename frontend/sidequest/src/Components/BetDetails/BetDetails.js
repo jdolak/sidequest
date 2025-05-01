@@ -97,8 +97,8 @@ const BetDetails = () => {
                     <div className="back-text">Back</div>
                 </Link>
                 <div className="header-contents"> 
-                    <div className="bet-title"></div>
-                    <div>Created by {seller?.username}</div>
+                    <div className="bet-title">{bet?.question}</div>
+                    <div>Created by {bet?.username}</div>
                     {/* <div>Bet closes on </div> */}
                 </div>
             </div>

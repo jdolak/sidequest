@@ -148,7 +148,7 @@ const QuestDetails = () => {
                         <div>{quest?.quest_desc}</div>
                     </div>
                     <div className="quest-details-text">
-                        <div className="quest-details-subheading">Incentive</div>
+                        <div className="quest-details-subheading">Reward</div>
                         <div>{quest?.reward_amount} coin{quest?.reward_amount === 1 ? "" : "s"}</div>
                     </div>
                     {/* <MyQuestContent /> */}

@@ -8,7 +8,6 @@ const NewQuestModal = ({ onClose }) => {
     const [formData, setFormData] = useState({
         questname: "",
         questdesc: "",
-        questincentive: "",
         questreward: "",
         questdate: ""
     });
@@ -65,10 +64,6 @@ const NewQuestModal = ({ onClose }) => {
                         <label className="form-label">
                                 Quest description
                                 <textarea className="form-input" name="questdesc" value={formData.questdesc} onChange={handleChange} rows={2} />
-                        </label>
-                        <label className="form-label">
-                                Quest incentive
-                                <textarea className="form-input" name="questincentive" value={formData.questincentive} onChange={handleChange} rows={2} />
                         </label>
                         <label className="form-label">
                                 Reward (coins)
