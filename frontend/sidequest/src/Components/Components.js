@@ -17,8 +17,6 @@ import BetDashboard from "./BetDashboard/BetDashboard.js";
 import QuestDetails from "./QuestDetails/QuestDetails.js";
 import BetDetails from "./BetDetails/BetDetails.js";
 
-import AcceptedQuests from "./AcceptedQuests/AcceptedQuests.js";
-
 import { Navigate } from 'react-router-dom';
 
 export default function Components() {

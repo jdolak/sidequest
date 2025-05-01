@@ -6,6 +6,7 @@ import addIcon from "../../assets/images/add.svg";
 import GroupCard from "../Cards/GroupCard";
 import NewGroupModal from "../Modals/NewGroup";
 import { getAllGroups } from "../../Services/Groups";
+import { getMyGroups } from "../../Services/Groups";
 import { getLoggedInUser } from "../../Services/Users";
 import { useNavigate } from "react-router-dom";
 
@@ -25,24 +26,24 @@ const SearchPage = () => {
                     navigate("/login");
                 } else {
                     setUser(user);
-                    getAllGroups()
-                        .then((data) => {
-                            const filtered = data.filter(group =>
-                                !group.members?.includes(user.user_id)
-                            );
-                            setAllGroups(filtered);
-                            setGroups(filtered);
-                        })
-                        .catch((error) => {
-                            console.error("Error fetching groups:", error);
-                        });
+
+                    Promise.all([getAllGroups(), getMyGroups()])
+                    .then(([allGroupsData, myGroupsData]) => {
+                        const myGroupIds = new Set (myGroupsData.map(group => group.group_id));
+                        const filtered = allGroupsData.filter(group => !myGroupIds.has(group.group_id));
+                        setAllGroups(filtered);
+                        setGroups(filtered);
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching groups:", error);
+                    });
                 }
             })
             .catch((error) => {
                 console.error("Error checking logged-in user:", error);
                 navigate("/login");
             });
-    }, [needsUpdate]);
+        }, [needsUpdate]);
 
     const filterGroups = (event) => {
         setSearchTerm(event.target.value);
