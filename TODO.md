@@ -50,6 +50,10 @@
 # Bugs and improvements
 - Profile initial does not accurately reflect group name
 - Once a group is joined, it still shows up on the screen.
+- when you create a group you should be added to it automatically and taken to the group page
+### Backend
+- 500 error on bets/create
+- creating bets, quests, and groups thows 400 bad req errors if any of the form fields are left blank.
 
 ## Nice to haves
 - [ ] Duplicate bet at a different price option
