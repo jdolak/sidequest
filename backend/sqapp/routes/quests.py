@@ -11,7 +11,7 @@ def get_quest_id(quest_id):
     return sql_response(
         sql_one(
             g.db_session,
-            "SELECT * FROM QUESTS WHERE quest_id = :quest_id",
+            "SELECT quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS, SQ_USERS u WHERE quest_id = :quest_id AND author_id = u.user_id",
             {"quest_id": quest_id},
         )
     )
