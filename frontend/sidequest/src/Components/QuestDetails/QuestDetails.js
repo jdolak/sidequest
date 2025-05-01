@@ -3,6 +3,7 @@ import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { getQuest } from "../../Services/Quests.js";
+import { getQuestSubmission } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const QuestDetails = () => {
@@ -23,6 +24,8 @@ const QuestDetails = () => {
         }).catch((error) => {
             console.error("Error fetching quest:", error);
         });
+
+        fetch (`https://sq.jdolak.com/api/quest_submissions/<int:submission_id>`)
     }, [questID]);
 
     // Open Quest Specific Content
@@ -108,7 +111,7 @@ const QuestDetails = () => {
     }
 
     const MyQuestContent = () => {
-        // if quest has been accepted
+        // if quest has been accepted, if not return nothing
         return (
             <div className="quest-details-text">
                 <div className="quest-details-subheading">Submission</div>
