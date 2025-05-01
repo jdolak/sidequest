@@ -16,7 +16,7 @@ graph TD;
     Nginx --> Browser
     Nginx -->|/api| Flask
     Flask -->|SQL| db
-    Nginx -->|/index.html| static
+    Nginx -->|/| static
     Nginx -->|/uploads| obj
 ```
 
