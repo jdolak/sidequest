@@ -5,6 +5,7 @@
     --Primary: #F3F4FB;
     --Dark: #2f184b;
     --Secondary: #2667FF;
+    --Text: #000000;
 
     /* Typography */
     --font-family: 'Karla', sans-serif;
@@ -27,4 +28,13 @@
 
     /* Shadows */
     /* --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */ 
+}
+
+.dracula {
+    --Soft-Stroke: #50fa7b;
+    --White: #44475a;
+    --Primary: #6272a4;
+    --Dark: #ff5555;
+    --Secondary: #8be9fd;
+    --Text: #ff5555;
 }

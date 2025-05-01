@@ -14,8 +14,7 @@ const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const [groupID, setGroupID] = useState(null);
     const [username, setUsername] = useState("");
-    // const setCurrGroup = useGlobalStore((state) => state.setGroup);
-    // const currGroupID = useGlobalStore((state) => state.currGroupID);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const navigate = useNavigate();
 
     const setGroup = (groupID) => {
@@ -26,6 +25,7 @@ const Sidebar = () => {
     }
 
     useEffect(() => {
+        document.documentElement.classList.toggle("dark-theme", theme === "dark");
         getLoggedInUser().then((user) => {
             if (user.status === "true") {
                 setUsername(user.username);
@@ -39,7 +39,15 @@ const Sidebar = () => {
         }).catch((error) => {
             console.error("Error fetching groups:", error);
         });
-    }, []);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dracula" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+        console.log("Theme changed to:", newTheme);
+        document.documentElement.classList.toggle("dracula", newTheme === "dracula");
+    };
 
     function handleLogout() {
         if (window.confirm("Are you sure you want to logout?")) {
@@ -83,7 +91,7 @@ const Sidebar = () => {
                     <button className="logout-button" onClick={() => { handleLogout() }}>
                         <img src={logoutIcon} />
                     </button>
-                    <button className="settings-button">
+                    <button className="settings-button" onClick={() => { toggleTheme() }}>
                         <img src={settingsIcon} />
                     </button>
                 </div>

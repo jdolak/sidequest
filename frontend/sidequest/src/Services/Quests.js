@@ -1,5 +1,4 @@
 import { baseURL } from './Constants.js';
-import { useGlobalStore } from '../stores/globalStore.js';
 
 export const getAllQuests = async () => {
     const groupID = parseInt(sessionStorage.getItem("groupID")); // Correctly access currGroupID
