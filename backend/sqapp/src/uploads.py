@@ -230,5 +230,36 @@ def bet_resolve(rq):
         LOG.error(f"Error resolving bet: {e}")
         return jsonify({"message": "error resolving bet"}), 500
 
+def accept_bet(rq):
+    try:
+        data = rq.get_json()
+        bet_id = data['bet_id']
+        quantity = data['quantity']
+        side = data['side']
+        status = data['status']
+
+        sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
+        g.db_session.execute(text(sql), {
+            'buyer_id': g.user,
+            'bet_id': bet_id,
+            'quantity': quantity,
+            'side': side,
+            'status': status
+        })
+
+        sql = "UPDATE available_bets SET max_quantity = max_quantity - :quantity WHERE bet_id = :bet_id"
+        g.db_session.execute(text(sql), {
+            'quantity': quantity,
+            'bet_id': bet_id
+        })
+
+        LOG.info(f"Bet {bet_id} accepted. Buyer: {g.user}, Quantity: {quantity}, Side: {side}")
+
+        return jsonify({"message": "bet accepted"}), 200
+    
+    except Exception as e:
+        LOG.error(f"Error accepting bet: {e}")
+        g.db_session.rollback()
+        return jsonify({"message": "error accepting bet"}), 500
 
 

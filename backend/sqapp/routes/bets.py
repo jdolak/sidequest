@@ -73,3 +73,17 @@ def get_all_bought_bets():
 @bet_bp.route("/bets/create", methods=["POST"])
 def post_create_bet():
     return create_bet(request)
+
+@bet_bp.route("/bets/accept/<int:bet_id>", methods=["POST"])
+def post_accept_bet(bet_id):
+    sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
+    return sql_response(
+        sql_one(
+            g.db_session,
+            sql,
+            {"bet_id": bet_id, "buyer_id": g.user},
+        )
+    )
+
+
+
