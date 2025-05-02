@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, g, session, request, Response
 
 from sqapp.db import sql_many, sql_one, sql_response
-from sqapp.src.uploads import create_bet
+from sqapp.src.uploads import create_bet, accept_bet
 
 bet_bp = Blueprint("bet_bp", __name__)
 
@@ -74,16 +74,9 @@ def get_all_bought_bets():
 def post_create_bet():
     return create_bet(request)
 
-@bet_bp.route("/bets/accept/<int:bet_id>", methods=["POST"])
-def post_accept_bet(bet_id):
-    sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
-    return sql_response(
-        sql_one(
-            g.db_session,
-            sql,
-            {"bet_id": bet_id, "buyer_id": g.user},
-        )
-    )
+@bet_bp.route("/bets/accept", methods=["POST"])
+def post_accept_bet():
+    return accept_bet(request)
 
 
 
