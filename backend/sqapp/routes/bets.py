@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, g, session, request, Response
 
 from sqapp.db import sql_many, sql_one, sql_response
-from sqapp.src.uploads import create_bet, accept_bet
+from sqapp.src.uploads import create_bet, accept_bet, bet_resolve
 
 bet_bp = Blueprint("bet_bp", __name__)
 
@@ -77,6 +77,11 @@ def post_create_bet():
 @bet_bp.route("/bets/accept", methods=["POST"])
 def post_accept_bet():
     return accept_bet(request)
+
+@bet_bp.route("/bets/resolve", methods=["POST"])
+def post_resolve_bet():
+    return bet_resolve(request)
+
 
 
 

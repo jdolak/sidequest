@@ -198,8 +198,20 @@ def create_group(rq):
     
 def bet_resolve(rq):
     try:
-        bet_id = rq.form['bet_id']
-        winning_side = rq.form['winning_side']
+
+        data = rq.get_json()
+
+        if not data:
+            return jsonify({"message": "missing parameters"}), 400
+        if not g.user:
+            return jsonify({"message": "User not logged in"}), 401
+        if 'bet_id' not in rq.form or 'winning_side' not in rq.form:
+            return jsonify({"message": "missing parameters"}), 400
+        
+        bet_id = data['bet_id']
+        winning_side = data['winning_side']
+        #bet_id = rq.form['bet_id']
+        #winning_side = rq.form['winning_side']
         sql = "SELECT * FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE bet_id = :bet_id"
         data = sql_many(g.db_session, sql, {'bet_id': bet_id})
         if not data:
