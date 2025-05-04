@@ -3,8 +3,8 @@
 .quest-dashboard-main-container {
     display: flex;
     height: 100vh;
-    /* width: 100vw; */
-    max-width: 1440px;
+    width: 100vw;
+    overflow: hidden;
     /* justify-content: center;
     align-items: center; */
     /* height: 100vh; */
@@ -23,6 +23,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 60px;
+  overflow-y: auto;
 
   /* flex-shrink: 0; */
 

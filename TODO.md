@@ -12,7 +12,7 @@
 - [x] Front-end for My Bets (resolve yes/no, add quantity available)
 - [x] move logout button to bottom of sidebar (Also maybe make this a circle?)
 - [x] make a settings icon below the logout button on the sidebar (themes)
-- [ ] invite link 
+- [x] invite link 
 - [ ] settings pop up to allow for more themes
 - [ ] fix sidebar
 - [x] only either buy yes or buy no button should appear

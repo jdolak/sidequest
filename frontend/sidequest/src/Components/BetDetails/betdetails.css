@@ -156,6 +156,7 @@
 }
 
 .button-group {
+  padding-top: 32px;
   display: flex;
   align-items: flex-start;
   gap: 32px;
