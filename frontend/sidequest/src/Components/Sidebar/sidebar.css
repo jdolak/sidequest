@@ -70,6 +70,13 @@
     cursor: pointer;
 }
 
+.svg{
+    fill: var(--Text);
+    color: var(--Text);
+    stroke: var(--Text);
+    /* filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%); */
+}
+
 .logout-button img,
 .settings-button img {
   width: 100%;

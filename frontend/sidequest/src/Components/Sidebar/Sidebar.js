@@ -92,7 +92,7 @@ const Sidebar = () => {
             </div>
             <div className="sidebar-user-actions">
                     <button className="logout-button" onClick={() => { handleLogout() }}>
-                        <img src={logoutIcon} />
+                        <img className="svg" src={logoutIcon} />
                     </button>
                     <button className="settings-button" onClick={() => { toggleTheme() }}>
                         <img src={settingsIcon} />

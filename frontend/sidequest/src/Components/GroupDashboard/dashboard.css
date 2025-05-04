@@ -24,7 +24,7 @@
 .group-page-heading {
     text-align: left;
     align-self: stretch;
-    color: #000;
+    color: var(--Text);
 
     /* Heading */
     font-family: "DM Sans";
@@ -46,8 +46,6 @@
 } */
 
 .group-page-my-coins-text {
-    color: black;
-
     /* Body */
     font-family: var(--font-family);
     font-size: var(--font-size-base);
