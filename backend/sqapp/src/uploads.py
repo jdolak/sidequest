@@ -68,24 +68,31 @@ def upload_file(file, id, name=None):
     return internal_filename
 
 def quest_submission(rq, quest_id):
-    image = None
-    if 'file' in rq.files:
-        image = upload_file(rq.files['file'], quest_id)
-        
-    sql = "INSERT INTO quest_submissions (quest_id, user_id, submission_photo, submission_date_time, comments, status) VALUES (:quest_id, :user_id, :submission_photo, :submission_date_time, :comments, :status)"
-    g.db_session.execute(text(sql), {
-        'quest_id': quest_id,
-        'user_id': g.user,
-        'submission_photo': image,
-        'submission_date_time': time(),
-        'comments': rq.form['comment'],
-        'status': 'submitted'
-    })
+    try:
+        image = None
+        if 'file' in rq.files:
+            image = upload_file(rq.files['file'], quest_id)
+            
+        #sql = "INSERT INTO quest_submissions (quest_id, user_id, submission_photo, submission_date_time, comments, status) VALUES (:quest_id, :user_id, :submission_photo, :submission_date_time, :comments, :status)"
+        sql = "UPDATE quest_submissions SET submission_photo = :submission_photo, submission_date_time = :submission_date_time, comments = :comments, status = :status WHERE quest_id = :quest_id AND user_id = :user_id"
 
-    if 'file' in rq.files and not image:
-        return jsonify({"message": "submission created, error uploading file"}), 500
-    
-    return jsonify({"message": "submission created"}), 201
+        g.db_session.execute(text(sql), {
+            'quest_id': quest_id,
+            'user_id': g.user,
+            'submission_photo': image,
+            'submission_date_time': time(),
+            'comments': rq.form['comment'],
+            'status': 'submitted'
+        })
+
+        if 'file' in rq.files and not image:
+            return jsonify({"message": "submission created, error uploading file"}), 500
+        
+        return jsonify({"message": "submission created"}), 201
+    except Exception as e:
+        LOG.error(f"Error creating submission: {e}")
+        g.db_session.rollback()
+        return jsonify({"message": "error creating submission"}), 500
 
 
 def rewrite_url_host(url):
