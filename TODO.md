@@ -77,3 +77,4 @@
 - [ ] send data when searching for groups
 - [ ] pretty way to display alert and confirm popups
 - [ ] bet expected resolution date added through stack
+- [ ] add optional cost to accept a quest

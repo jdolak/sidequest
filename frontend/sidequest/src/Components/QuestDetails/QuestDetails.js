@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { getQuest, getQuestSubmission, acceptQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { formatDate } from "../../utils/utils.js";
 
 const QuestDetails = () => {
     const navigate = useNavigate();
@@ -18,11 +19,14 @@ const QuestDetails = () => {
     }
 
     useEffect(() => {
-        getQuest(questID).then((response) => {
-            setQuest(response);
-        }).catch((error) => {
-            console.error("Error fetching quest:", error);
-        });
+        if (quest === null) {
+            getQuest(questID).then((response) => {
+                setQuest(response);
+                console.log("Quest data:", response);
+            }).catch((error) => {
+                console.error("Error fetching quest:", error);
+            });
+        }
 
         getQuestSubmission(questID).then((submissionData) => {
             setSubmission(submissionData);
@@ -32,9 +36,11 @@ const QuestDetails = () => {
     }, [questID, quest]);
 
     function acceptQuestHandler() {
+        console.log("Accepting quest with ID:", questID);
         acceptQuest(questID).then((response) => {
             console.log("Quest accepted:", response);
             setQuest((prevQuest) => ({ ...prevQuest, quest_status: "Accepted" }));
+            console.log("Quest status updated to Accepted "+quest);
         }).catch((error) => {
             console.error("Error accepting quest:", error);
             alert("Error accepting quest. Please try again later. "+error.message);
@@ -44,17 +50,11 @@ const QuestDetails = () => {
     // Open Quest Specific Content
     const OpenQuestContent = () => {
         return (
-            <div className="accept-button" onClick={acceptQuestHandler}>
+            <div className="accept-button" onClick={() => {acceptQuestHandler()}}>
                 Accept quest
             </div>
         )
     }
-
-    const formatDate = (dateString) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const date = new Date(dateString);
-        return date.toLocaleDateString(undefined, options);
-    };
 
     // Accepted Quest Content
     const AcceptedQuestContent = () => {

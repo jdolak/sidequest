@@ -65,7 +65,6 @@ const BetDetails = () => {
             return;
         }
         if (window.confirm("Are you sure you want to buy this bet? It will cost you " + cost + " coins.")) {
-            // TODO: store user_id in session storage and use it here
             const user = getUsersGroupProfile().then((user) => {
                 if (user?.currency >= cost && user?.user_id && betID) {
                     buyBet(user.user_id, betID).then((response) => {
