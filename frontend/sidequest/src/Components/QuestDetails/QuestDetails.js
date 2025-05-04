@@ -2,7 +2,7 @@ import "./questdetails.css";
 import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 // import backIcon from '../../assets/images/chevron.svg';
-import { getQuest, getQuestSubmission, acceptQuest } from "../../Services/Quests.js";
+import { getQuest, getQuestSubmission, acceptQuest, submitQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { formatDate } from "../../utils/utils.js";
 
@@ -22,7 +22,6 @@ const QuestDetails = () => {
         if (quest === null) {
             getQuest(questID).then((response) => {
                 setQuest(response);
-                console.log("Quest data:", response);
             }).catch((error) => {
                 console.error("Error fetching quest:", error);
             });
@@ -35,7 +34,7 @@ const QuestDetails = () => {
         });
     }, [questID, quest]);
 
-    function acceptQuestHandler() {
+    function handleAcceptQuest() {
         console.log("Accepting quest with ID:", questID);
         acceptQuest(questID).then((response) => {
             console.log("Quest accepted:", response);
@@ -50,7 +49,7 @@ const QuestDetails = () => {
     // Open Quest Specific Content
     const OpenQuestContent = () => {
         return (
-            <div className="accept-button" onClick={() => {acceptQuestHandler()}}>
+            <div className="accept-button" onClick={() => {handleAcceptQuest()}}>
                 Accept quest
             </div>
         )
@@ -61,7 +60,6 @@ const QuestDetails = () => {
         const fileInputRef = useRef(null);
         const [selectedFile, setSelectedFile] = useState(null);
         const [comment, setComment] = useState("");
-        const [status, setStatus] = useState("");
     
         const handleClick = () => {
             fileInputRef.current.click();
@@ -76,7 +74,6 @@ const QuestDetails = () => {
     
         const handleSubmit = async (e) => {
             e.preventDefault();
-            setStatus("Submitting");
     
             const formData = new FormData();
             if (selectedFile) {
@@ -87,20 +84,13 @@ const QuestDetails = () => {
                 formData.append("comment", comment);
             }
     
-            try {
-                const response = await fetch("https://sq.jdolak.com/api/quest_submit/1", {
-                    method: "POST",
-                    body: formData,
-                });
-    
-                if (!response.ok) throw new Error("Upload failed");
-    
-                const result = await response.json();
-                setStatus("Submission successful.");
-            } catch (err) {
-                setStatus("Submission failed.");
-                console.error(err);
-            }
+            submitQuest(questID, formData).then((response) => {
+                console.log("Quest submitted:", response);
+                setSelectedFile(null);
+                setComment("");
+            }).catch((error) => {
+                console.error("Error submitting quest:", error);
+            });
         }
 
         return (
