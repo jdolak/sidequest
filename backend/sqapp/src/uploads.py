@@ -69,6 +69,13 @@ def upload_file(file, id, name=None):
 
 def quest_submission(rq, quest_id):
     try:
+        if not g.user:
+            return jsonify({"message": "User not logged in"}), 401
+        
+        quest_data = sql_one(g.db_session, "SELECT * FROM QUESTS WHERE quest_id = :quest_id", {'quest_id': quest_id})
+        if not quest_data:
+            return jsonify({"message": "quest not found"}), 404
+    
         image = None
         if 'file' in rq.files:
             image = upload_file(rq.files['file'], quest_id)
@@ -87,6 +94,13 @@ def quest_submission(rq, quest_id):
 
         if 'file' in rq.files and not image:
             return jsonify({"message": "submission created, error uploading file"}), 500
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
+        g.db_session.execute(text(sql), {
+            'coins': quest_data['reward_amount'],
+            'user_id': g.user,
+            'group_id': quest_data['group_id']
+        })
         
         return jsonify({"message": "submission created"}), 201
     except Exception as e:
@@ -126,6 +140,14 @@ def create_quest(rq):
             'due_date': due_date,
             'quest_status': 'Open'
         })
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :coins WHERE user_id = :user_id AND group_id = :group_id"
+        g.db_session.execute(text(sql), {
+            'coins': reward_amount,
+            'user_id': g.user,
+            'group_id': group_id
+        })
+
         return jsonify({"message": "quest created"}), 201
     
     except Exception as e:
@@ -166,6 +188,18 @@ def create_bet(rq):
             'question': question,
             'description': description,
             'status': 'Open'
+        })
+
+        if side == 'Y':
+            ammount =  odds * max_quantity
+        else:
+            ammount =  (1 - odds) * max_quantity
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = :group_id"
+        g.db_session.execute(text(sql), {
+            'ammount': ammount,
+            'user_id': g.user,
+            'group_id': group_id
         })
 
         LOG.info(f"Bet created: {question}, {description}, {max_quantity}, {side}, {odds}")
@@ -278,6 +312,8 @@ def accept_bet(rq):
         else:
             side = 'N'
 
+        bet_data = sql_one(g.db_session, "SELECT * FROM available_bets WHERE bet_id = :bet_id", {'bet_id': bet_id})
+
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
             'buyer_id': g.user,
@@ -290,6 +326,27 @@ def accept_bet(rq):
         sql = "UPDATE available_bets SET max_quantity = :quantity, status = 'Accepted' WHERE bet_id = :bet_id"
         g.db_session.execute(text(sql), {
             'quantity': quantity,
+            'bet_id': bet_id
+        })
+
+        ammount = (1 - bet_data['odds']) * quantity
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        g.db_session.execute(text(sql), {
+            'ammount': ammount,
+            'user_id': g.user,
+            'bet_id': bet_id
+        })
+
+        if bet_data['side'] == 'Y':
+            ammount = bet_data['odds'] * (bet_data["max_quantity"] - quantity)
+        else:
+            ammount = (1 - bet_data['odds']) * (bet_data["max_quantity"] - quantity)
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        g.db_session.execute(text(sql), {
+            'ammount': ammount,
+            'user_id': bet_data['seller_id'],
             'bet_id': bet_id
         })
 
