@@ -7,6 +7,7 @@
     --Secondary: #2667FF;
     --Text-Field: #A2A7C7;
     --Text: #000000;
+    --svg: #2F184B;
 
     /* Typography */
     --font-family: 'Karla', sans-serif;
@@ -34,6 +35,9 @@
 div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
     color: var(--Text);
 }
+svg {
+    stroke: var(--svg);
+}
 
 .dracula {
     --Soft-Stroke: #50fa7b;
@@ -42,6 +46,7 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
     --Dark: #ff5555;
     --Secondary: #ff5555;
     --Text: #8be9fd;
+    --svg: #ff5555;
 }
 
 .dark {
@@ -50,7 +55,8 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
     --Primary: #1b263b;
     --Dark: #e0e1dd;
     --Secondary: #415a77;
-    --Text: #e0e1dd;
+    --Text: #dddde1ee;
+    --svg: #778da9;
 }
 
 .nd {
@@ -60,4 +66,5 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
     --Dark: #8c7535;
     --Secondary: #0a843d;
     --Text: #edf2f9;
+    --svg: #0a843d;
 }
