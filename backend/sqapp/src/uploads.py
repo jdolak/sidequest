@@ -6,11 +6,11 @@ from flask import g, jsonify
 from dotenv import load_dotenv
 import os
 from sqlalchemy import text
-from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
 import secrets
 from sqapp.db import sql_many, sql_one
+from datetime import datetime
 
 
 load_dotenv()
@@ -80,7 +80,7 @@ def quest_submission(rq, quest_id):
             'quest_id': quest_id,
             'user_id': g.user,
             'submission_photo': image,
-            'submission_date_time': time(),
+            'submission_date_time': datetime.now(),
             'comments': rq.form['comment'],
             'status': 'submitted'
         })
