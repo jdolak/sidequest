@@ -134,8 +134,11 @@ def create_bet(rq):
         question = data['betname']
         description = data['betdesc']
         max_quantity = data['betquantity']
-        side = data['betposition']
         odds = data['betodds']
+        if data['betposition'] == 'yes':
+            side = 'Y'
+        else:
+            side = 'N'
 
         if not group_id or not question or not max_quantity or not side or not odds:
             LOG.error(f"Missing parameters: {group_id}, {question}, {description}, {max_quantity}, {side}, {odds}")
