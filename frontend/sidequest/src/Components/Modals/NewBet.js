@@ -3,7 +3,7 @@ import "./modal.css";
 import Close from "../../assets/images/close.svg";
 import { createBet } from "../../Services/Bets";
 
-const NewBetModal = ({ onClose }) => {
+const NewBetModal = ({ onClose, onSuccess }) => {
 
     const [formData, setFormData] = useState({
         betname: "",
@@ -48,11 +48,12 @@ const NewBetModal = ({ onClose }) => {
             console.log("Bet submitted:", formData);
             createBet(formData).then((response) => {
                 console.log("Bet created successfully:", response);
+                onSuccess();
+                onClose();
             }).catch((error) => {
                 console.error("Error creating bet:", error);
                 alert("Error creating Bet. "+error.message);
             });
-            onClose();
         } else { // Cancel the submission
             console.log("Bet submission canceled.");
         }

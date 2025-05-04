@@ -14,7 +14,7 @@
 - [x] make a settings icon below the logout button on the sidebar (themes)
 - [x] invite link 
 - [ ] settings pop up to allow for more themes
-- [ ] fix sidebar
+- [x] fix sidebar
 - [x] only either buy yes or buy no button should appear
 - [ ] when you join a page and it reloads it just redirects back to search
 - [x] show group description under title

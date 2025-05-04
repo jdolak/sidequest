@@ -29,6 +29,22 @@ const BetDashboard = () => {
   const goBack = () => {
     navigate(-1);
   }
+
+  const refreshBets = () => {
+    if (activeTab === "openBets") {
+      getAllBets().then((response) => {
+        if (typeof(response) !== "list") {
+          setOpenBets([response]);
+        } else {
+          setOpenBets(response);
+        }
+      }).catch(console.error);
+    } else if (activeTab === "myBets") {
+      getMyBets().then(setMyBets).catch(console.error);
+    } else if (activeTab === "acceptedBets") {
+      getAcceptedBets().then(setAcceptedBets).catch(console.error);
+    }
+  };
   
   useEffect(() => {
     // double check user is logged in
@@ -108,7 +124,7 @@ const BetDashboard = () => {
               <div class="bet-row">
               {activeTab === "myBets" &&
                 myBets.map((bet) => (
-                  <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}
                       creator={bet.username}
@@ -119,7 +135,7 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "acceptedBets" &&
                 acceptedBets.map((bet) => (
-                  <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}
                       creator={bet.username}
@@ -130,7 +146,7 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "openBets" &&
                 openBets.map((bet) => ( 
-                  <Link to={`/bets/${bet.bet_id}`} className="card-link" key={bet.bet_id}>
+                  <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}
                       creator={bet.username}
@@ -143,7 +159,7 @@ const BetDashboard = () => {
         </div>
       </div>
     
-    {showModal && <NewBetModal onClose={() => setShowModal(false)} />}
+    {showModal && <NewBetModal onClose={() => setShowModal(false)} onSuccess={refreshBets} />}
 
     </div>
   )
