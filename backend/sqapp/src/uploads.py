@@ -82,7 +82,7 @@ def quest_submission(rq, quest_id):
             'submission_photo': image,
             'submission_date_time': datetime.now(),
             'comments': rq.form['comment'],
-            'status': 'submitted'
+            'status': 'Resolved'
         })
 
         if 'file' in rq.files and not image:
@@ -328,6 +328,12 @@ def quest_accept(quest_id):
                 'user_id': g.user,
                 'status': 'Accepted'
             })
+
+        sql = "UPDATE QUESTS SET quest_status = :quest_status WHERE quest_id = :quest_id"
+        g.db_session.execute(text(sql), {
+            'quest_status': 'Accepted',
+            'quest_id': quest_id
+        })
 
         LOG.info(f"Quest {quest_id} accepted. User: {g.user}")
 
