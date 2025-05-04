@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
-from sqapp.src.uploads import quest_submission, get_upload_url, create_quest
+from sqapp.src.uploads import quest_submission, get_upload_url, create_quest, quest_accept
 
 quest_bp = Blueprint("quest_bp", __name__)
 
@@ -104,12 +104,4 @@ def post_create_quest():
 
 @quest_bp.route("/quests/accept/<int:quest_id>", methods=["POST"])
 def post_accept_quest(quest_id):
-    if not g.user:
-        return jsonify({"message": "User not logged in"}), 401
-    return sql_response(
-        sql_one(
-            g.db_session,
-            "UPDATE QUEST_SUBMISSIONS SET status = 'Accepted' WHERE quest_id = :quest_id AND user_id = :user_id RETURNING *",
-            {"quest_id": quest_id, "user_id": g.user},
-        )
-    )
+    return quest_accept(quest_id)

@@ -10,7 +10,7 @@ from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
 import secrets
-from sqapp.db import sql_many
+from sqapp.db import sql_many, sql_one
 
 
 load_dotenv()
@@ -291,4 +291,39 @@ def accept_bet(rq):
         g.db_session.rollback()
         return jsonify({"message": "error accepting bet"}), 500
 
+def quest_accept(quest_id):
+    try:
+
+        if not g.user:  
+            return jsonify({"message": "User not logged in"}), 401
+        
+        data = sql_one(g.db_session, "SELECT * FROM QUEST_SUBMISSIONS WHERE quest_id = :quest_id AND user_id = :user_id", {'quest_id': quest_id, 'user_id': g.user})
+
+        if data:
+
+            #sql = "UPDATE QUEST_SUBMISSIONS SET status = :status WHERE quest_id = :quest_id AND user_id = :user_id"
+            #g.db_session.execute(text(sql), {
+            #    'status': 'Accepted',
+            #    'quest_id': quest_id,
+            #    'user_id': g.user
+            #})
+
+            return jsonify({"message": "cannot accept quest"}), 400
+
+        else:
+            sql = "INSERT INTO QUEST_SUBMISSIONS (quest_id, user_id, status) VALUES (:quest_id, :user_id, :status)"
+            g.db_session.execute(text(sql), {
+                'quest_id': quest_id,
+                'user_id': g.user,
+                'status': 'Accepted'
+            })
+
+        LOG.info(f"Quest {quest_id} accepted. User: {g.user}")
+
+        return jsonify({"message": "quest accepted"}), 200
+    
+    except Exception as e:
+        LOG.error(f"Error accepting quest: {e}")
+        g.db_session.rollback()
+        return jsonify({"message": "error accepting quest"}), 500
 
