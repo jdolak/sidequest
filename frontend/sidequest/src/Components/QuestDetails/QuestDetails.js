@@ -2,8 +2,7 @@ import "./questdetails.css";
 import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
-import { getQuest } from "../../Services/Quests.js";
-import { getQuestSubmission } from "../../Services/Quests.js";
+import { getQuest, getQuestSubmission, acceptQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const QuestDetails = () => {
@@ -30,12 +29,22 @@ const QuestDetails = () => {
         }).catch((error) => {
             console.error("Error fetching quest submission:", error);
         });
-    }, [questID]);
+    }, [questID, quest]);
+
+    function acceptQuestHandler() {
+        acceptQuest(questID).then((response) => {
+            console.log("Quest accepted:", response);
+            setQuest((prevQuest) => ({ ...prevQuest, quest_status: "Accepted" }));
+        }).catch((error) => {
+            console.error("Error accepting quest:", error);
+            alert("Error accepting quest. Please try again later. "+error.message);
+        });
+    };
 
     // Open Quest Specific Content
     const OpenQuestContent = () => {
         return (
-            <div className="accept-button">
+            <div className="accept-button" onClick={acceptQuestHandler}>
                 Accept quest
             </div>
         )
