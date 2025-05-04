@@ -3,7 +3,7 @@ import "./modal.css";
 import Close from "../../assets/images/close.svg";
 import { createQuest } from "../../Services/Quests";
 
-const NewQuestModal = ({ onClose }) => {
+const NewQuestModal = ({ onClose, onSuccess }) => {
 
     const [formData, setFormData] = useState({
         questname: "",
@@ -39,12 +39,12 @@ const NewQuestModal = ({ onClose }) => {
 
         createQuest(formData).then((response) => {
             console.log("Quest created successfully:", response);
+            onSuccess();
+            onClose();
         }).catch((error) => {
             console.error("Error creating quest:", error);
             alert("Error creating Quest. "+error.message);
         });
-
-        onClose();
     }
 
     return (

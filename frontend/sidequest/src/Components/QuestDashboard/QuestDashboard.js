@@ -29,11 +29,21 @@ const QuestDashboard = () => {
     navigate(-1);
 }
 
-const formatDate = (dateString) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateString);
-  return date.toLocaleDateString(undefined, options);
-};
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  const refreshQuests = () => {
+    if (activeTab === "openQuests") {
+      getOpenQuests().then(setOpenQuests).catch(console.error);
+    } else if (activeTab === "myQuests") {
+      getMyQuests().then(setMyQuests).catch(console.error);
+    } else if (activeTab === "acceptedQuests") {
+      getAcceptedQuestsByUser().then(setAcceptedQuests).catch(console.error);
+    }
+  };
 
   useEffect(() => {
     console.log("Group ID:", groupID); // Log the groupID to check its value
@@ -144,7 +154,7 @@ const formatDate = (dateString) => {
         </div>
       </div>
 
-    {showModal && <NewQuestModal onClose={() => setShowModal(false)} />}
+    {showModal && <NewQuestModal onClose={() => setShowModal(false)} onSuccess={refreshQuests} />}
 
     </div>
   )
