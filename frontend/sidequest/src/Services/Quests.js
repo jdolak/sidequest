@@ -108,15 +108,18 @@ export const getAcceptedQuestsByUser = async () => {
 };
 
 export const getQuestSubmission = async (submissionID) => {
-    const groupID = parseInt(sessionStorage.getItem("groupID"));
+    // const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + `/quest_submissions/${submissionID}/${groupID}`, config);
+        const response = await fetch(baseURL + `/quest_submissions/${submissionID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        else if (response.status === 204) {
+            return null; // No content, return null
         }
         return await response.json();
     } catch (error) {
