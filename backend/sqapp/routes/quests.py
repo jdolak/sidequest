@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, g, session, request, Response
+from flask import Blueprint, jsonify, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
 from sqapp.src.uploads import quest_submission, get_upload_url, create_quest

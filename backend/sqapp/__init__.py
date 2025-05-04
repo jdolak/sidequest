@@ -2,9 +2,9 @@ from flask import Flask
 import os
 from dotenv import load_dotenv
 import logging
+from sqapp.db import db_connect
 
 load_dotenv()
-from sqapp.db import db_connect
 
 DB = db_connect()
 

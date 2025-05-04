@@ -2,7 +2,7 @@ from flask import jsonify, g, session
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text
 
-from sqapp.db import sql_many, sql_one
+from sqapp.db import sql_one
 from sqapp import LOG
 
 BCRYPT = Bcrypt()
@@ -33,7 +33,7 @@ def register_user(rq):
     hashed_password = BCRYPT.generate_password_hash(data["password"]).decode('utf-8')
     if not BCRYPT.check_password_hash(hashed_password, data["password"]):
         LOG.error(f"Password hashing failed for {data['username']}")
-        return jsonify({"error": f"error creating account"}), 500
+        return jsonify({"error": "error creating account"}), 500
 
 
     # Insert the new user into the database
@@ -44,7 +44,7 @@ def register_user(rq):
 
     if result is None:
         LOG.error(f"User registration failed for {data['username']}")
-        return jsonify({"error": f"error creating account"}), 500
+        return jsonify({"error": "error creating account"}), 500
     
     LOG.info(f"User registered successfully: {data['username']}")
     

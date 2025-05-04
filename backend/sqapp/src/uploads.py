@@ -10,7 +10,7 @@ from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
 import secrets
-from sqapp.db import sql_many, sql_one, sql_response
+from sqapp.db import sql_many
 
 
 load_dotenv()
@@ -46,7 +46,7 @@ def upload_file(file, id, name=None):
 
     try:
         if not allowed_file(file):
-            LOG.error(f"File type not allowed")
+            LOG.error("File type not allowed")
             return None
         
         img = Image.open(file.stream)

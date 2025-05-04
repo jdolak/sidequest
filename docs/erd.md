@@ -12,7 +12,7 @@ erDiagram
         string group_desc
         boolean public
         char(64) invite_code
-        int default_coins
+        int default_currency
     }
 
     SQ_GROUPS_USER {
