@@ -53,3 +53,13 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.group-page-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.copy-icon {
+    cursor: pointer;
+}

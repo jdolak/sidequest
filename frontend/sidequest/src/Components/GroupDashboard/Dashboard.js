@@ -9,6 +9,7 @@ import { useGlobalStore } from '../../stores/globalStore.js';
 import { getLoggedInUser } from "../../Services/Users.js";
 import { useNavigate } from "react-router-dom";
 import { getUsersGroupProfile } from "../../Services/Users.js";
+import copyIcon from "../../assets/images/copy.svg";
 
 const Dashboard = () => {
     const [openBets, setOpenBets] = useState([]);
@@ -69,7 +70,11 @@ const Dashboard = () => {
     return (
         <div className="group-page-dashboard">
             <div className="group-page-header">
-                <div className="group-page-heading">{group.group_name}</div>
+                <div className="group-page-heading-row">
+                    <div className="group-page-heading">{group.group_name}</div>
+                    <img src={copyIcon} alt="copy-link" className="copy-icon" />
+                </div>
+                <div>{group.group_desc}</div>
                 <div>{group.size} members</div>
                 <div className="group-page-my-coins">
                     <div className="group-page-my-coins-text">{myProfile.currency} coins</div>

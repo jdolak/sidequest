@@ -9,14 +9,17 @@
 - [x] Front-end for Accepted Quests
 - [ ] Front-end for Accepted Bets
 - [x] Front-end for My Quests
-- [ ] Front-end for My Bets (resolve yes/no, add quantity available)
+- [x] Front-end for My Bets (resolve yes/no, add quantity available)
 - [x] move logout button to bottom of sidebar (Also maybe make this a circle?)
 - [x] make a settings icon below the logout button on the sidebar (themes)
 - [ ] invite link 
 - [ ] settings pop up to allow for more themes
-- [ ] only either buy yes or buy no button should appear
+- [ ] fix sidebar
+- [x] only either buy yes or buy no button should appear
 - [ ] when you join a page and it reloads it just redirects back to search
-- [ ] just either buy yes / buy no
+- [x] show group description under title
+- [x] modal or page for quest submissions 
+- [x] bet details shouldn't have a 'number of bets you'd like to place' field 
 
 ### Jachob
 - [x] Create endpoints
@@ -52,6 +55,7 @@
 - [x] logout process
 - [x] enable theme change or light mode/dark mode
 - [ ] endpoints for bet resolution
+- [ ] accept quest / buy bet / resolve quest/bet functionality
 
 # Bugs and improvements
 - Profile initial does not accurately reflect group name

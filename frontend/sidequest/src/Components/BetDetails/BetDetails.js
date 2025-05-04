@@ -45,12 +45,15 @@ const BetDetails = () => {
 
     const OpenBetContent = () => {
         return (
-            <div className="button-group">
-                <div className="yes-button">
-                    Buy yes
+            <div>
+                <div className="bet-text">
+                    <div className="bet-subheading">Number of bets you'd like to place</div>
+                    <input type="number" placeholder="Value" />
                 </div>
-                <div className="no-button">
-                    Buy no
+                <div className="button-group">
+                    <div className="yes-button">
+                        Buy *position*
+                    </div>
                 </div>
             </div>
         )
@@ -121,10 +124,6 @@ const BetDetails = () => {
                         <div>{bet?.max_quantity}</div>
                     </div>
                     {bet?.status === 'accepted' && <AcceptedBetContent />}
-                    <div className="bet-text">
-                        <div className="bet-subheading">Number of bets you'd like to place</div>
-                        <input type="number" placeholder="Value" />
-                    </div>
                 </div>
                 {bet?.status === 'open' && <OpenBetContent />}
                 <MyBetContent />

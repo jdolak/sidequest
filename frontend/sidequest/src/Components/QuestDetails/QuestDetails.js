@@ -37,7 +37,7 @@ const QuestDetails = () => {
     const OpenQuestContent = () => {
         return (
             <div className="accept-button">
-                New Quest Submission
+                Accept quest
             </div>
         )
     }
