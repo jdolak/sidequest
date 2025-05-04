@@ -110,19 +110,20 @@ def process_invite(code):
     if not g.user:
         return jsonify({"error": "User not logged in"}), 401
     
-    result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS WHERE TRIM(invite_code) = :invite_code", {"invite_code": code})
+    result = sql_one(g.db_session, "SELECT group_id, default_currency FROM SQ_GROUPS WHERE TRIM(invite_code) = :invite_code", {"invite_code": code})
 
     if not result:
         return jsonify({"error": "Invalid invite code"}), 400
-    group_id = result["group_id"]
     
+    group_id = result["group_id"]
+    default_currency = result["default_currency"]
     
     result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})
     if result:
         return jsonify({"error": "User already in group"}), 400
     
     sql = "INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency) VALUES (:user_id, :group_id, :currency)"
-    g.db_session.execute(text(sql), {"user_id": g.user, "group_id": group_id, "currency": 1000})
+    g.db_session.execute(text(sql), {"user_id": g.user, "group_id": group_id, "currency": default_currency})
 
     # Check if the user was added successfully
     result = sql_one(g.db_session, "SELECT group_id FROM SQ_GROUPS_USER WHERE user_id = :user_id AND group_id = :group_id", {"user_id": g.user, "group_id": group_id})

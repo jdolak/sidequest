@@ -18,6 +18,13 @@ lint:
 	python3 -m pip install ruff; \
 	ruff check .; \
 
+lint-fix:
+	@echo "\nLinting python code...\n"
+	@\
+	. ./.venv/bin/activate; \
+	python3 -m pip install ruff; \
+	ruff check --fix .; \
+
 run-local:
 	@\
 	. ./.venv/bin/activate; \

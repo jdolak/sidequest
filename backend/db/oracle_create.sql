@@ -10,6 +10,7 @@ CREATE TABLE SQ_GROUPS (
     group_desc VARCHAR2(4000),
     is_public CHAR(1) CHECK (is_public IN ('Y', 'N')),
     invite_code CHAR(64) UNIQUE
+    default_currency NUMBER,
 );
 
 CREATE TABLE SQ_GROUPS_USER (

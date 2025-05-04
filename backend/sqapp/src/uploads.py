@@ -176,6 +176,7 @@ def create_group(rq):
         group_name = data['groupname']
         group_desc = data['groupdesc']
         public = data.get('groupvisibility', 'Y')
+        default_currency = data.get('groupcoins', '1000')
 
         if not group_name or not group_desc or not public:
             LOG.error(f"Missing parameters: {group_name}, {group_desc}, {public}")
@@ -187,19 +188,21 @@ def create_group(rq):
         
         invite_code = secrets.token_urlsafe(24)
 
-        sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code) VALUES (:group_name, :group_desc, :public, :invite_code)"
+        sql = "INSERT INTO SQ_GROUPS (group_name, group_desc, is_public, invite_code, default_currency) VALUES (:group_name, :group_desc, :public, :invite_code, :default_currency)"
         g.db_session.execute(text(sql), {
             'group_name': group_name,
             'group_desc': group_desc,
             'public': public,
-            'invite_code': invite_code
+            'invite_code': invite_code,
+            'default_currency': default_currency
         })
         LOG.info(f"Group created: {group_name}, {group_desc}, {public}, {invite_code}")
 
-        sql = "INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency) VALUES (:user_id, (SELECT group_id FROM SQ_GROUPS WHERE group_name = :group_name), 0)"
+        sql = "INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency) VALUES (:user_id, (SELECT group_id FROM SQ_GROUPS WHERE group_name = :group_name), :currency)"
         g.db_session.execute(text(sql), {
             'user_id': g.user,
-            'group_name': group_name
+            'group_name': group_name,
+            'currency': default_currency
         })
         LOG.info(f"User {g.user} added to group {group_name}")
         return jsonify({"message": "group created"}), 201
