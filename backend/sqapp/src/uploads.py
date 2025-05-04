@@ -92,16 +92,16 @@ def quest_submission(rq, quest_id):
             'status': 'Resolved'
         })
 
-        if 'file' in rq.files and not image:
-            return jsonify({"message": "submission created, error uploading file"}), 500
-
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
             'coins': quest_data['reward_amount'],
             'user_id': g.user,
             'group_id': quest_data['group_id']
         })
-        
+
+        if 'file' in rq.files and not image:
+            return jsonify({"message": "submission created, error uploading file"}), 500
+
         return jsonify({"message": "submission created"}), 201
     except Exception as e:
         LOG.error(f"Error creating submission: {e}")
