@@ -54,7 +54,7 @@ def get_bet_mybets(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM AVAILABLE_BETS ab WHERE ab.seller_id = :user_id AND ab.group_id = :group_id",
+            "SELECT bet_id, group_id, seller_id, username, max_quantity, side, odds, question, description, status FROM AVAILABLE_BETS ab, SQ_USERS u WHERE ab.seller_id = :user_id AND ab.group_id = :group_id AND ab.seller_id = u.user_id",
             {"user_id": g.user, "group_id": group_id},
         )
     )
