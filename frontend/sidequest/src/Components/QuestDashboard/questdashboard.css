@@ -3,11 +3,7 @@
 .quest-dashboard-main-container {
     display: flex;
     height: 100vh;
-    width: 100vw;
     overflow: hidden;
-    /* justify-content: center;
-    align-items: center; */
-    /* height: 100vh; */
       
     background: var(--White);
 }
@@ -16,14 +12,12 @@
   /* margin-left: 100px; */
   display: flex;
   flex: 1;
-  /* overflow-y: auto; */
-  /* width: 100vw; */
-  height: 100vh;
   padding: 60px 48px;
   flex-direction: column;
   align-items: flex-start;
   gap: 60px;
   overflow-y: auto;
+  min-height: 0;
 
   /* flex-shrink: 0; */
 
@@ -139,8 +133,9 @@
 }
 
 .quest-row {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
   gap: 16px;
 }
 

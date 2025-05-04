@@ -128,3 +128,14 @@
   border-radius: 8px;
   background: var(--Secondary);
 }
+
+.upload-button {
+  background-color: #f0f0f0;
+  padding: 12px 20px;
+  border: 2px dashed var(--Text-Field);
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
