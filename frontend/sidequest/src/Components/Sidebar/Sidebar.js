@@ -49,7 +49,6 @@ const Sidebar = () => {
         var newTheme = theme === "light" ? "dark" : theme === "dark" ? "dracula" : theme === "dracula" ? "nd" : "light";
         setTheme(newTheme);
         localStorage.setItem("theme", newTheme);
-        console.log("Theme changed to:", newTheme);
         // document.documentElement.classList.toggle("dracula", newTheme === "dracula");
     };
 

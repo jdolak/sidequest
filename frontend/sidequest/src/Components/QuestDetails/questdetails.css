@@ -52,7 +52,7 @@
 }
 
 .back-text {
-  color: var(--Action, #2F184B);
+  color: var(--svg, #2F184B);
 
   /* Action */
   font-family: Karla;
@@ -71,7 +71,7 @@
 }
 
 .quest-details-title {
-  color: #000;
+  color: var(--Text, #000);
 
   /* Heading */
   font-family: "DM Sans";
@@ -106,8 +106,6 @@
 }
 
 .quest-details-subheading {
-  color: #000;
-
   /* Card Subheading */
   font-family: Karla;
   font-size: 20px;

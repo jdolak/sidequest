@@ -1,7 +1,7 @@
 import "./betdetails.css";
 import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
-import backIcon from '../../assets/images/chevron.svg';
+// import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
 import { getBet, buyBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
@@ -145,7 +145,9 @@ const BetDetails = () => {
         <div className="bet-details-content-container">
             <div className="bet-header">
                 <Link onClick={goBack} className="back-button">
-                    <img src={backIcon} />
+                    <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.5 19L1.5 10L10.5 1" stroke="inherit" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                     <div className="back-text">Back</div>
                 </Link>
                 <div className="header-contents"> 

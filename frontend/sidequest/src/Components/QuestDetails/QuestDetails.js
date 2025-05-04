@@ -1,7 +1,7 @@
 import "./questdetails.css";
 import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
-import backIcon from '../../assets/images/chevron.svg';
+// import backIcon from '../../assets/images/chevron.svg';
 import { getQuest, getQuestSubmission, acceptQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { formatDate } from "../../utils/utils.js";
@@ -139,8 +139,10 @@ const QuestDetails = () => {
         <div className="quest-details-content-container">
             <div className="quest-details-header">
                 <Link onClick={goBack} className="back-button">
-                    <img src={backIcon} />
-                    <div className="back-text">Back</div>
+                <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 19L1.5 10L10.5 1" stroke="inherit" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div className="back-text">Back</div>
                 </Link>
                 <div className="quest-details-header-contents"> 
                     <div className="quest-details-title">{quest?.quest_title}</div>
