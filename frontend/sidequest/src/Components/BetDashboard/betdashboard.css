@@ -39,7 +39,7 @@
 }
 
 .backText {
-  color: var(--Action, #2F184B);
+  color: var(--svg, #2F184B);
 
   /* Action */
   font-family: Karla;
@@ -97,7 +97,7 @@
   align-items: center;
 
   border-radius: var(--sds-size-radius-100) var(--sds-size-radius-100) 0px 0px;
-  color: var(--Action, #2F184B);
+  color: var(--svg, #2F184B);
 
   /* Subheading */
   font-family: "DM Sans";

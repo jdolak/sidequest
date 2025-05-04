@@ -70,11 +70,7 @@
 }
 
 .bet-title {
-
     align-self: stretch; 
-
-    color: #000;
-
     /* Card Subheading */
     font-family: "Karla", sans-serif;
     font-size: 20px;
@@ -85,8 +81,6 @@
 }
 
 .bet-body {
-    color: #000;
-
     /* Body */
     font-family: Karla;
     font-size: 16px;
