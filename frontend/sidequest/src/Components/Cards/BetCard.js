@@ -15,9 +15,9 @@ import "./card.css";
 
 const BetCard = ({ title, creator, coins, date, odds }) => {
   return (
-    <article class="card" role="listitem">
-       <div class="card-title">{title}</div>
-       <div class="card-desc">
+    <article className="card" role="listitem">
+       <div className="card-title">{title}</div>
+       <div className="card-desc">
          <div>Created by {creator}</div>
          {coins && <div>{coins} coins</div>}
          {odds && <div>Odds: {odds}</div>}

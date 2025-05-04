@@ -91,16 +91,16 @@ const BetDashboard = () => {
     }, [activeTab, groupID]);
 
   return (
-    <div class="bet-dashboard-main-container">
+    <div className="bet-dashboard-main-container">
       <Sidebar />
-      <div class="bet-dashboard-content-container">
-        <div class="dashboardHeader">
+      <div className="bet-dashboard-content-container">
+        <div className="dashboardHeader">
           <Link onClick={goBack} className="backButton">
             <img src={backIcon} />
             <div className="backText">Back</div>
           </Link>
-          <div class="headerContents">
-            <div class="betTabs">
+          <div className="headerContents">
+            <div className="betTabs">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -114,14 +114,14 @@ const BetDashboard = () => {
                 </button>
               ))}
             </div>
-            <div class="tabHeader">
+            <div className="tabHeader">
               <div>{activeTabLabel}</div>
               <button className="open-bet-button" onClick={() => setShowModal(true)}>Open a bet</button>
             </div>
           </div>
         </div>
-        <div class="bets">
-              <div class="bet-row">
+        <div className="bets">
+              <div className="bet-row">
               {activeTab === "myBets" &&
                 myBets.map((bet) => (
                   <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>

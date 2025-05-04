@@ -4,9 +4,9 @@ import "./card.css";
 const Card = ({ title, creator, coins, date, odds }) => {
   return (
 
-    <article class="card" role="listitem">
-       <div class="card-title">{title}</div>
-       <div class="card-desc">
+    <article className="card" role="listitem">
+       <div className="card-title">{title}</div>
+       <div className="card-desc">
         {date && <div>Closes on {date}</div>}
          <div>Created by {creator}</div>
          {coins && <div>{coins} coins</div>}
