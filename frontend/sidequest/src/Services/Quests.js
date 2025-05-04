@@ -147,7 +147,6 @@ export const getAllQuestSubmissions = async () => {
 };
 
 export const submitQuest = async (questID, submissionData) => {
-    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'POST',
         credentials: 'include',
@@ -157,7 +156,7 @@ export const submitQuest = async (questID, submissionData) => {
         body: JSON.stringify(submissionData),
     };
     try {
-        const response = await fetch(baseURL + `/quest_submit/${questID}/${groupID}`, config);
+        const response = await fetch(baseURL + `/quest_submit/${questID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -187,6 +186,26 @@ export const createQuest = async (questData) => {
         return await response.json();
     } catch (error) {
         console.error("Error creating quest:", error);
+        throw error;
+    }
+};
+
+export const acceptQuest = async (questID) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    try {
+        const response = await fetch(baseURL + `/quests/accept/${questID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error accepting quest with ID ${questID}:`, error);
         throw error;
     }
 };
