@@ -1,18 +1,18 @@
 import { baseURL } from './Constants.js';
 
-export const getUser = async (userID) => {
+export const getUser = async () => {
     const config = {
         method: 'GET',
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/users/${userID}`, config);
+        const response = await fetch(`${baseURL}/users/my_user`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         return await response.json();
     } catch (error) {
-        console.error(`Error fetching user with ID ${userID}:`, error);
+        console.error(`Error fetching user`, error);
         throw error;
     }
 };

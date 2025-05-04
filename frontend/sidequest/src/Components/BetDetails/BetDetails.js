@@ -3,15 +3,15 @@ import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
-import { getBet } from "../../Services/Bets.js";
+import { getBet, buyBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { getUser } from "../../Services/Users.js";
 
 const BetDetails = () => {
     const location = useLocation();
     const [bet, setBet] = useState(null);
-    const [seller, setSeller] = useState({});
-    const sourceTab = location.state?.sourceTab;
+    // const [seller, setSeller] = useState({});
+    // const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
     
     const goBack = () => {
@@ -39,6 +39,42 @@ const BetDetails = () => {
             console.error("betID is null or undefined");
         }
     }, [betID]);
+
+    function getBuyCost(quantity) {
+        console.log(bet)
+        if (bet?.side.toLowerCase() === 'yes') {
+            return (100 - bet?.odds) * quantity;
+        } if (bet?.side.toLowerCase() === 'no') {
+            return bet?.odds * quantity;
+        }
+        else{}
+    };
+
+    function handleBuyBet() {
+        const buyQuantity = document.querySelector("input[type='number']").value;
+        if (buyQuantity === null || buyQuantity <= 0 || buyQuantity > bet?.max_quantity) {
+            alert("Please enter a valid quantity.");
+            return;
+        }
+        const cost = getBuyCost(buyQuantity);
+        if (window.confirm("Are you sure you want to buy this bet? It will cost you " + cost + " coins.")) {
+            // TODO: store user_id in session storage and use it here
+            const user = getUser();
+            console.log("user:", user);
+            if (user?.coins >= cost && user?.user_id && betID) {
+                buyBet(user.user_id, betID).then((response) => {
+                    console.log("Buy bet response:", response);
+                }).catch((error) => {
+                    console.error("Error buying bet:", error);
+                });
+            } else if (user?.coins < cost) {
+                alert("You do not have enough coins to buy this bet.");
+            } else {
+                console.error("invalid user:", user);
+                navigate("/");
+            }
+        };
+    };
 
     const OpenBetContent = () => {
         return (

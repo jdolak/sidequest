@@ -149,3 +149,25 @@ export const createBet = async (betData) => {
         throw error;
     }
 };
+
+export const buyBet = async (betID, buyerID) => {
+    const data = { betID, buyerID };
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/accept`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error buying bet:", error);
+        throw error;
+    }
+};
