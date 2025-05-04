@@ -100,3 +100,16 @@ def quest_submit(quest_id):
 @quest_bp.route("/quests/create", methods=["POST"])
 def post_create_quest():
     return create_quest(request)
+
+
+@quest_bp.route("/quests/accept/<int:quest_id>", methods=["POST"])
+def post_accept_quest(quest_id):
+    if not g.user:
+        return jsonify({"message": "User not logged in"}), 401
+    return sql_response(
+        sql_one(
+            g.db_session,
+            "UPDATE QUEST_SUBMISSIONS SET status = 'Accepted' WHERE quest_id = :quest_id AND user_id = :user_id RETURNING *",
+            {"quest_id": quest_id, "user_id": g.user},
+        )
+    )
