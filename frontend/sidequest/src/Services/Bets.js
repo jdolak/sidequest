@@ -150,8 +150,11 @@ export const createBet = async (betData) => {
     }
 };
 
-export const buyBet = async (betID, buyerID) => {
-    const data = { betID, buyerID };
+export const buyBet = async (betID, quantity, side, status) => {
+    const data = { "bet_id": betID,
+        "quantity": quantity, 
+        "side": side,
+        "status": status };
     const config = {
         method: 'POST',
         credentials: 'include',

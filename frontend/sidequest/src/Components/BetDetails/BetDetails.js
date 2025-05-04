@@ -67,7 +67,8 @@ const BetDetails = () => {
         if (window.confirm("Are you sure you want to buy this bet? It will cost you " + cost + " coins.")) {
             const user = getUsersGroupProfile().then((user) => {
                 if (user?.currency >= cost && user?.user_id && betID) {
-                    buyBet(user.user_id, betID).then((response) => {
+                    const buyerSide = bet?.side.toLowerCase() === "yes" || bet?.side.toLowerCase() === "y" ? "no" : "yes";
+                    buyBet(betID, buyQuantity, buyerSide, bet?.status).then((response) => {
                         console.log("Buy bet response:", response);
                     }).catch((error) => {
                         console.error("Error buying bet:", error);
