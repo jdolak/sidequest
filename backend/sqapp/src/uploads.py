@@ -269,9 +269,14 @@ def bet_resolve(rq):
 def accept_bet(rq):
     try:
         data = rq.get_json()
-        bet_id = data['betID']
+        bet_id = data['bet_id']
         quantity = data['quantity']
         side = data['side']
+
+        if side == 'yes':
+            side = 'Y'
+        else:
+            side = 'N'
 
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
