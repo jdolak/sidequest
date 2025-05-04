@@ -16,15 +16,14 @@ const Dashboard = () => {
     const [openQuests, setOpenQuests] = useState([]);
     const [group, setGroup] = useState({});
     const [myProfile, setMyProfile] = useState({});
-    // const groupID = useGlobalStore((state) => state.currGroupID);
+    const globalGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
     const [groupID, setGroupID] = useState(
         parseInt(sessionStorage.getItem("groupID"))
       );
 
     useEffect(() => {
-        console.log(sessionStorage.getItem("groupID"), typeof(sessionStorage.getItem("gropupID")))
-        console.log("Group ID:", groupID);
+        setGroupID(sessionStorage.getItem("groupID"));
         getLoggedInUser().then((user) => {
             if (user.status === "false") {
                 navigate("/login");
@@ -65,7 +64,7 @@ const Dashboard = () => {
             }).catch((error) => {
             console.error("Error fetching quests:", error);
         });
-    }, [groupID]);
+    }, [groupID, globalGroupID]);
           
     return (
         <div className="group-page-dashboard">

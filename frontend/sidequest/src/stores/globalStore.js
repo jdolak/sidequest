@@ -1,10 +1,10 @@
 // stores/globalStore.js
-// import { create } from 'zustand';
+import { create } from 'zustand';
 
-// export const useGlobalStore = create((set) => ({
-//   currGroupID: null,
-//   setGroup: (value) => set({ currGroupID: value }),
-// }));
+export const useGlobalStore = create((set) => ({
+  currGroupID: null,
+  setGroup: (value) => set({ currGroupID: value }),
+}));
 
 // import { create } from 'zustand';
 // import { persist } from 'zustand/middleware';

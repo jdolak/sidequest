@@ -4,7 +4,7 @@ import logoutIcon from '../../assets/images/logout.svg';
 import settingsIcon from '../../assets/images/settings.svg';
 import {Link} from "react-router-dom";
 import './sidebar.css';
-// import { useGlobalStore } from '../../stores/globalStore.js';
+import { useGlobalStore } from '../../stores/globalStore.js';
 import { getMyGroups } from "../../Services/Groups.js";
 import { useNavigate } from "react-router-dom";
 import { getLoggedInUser, logout } from "../../Services/Users.js";
@@ -13,12 +13,14 @@ import { getLoggedInUser, logout } from "../../Services/Users.js";
 const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const [groupID, setGroupID] = useState(null);
-    const [username, setUsername] = useState("");
+    // const [username, setUsername] = useState("");
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const setCurrGroup = useGlobalStore((state) => state.setGroup);
+    const currGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
 
     const setGroup = (groupID) => {
-        // setCurrGroup(groupID);
+        setCurrGroup(groupID);
         setGroupID(groupID);
         sessionStorage.setItem("groupID", groupID);
         navigate(`/groups/${groupID}`);
@@ -29,13 +31,13 @@ const Sidebar = () => {
         document.documentElement.classList.toggle("dracula", theme === "dracula");
         document.documentElement.classList.toggle("dark", theme === "dark");
         document.documentElement.classList.toggle("nd", theme === "nd");
-        getLoggedInUser().then((user) => {
-            if (user.status === "true") {
-                setUsername(user.username);
-            }
-        }).catch((error) => {
-            console.error("Error checking logged-in user:", error);
-        });
+        // getLoggedInUser().then((user) => {
+        //     if (user.status === "true") {
+        //         setUsername(user.username);
+        //     }
+        // }).catch((error) => {
+        //     console.error("Error checking logged-in user:", error);
+        // });
         getMyGroups().then((response) => {
             setGroups(response);
         }).catch((error) => {
