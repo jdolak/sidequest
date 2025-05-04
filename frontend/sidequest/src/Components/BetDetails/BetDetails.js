@@ -20,12 +20,9 @@ const BetDetails = () => {
     
     const betID = useParams().id;
 
-    console.log("Bet ID from URL:", betID); // Log the betID to check its value
     useEffect(() => {
-        console.log("Bet ID:", betID); // Log the betID to check its value
         if (betID){
             getBet(betID).then((response) => {
-                console.log("bet:", response);
                 setBet(response);
                 // if (response?.seller_id) {
                 //     getUser(response.seller_id).then((user) => {

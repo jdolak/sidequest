@@ -46,7 +46,6 @@ const QuestDashboard = () => {
   };
 
   useEffect(() => {
-    console.log("Group ID:", groupID); // Log the groupID to check its value
     getLoggedInUser().then((user) => {
         if (user.status === "false") {
             navigate("/login");
@@ -63,21 +62,18 @@ const QuestDashboard = () => {
     });
     if (activeTab === "openQuests" && openQuests.length === 0) {
       getOpenQuests().then((response) => {
-        console.log("OpenQuests:", response);
         setOpenQuests(response);
       }).catch((error) => {
         console.error("Error fetching quests:", error);
       });
     } else if (activeTab === "myQuests" && myQuests.length === 0) {
       getMyQuests().then((response) => {
-        console.log("myQuests:", response);
         setMyQuests(response);
       }).catch((error) => {
         console.error("Error fetching quests:", error);
       });
     } else if (activeTab === "acceptedQuests" && acceptedQuests.length === 0) {
       getAcceptedQuestsByUser().then((response) => {
-        console.log("acceptedQuests:", response);
         setAcceptedQuests(response);
       }).catch((error) => {
         console.error("Error fetching quests:", error);

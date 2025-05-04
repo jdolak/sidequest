@@ -20,7 +20,6 @@ const QuestDetails = () => {
 
     useEffect(() => {
         getQuest(questID).then((response) => {
-            console.log("quest:", response);
             setQuest(response);
         }).catch((error) => {
             console.error("Error fetching quest:", error);
@@ -89,7 +88,6 @@ const QuestDetails = () => {
     
                 const result = await response.json();
                 setStatus("Submission successful.");
-                console.log(result);
             } catch (err) {
                 setStatus("Submission failed.");
                 console.error(err);
