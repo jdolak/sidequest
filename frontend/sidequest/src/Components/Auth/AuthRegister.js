@@ -10,7 +10,10 @@ const AuthRegister = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
         username: "",
         password: "",
+        confirmPassword: ""
     });
+
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
             const checkLoggedInUser = async () => {
@@ -25,15 +28,21 @@ const AuthRegister = ({ onSubmit }) => {
                 }
             };
             checkLoggedInUser();
-        }, []);
+        }, [navigate]);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData((prev) => ({...prev, [name]: value}));
+        setErrorMessage("");
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setErrorMessage("Passwords do not match.");
+            return;
+        }
 
         try {
             const response = await fetch("https://sq.jdolak.com/auth/register", {
@@ -41,7 +50,10 @@ const AuthRegister = ({ onSubmit }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    username: formData.username,
+                    password: formData.password
+                }),
 
             });
 
@@ -79,9 +91,14 @@ const AuthRegister = ({ onSubmit }) => {
                             Password
                             <input className="form-input" type="password" name="password" value={formData.password} onChange={handleChange} required />
                         </label>
+                        <label className="form-label">
+                            Confirm Password
+                            <input className="form-input" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+                        </label>
                     </div>
                     <button className="submit-button" type="submit">Sign up</button>
                 </form>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <div className="redirect">Have an account with us? <Link to="/login" className="redirect-link">Log in here.</Link></div>
             </div>
         </div>
