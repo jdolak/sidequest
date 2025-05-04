@@ -145,7 +145,7 @@ def create_bet(rq):
             LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
 
-        sql = "INSERT INTO available_bets (group_id, seller_id, max_quantity, side, odds, question, descriptio, status) VALUES (:group_id, :seller_id, :max_quantity, :side, :odds, :question, :description, :status)"
+        sql = "INSERT INTO available_bets (group_id, seller_id, max_quantity, side, odds, question, description, status) VALUES (:group_id, :seller_id, :max_quantity, :side, :odds, :question, :description, :status)"
         g.db_session.execute(text(sql), {
             'group_id': group_id,
             'seller_id': g.user,
