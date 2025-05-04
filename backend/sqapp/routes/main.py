@@ -57,7 +57,7 @@ def init_app(sq_app):
         user_id = session.get("sq_user_id")
         if user_id:
             g.user = user_id
-            LOG.debug(f"REQUEST : {g.user} : {request.data}")
+            LOG.debug(f"REQUEST : {g.user} : {request.method} {request.url} : {request.data}")
 
         else:
             g.user = None

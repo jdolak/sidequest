@@ -6,11 +6,11 @@ from flask import g, jsonify
 from dotenv import load_dotenv
 import os
 from sqlalchemy import text
-from time import time
 from sqapp import LOG
 from urllib.parse import urlparse, urlunparse
 import secrets
 from sqapp.db import sql_many, sql_one
+from datetime import datetime
 
 
 load_dotenv()
@@ -80,7 +80,7 @@ def quest_submission(rq, quest_id):
             'quest_id': quest_id,
             'user_id': g.user,
             'submission_photo': image,
-            'submission_date_time': time(),
+            'submission_date_time': datetime.now(),
             'comments': rq.form['comment'],
             'status': 'submitted'
         })
@@ -269,10 +269,9 @@ def bet_resolve(rq):
 def accept_bet(rq):
     try:
         data = rq.get_json()
-        bet_id = data['bet_id']
+        bet_id = data['betID']
         quantity = data['quantity']
         side = data['side']
-        status = data['status']
 
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
@@ -280,10 +279,10 @@ def accept_bet(rq):
             'bet_id': bet_id,
             'quantity': quantity,
             'side': side,
-            'status': status
+            'status': 'Accepted'
         })
 
-        sql = "UPDATE available_bets SET max_quantity = max_quantity - :quantity WHERE bet_id = :bet_id"
+        sql = "UPDATE available_bets SET max_quantity = :quantity, status = 'Accepted' WHERE bet_id = :bet_id"
         g.db_session.execute(text(sql), {
             'quantity': quantity,
             'bet_id': bet_id
