@@ -123,6 +123,7 @@ def create_quest(rq):
     
     except Exception as e:
         LOG.error(f"Error creating quest: {e}")
+        g.db_session.rollback()
         return jsonify({"message": "error creating quest"}), 500
     
 
@@ -165,6 +166,7 @@ def create_bet(rq):
     
     except Exception as e:
         LOG.error(f"Error creating bet: {e}")
+        g.db_session.rollback()
         return jsonify({"message": "error creating bet"}), 500
     
 def create_group(rq):
@@ -193,10 +195,18 @@ def create_group(rq):
             'invite_code': invite_code
         })
         LOG.info(f"Group created: {group_name}, {group_desc}, {public}, {invite_code}")
+
+        sql = "INSERT INTO SQ_GROUPS_USER (user_id, group_id, currency) VALUES (:user_id, (SELECT group_id FROM SQ_GROUPS WHERE group_name = :group_name), 0)"
+        g.db_session.execute(text(sql), {
+            'user_id': g.user,
+            'group_name': group_name
+        })
+        LOG.info(f"User {g.user} added to group {group_name}")
         return jsonify({"message": "group created"}), 201
     
     except Exception as e:
         LOG.error(f"Error creating group: {e}")
+        g.db_session.rollback()
         return jsonify({"message": "error creating group"}), 500
     
 def bet_resolve(rq):
@@ -243,6 +253,7 @@ def bet_resolve(rq):
     
     except Exception as e:
         LOG.error(f"Error resolving bet: {e}")
+        g.db_session.rollback()
         return jsonify({"message": "error resolving bet"}), 500
 
 def accept_bet(rq):
