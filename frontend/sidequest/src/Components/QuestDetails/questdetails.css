@@ -130,7 +130,7 @@
 }
 
 .upload-button {
-  background-color: #f0f0f0;
+  background-color: var(--White);
   padding: 12px 20px;
   border: 2px dashed var(--Text-Field);
   cursor: pointer;
@@ -138,4 +138,29 @@
   border-radius: 8px;
   margin-bottom: 10px;
   transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+
+.quest-submission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.submission-comment {
+  width: 300px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--Text-Field);
+  min-height: 80px;
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: var(--Secondary);
+  color: var(--White);
+  padding: 16px 32px;
+  align-self: flex-start;
 }

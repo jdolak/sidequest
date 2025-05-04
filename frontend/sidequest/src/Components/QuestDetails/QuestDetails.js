@@ -104,7 +104,7 @@ const QuestDetails = () => {
         }
 
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="quest-submission-form">
                 <div className="upload-button" onClick={handleClick}>
                     Upload submission
                 </div>
@@ -112,9 +112,9 @@ const QuestDetails = () => {
 
                 {selectedFile && <div>Selected: {selectedFile.name}</div>}
 
-                <textarea placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
+                <textarea className="submission-comment" placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
 
-                <button type="submit">Submit Quest</button>
+                <button className="submit-button" type="submit">Submit Quest</button>
                 
                 {/* {status && <div>{status}</div>} */}
             </form>
