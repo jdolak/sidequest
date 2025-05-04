@@ -5,7 +5,7 @@ import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
 import { getBet, buyBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { getUser } from "../../Services/Users.js";
+import { getUsersGroupProfile } from "../../Services/Users.js";
 
 const BetDetails = () => {
     const location = useLocation();
@@ -42,12 +42,15 @@ const BetDetails = () => {
 
     function getBuyCost(quantity) {
         console.log(bet)
-        if (bet?.side.toLowerCase() === 'yes') {
+        if (bet?.side.toLowerCase() === 'yes' || bet?.side.toLowerCase() === "y") {
             return (100 - bet?.odds) * quantity;
-        } if (bet?.side.toLowerCase() === 'no') {
+        } if (bet?.side.toLowerCase() === 'no' || bet?.side.toLowerCase() === "n") {
             return bet?.odds * quantity;
         }
-        else{}
+        else{
+            alert("Error: Bet side is not valid.");
+            return -1;
+        }
     };
 
     function handleBuyBet() {
@@ -57,22 +60,28 @@ const BetDetails = () => {
             return;
         }
         const cost = getBuyCost(buyQuantity);
+        if (cost < 0) {
+            console.error("invalid bet "+bet);
+            return;
+        }
         if (window.confirm("Are you sure you want to buy this bet? It will cost you " + cost + " coins.")) {
             // TODO: store user_id in session storage and use it here
-            const user = getUser();
-            console.log("user:", user);
-            if (user?.coins >= cost && user?.user_id && betID) {
-                buyBet(user.user_id, betID).then((response) => {
-                    console.log("Buy bet response:", response);
-                }).catch((error) => {
-                    console.error("Error buying bet:", error);
-                });
-            } else if (user?.coins < cost) {
-                alert("You do not have enough coins to buy this bet.");
-            } else {
-                console.error("invalid user:", user);
-                navigate("/");
-            }
+            const user = getUsersGroupProfile().then((user) => {
+                if (user?.currency >= cost && user?.user_id && betID) {
+                    buyBet(user.user_id, betID).then((response) => {
+                        console.log("Buy bet response:", response);
+                    }).catch((error) => {
+                        console.error("Error buying bet:", error);
+                    });
+                } else if (user?.currency < cost) {
+                    alert("You do not have enough coins to buy this bet.");
+                } else {
+                    console.error("invalid user:", user);
+                    navigate("/");
+                }
+            }).catch((error) => {
+                console.error("Error fetching user:", error);
+            });
         };
     };
 
@@ -84,9 +93,16 @@ const BetDetails = () => {
                     <input type="number" placeholder="Value" />
                 </div>
                 <div className="button-group">
-                    <div className="yes-button">
-                        Buy *position*
+                    {bet?.side.toLowerCase() === "no" || bet?.side.toLowerCase() === "n" ? (
+                    <div className="yes-button" onClick={handleBuyBet}>
+                        Buy Yes
                     </div>
+                    ) : null}
+                    {bet?.side.toLowerCase() === "yes" || bet?.side.toLowerCase() === "y" ? (
+                    <div className="no-button" onClick={handleBuyBet}>
+                        Buy No
+                    </div>
+                    ) : null}
                 </div>
             </div>
         )

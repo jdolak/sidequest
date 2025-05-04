@@ -68,7 +68,8 @@ export const logout = async () => {
     }
 };
 
-export const getUsersGroupProfile = async (groupID) => {
+export const getUsersGroupProfile = async () => {
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
     const config = {
         method: 'GET',
         credentials: 'include',
