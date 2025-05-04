@@ -1,13 +1,15 @@
 .group-page-dashboard {
-    display: flex;
-    width: 1200px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex: 1;
     padding: 60px 48px;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 60px;
-    flex-shrink: 0;
     align-self: stretch;
-
+    overflow: hidden;
     background: var(--White);
 }
 

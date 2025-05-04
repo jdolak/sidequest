@@ -5,9 +5,11 @@ import './grouppage.css';
 
 const GroupPage = () => {
     return (
-        <div class="group-main-page">
+        <div className="group-main-page">
              <Sidebar />
-             <Dashboard />
+             <div className="group-dashboard-scroll-container">
+                <Dashboard />
+             </div>
         </div>
     );
 };

@@ -2,8 +2,16 @@
 
 .group-main-page {
     display: flex;
-    /* height: 100vh; */
+    height: 100vh;
+    width: 100vw;
     background: var(--White);
+    overflow: hidden;
+}
+
+.group-dashboard-scroll-container {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 body {
