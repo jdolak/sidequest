@@ -2,7 +2,7 @@ import React, {useEffect,useState} from "react";
 import QuestSection from "./QuestSection/QuestSection";
 import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
-import { getOpenQuests } from "../../Services/Quests";
+import { getOpenQuests, getAllQuests } from "../../Services/Quests";
 import { getAllBets } from "../../Services/Bets";
 import { getGroup, getGroupUser } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
@@ -50,7 +50,6 @@ const Dashboard = () => {
             console.error("Error fetching group:", error);
         });
         getAllBets().then((response) => {
-            console.log("all bets response", response);
             if (!Array.isArray(response)) {
                     setOpenBets([response]);
                 } else {
@@ -60,8 +59,13 @@ const Dashboard = () => {
                 setOpenBets([]);
                 console.error("Error fetching Bets:", error);
         });
-        getOpenQuests().then((response) => {
-            setOpenQuests(response);
+        getAllQuests().then((response) => {
+            if (!Array.isArray(response)) {
+                setOpenQuests([response]);
+            } else {
+                setOpenQuests(response);
+            }
+            console.log("Fetched quests:", response);
             }).catch((error) => {
             console.error("Error fetching quests:", error);
         });

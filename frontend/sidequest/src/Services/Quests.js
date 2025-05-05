@@ -7,7 +7,7 @@ export const getAllQuests = async () => {
         credentials: 'include',
     };
     try {
-        const response = await fetch(baseURL + '/quests/' + groupID, config);
+        const response = await fetch(baseURL + '/quests/all/' + groupID, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
