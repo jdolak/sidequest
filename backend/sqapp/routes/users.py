@@ -109,3 +109,9 @@ def post_invite(invite_code):
 @user_bp.route("/groups/create", methods=["POST"])
 def post_create_group():
     return create_group(request)
+
+@user_bp.route("/quests/delete/<int:group_id>", methods=["POST"])
+def delete_quest(group_id):
+    sql = "DELETE FROM QUESTS WHERE group_id = :group_id RETURNING group_id"
+    result = sql_one(g.db_session, sql, {"group_id": group_id})
+    return sql_response(result)

@@ -113,3 +113,9 @@ def post_create_quest():
 @quest_bp.route("/quests/accept/<int:quest_id>", methods=["POST"])
 def post_accept_quest(quest_id):
     return quest_accept(quest_id)
+
+@quest_bp.route("/quests/delete/<int:quest_id>", methods=["POST"])
+def delete_quest(quest_id):
+    sql = "DELETE FROM QUESTS WHERE quest_id = :quest_id RETURNING quest_id"
+    result = sql_one(g.db_session, sql, {"quest_id": quest_id})
+    return sql_response(result)

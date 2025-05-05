@@ -51,7 +51,7 @@ def get_bet_accepted(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb WHERE ab.bet_id = bb.bet_id AND bb.buyer_id = :user_id AND ab.group_id = :group_id",
+            "SELECT * FROM AVAILABLE_BETS ab, BOUGHT_BETS bb, SQ_USERS u WHERE ab.bet_id = bb.bet_id AND bb.buyer_id = :user_id AND ab.group_id = :group_id and u.user_id = ab.seller_id",
             {"user_id": g.user, "group_id": group_id},
         )
     )
@@ -96,6 +96,12 @@ def post_accept_bet():
 def post_resolve_bet():
     return bet_resolve(request)
 
+
+@bet_bp.route("/bets/delete/<int:bet_id>", methods=["POST"])
+def delete_bet(bet_id):
+    sql = "DELETE FROM AVAILABLE_BETS WHERE bet_id = :bet_id RETURNING bet_id"
+    result = sql_one(g.db_session, sql, {"bet_id": bet_id})
+    return sql_response(result)
 
 
 
