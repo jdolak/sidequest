@@ -12,6 +12,7 @@ import SearchPage from "./Pages/SearchPage.js";
 import GroupPage from "./Pages/GroupPage.js"
 import QuestDashboard from "./QuestDashboard/QuestDashboard.js";
 import BetDashboard from "./BetDashboard/BetDashboard.js";
+import AboutPage from "./About/AboutPage.js"
 
 // Quest Details
 import QuestDetails from "./QuestDetails/QuestDetails.js";
@@ -38,6 +39,7 @@ export default function Components() {
                     <Route path="/bets/:id" element={<BetDetails />} />
                     <Route path="quests" element={<QuestDashboard />} />
                     <Route path="bets" element={<BetDashboard />} />
+                    <Route path="/about" element={<AboutPage />} />
                 </Route>              
             </Routes>
         </Router>

@@ -1,0 +1,59 @@
+.about-page {
+    font-family: var(--font-family);
+    color: var(--Text);
+    background-color: var(--White);
+    padding: var(--sds-size-space-400);
+    border-radius: var(--sds-size-radius-200);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-page h1 {
+    font-size: var(--font-size-title);
+    color: var(--Dark);
+    margin-bottom: var(--sds-size-space-400);
+  }
+  
+  .about-page h2 {
+    font-size: var(--font-size-large);
+    color: var(--Secondary);
+    margin-top: var(--sds-size-space-400);
+    margin-bottom: var(--sds-size-space-300);
+  }
+  
+  .about-page p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin-bottom: var(--sds-size-space-400);
+  }
+  
+  .about-page ul,
+  .about-page ol {
+    margin-left: var(--sds-size-space-400);
+    margin-bottom: var(--sds-size-space-400);
+  }
+  
+  .about-page ul li,
+  .about-page ol li {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--sds-size-space-300);
+  }
+  
+  .about-page ul li strong,
+  .about-page ol li strong {
+    color: var(--Dark);
+  }
+  
+  .about-page a {
+    color: var(--Secondary);
+    text-decoration: none;
+  }
+  
+  .about-page a:hover {
+    text-decoration: underline;
+  }
+  
+  .about-page .contact {
+    margin-top: var(--sds-size-space-400);
+    font-size: var(--font-size-small);
+    color: var(--Text-Field);
+  }

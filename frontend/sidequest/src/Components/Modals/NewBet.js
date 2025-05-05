@@ -65,7 +65,7 @@ const NewBetModal = ({ onClose, onSuccess }) => {
                 <div className="modal-head">
                     <div className="modal-heading">Open New Bet</div>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={onClose}>
-                        <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="inherit" stroke="inherit"/>
+                        <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" stroke="inherit"/>
                     </svg>
 
                 </div>
@@ -76,15 +76,15 @@ const NewBetModal = ({ onClose, onSuccess }) => {
                                 Bet title
                                 <input className="form-input" type="text" name="betname" value={formData.betname} onChange={handleChange} required />
                         </label>
-                        <label className="form-label">
+                        <label className="form-label" title="Conditions on which the bet will resolve yes or no">
                                 Bet description
-                                <textarea className="form-input" name="betdesc" value={formData.betdesc} onChange={handleChange} rows={2} />
+                                <textarea className="form-input" name="betdesc" placeholder="Be descriptive enough to avoid ambiguity in bet resolution criteria" value={formData.betdesc} onChange={handleChange} rows={2} />
                         </label>
-                        <label className="form-label">
-                                Odds
-                                <input className="form-input" type="number" name="betodds" value={formData.betodds} onChange={handleChange} required />
+                        <label className="form-label" title="How likely the event is to happen as a percentage.">
+                                Odds (1-99%)
+                                <input className="form-input" type="number" name="betodds" placeholder="50" value={formData.betodds} onChange={handleChange} required />
                         </label>
-                        <label className="form-label">
+                        <label className="form-label" title="Do you want to bet on the event happening or not?">
                                 Bet Position
                                 <select className="form-input" name="betposition" value={formData.betposition} onChange={handleChange} required >
                                     <option value="">Select position</option>
@@ -92,7 +92,7 @@ const NewBetModal = ({ onClose, onSuccess }) => {
                                     <option value="no">No</option>
                                 </select>
                         </label>
-                        <label className="form-label">
+                        <label className="form-label" title="How much you want to bet: side odds * quantity = cost of bet">
                                 Quantity
                                 <input className="form-input" type="number" name="betquantity" value={formData.betquantity} onChange={handleChange} required />
                         </label>
