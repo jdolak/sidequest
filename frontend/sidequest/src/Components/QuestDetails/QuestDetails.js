@@ -102,7 +102,7 @@ const QuestDetails = () => {
 
                 {selectedFile && <div>Selected: {selectedFile.name}</div>}
 
-                <textarea className="submission-comment" placeholder="Optional comment" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} />
+                <textarea className="submission-comment" placeholder="Submission Description" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} required/>
 
                 <button className="submit-button" type="submit">Submit Quest</button>
                 
