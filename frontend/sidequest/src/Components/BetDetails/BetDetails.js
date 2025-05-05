@@ -142,12 +142,12 @@ const BetDetails = () => {
     };
 
     const MyBetContent = () => {
-        if (bet?.status === 'accepted') {
+        if (bet?.status.toLowerCase() === 'accepted') {
             return (
                 <div className="mybet-content">
                     <div>{boughtBets[0]?.quantity} bet(s) accepted by {boughtBets[0]?.username}</div>
-                    <button>Win</button>
-                    <button>Lose</button>
+                    <button>Resolve Yes</button>
+                    <button>Resolve No</button>
                 </div>
             )
         }
