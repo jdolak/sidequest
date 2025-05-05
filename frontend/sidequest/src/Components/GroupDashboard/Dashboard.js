@@ -22,6 +22,15 @@ const Dashboard = () => {
         parseInt(sessionStorage.getItem("groupID"))
       );
 
+    const handleCopyLink = () => {
+        const groupLink = `sq.jdolak.com/api/invite/${group.invite_code}`;
+        navigator.clipboard.writeText(groupLink).then(() => {
+            alert("Group link copied successfully!");
+        }).catch((error) => {
+            console.error("Copy link failed:", error);
+        });
+    }
+
     useEffect(() => {
         setGroupID(sessionStorage.getItem("groupID"));
         getLoggedInUser().then((user) => {
@@ -76,7 +85,7 @@ const Dashboard = () => {
             <div className="group-page-header">
                 <div className="group-page-heading-row">
                     <div className="group-page-heading">{group.group_name}</div>
-                    <img src={copyIcon} alt="copy-link" className="copy-icon" />
+                    <img src={copyIcon} alt="copy-link" className="copy-icon" onClick={handleCopyLink}/>
                 </div>
                 <div>{group.group_desc}</div>
                 <div>{group.size} members</div>
