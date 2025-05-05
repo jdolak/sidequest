@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 // import backIcon from '../../assets/images/chevron.svg';
 import Card from "../Cards/Card";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
+import { getOpenBets, getAcceptedBets, getMyBets } from "../../Services/Bets";
 import NewBetModal from "../Modals/NewBet.js";
 import { getLoggedInUser } from "../../Services/Users.js";
 
@@ -32,7 +32,7 @@ const BetDashboard = () => {
 
   const refreshBets = () => {
     if (activeTab === "openBets") {
-      getAllBets().then((response) => {
+      getOpenBets().then((response) => {
         if (typeof(response) !== "list") {
           setOpenBets([response]);
         } else {
@@ -64,8 +64,9 @@ const BetDashboard = () => {
     });
     // get bets data
       if (activeTab === "openBets" && openBets.length === 0) {
-        getAllBets().then((response) => {
-          if (typeof(response) !== "list") {
+        getOpenBets().then((response) => {
+          console.log("Open Bets:", response, typeof(response));
+          if (!Array.isArray(response)) {
             setOpenBets([response]);
           } else {
             setOpenBets(response);
@@ -148,6 +149,7 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "openBets" &&
                 openBets.map((bet) => ( 
+                  console.log("Open Bet:", bet),
                   <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}

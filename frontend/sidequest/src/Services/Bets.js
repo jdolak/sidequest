@@ -71,25 +71,23 @@ export const getAllBoughtBets = async () => {
     }
 };
 
-// Depricaeted for getAllBets
-
-// export const getOpenBets = async () => {
-//     const groupID = parseInt(sessionStorage.getItem("groupID"));
-//     const config = {
-//         method: 'GET',
-//         credentials: 'include',
-//     };
-//     try {
-//         const response = await fetch(`${baseURL}/bets/open/${groupID}`, config);
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         return await response.json();
-//     } catch (error) {
-//         console.error("Error fetching all bets:", error);
-//         throw error;
-//     }
-// };
+export const getOpenBets = async () => {
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/open/${groupID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching all bets:", error);
+        throw error;
+    }
+};
 
 export const getAllBets = async () => {
     const groupID = parseInt(sessionStorage.getItem("groupID"));
