@@ -142,7 +142,6 @@ const BetDetails = () => {
     };
 
     const MyBetContent = () => {
-        console.log(bet);
         if (bet?.status.toLowerCase() === 'accepted') {
             return (
                 <div className="mybet-content">
