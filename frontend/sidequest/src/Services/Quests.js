@@ -147,13 +147,13 @@ export const getAllQuestSubmissions = async () => {
 };
 
 export const submitQuest = async (questID, submissionData) => {
+    for (let [key, value] of submissionData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
     const config = {
         method: 'POST',
         credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submissionData),
+        body: submissionData,
     };
     try {
         const response = await fetch(baseURL + `/quest_submit/${questID}`, config);
