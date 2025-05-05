@@ -337,21 +337,25 @@ def accept_bet(rq):
             'bet_id': bet_id
         })
 
-        ammount = (100 - int(bet_data['odds'])) * quantity
+        if bet_data['side'] == 'Y':
+            ammount = (100 - int(bet_data['odds'])) * quantity
+        else:
+            ammount = int(bet_data['odds']) * quantity
 
-        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
         g.db_session.execute(text(sql), {
             'ammount': ammount,
             'user_id': g.user,
             'bet_id': bet_id
         })
 
+        # refund the seller for the remaining quantity
         if bet_data['side'] == 'Y':
             ammount = bet_data['odds'] * (bet_data["max_quantity"] - quantity)
         else:
-            ammount = (1 - bet_data['odds']) * (bet_data["max_quantity"] - quantity)
+            ammount = (100 - bet_data['odds']) * (bet_data["max_quantity"] - quantity)
 
-        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
         g.db_session.execute(text(sql), {
             'ammount': ammount,
             'user_id': bet_data['seller_id'],
