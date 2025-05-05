@@ -129,7 +129,7 @@ def post_leave_group(group_id):
 
 @user_bp.route("/groups/leaderboard/<int:group_id>", methods=["GET"])
 def leaderboard(group_id):
-    sql = "SELECT username, currency FROM SQ_USERS u NATURAL JOIN SQ_GROUPS_USER gu WHERE group_id = 4 ORDER BY currency DESC"
+    sql = "SELECT username, currency FROM SQ_USERS u NATURAL JOIN SQ_GROUPS_USER gu WHERE group_id = :group_id ORDER BY currency DESC"
     return sql_response(sql_many(g.db_session, sql, {"group_id": group_id}))
 
 
