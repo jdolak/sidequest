@@ -97,7 +97,7 @@ const Sidebar = ({needsUpdate}) => {
                         </svg>
                     </button>
                     <button className="info-button" onClick={() => {navigate("/about")}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 48 48" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48" fill="none">
                             <path d="M24 32V24M24 16H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2F184B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
