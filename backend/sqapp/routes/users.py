@@ -127,6 +127,12 @@ def post_delete_group(group_id):
 def post_leave_group(group_id):
     return leave_group(group_id)
 
+@user_bp.route("/groups/leaderboard/<int:group_id>", methods=["POST"])
+def leaderboard(group_id):
+    sql = "SELECT username, currency FROM SQ_USERS u NATURAL JOIN SQ_GROUPS_USER gu WHERE group_id = 4 ORDER BY currency DESC"
+    return sql_response(sql_many(g.db_session, sql, {"group_id": group_id}))
+
+
 
 
 
