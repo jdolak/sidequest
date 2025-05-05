@@ -26,7 +26,6 @@ const BetDetails = () => {
         if (betID) {
           getBet(betID)
             .then((response) => {
-                console.log("Fetched bet:", response);
               setBet(response);
             })
             .catch((error) => {
@@ -73,8 +72,6 @@ const BetDetails = () => {
                 if (user?.currency >= cost && user?.user_id && betID) {
                     const buyerSide = bet?.side.toLowerCase() === "yes" || bet?.side.toLowerCase() === "y" ? "no" : "yes";
                     buyBet(betID, buyQuantity, buyerSide, bet?.status).then((response) => {
-                        console.log("Buy bet response:", response);
-                        console.log("bet: ", bet);
                         setNeedsRefresh((prev) => !prev);
                     }).catch((error) => {
                         console.error("Error buying bet:", error);
