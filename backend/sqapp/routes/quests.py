@@ -90,7 +90,7 @@ def get_all_quest_submissions():
         )
     )
 
-@quest_bp.route("/quest/submissions/<int:quest_id>", methods=["GET"])
+@quest_bp.route("/quests/submissions/<int:quest_id>", methods=["GET"])
 def get_submissions_by_quest(quest_id):
     result = sql_many(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status, comments FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE q.user_id = u.user_id AND quest_id = :quest_id", {"quest_id": quest_id})
     for submission in result:
