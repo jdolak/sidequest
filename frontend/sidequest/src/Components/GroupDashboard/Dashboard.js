@@ -4,7 +4,7 @@ import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests, getAllQuests } from "../../Services/Quests";
 import { getAllBets } from "../../Services/Bets";
-import { getGroup, getGroupUser } from "../../Services/Groups";
+import { getGroup, getGroupUser, leaveGroup } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getLoggedInUser } from "../../Services/Users.js";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +29,20 @@ const Dashboard = () => {
         }).catch((error) => {
             console.error("Copy link failed:", error);
         });
+    }
+
+    const handleLeaveGroup = () => {
+        if (!window.confirm("Are you sure you want to leave this group? This action cannot be undone.")) return;
+
+        leaveGroup(groupID)
+            .then(() => {
+                sessionStorage.removeItem("groupID");
+                useGlobalStore.getState().setGroup(null);
+                navigate("/search");
+            })
+            .catch((error) => {
+                console.error("Error leaving group:", error);
+            });
     }
 
     useEffect(() => {
@@ -94,6 +108,7 @@ const Dashboard = () => {
             </div>
             <QuestSection quests={openQuests?.slice(0,4)}/>
             <BetSection bets={openBets?.slice(0,4)}/>
+            <button className="leave-group-btn" onClick={handleLeaveGroup}>Leave group</button>
         </div>
     )
 }
