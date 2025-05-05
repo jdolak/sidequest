@@ -116,5 +116,5 @@ def post_accept_quest(quest_id):
     return quest_accept(quest_id)
 
 @quest_bp.route("/quests/delete/<int:quest_id>", methods=["POST"])
-def delete_quest(quest_id):
+def post_delete_quest(quest_id):
     return delete_quest(quest_id)
