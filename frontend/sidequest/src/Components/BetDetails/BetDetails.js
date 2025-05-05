@@ -136,16 +136,17 @@ const BetDetails = () => {
         return (
             <div className="bet-text">
                 <div className="bet-subheading">Bets Bought</div>
-                <div>{quantity} bet(s)</div>
+                <div>{quantity} bet{quantity!=1 ? "s" : ""}</div>
             </div>
         );
     };
 
     const MyBetContent = () => {
+        console.log(bet);
         if (bet?.status.toLowerCase() === 'accepted') {
             return (
                 <div className="mybet-content">
-                    <div>{boughtBets[0]?.quantity} bet(s) accepted by {boughtBets[0]?.username}</div>
+                    <div>{boughtBets[0]?.quantity} bet{bet?.max_quantity!=1 ? "s" : ""} accepted by {boughtBets[0]?.username}</div>
                     <button>Resolve Yes</button>
                     <button>Resolve No</button>
                 </div>
