@@ -148,29 +148,35 @@ const BetDetails = () => {
     };
 
     const MyBetContent = () => {
-
         const isCreator = myProfile?.username === bet?.username;
-
-        if (bet?.status.toLowerCase() === 'accepted' && isCreator) {
+    
+        const hasBoughtBets = Array.isArray(boughtBets) && boughtBets.length > 0;
+        const buyer = hasBoughtBets ? boughtBets[0] : null;
+    
+        if (bet?.status?.toLowerCase() === 'accepted' && isCreator && buyer) {
             return (
                 <div className="mybet-content">
-                    <div>{boughtBets[0]?.quantity} bet{bet?.max_quantity!=1 ? "s" : ""} accepted by {boughtBets[0]?.username}</div>
-                    <button>Resolve Yes</button>
-                    <button>Resolve No</button>
+                    <div>
+                        {buyer.quantity} bet{buyer.quantity !== 1 ? "s" : ""} accepted by {buyer.username}
+                    </div>
+                    <div className="button-group">
+                        <button className="yes-button">Resolve Yes</button>
+                        <button className="no-button">Resolve No</button>
+                    </div>
                 </div>
-            )
+            );
         }
-
+    
         if (bet?.status === 'resolved') {
             return (
                 <div className="mybet-content">
                     <div>{bet?.buyer_id} {bet?.result}!</div>
                 </div>
-            )
+            );
         }
-        
+    
         return null;
-    }
+    };
 
   return (
     <div className="bet-details-main-container">
