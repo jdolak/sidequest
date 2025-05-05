@@ -14,7 +14,7 @@ const BetDetails = () => {
     // const [seller, setSeller] = useState({});
     // const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
-    let needsRefresh = false;
+    const [needsRefresh, setNeedsRefresh] = useState(false);
     
     const goBack = () => {
         navigate(-1);
@@ -26,6 +26,7 @@ const BetDetails = () => {
         if (betID) {
           getBet(betID)
             .then((response) => {
+                console.log("Fetched bet:", response);
               setBet(response);
             })
             .catch((error) => {
@@ -73,7 +74,8 @@ const BetDetails = () => {
                     const buyerSide = bet?.side.toLowerCase() === "yes" || bet?.side.toLowerCase() === "y" ? "no" : "yes";
                     buyBet(betID, buyQuantity, buyerSide, bet?.status).then((response) => {
                         console.log("Buy bet response:", response);
-                        needsRefresh = !needsRefresh;
+                        console.log("bet: ", bet);
+                        setNeedsRefresh((prev) => !prev);
                     }).catch((error) => {
                         console.error("Error buying bet:", error);
                     });
