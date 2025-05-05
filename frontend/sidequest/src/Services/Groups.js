@@ -140,3 +140,20 @@ export const createGroup = async (groupData) => {
         throw error;
     }
 };
+
+export const leaveGroup = async (groupID) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/groups/leave/${groupID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error leaving group with ID ${groupID}:`, error);
+        throw error;
+    }
+};
