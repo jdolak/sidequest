@@ -50,7 +50,8 @@ const Dashboard = () => {
             console.error("Error fetching group:", error);
         });
         getAllBets().then((response) => {
-                if (typeof(response) !== "list") {
+            console.log("all bets response", response);
+            if (!Array.isArray(response)) {
                     setOpenBets([response]);
                 } else {
                     setOpenBets(response);

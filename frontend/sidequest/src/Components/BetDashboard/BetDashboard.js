@@ -33,7 +33,7 @@ const BetDashboard = () => {
   const refreshBets = () => {
     if (activeTab === "openBets") {
       getOpenBets().then((response) => {
-        if (typeof(response) !== "list") {
+        if (!Array.isArray(response)) {
           setOpenBets([response]);
         } else {
           setOpenBets(response);
@@ -65,7 +65,6 @@ const BetDashboard = () => {
     // get bets data
       if (activeTab === "openBets" && openBets.length === 0) {
         getOpenBets().then((response) => {
-          console.log("Open Bets:", response, typeof(response));
           if (!Array.isArray(response)) {
             setOpenBets([response]);
           } else {
