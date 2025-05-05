@@ -4,7 +4,7 @@ import BetSection from "./BetSection/BetSection";
 import "./dashboard.css";
 import { getOpenQuests, getAllQuests } from "../../Services/Quests";
 import { getAllBets } from "../../Services/Bets";
-import { getGroup, getGroupUser, leaveGroup } from "../../Services/Groups";
+import { getGroup, getGroupUser, leaveGroup, getGroupLeaderboard } from "../../Services/Groups";
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getLoggedInUser } from "../../Services/Users.js";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ const Dashboard = () => {
     const [openQuests, setOpenQuests] = useState([]);
     const [group, setGroup] = useState({});
     const [myProfile, setMyProfile] = useState({});
+    const [leaderboard, setLeaderboard] = useState([]);
     const globalGroupID = useGlobalStore((state) => state.currGroupID);
     const navigate = useNavigate();
     const [groupID, setGroupID] = useState(
@@ -91,6 +92,15 @@ const Dashboard = () => {
             }).catch((error) => {
             console.error("Error fetching quests:", error);
         });
+        getGroupLeaderboard().then((response) => {
+            if (!Array.isArray(response)) {
+                setLeaderboard([response]);
+            } else {
+                setLeaderboard(response);
+            }
+        }).catch((error) => {
+            console.error("Error fetching leaderboard:", error);
+        });
     }, [groupID, globalGroupID]);
           
     return (
@@ -108,6 +118,17 @@ const Dashboard = () => {
             </div>
             <QuestSection quests={openQuests?.slice(0,4)}/>
             <BetSection bets={openBets?.slice(0,4)}/>
+            <div className="group-page-leaderboard">
+                <div className="group-page-leaderboard-header">Leaderboard</div>
+                <div className="group-page-leaderboard-list">
+                    {leaderboard.map((user, index) => (
+                        <div key={index} className="group-page-leaderboard-item">
+                            <div>{index + 1}. {user.username}</div>
+                            <div>{user.currency} coins</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
             <button className="leave-group-btn" onClick={handleLeaveGroup}>Leave group</button>
         </div>
     )
