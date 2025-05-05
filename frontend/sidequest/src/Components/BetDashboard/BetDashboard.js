@@ -83,7 +83,6 @@ const BetDashboard = () => {
       }
       else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
         getAcceptedBets().then((response) => {
-          console.log("Accepted Bets:", response);
           setAcceptedBets(response);
         }).catch((error) => {
           console.error("Error fetching Bets:", error);
@@ -138,7 +137,6 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "acceptedBets" &&
                 acceptedBets.map((bet) => (
-                  console.log("Accepted Bet:", bet),
                   <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}
