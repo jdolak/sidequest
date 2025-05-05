@@ -83,6 +83,7 @@ const BetDashboard = () => {
       }
       else if (activeTab === "acceptedBets" && acceptedBets.length === 0) {
         getAcceptedBets().then((response) => {
+          console.log("Accepted Bets:", response);
           setAcceptedBets(response);
         }).catch((error) => {
           console.error("Error fetching Bets:", error);

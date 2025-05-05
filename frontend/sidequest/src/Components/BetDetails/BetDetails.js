@@ -14,6 +14,7 @@ const BetDetails = () => {
     // const [seller, setSeller] = useState({});
     // const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
+    let needsRefresh = false;
     
     const goBack = () => {
         navigate(-1);
@@ -40,7 +41,7 @@ const BetDetails = () => {
           .catch((error) => {
             console.error("Error fetching user profile:", error);
           });
-      }, [betID]);
+      }, [betID, needsRefresh]);
 
     function getBuyCost(quantity) {
         console.log(bet)
@@ -72,6 +73,7 @@ const BetDetails = () => {
                     const buyerSide = bet?.side.toLowerCase() === "yes" || bet?.side.toLowerCase() === "y" ? "no" : "yes";
                     buyBet(betID, buyQuantity, buyerSide, bet?.status).then((response) => {
                         console.log("Buy bet response:", response);
+                        needsRefresh = !needsRefresh;
                     }).catch((error) => {
                         console.error("Error buying bet:", error);
                     });
