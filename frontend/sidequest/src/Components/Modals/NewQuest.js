@@ -38,7 +38,6 @@ const NewQuestModal = ({ onClose, onSuccess }) => {
         }
 
         createQuest(formData).then((response) => {
-            console.log("Quest created successfully:", response);
             onSuccess();
             onClose();
         }).catch((error) => {

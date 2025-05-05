@@ -166,9 +166,6 @@ export const getAllQuestSubmissions = async () => {
 };
 
 export const submitQuest = async (questID, submissionData) => {
-    for (let [key, value] of submissionData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
     const config = {
         method: 'POST',
         credentials: 'include',

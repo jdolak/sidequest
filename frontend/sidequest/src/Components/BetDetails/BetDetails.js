@@ -47,7 +47,6 @@ const BetDetails = () => {
         
             getBoughtBet(betID)
                 .then((response) => {
-                console.log("Bought bets:", response);
                 setBoughtBets(response);
             })
             .catch((error) => {
@@ -66,7 +65,6 @@ const BetDetails = () => {
       }, [betID, needsRefresh]);
 
     function getBuyCost(quantity) {
-        console.log(bet)
         if (bet?.side.toLowerCase() === 'yes' || bet?.side.toLowerCase() === "y") {
             return (100 - bet?.odds) * quantity;
         } if (bet?.side.toLowerCase() === 'no' || bet?.side.toLowerCase() === "n") {
@@ -165,7 +163,6 @@ const BetDetails = () => {
             return;
         }
         resolveBet(betID, outcome).then((response) => {
-            console.log("Bet resolved:", response);
             setNeedsRefresh((prev) => !prev);
         }).catch((error) => {
             console.error("Error resolving bet:", error);

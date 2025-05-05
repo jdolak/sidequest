@@ -57,7 +57,6 @@ const Sidebar = ({needsUpdate}) => {
         document.documentElement.classList.toggle("light", theme === "light");
         if (window.confirm("Are you sure you want to logout?")) {
             logout().then((response) => {
-                console.log("Logout response:", response);
             }).catch((error) => {
                 console.error("Error logging out:", error);
             });

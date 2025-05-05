@@ -24,7 +24,6 @@ const QuestDetails = () => {
     useEffect(() => {
         getQuest(questID)
             .then((response) => {
-                console.log("Fetched quest:", response);
                 setQuest(response);
             })
             .catch((error) => {
@@ -33,7 +32,6 @@ const QuestDetails = () => {
     
         getQuestSubmission(questID)
             .then((submissionData) => {
-                console.log("Fetched submission:", submissionData);
                 setSubmission(submissionData);
             })
             .catch((error) => {
@@ -42,7 +40,6 @@ const QuestDetails = () => {
     
         getUsersGroupProfile()
             .then((profileData) => {
-                console.log("Fetched user profile:", profileData);
                 setMyProfile(profileData);
             })
             .catch((error) => {
@@ -51,11 +48,8 @@ const QuestDetails = () => {
     }, [questID]);
 
     function handleAcceptQuest() {
-        console.log("Accepting quest with ID:", questID);
         acceptQuest(questID).then((response) => {
-            console.log("Quest accepted:", response);
             setQuest((prevQuest) => ({ ...prevQuest, quest_status: "Accepted" }));
-            console.log("Quest status updated to Accepted "+quest);
         }).catch((error) => {
             console.error("Error accepting quest:", error);
             alert("Error accepting quest. Please try again later. "+error.message);
@@ -101,7 +95,6 @@ const QuestDetails = () => {
             }
     
             submitQuest(questID, formData).then((response) => {
-                console.log("Quest submitted:", response);
                 setSelectedFile(null);
                 setComment("");
 

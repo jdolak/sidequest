@@ -19,7 +19,6 @@ const Home = () => {
         const checkLoggedInUser = async () => {
             try {
                 const user = await getLoggedInUser();
-                console.log("Logged-in user:", user);
                 if (user.status === "true") {
                     navigate("/search");
                 }

@@ -23,7 +23,6 @@ const NewGroupModal = ({ onClose, onSuccess }) => {
         e.preventDefault();
 
         createGroup(formData).then((response) => {
-            console.log("Group created successfully:", response);
             onSuccess();
         }).catch((error) => {
             console.error("Error creating group:", error);

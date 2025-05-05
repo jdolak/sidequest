@@ -75,7 +75,6 @@ const QuestDashboard = () => {
     } else if (activeTab === "acceptedQuests" && acceptedQuests.length === 0) {
       getAcceptedQuestsByUser().then((response) => {
         setAcceptedQuests(response);
-        console.log("Accepted Quests:", response);
       }).catch((error) => {
         console.error("Error fetching quests:", error);
       });

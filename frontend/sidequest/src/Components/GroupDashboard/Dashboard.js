@@ -65,7 +65,6 @@ const Dashboard = () => {
             } else {
                 setOpenQuests(response);
             }
-            console.log("Fetched quests:", response);
             }).catch((error) => {
             console.error("Error fetching quests:", error);
         });

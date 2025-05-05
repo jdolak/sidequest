@@ -22,7 +22,6 @@ const NewBetModal = ({ onClose, onSuccess }) => {
 
     function betCreationCost(betYesOdds, betQuantity, betPosition) {
         if (!Number.isInteger(Number(betYesOdds)) || betYesOdds < 1 || betYesOdds > 99 || !Number.isInteger(Number(betQuantity)) || betQuantity < 0) {
-            console.log("betYesOdds:", betYesOdds, typeof(betYesOdds));
             throw new Error("betYesOdds must be an integer between 0 and 100, quantity must be a positive integer.");
         }
 
@@ -45,9 +44,7 @@ const NewBetModal = ({ onClose, onSuccess }) => {
         }
         
         if (isConfirmed) { // Proceed with the submission
-            console.log("Bet submitted:", formData);
             createBet(formData).then((response) => {
-                console.log("Bet created successfully:", response);
                 onSuccess();
                 onClose();
             }).catch((error) => {
@@ -55,7 +52,6 @@ const NewBetModal = ({ onClose, onSuccess }) => {
                 alert("Error creating Bet. "+error.message);
             });
         } else { // Cancel the submission
-            console.log("Bet submission canceled.");
         }
     }
 
