@@ -38,8 +38,8 @@ def get_quest_accepted(group_id):
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT DISTINCT q.quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, QUEST_SUBMISSIONS qs, SQ_USERS u WHERE (LOWER(q.quest_status) = 'accepted' OR LOWER(q.quest_status) = 'resolved') AND q.quest_id = qs.quest_id AND q.group_id = :group_id AND u.user_id = qs.user_id",
-            {"group_id": group_id},
+            "SELECT DISTINCT q.quest_id, group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status, username FROM QUESTS q, QUEST_SUBMISSIONS qs, SQ_USERS u WHERE (LOWER(q.quest_status) = 'accepted' OR LOWER(q.quest_status) = 'resolved') AND q.quest_id = qs.quest_id AND q.group_id = :group_id AND u.user_id = qs.user_id AND u.user_id = :user_id",
+            {"user_id": g.user, "group_id": group_id},
         )
     )
 
