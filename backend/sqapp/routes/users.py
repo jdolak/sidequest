@@ -1,7 +1,7 @@
 from flask import Blueprint, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
-from sqapp.src.deletion import delete_group
+from sqapp.src.deletion import delete_group, leave_group
 
 from sqapp.src.auth import (
     register_user,
@@ -122,6 +122,12 @@ def post_create_group():
 @user_bp.route("/groups/delete/<int:group_id>", methods=["POST"])
 def post_delete_group(group_id):
     return delete_group(group_id)
+
+@user_bp.route("/groups/leave/<int:group_id>", methods=["POST"])
+def post_leave_group(group_id):
+    return leave_group(group_id)
+
+
 
 
 

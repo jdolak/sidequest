@@ -11,6 +11,7 @@ from urllib.parse import urlparse, urlunparse
 import secrets
 from sqapp.db import sql_many, sql_one
 from datetime import datetime
+from sqapp.src.utils import can_afford
 
 
 load_dotenv()
@@ -135,6 +136,9 @@ def create_quest(rq):
 
         if not g.user:
             return jsonify({"message": "User not logged in"}), 401
+        
+        if not can_afford(group_id, reward_amount):
+            return jsonify({"message": "User is broke"}), 400
 
         sql = "INSERT INTO quests (group_id, author_id, quest_title, quest_desc, reward_amount, due_date, quest_status) VALUES (:group_id, :author_id, :quest_title, :quest_desc, :reward_amount, TO_DATE(:due_date, 'yyyy-mm-dd'), :quest_status)"
         g.db_session.execute(text(sql), {
@@ -183,6 +187,22 @@ def create_bet(rq):
         if not g.user:
             LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
+        
+        if side == 'Y':
+            ammount =  int(odds) * int(max_quantity)
+        else:
+            ammount =  (100 - int(odds)) * int(max_quantity)
+
+        if not can_afford(group_id, ammount):
+            LOG.error(f"User {g.user} is broke")
+            return jsonify({"message": "User is broke"}), 400
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = :group_id"
+        g.db_session.execute(text(sql), {
+            'ammount': ammount,
+            'user_id': g.user,
+            'group_id': group_id
+        })
 
         sql = "INSERT INTO available_bets (group_id, seller_id, max_quantity, side, odds, question, description, status) VALUES (:group_id, :seller_id, :max_quantity, :side, :odds, :question, :description, :status)"
         g.db_session.execute(text(sql), {
@@ -194,18 +214,6 @@ def create_bet(rq):
             'question': question,
             'description': description,
             'status': 'Open'
-        })
-
-        if side == 'Y':
-            ammount =  int(odds) * int(max_quantity)
-        else:
-            ammount =  (100 - int(odds)) * int(max_quantity)
-
-        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = :group_id"
-        g.db_session.execute(text(sql), {
-            'ammount': ammount,
-            'user_id': g.user,
-            'group_id': group_id
         })
 
         LOG.info(f"Bet created: {question}, {description}, {max_quantity}, {side}, {odds}")
@@ -330,6 +338,21 @@ def accept_bet(rq):
         
         if bet_data["status"].lower() != 'open':
             return jsonify({"message": "Bet not open"}), 400
+        
+        if bet_data['side'] == 'Y':
+            ammount = (100 - int(bet_data['odds'])) * quantity
+        else:
+            ammount = int(bet_data['odds']) * quantity
+
+        if not can_afford(bet_data['group_id'], ammount):
+            return jsonify({"message": "User is broke"}), 400
+
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        g.db_session.execute(text(sql), {
+            'ammount': ammount,
+            'user_id': g.user,
+            'bet_id': bet_id
+        })
 
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
@@ -343,18 +366,6 @@ def accept_bet(rq):
         sql = "UPDATE available_bets SET max_quantity = :quantity, status = 'Accepted' WHERE bet_id = :bet_id"
         g.db_session.execute(text(sql), {
             'quantity': quantity,
-            'bet_id': bet_id
-        })
-
-        if bet_data['side'] == 'Y':
-            ammount = (100 - int(bet_data['odds'])) * quantity
-        else:
-            ammount = int(bet_data['odds']) * quantity
-
-        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
-        g.db_session.execute(text(sql), {
-            'ammount': ammount,
-            'user_id': g.user,
             'bet_id': bet_id
         })
 
