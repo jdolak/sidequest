@@ -27,6 +27,15 @@ def get_bets(group_id):
         )
     )
 
+@bet_bp.route("/bets/open/<int:group_id>", methods=["GET"])
+def get_open_bets(group_id):
+    return sql_response(
+        sql_many(
+            g.db_session,
+            "SELECT bet_id, group_id, seller_id, username, max_quantity, side, odds, question, description, status FROM AVAILABLE_BETS b, SQ_USERS u WHERE b.seller_id = u.user_id AND group_id = :group_id AND LOWER(status) = 'open'",
+            {"group_id": group_id},
+        )
+    )
 
 @bet_bp.route("/bought_bets/<int:bet_id>/<int:buyer_id>", methods=["GET"])
 def get_bought_bet(buyer_id, bet_id):
