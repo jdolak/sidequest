@@ -157,3 +157,21 @@ export const leaveGroup = async (groupID) => {
         throw error;
     }
 };
+
+export const getGroupLeaderboard = async () => {
+    const groupID = parseInt(sessionStorage.getItem("groupID"));
+    const config = {
+        method: 'GET',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/groups/leaderboard/${groupID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error fetching leaderboard for group with ID ${groupID}:`, error);
+        throw error;
+    }
+};
