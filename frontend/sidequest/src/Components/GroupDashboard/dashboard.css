@@ -64,6 +64,15 @@
     cursor: pointer;
 }
 
+.leave-group-btn {
+    border: none;
+    background-color: inherit;
+    color: red;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
 /* Responsive styles */
 @media (max-width: 1024px) {
     .group-page-dashboard {

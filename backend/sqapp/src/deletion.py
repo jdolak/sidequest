@@ -39,7 +39,7 @@ def delete_group(group_id):
     
 def leave_group(group_id):
     try:
-        sql = "DELETE FROM SQ_GROUPS WHERE group_id = :group_id AND user_id = :user_id"
+        sql = "DELETE FROM SQ_GROUPS_USER WHERE group_id = :group_id AND user_id = :user_id"
         g.db_session.execute(text(sql), {"group_id": group_id, "user_id": g.user})
 
         if not group_member_count(group_id):
