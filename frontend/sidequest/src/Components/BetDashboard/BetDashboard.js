@@ -132,6 +132,7 @@ const BetDashboard = () => {
                       creator={bet.username}
                       bet_desc={bet.description}
                       odds={bet.odds}
+                      status={bet.status}
                     />
                   </Link>
                 ))}

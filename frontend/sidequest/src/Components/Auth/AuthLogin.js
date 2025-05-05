@@ -14,7 +14,7 @@ const AuthLogin = ({onSubmit}) => {
         const checkLoggedInUser = async () => {
             try {
                 const user = await getLoggedInUser();
-                console.log("Logged-in user:", user);
+                // console.log("Logged-in user:", user);
                 if (user.status === "true") {
                     navigate("/search");
                 }
@@ -48,7 +48,6 @@ const AuthLogin = ({onSubmit}) => {
             }
 
             const data = await response.json();
-            console.log("Log in successful:", data);
 
             localStorage.setItem("authenticated", "true");
 

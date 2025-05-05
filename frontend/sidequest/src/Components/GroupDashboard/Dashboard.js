@@ -84,7 +84,7 @@ const Dashboard = () => {
             <div className="group-page-header">
                 <div className="group-page-heading-row">
                     <div className="group-page-heading">{group.group_name}</div>
-                    <img src={copyIcon} alt="copy-link" className="copy-icon" onClick={handleCopyLink}/>
+                    <img src={copyIcon} title="Copy invite link" alt="copy-link" className="copy-icon" onClick={handleCopyLink}/>
                 </div>
                 <div>{group.group_desc}</div>
                 <div>{group.size} members</div>
