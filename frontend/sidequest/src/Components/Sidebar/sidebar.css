@@ -60,7 +60,7 @@
     background: var(--Soft-Stroke);
 }
 
-.logout-button,
+.logout-button, .info-button,
 .settings-button {
     width: 36px;
     height: 36px;
@@ -71,10 +71,8 @@
 }
 
 .svg{
-    /* fill: var(--Text);
-    color: var(--Text); */
+    /* fill: var(--Text);*/
     stroke: var(--Text);
-    /* filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%); */
 }
 
 .logout-button img,
@@ -91,8 +89,45 @@
     align-items: center;
 }
 
-.info-button {
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px; /* Reduce width for tablets */
+        padding: 16px 8px; /* Adjust padding */
+    }
+
+    .group-button {
+        width: 48px; /* Smaller buttons */
+        height: 48px;
+        font-size: 18px; /* Adjust font size */
+    }
+
+    .logout-button, .info-button,
+    .settings-button {
+        width: 28px; /* Smaller icons */
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 60px; /* Minimal width for mobile */
+        padding: 12px 4px; /* Minimal padding */
+    }
+
+    .group-button {
+        width: 40px; /* Even smaller buttons */
+        height: 40px;
+        font-size: 16px; /* Adjust font size */
+    }
+
+    .logout-button, .info-button,
+    .settings-button {
+        width: 24px; /* Smaller icons */
+        height: 24px;
+    }
+
+    .menu {
+        gap: 16px; /* Reduce spacing between menu items */
+    }
 }
