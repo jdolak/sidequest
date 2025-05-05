@@ -49,7 +49,7 @@ const NewBetModal = ({ onClose, onSuccess }) => {
                 onClose();
             }).catch((error) => {
                 console.error("Error creating bet:", error);
-                alert("Error creating Bet. "+error.message);
+                alert("Error creating Bet. Verify that you have sufficient funds");
             });
         } else { // Cancel the submission
         }
