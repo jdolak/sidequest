@@ -351,7 +351,7 @@ def accept_bet(rq):
         else:
             ammount = (1 - bet_data['odds']) * (bet_data["max_quantity"] - quantity)
 
-        sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
+        sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
         g.db_session.execute(text(sql), {
             'ammount': ammount,
             'user_id': bet_data['seller_id'],
