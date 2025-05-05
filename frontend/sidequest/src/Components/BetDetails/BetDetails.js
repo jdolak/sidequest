@@ -10,6 +10,7 @@ import { getUsersGroupProfile } from "../../Services/Users.js";
 const BetDetails = () => {
     const location = useLocation();
     const [bet, setBet] = useState(null);
+    const [myProfile, setMyProfile] = useState(null);
     // const [seller, setSeller] = useState({});
     // const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
@@ -21,24 +22,25 @@ const BetDetails = () => {
     const betID = useParams().id;
 
     useEffect(() => {
-        if (betID){
-            getBet(betID).then((response) => {
-                setBet(response);
-                // if (response?.seller_id) {
-                //     getUser(response.seller_id).then((user) => {
-                //         console.log("seller:", user);
-                //         setBet(user);
-                //     }).catch((error) => {
-                //         console.error("Error fetching user:", error);
-                //     });
-                // }
-            }).catch((error) => {
-                console.error("Error fetching bet:", error);
+        if (betID) {
+          getBet(betID)
+            .then((response) => {
+              setBet(response);
+            })
+            .catch((error) => {
+              console.error("Error fetching bet:", error);
             });
-        } else {
-            console.error("betID is null or undefined");
         }
-    }, [betID]);
+      
+        // Fetch the logged-in user's group profile
+        getUsersGroupProfile()
+          .then((response) => {
+            setMyProfile(response);
+          })
+          .catch((error) => {
+            console.error("Error fetching user profile:", error);
+          });
+      }, [betID]);
 
     function getBuyCost(quantity) {
         console.log(bet)
@@ -174,9 +176,9 @@ const BetDetails = () => {
                         <div className="bet-subheading">Bets Available</div>
                         <div>{bet?.max_quantity}</div>
                     </div>
-                    {bet?.status === 'accepted' && <AcceptedBetContent />}
+                    {bet?.status?.toLowerCase() === 'accepted' && <AcceptedBetContent />}
                 </div>
-                {bet?.status === 'open' && <OpenBetContent />}
+                {bet?.status?.toLowerCase() === 'open' && myProfile?.username !== bet?.username && <OpenBetContent />}
                 <MyBetContent />
             </div>
         </div>

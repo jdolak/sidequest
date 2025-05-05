@@ -19,20 +19,20 @@ const QuestDetails = () => {
     }
 
     useEffect(() => {
-        if (quest === null) {
-            getQuest(questID).then((response) => {
-                setQuest(response);
-            }).catch((error) => {
-                console.error("Error fetching quest:", error);
-            });
-        }
-
-        getQuestSubmission(questID).then((submissionData) => {
-            setSubmission(submissionData);
+        getQuest(questID).then((response) => {
+          console.log("Fetched quest:", response);
+          setQuest(response);
         }).catch((error) => {
-            console.error("Error fetching quest submission:", error);
+          console.error("Error fetching quest:", error);
         });
-    }, [questID, quest]);
+      
+        getQuestSubmission(questID).then((submissionData) => {
+          console.log("Fetched submission:", submissionData);
+          setSubmission(submissionData);
+        }).catch((error) => {
+          console.error("Error fetching quest submission:", error);
+        });
+      }, [questID]);
 
     function handleAcceptQuest() {
         console.log("Accepting quest with ID:", questID);
@@ -97,30 +97,36 @@ const QuestDetails = () => {
         }
 
         return (
-            <form onSubmit={handleSubmit} className="quest-submission-form">
-                <div className="upload-button" onClick={handleClick}>
-                    Upload submission
-                </div>
-                <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
+            <div className="quest-details-text">
+                <div className="quest-details-subheading">Quest Submission</div>
+                    <form onSubmit={handleSubmit} className="quest-submission-form">
+                        <div className="upload-button" onClick={handleClick}>
+                            Upload submission photo
+                        </div>
+                        <input type="file" accept=".jpg,.jpeg,.png,.heic" ref={fileInputRef} onChange={handleFileChange} style={{display: "none"}} />
 
-                {selectedFile && <div>Selected: {selectedFile.name}</div>}
+                        {selectedFile && <div>Selected: {selectedFile.name}</div>}
 
-                <textarea className="submission-comment" placeholder="Submission Description" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} required/>
+                        <textarea className="submission-comment" placeholder="Submission Description" maxLength={4000} value={comment} onChange={(e) => setComment(e.target.value)} required/>
 
-                <button className="submit-button" type="submit">Submit Quest</button>
-                
-                {/* {status && <div>{status}</div>} */}
-            </form>
+                        <button className="submit-button" type="submit">Submit Quest</button>
+                    
+                    {/* {status && <div>{status}</div>} */}
+                </form>
+            </div>
 
         )
     }
 
     const MyQuestContent = () => {
+        console.log(submission);
+        
         if (!submission) return null;
+        
         return (
             <div className="quest-details-text">
                 <div className="quest-details-subheading">Submission</div>
-                <div>Completed by {submission.username}</div>
+                <div>Completed by {submission.username || "Unknown user"}</div>
                 <div>{submission.submission_photo}</div>
                 <div>{submission.comments}</div>
         </div>
