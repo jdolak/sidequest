@@ -112,6 +112,7 @@
 
 .group-page-leaderboard-item:nth-child(odd) {
     background: var(--Secondary, #e6e8f9); /* Alternate background for odd rows */
+    color: var(--White);
 }
 
 .group-page-leaderboard-item div {
@@ -119,11 +120,11 @@
     text-align: left;
 }
 
-.group-page-leaderboard-item div:last-child {
+/* .group-page-leaderboard-item div:last-child {
     text-align: right;
     font-weight: 700;
-    color: var(--Accent, #2667FF); /* Highlight currency */
-}
+    color: var(--Accent, #2667FF);
+} */
 
 /* Responsive styles */
 @media (max-width: 768px) {
