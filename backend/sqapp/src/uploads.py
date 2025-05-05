@@ -319,6 +319,7 @@ def accept_bet(rq):
             side = 'N'
 
         bet_data = sql_one(g.db_session, "SELECT * FROM available_bets WHERE bet_id = :bet_id", {'bet_id': bet_id})
+        bet_data["odds"] = int(bet_data["odds"])
 
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
