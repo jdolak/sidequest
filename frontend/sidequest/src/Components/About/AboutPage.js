@@ -29,7 +29,7 @@ const AboutPage = () => {
           These quests motivate individuals or groups to achieve personal or collective objectives.
         </li>
         <li>
-          <strong>Bets:</strong> Users can place bets on events or outcomes, such as games or competitions, 
+          <strong>Bets:</strong> Users can place De Finetti bets on events or outcomes, such as games or competitions, 
           with customizable odds and conditions.
         </li>
         <li>
@@ -38,6 +38,29 @@ const AboutPage = () => {
         <li>
           <strong>Virtual Currency:</strong> A virtual currency system is used for rewards and bets, 
           adding a gamified layer to the platform.
+        </li>
+      </ul>
+
+
+      <h2>FAQs</h2>
+      <ul>
+        <li>
+          <strong>Quest Reward:</strong> The reward is the amount of virtual currency offered for completing a quest. 
+          Ensure the reward aligns with the group's currency balance.
+        </li>
+        <li>
+          <strong>De Finetti Bets:</strong> introduce the concept of defining probability in terms of betting quotients. 
+          All bets should be binary questions to resolve Yes or No. The odds set by the creator
+          of the bet are also the number of coins that needs to be paid to take the Yes side of the bet. 
+          The quantity of bets can increase the amount of coins that can be won or lost by the bet.
+        </li>
+        <li>
+          <strong>Bet Odds:</strong> Odds represent the likelihood of an event occurring, expressed as a percentage (1-99%). 
+          Higher odds indicate a higher chance of success.
+        </li>
+        <li>
+          <strong>Group Visibility:</strong> When creating a group, you can choose between "Public" (anyone can join) 
+          or "Private" (invite-only).
         </li>
       </ul>
 
@@ -61,25 +84,9 @@ const AboutPage = () => {
         </li>
       </ol>
 
-      <h2>Ambiguous Parts Explained</h2>
-      <ul>
-        <li>
-          <strong>Quest Reward:</strong> The reward is the amount of virtual currency offered for completing a quest. 
-          Ensure the reward aligns with the group's currency balance.
-        </li>
-        <li>
-          <strong>Bet Odds:</strong> Odds represent the likelihood of an event occurring, expressed as a percentage (1-99%). 
-          Higher odds indicate a higher chance of success.
-        </li>
-        <li>
-          <strong>Group Visibility:</strong> When creating a group, you can choose between "Public" (anyone can join) 
-          or "Private" (invite-only).
-        </li>
-      </ul>
-
       <h2>Contact</h2>
       <p>
-        For any questions or issues, please contact the development team at support@sidequest.com.
+        For any questions or issues, please contact the development team at jdolak@nd.edu, pschloss@nd.edu, or csuwita@nd.edu.
       </p>
     </div>
   );
