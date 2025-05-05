@@ -141,9 +141,9 @@ const QuestDetails = () => {
         return (
             <div className="quest-details-text">
                 <div className="quest-details-subheading">Submission</div>
-                <div>Completed by {submission.username || "Unknown user"}</div>
-                <div>{submission.submission_photo}</div>
-                <div>{submission.comments}</div>
+                <div>Completed by {submission[0].username || "Unknown user"}</div>
+                <div><img src={submission[0].photo_url} /></div>
+                <div>{submission[0].comments}</div>
         </div>
         )
     }
