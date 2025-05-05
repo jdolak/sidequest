@@ -90,3 +90,9 @@
     gap: 8px;
     align-items: center;
 }
+
+.info-button {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
