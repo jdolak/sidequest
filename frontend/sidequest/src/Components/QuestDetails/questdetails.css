@@ -149,7 +149,8 @@
   width: 300px;
   padding: 12px;
   border-radius: 8px;
-  border: 2px solid var(--Text-Field);
+  border: 2px solid var(--Soft-Stroke);
+  color: #000;
   min-height: 80px;
   font-family: inherit;
   font-size: inherit;

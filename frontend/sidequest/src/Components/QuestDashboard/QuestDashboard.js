@@ -88,7 +88,9 @@ const QuestDashboard = () => {
       <div className="quest-dashboard-content-container">
         <div className="dashboardHeader">
           <Link onClick={goBack} className="backButton">
-            <img src={backIcon} />
+          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 19L1.5 10L10.5 1" stroke="inherit" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <div className="backText">Back</div>
           </Link>
           <div className="headerContents">
