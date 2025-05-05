@@ -122,6 +122,9 @@ const BetDetails = () => {
     }
 
     const AcceptedBetContent = () => {
+
+        const isCreator = myProfile?.username === bet?.username; 
+
         if (!boughtBets || boughtBets.length === 0) {
             return (
                 <div className="bet-text">
@@ -133,16 +136,22 @@ const BetDetails = () => {
     
         const quantity = boughtBets[0]?.quantity;
     
-        return (
-            <div className="bet-text">
-                <div className="bet-subheading">Bets Bought</div>
-                <div>{quantity} bet{quantity!=1 ? "s" : ""}</div>
-            </div>
-        );
+        if (bet?.status.toLowerCase() === 'accepted' && !isCreator) {
+            return (
+                <div className="bet-text">
+                    <div className="bet-subheading">Bets Bought</div>
+                    <div>{quantity} bet{quantity!=1 ? "s" : ""}</div>
+                </div>
+            );
+
+        }
     };
 
     const MyBetContent = () => {
-        if (bet?.status.toLowerCase() === 'accepted') {
+
+        const isCreator = myProfile?.username === bet?.username;
+
+        if (bet?.status.toLowerCase() === 'accepted' && isCreator) {
             return (
                 <div className="mybet-content">
                     <div>{boughtBets[0]?.quantity} bet{bet?.max_quantity!=1 ? "s" : ""} accepted by {boughtBets[0]?.username}</div>
@@ -155,7 +164,7 @@ const BetDetails = () => {
         if (bet?.status === 'resolved') {
             return (
                 <div className="mybet-content">
-                    <div>{bet?.buyer_id} {bet.result}!</div>
+                    <div>{bet?.buyer_id} {bet?.result}!</div>
                 </div>
             )
         }
