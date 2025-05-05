@@ -53,6 +53,8 @@ const Sidebar = ({needsUpdate}) => {
     };
 
     function handleLogout() {
+        document.documentElement.classList.remove("light", "dracula", "dark", "nd");
+        document.documentElement.classList.toggle("light", theme === "light");
         if (window.confirm("Are you sure you want to logout?")) {
             logout().then((response) => {
                 console.log("Logout response:", response);
