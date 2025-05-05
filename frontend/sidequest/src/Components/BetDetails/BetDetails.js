@@ -3,7 +3,7 @@ import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 // import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
-import { getBet, buyBet, getBoughtBet } from "../../Services/Bets.js";
+import { getBet, buyBet, getBoughtBet, resolveBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { getUsersGroupProfile } from "../../Services/Users.js";
 
@@ -147,6 +147,19 @@ const BetDetails = () => {
         }
     };
 
+    function handleResolveBet(outcome) {
+        if (outcome !== "Y" && outcome !== "N") {
+            alert("Invalid outcome. Please enter 'Y' or 'N'.");
+            return;
+        }
+        resolveBet(betID, outcome).then((response) => {
+            console.log("Bet resolved:", response);
+            setNeedsRefresh((prev) => !prev);
+        }).catch((error) => {
+            console.error("Error resolving bet:", error);
+        });
+    };
+
     const MyBetContent = () => {
         const isCreator = myProfile?.username === bet?.username;
     
@@ -160,8 +173,8 @@ const BetDetails = () => {
                         {buyer.quantity} bet{buyer.quantity !== 1 ? "s" : ""} accepted by {buyer.username}
                     </div>
                     <div className="button-group">
-                        <button className="yes-button">Resolve Yes</button>
-                        <button className="no-button">Resolve No</button>
+                        <button className="yes-button" onClick={()=>{handleResolveBet("Y")}}> Resolve Yes </button>
+                        <button className="no-button" onClick={()=>{handleResolveBet("N")}}>Resolve No</button>
                     </div>
                 </div>
             );

@@ -2,7 +2,13 @@ from flask import Blueprint, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
 
-from sqapp.src.auth import register_user, login_user, logout_user, process_invite, group_member_count
+from sqapp.src.auth import (
+    register_user,
+    login_user,
+    logout_user,
+    process_invite,
+    group_member_count,
+)
 from sqapp.src.uploads import create_group
 
 # deprecated in favor of /users/my_user
@@ -38,7 +44,6 @@ def get_group_id(group_id):
     group = sql_one(g.db_session, sql, {"group_id": group_id})
     group["size"] = group_member_count(group["group_id"])
     return sql_response(group)
-        
 
 
 @user_bp.route("/groups", methods=["GET"])
@@ -76,6 +81,7 @@ def get_group_user(group_id):
         sql_one(g.db_session, sql, {"user_id": g.user, "group_id": group_id})
     )
 
+
 @user_bp.route("/groups_user", methods=["GET"])
 def get_all_groups_user():
     return sql_response(
@@ -85,6 +91,7 @@ def get_all_groups_user():
             None,
         )
     )
+
 
 @user_bp.route("/register", methods=["POST"])
 def register():
@@ -109,6 +116,7 @@ def post_invite(invite_code):
 @user_bp.route("/groups/create", methods=["POST"])
 def post_create_group():
     return create_group(request)
+
 
 @user_bp.route("/quests/delete/<int:group_id>", methods=["POST"])
 def delete_quest(group_id):
