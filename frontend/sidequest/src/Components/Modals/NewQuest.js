@@ -52,7 +52,9 @@ const NewQuestModal = ({ onClose, onSuccess }) => {
             <div className="modal-container">
                 <div className="modal-head">
                     <div className="modal-heading">Open New Quest</div>
-                    <img src={Close} className="close-btn" onClick={onClose}/>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={onClose}>
+                        <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="inherit" stroke="inherit"/>
+                    </svg>
                 </div>
 
                 <form onSubmit={handleSubmit} className="group-form">
