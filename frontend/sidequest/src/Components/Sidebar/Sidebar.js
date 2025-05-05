@@ -58,6 +58,8 @@ const Sidebar = ({needsUpdate}) => {
     function handleLogout() {
         document.documentElement.classList.remove("light", "dracula", "dark", "nd");
         document.documentElement.classList.toggle("light", theme === "light");
+        localStorage.setItem("theme", "light");
+        sessionStorage.removeItem("groupID");
         if (window.confirm("Are you sure you want to logout?")) {
             logout().then((response) => {
             }).catch((error) => {
