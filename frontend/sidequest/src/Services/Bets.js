@@ -189,3 +189,29 @@ export const getBoughtBet = async (betID) => {
         throw error;
     }
 };
+
+export const resolveBet = async (betID, winningSide) => {
+    // resolution data should be Y or N
+    const data = {
+        bet_id: betID,
+        winning_side: winningSide.toUpperCase(),
+    };
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/resolve`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error resolving bet with ID ${betID}:`, error);
+        throw error;
+    }
+};
