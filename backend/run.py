@@ -27,4 +27,4 @@ sq_app.wsgi_app = ProxyFix(sq_app.wsgi_app, x_proto=1, x_host=1)
 
 
 if __name__ == "__main__":
-    sq_app.run(debug=True, host="0.0.0.0", port=5000, use_reloader=False)
+    sq_app.run(debug=False, host="0.0.0.0", port=5000, use_reloader=False)
