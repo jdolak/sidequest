@@ -3,7 +3,7 @@ import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 // import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
-import { getBet, buyBet } from "../../Services/Bets.js";
+import { getBet, buyBet, getBoughtBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { getUsersGroupProfile } from "../../Services/Users.js";
 
@@ -11,6 +11,7 @@ const BetDetails = () => {
     const location = useLocation();
     const [bet, setBet] = useState(null);
     const [myProfile, setMyProfile] = useState(null);
+    const [boughtBets, setBoughtBets] = useState(null);
     // const [seller, setSeller] = useState({});
     // const sourceTab = location.state?.sourceTab;
     const navigate = useNavigate();
@@ -30,6 +31,15 @@ const BetDetails = () => {
             })
             .catch((error) => {
               console.error("Error fetching bet:", error);
+            });
+        
+            getBoughtBet(betID)
+                .then((response) => {
+                console.log("Bought bets:", response);
+                setBoughtBets(response);
+            })
+            .catch((error) => {
+                console.error("Error fetching bought bets:", error);
             });
         }
       
@@ -112,19 +122,30 @@ const BetDetails = () => {
     }
 
     const AcceptedBetContent = () => {
+        if (!boughtBets || boughtBets.length === 0) {
+            return (
+                <div className="bet-text">
+                    <div className="bet-subheading">Bets Bought</div>
+                    <div>No bets bought yet.</div>
+                </div>
+            );
+        }
+    
+        const quantity = boughtBets[0]?.quantity;
+    
         return (
             <div className="bet-text">
                 <div className="bet-subheading">Bets Bought</div>
-                <div></div>
+                <div>{quantity} bet(s)</div>
             </div>
-        )
-    }
+        );
+    };
 
     const MyBetContent = () => {
         if (bet?.status === 'accepted') {
             return (
                 <div className="mybet-content">
-                    <div>{bet?.quantity} bet(s) accepted by {bet?.buyer_id}</div>
+                    <div>{boughtBets[0]?.quantity} bet(s) accepted by {boughtBets[0]?.username}</div>
                     <button>Win</button>
                     <button>Lose</button>
                 </div>
