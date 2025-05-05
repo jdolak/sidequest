@@ -322,6 +322,12 @@ def accept_bet(rq):
         bet_data["odds"] = int(bet_data["odds"])
         bet_data["max_quantity"] = int(bet_data["max_quantity"])
 
+        if bet_data["max_quantity"] < quantity:
+            return jsonify({"message": "Order too large"}), 400
+        
+        if bet_data["status"].lower() != 'open':
+            return jsonify({"message": "Bet not open"}), 400
+
         sql = "INSERT INTO BOUGHT_BETS (buyer_id, bet_id, quantity, side, status) VALUES (:buyer_id, :bet_id, :quantity, :side, :status)"
         g.db_session.execute(text(sql), {
             'buyer_id': g.user,
