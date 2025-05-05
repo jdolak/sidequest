@@ -278,7 +278,7 @@ def bet_resolve(rq):
         winning_side = data['winning_side']
         #bet_id = rq.form['bet_id']
         #winning_side = rq.form['winning_side']
-        sql = "SELECT bb.quantity quantity, ab.side side, seller_id, group_id buyer_id FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE ab.bet_id = :bet_id"
+        sql = "SELECT bb.quantity quantity, ab.side side, seller_id, group_id, buyer_id FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE ab.bet_id = :bet_id"
         data = sql_many(g.db_session, sql, {'bet_id': bet_id})
         if not data:
             return jsonify({"message": "bet not found"}), 404
