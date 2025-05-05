@@ -1,16 +1,16 @@
 import React, {useEffect,useState} from "react";
 import searchIcon from '../../assets/images/search.svg';
-import logoutIcon from '../../assets/images/logout.svg';
-import settingsIcon from '../../assets/images/settings.svg';
+// import logoutIcon from '../../assets/images/logout.svg';
+// import settingsIcon from '../../assets/images/settings.svg';
 import {Link} from "react-router-dom";
 import './sidebar.css';
 import { useGlobalStore } from '../../stores/globalStore.js';
 import { getMyGroups } from "../../Services/Groups.js";
 import { useNavigate } from "react-router-dom";
-import { getLoggedInUser, logout } from "../../Services/Users.js";
+import { logout } from "../../Services/Users.js";
 
 
-const Sidebar = () => {
+const Sidebar = ({needsUpdate}) => {
     const [groups, setGroups] = useState([]);
     const [groupID, setGroupID] = useState(null);
     // const [username, setUsername] = useState("");
@@ -43,7 +43,7 @@ const Sidebar = () => {
         }).catch((error) => {
             console.error("Error fetching groups:", error);
         });
-    }, [theme]);
+    }, [theme, needsUpdate]);
 
     const toggleTheme = () => {
         var newTheme = theme === "light" ? "dark" : theme === "dark" ? "dracula" : theme === "dracula" ? "nd" : "light";

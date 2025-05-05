@@ -15,7 +15,7 @@ const SearchPage = () => {
     const [allGroups, setAllGroups] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [needsUpdate, setNeedsUpdate] = useState(false);
+    const [sidebarNeedsUpdate, setSidebarNeedsUpdate] = useState(false);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const SearchPage = () => {
                 console.error("Error checking logged-in user:", error);
                 navigate("/login");
             });
-        }, [needsUpdate]);
+        }, [sidebarNeedsUpdate]);
 
     const filterGroups = (event) => {
         setSearchTerm(event.target.value);
@@ -63,13 +63,13 @@ const SearchPage = () => {
     };
 
     const handleModalSuccess = () => {
-        setNeedsUpdate((prev) => !prev); // Toggle the state to trigger useEffect
+        setSidebarNeedsUpdate((prev) => !prev); // Toggle the state to trigger useEffect
         setShowModal(false); // Close the modal
     };
 
     return (
         <div className="search-main-container">
-            <Sidebar />
+            <Sidebar needsUpdate={sidebarNeedsUpdate} />
             <div className="search-content-container">
                 <div className="search-page-header">
                     <div className="search-bar">
