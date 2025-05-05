@@ -5,6 +5,7 @@ import Sidebar from "../Sidebar/Sidebar.js";
 import { getQuest, getQuestSubmission, acceptQuest, submitQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { formatDate } from "../../utils/utils.js";
+import { getUsersGroupProfile } from "../../Services/Users.js";
 
 const QuestDetails = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const QuestDetails = () => {
     const [quest, setQuest] = useState(null);
     const location = useLocation();
     const [submission, setSubmission] = useState(null);
+    const [myProfile, setMyProfile] = useState(null);
     // const sourceTab = location.state?.sourceTab;
 
     const goBack = () => {
@@ -19,20 +21,33 @@ const QuestDetails = () => {
     }
 
     useEffect(() => {
-        getQuest(questID).then((response) => {
-          console.log("Fetched quest:", response);
-          setQuest(response);
-        }).catch((error) => {
-          console.error("Error fetching quest:", error);
-        });
-      
-        getQuestSubmission(questID).then((submissionData) => {
-          console.log("Fetched submission:", submissionData);
-          setSubmission(submissionData);
-        }).catch((error) => {
-          console.error("Error fetching quest submission:", error);
-        });
-      }, [questID]);
+        getQuest(questID)
+            .then((response) => {
+                console.log("Fetched quest:", response);
+                setQuest(response);
+            })
+            .catch((error) => {
+                console.error("Error fetching quest:", error);
+            });
+    
+        getQuestSubmission(questID)
+            .then((submissionData) => {
+                console.log("Fetched submission:", submissionData);
+                setSubmission(submissionData);
+            })
+            .catch((error) => {
+                console.error("Error fetching quest submission:", error);
+            });
+    
+        getUsersGroupProfile()
+            .then((profileData) => {
+                console.log("Fetched user profile:", profileData);
+                setMyProfile(profileData);
+            })
+            .catch((error) => {
+                console.error("Error fetching user profile:", error);
+            });
+    }, [questID]);
 
     function handleAcceptQuest() {
         console.log("Accepting quest with ID:", questID);
@@ -166,7 +181,7 @@ const QuestDetails = () => {
                     </div>
                     {/* <MyQuestContent /> */}
                 </div>
-                {quest?.quest_status?.toLowerCase() === 'open' && <OpenQuestContent />}
+                {quest?.quest_status?.toLowerCase() === 'open' && myProfile?.username !== quest?.username && <OpenQuestContent />}
             </div>
             {quest?.quest_status?.toLowerCase() === 'accepted' && <AcceptedQuestContent />}
             {quest?.quest_status?.toLowerCase() === 'resolved' && <MyQuestContent />}
