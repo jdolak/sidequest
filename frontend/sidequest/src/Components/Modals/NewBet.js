@@ -35,7 +35,7 @@ const NewBetModal = ({ onClose, onSuccess }) => {
         e.preventDefault();
         var isConfirmed = false;
         try{
-            const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)}. Would you like to continue?`;
+            const confirmMessage = `Opening this bet will cost: ${betCreationCost(formData.betodds, formData.betquantity, formData.betposition)} coins. Would you like to continue?`;
             isConfirmed = window.confirm(confirmMessage);
         } catch (error) {
             console.error("Error calculating bet creation cost:", error);
