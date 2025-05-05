@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
 from sqapp.src.uploads import quest_submission, get_upload_url, create_quest, quest_accept
+from sqapp.src.deletion import delete_quest
 
 quest_bp = Blueprint("quest_bp", __name__)
 
@@ -116,6 +117,4 @@ def post_accept_quest(quest_id):
 
 @quest_bp.route("/quests/delete/<int:quest_id>", methods=["POST"])
 def delete_quest(quest_id):
-    sql = "DELETE FROM QUESTS WHERE quest_id = :quest_id RETURNING quest_id"
-    result = sql_one(g.db_session, sql, {"quest_id": quest_id})
-    return sql_response(result)
+    return delete_quest(quest_id)

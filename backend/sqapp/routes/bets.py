@@ -2,6 +2,7 @@ from flask import Blueprint, g, request
 
 from sqapp.db import sql_many, sql_one, sql_response
 from sqapp.src.uploads import create_bet, accept_bet, bet_resolve
+from sqapp.src.deletion import delete_bet
 
 bet_bp = Blueprint("bet_bp", __name__)
 
@@ -98,10 +99,8 @@ def post_resolve_bet():
 
 
 @bet_bp.route("/bets/delete/<int:bet_id>", methods=["POST"])
-def delete_bet(bet_id):
-    sql = "DELETE FROM AVAILABLE_BETS WHERE bet_id = :bet_id RETURNING bet_id"
-    result = sql_one(g.db_session, sql, {"bet_id": bet_id})
-    return sql_response(result)
+def post_delete_bet(bet_id):
+    return delete_bet(bet_id)
 
 
 

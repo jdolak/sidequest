@@ -278,23 +278,23 @@ def bet_resolve(rq):
         winning_side = data['winning_side']
         #bet_id = rq.form['bet_id']
         #winning_side = rq.form['winning_side']
-        sql = "SELECT * FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE ab.bet_id = :bet_id"
+        sql = "SELECT bb.quantity quantity, ab.side side, seller_id, group_id buyer_id FROM available_bets ab JOIN BOUGHT_BETS bb ON ab.bet_id = bb.bet_id WHERE ab.bet_id = :bet_id"
         data = sql_many(g.db_session, sql, {'bet_id': bet_id})
         if not data:
             return jsonify({"message": "bet not found"}), 404
         
-        coins = int(data[0]["bb.quantity"]) * 100
+        coins = int(data[0]["quantity"]) * 100
 
-        if data[0]["ab.side"] == winning_side:
-            winner = int(data[0]["ab.seller_id"])
+        if data[0]["side"] == winning_side:
+            winner = int(data[0]["seller_id"])
         else:
-            winner = int(data[0]["bb.buyer_id"])
+            winner = int(data[0]["buyer_id"])
 
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
             'coins': coins,
             'user_id': winner,
-            'group_id': data[0]["ab.group_id"]
+            'group_id': data[0]["group_id"]
         })
             
         sql = "UPDATE available_bets SET status = 'Resolved' WHERE bet_id = :bet_id"
