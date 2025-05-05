@@ -73,6 +73,91 @@
     cursor: pointer;
 }
 
+.group-page-leaderboard {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 8px;
+    background: var(--White, #ffffff);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.group-page-leaderboard-header {
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--Text, #000000);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.group-page-leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.group-page-leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 6px;
+    background: var(--Primary, #f3f4fb);
+    font-family: "Karla", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--Text, #000000);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.group-page-leaderboard-item:nth-child(odd) {
+    background: var(--Secondary, #e6e8f9); /* Alternate background for odd rows */
+}
+
+.group-page-leaderboard-item div {
+    flex: 1;
+    text-align: left;
+}
+
+.group-page-leaderboard-item div:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: var(--Accent, #2667FF); /* Highlight currency */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .group-page-leaderboard {
+        padding: 12px;
+    }
+
+    .group-page-leaderboard-header {
+        font-size: 20px;
+    }
+
+    .group-page-leaderboard-item {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .group-page-leaderboard-header {
+        font-size: 18px;
+    }
+
+    .group-page-leaderboard-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 8px;
+    }
+
+    .group-page-leaderboard-item div {
+        text-align: left;
+    }
+}
+
 /* Responsive styles */
 @media (max-width: 1024px) {
     .group-page-dashboard {
