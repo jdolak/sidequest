@@ -310,7 +310,7 @@ def accept_bet(rq):
     try:
         data = rq.get_json()
         bet_id = data['bet_id']
-        quantity = data['quantity']
+        quantity = int(data['quantity'])
         side = data['side']
 
         if side == 'yes':
