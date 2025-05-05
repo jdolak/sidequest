@@ -173,7 +173,7 @@ const BetDetails = () => {
                         <div>{bet?.odds}%</div>
                     </div>
                     <div className="bet-text">
-                        <div className="bet-subheading">Bets Available</div>
+                        <div className="bet-subheading">{bet?.status?.toLowerCase() === 'accepted' ? 'Quantity' : 'Bets Available'}</div>
                         <div>{bet?.max_quantity}</div>
                     </div>
                     {bet?.status?.toLowerCase() === 'accepted' && <AcceptedBetContent />}
