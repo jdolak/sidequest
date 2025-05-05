@@ -12,7 +12,7 @@
 }
 
 .modal-container {
-    background: white;
+    background: var(--White, #fff);
     border-radius: 16px;
 
     display: inline-flex;
@@ -33,7 +33,7 @@
 .modal-heading {
     width: 400px;
 
-    color: #000;
+    color: var(--Text, #000);
 
     /* Subheading */
     font-family: "DM Sans";
@@ -69,6 +69,7 @@
     align-items: flex-start;
     gap: 12px;
     align-self: stretch;
+    color: var(--Text, #000);
 }
 
 .form-input {
@@ -76,7 +77,8 @@
     padding: 8px;
 
     border-radius: 4px;
-    border: 1px solid var(--Text-Field, #A2A7C7); 
+    border: 1px solid var(--Soft-Stroke, #A2A7C7); 
+    background: var(--White, #A2A7C7);
 
     font-family: Karla;
     font-size: 16px;
