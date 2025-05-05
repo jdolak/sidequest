@@ -79,6 +79,7 @@
     border-radius: 8px;
     background: var(--White, #ffffff);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 40%;
 }
 
 .group-page-leaderboard-header {
@@ -111,8 +112,8 @@
 }
 
 .group-page-leaderboard-item:nth-child(odd) {
-    background: var(--Secondary, #e6e8f9); /* Alternate background for odd rows */
-    color: var(--White);
+    background: var(--White, #e6e8f9); /* Alternate background for odd rows */
+    color: var(--Text, #000000); /* Text color for odd rows */
 }
 
 .group-page-leaderboard-item div {
