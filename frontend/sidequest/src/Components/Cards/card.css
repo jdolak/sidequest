@@ -14,6 +14,11 @@
   color: inherit;
 }
 
+.resolved-card {
+  border: 1px solid var(--Soft-Stroke, #EAECF9);
+  background: rgba(var(--Primary, #F3F4FB), 0.5);
+}
+
 .card:visited {
   color: inherit;
 }

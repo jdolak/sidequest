@@ -138,12 +138,14 @@ const BetDashboard = () => {
                 ))}
               {activeTab === "acceptedBets" &&
                 acceptedBets.map((bet) => (
+                  console.log("Accepted Bet:", bet),
                   <Link to={`/bets/${bet.bet_id}`} className="bet-card-link" key={bet.bet_id}>
                     <Card
                       title={bet.question}
                       creator={bet.username}
                       bet_desc={bet.description}
                       odds={bet.odds}
+                      status={bet.status}
                     />
                   </Link>
                 ))}
