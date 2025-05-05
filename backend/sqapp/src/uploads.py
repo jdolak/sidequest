@@ -92,6 +92,12 @@ def quest_submission(rq, quest_id):
             'status': 'Resolved'
         })
 
+        sql = "UPDATE QUESTS SET quest_status = :quest_status WHERE quest_id = :quest_id"
+        g.db_session.execute(text(sql), {
+            'quest_status': 'Resolved',
+            'quest_id': quest_id
+        })
+
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
             'coins': quest_data['reward_amount'],
