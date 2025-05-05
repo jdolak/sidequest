@@ -155,7 +155,7 @@ const BetDetails = () => {
         if (bet?.status === 'resolved') {
             return (
                 <div className="mybet-content">
-                    <div>{bet?.buyer_id} {bet.result}!</div>
+                    <div>{bet?.buyer_id} {bet?.result}!</div>
                 </div>
             )
         }
