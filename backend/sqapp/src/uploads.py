@@ -191,9 +191,9 @@ def create_bet(rq):
         })
 
         if side == 'Y':
-            ammount =  odds * max_quantity
+            ammount =  int(odds) * int(max_quantity)
         else:
-            ammount =  (1 - odds) * max_quantity
+            ammount =  (100 - int(odds)) * int(max_quantity)
 
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency - :ammount WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
@@ -274,12 +274,12 @@ def bet_resolve(rq):
         if not data:
             return jsonify({"message": "bet not found"}), 404
         
-        coins = data[0]["bb.quantity"] * 100
+        coins = int(data[0]["bb.quantity"]) * 100
 
         if data[0]["ab.side"] == winning_side:
-            winner = data[0]["ab.seller_id"]
+            winner = int(data[0]["ab.seller_id"])
         else:
-            winner = data[0]["bb.buyer_id"]
+            winner = int(data[0]["bb.buyer_id"])
 
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :coins WHERE user_id = :user_id AND group_id = :group_id"
         g.db_session.execute(text(sql), {
@@ -329,7 +329,7 @@ def accept_bet(rq):
             'bet_id': bet_id
         })
 
-        ammount = (1 - bet_data['odds']) * quantity
+        ammount = (100 - int(bet_data['odds'])) * quantity
 
         sql = "UPDATE SQ_GROUPS_USER SET currency = currency + :ammount WHERE user_id = :user_id AND group_id = (SELECT group_id FROM available_bets WHERE bet_id = :bet_id)"
         g.db_session.execute(text(sql), {
