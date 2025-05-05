@@ -265,10 +265,13 @@ def bet_resolve(rq):
         data = rq.get_json()
 
         if not data:
+            LOG.error("Missing parameters")
             return jsonify({"message": "missing parameters"}), 400
         if not g.user:
+            LOG.error("User not logged in")
             return jsonify({"message": "User not logged in"}), 401
-        if 'bet_id' not in rq.form or 'winning_side' not in rq.form:
+        if 'bet_id' not in data or 'winning_side' not in data:
+            LOG.error(f"Missing parameters: {data}")
             return jsonify({"message": "missing parameters"}), 400
         
         bet_id = data['bet_id']
