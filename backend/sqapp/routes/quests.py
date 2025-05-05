@@ -85,10 +85,18 @@ def get_all_quest_submissions():
     return sql_response(
         sql_many(
             g.db_session,
-            "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE q.user_id = u.user_id",
+            "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status, comments FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE q.user_id = u.user_id",
             None,
         )
     )
+
+@quest_bp.route("/quests/submissions/<int:quest_id>", methods=["GET"])
+def get_submissions_by_quest(quest_id):
+    result = sql_many(g.db_session, "SELECT submission_id, u.user_id, username, quest_id, submission_photo, submission_date_time, status, comments FROM QUEST_SUBMISSIONS q, SQ_USERS u WHERE q.user_id = u.user_id AND quest_id = :quest_id", {"quest_id": quest_id})
+    for submission in result:
+        if submission["submission_photo"]:
+            submission["photo_url"] = get_upload_url(submission["submission_photo"])
+    return sql_response(result)
 
 
 @quest_bp.route("/quest_submit/<int:quest_id>", methods=["POST"])

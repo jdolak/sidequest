@@ -79,6 +79,11 @@ def get_all_bought_bets():
         )
     )
 
+@bet_bp.route("/bets/bought/<int:bet_id>", methods=["GET"])
+def get_submissions_by_bet(bet_id):
+    result = sql_many(g.db_session, "SELECT buyer_id, username, bet_id, quantity, side, date_bought, date_resolved, status FROM BOUGHT_BETS, SQ_USERS WHERE buyer_id = user_id AND bet_id = :bet_id", {"bet_id": bet_id})
+    return sql_response(result)
+
 @bet_bp.route("/bets/create", methods=["POST"])
 def post_create_bet():
     return create_bet(request)

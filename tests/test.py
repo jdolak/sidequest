@@ -13,10 +13,20 @@ def test_full_user_flow():
     login_response = session.post(f"{BASE_URL}/login", json=login_payload)
     assert login_response.status_code == 200
 
-    # 2. Join a group
+    # 2. Make a group
+    make_group_payload = {
+        "groupname": "test",
+        "groupdesc": "test",
+        "groupvisibility" : 'Y',
+        "groupcoins" : 1000,
+    }
+    join_response = session.post(f"{BASE_URL}/groups/create", json=make_group_payload)
+    assert join_response.status_code == 201
 
     # 3. Get Quests
-    quests_response = session.get(f"{BASE_URL}/quests?group_id={group_id}")
+
+    group_id = 21
+    quests_response = session.get(f"{BASE_URL}/quests/all/{group_id}")
     assert quests_response.status_code == 200
     print("Existing Quests:", quests_response.json())
 
@@ -30,10 +40,9 @@ def test_full_user_flow():
     }
     create_quest_resp = session.post(f"{BASE_URL}/quests", json=create_quest_payload)
     assert create_quest_resp.status_code == 201
-    quest_id = create_quest_resp.json().get("quest_id")
 
     # 5. Get Bets
-    bets_response = session.get(f"{BASE_URL}/bets?group_id={group_id}")
+    bets_response = session.get(f"{BASE_URL}/bets/all/{group_id}")
     assert bets_response.status_code == 200
     print("Existing Bets:", bets_response.json())
 
@@ -43,11 +52,10 @@ def test_full_user_flow():
         "question": "Will it rain tomorrow?",
         "description": "Weather bet",
         "odds": 2,
-        "side": True,
+        "side": "Y",
         "max_quantity": 10
     }
     create_bet_resp = session.post(f"{BASE_URL}/bets", json=create_bet_payload)
     assert create_bet_resp.status_code == 201
-    bet_id = create_bet_resp.json().get("bet_id")
 
     print("Test Flow Completed Successfully")
