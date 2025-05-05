@@ -10,7 +10,7 @@ const Card = ({ title, creator, coins, date, odds }) => {
         {date && <div>Closes on {date}</div>}
          <div>Created by {creator}</div>
          {coins && <div>{coins} coins</div>}
-         {odds && <div>Odds: {odds}</div>}
+         {odds && <div>Odds: {odds}%</div>}
        </div>
      </article>
   );
