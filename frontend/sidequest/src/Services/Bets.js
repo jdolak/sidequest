@@ -215,3 +215,20 @@ export const resolveBet = async (betID, winningSide) => {
         throw error;
     }
 };
+
+export const deleteBet = async (betID) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+    };
+    try {
+        const response = await fetch(`${baseURL}/bets/delete/${betID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error deleting bet with ID ${betID}:`, error);
+        throw error;
+    }
+};

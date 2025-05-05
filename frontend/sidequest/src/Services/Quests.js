@@ -228,3 +228,23 @@ export const acceptQuest = async (questID) => {
         throw error;
     }
 };
+
+export const deleteQuest = async (questID) => {
+    const config = {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    try {
+        const response = await fetch(baseURL + `/quests/delete/${questID}`, config);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Error deleting quest with ID ${questID}:`, error);
+        throw error;
+    }
+};
