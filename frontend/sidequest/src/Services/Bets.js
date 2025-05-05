@@ -96,7 +96,7 @@ export const getAllBets = async () => {
         credentials: 'include',
     };
     try {
-        const response = await fetch(`${baseURL}/bets/${groupID}`, config);
+        const response = await fetch(`${baseURL}/bets/all/${groupID}`, config);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
