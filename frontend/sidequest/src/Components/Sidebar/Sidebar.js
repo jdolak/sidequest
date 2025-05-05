@@ -31,6 +31,9 @@ const Sidebar = ({needsUpdate}) => {
         document.documentElement.classList.toggle("dracula", theme === "dracula");
         document.documentElement.classList.toggle("dark", theme === "dark");
         document.documentElement.classList.toggle("nd", theme === "nd");
+        if (groupID === null) {
+            sessionStorage.getItem("groupID") ? setGroupID(Number(sessionStorage.getItem("groupID"))) : setGroupID(currGroupID);
+        };
         // getLoggedInUser().then((user) => {
         //     if (user.status === "true") {
         //         setUsername(user.username);
