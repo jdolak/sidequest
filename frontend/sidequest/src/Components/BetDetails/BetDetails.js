@@ -3,7 +3,7 @@ import React, {useEffect,useState} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 // import backIcon from '../../assets/images/chevron.svg';
 import { Link } from "react-router-dom";
-import { getBet, buyBet, getBoughtBet, resolveBet } from "../../Services/Bets.js";
+import { getBet, buyBet, getBoughtBet, resolveBet, deleteBet } from "../../Services/Bets.js";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { getUsersGroupProfile } from "../../Services/Users.js";
 
@@ -22,6 +22,18 @@ const BetDetails = () => {
     }
     
     const betID = useParams().id;
+
+    const handleDelete = () => {
+        deleteBet(betID)
+            .then(() => {
+                alert("Bet deleted successfully.");
+                navigate(-1); 
+            })
+            .catch((error) => {
+                console.error("Error deleting bet:", error);
+                alert("Failed to delete bet.");
+            });
+    }
 
     useEffect(() => {
         if (betID) {
@@ -230,6 +242,11 @@ const BetDetails = () => {
                 </div>
                 {bet?.status?.toLowerCase() === 'open' && myProfile?.username !== bet?.username && <OpenBetContent />}
                 <MyBetContent />
+                {myProfile?.username === bet?.username && (
+                    <button className="delete-quest" onClick={handleDelete}>
+                        Delete Bet
+                    </button>
+                )}
             </div>
         </div>
     </div>

@@ -164,6 +164,18 @@
   gap: 32px;
 }
 
+.delete-quest {
+  border: none;
+  background-color: inherit;
+  color: red;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
 
 /* .pageContainer {
     flex-direction: column;

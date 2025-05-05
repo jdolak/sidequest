@@ -2,7 +2,7 @@ import "./questdetails.css";
 import React, {useEffect,useState, useRef} from "react";
 import Sidebar from "../Sidebar/Sidebar.js";
 // import backIcon from '../../assets/images/chevron.svg';
-import { getQuest, getQuestSubmission, acceptQuest, submitQuest } from "../../Services/Quests.js";
+import { getQuest, getQuestSubmission, acceptQuest, submitQuest, deleteQuest } from "../../Services/Quests.js";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { formatDate } from "../../utils/utils.js";
 import { getUsersGroupProfile } from "../../Services/Users.js";
@@ -14,6 +14,7 @@ const QuestDetails = () => {
     const location = useLocation();
     const [submission, setSubmission] = useState(null);
     const [myProfile, setMyProfile] = useState(null);
+    const isCreator = myProfile?.username === quest?.username;
     // const sourceTab = location.state?.sourceTab;
 
     const goBack = () => {
@@ -134,19 +135,34 @@ const QuestDetails = () => {
     }
 
     const MyQuestContent = () => {
-        console.log(submission);
-        
-        if (!submission) return null;
-        
+        if (quest?.quest_status?.toLowerCase() !== 'resolved') return null;
+    
+        const firstSubmission = Array.isArray(submission) ? submission[0] : submission;
+    
         return (
             <div className="quest-details-text">
                 <div className="quest-details-subheading">Submission</div>
-                <div>Completed by {submission[0].username || "Unknown user"}</div>
-                <div><img src={submission[0].photo_url} /></div>
-                <div>{submission[0].comments}</div>
-        </div>
-        )
-    }
+                <div>Completed by {firstSubmission?.username || "Unknown user"}</div>
+                {firstSubmission?.photo_url && (
+                    <div><img src={firstSubmission.photo_url} alt="Submission" /></div>
+                )}
+                <div>{firstSubmission?.comments}</div>
+            </div>
+        );
+    };
+
+    const handleDelete = () => {
+        deleteQuest(questID)
+            .then(() => {
+                alert("Quest deleted successfully.");
+                navigate(-1);
+            })
+            .catch((error) => {
+                console.error("Could not delete quest:", error);
+                alert("Failed to delete quest.");
+            });
+
+    };
 
   return (
     <div className="quest-details-main-container">
@@ -184,7 +200,12 @@ const QuestDetails = () => {
                 {quest?.quest_status?.toLowerCase() === 'open' && myProfile?.username !== quest?.username && <OpenQuestContent />}
             </div>
             {quest?.quest_status?.toLowerCase() === 'accepted' && <AcceptedQuestContent />}
-            {quest?.quest_status?.toLowerCase() === 'resolved' && <MyQuestContent />}
+            <MyQuestContent />
+            {isCreator && (
+                <button className="delete-quest" onClick={handleDelete}>
+                    Delete Quest
+                </button>
+            )}
         </div>
     </div>
   )
