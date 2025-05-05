@@ -63,3 +63,55 @@
 .copy-icon {
     cursor: pointer;
 }
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .group-page-dashboard {
+        padding: 40px 24px; /* Reduce padding for smaller screens */
+        gap: 40px;
+    }
+
+    .group-page-heading {
+        font-size: 28px; /* Adjust font size for headings */
+    }
+
+    .group-page-my-coins-text {
+        font-size: var(--font-size-sm); /* Use smaller font size */
+    }
+}
+
+@media (max-width: 768px) {
+    .group-page-dashboard {
+        padding: 20px 16px; /* Further reduce padding for tablets */
+        gap: 20px;
+    }
+
+    .group-page-heading {
+        font-size: 24px; /* Smaller font size for headings */
+    }
+
+    .group-page-heading-row {
+        flex-direction: column; /* Stack elements vertically */
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .group-page-dashboard {
+        padding: 16px 8px; /* Minimal padding for mobile */
+        gap: 16px;
+    }
+
+    .group-page-heading {
+        font-size: 20px; /* Smallest font size for headings */
+    }
+
+    .group-page-my-coins-text {
+        font-size: var(--font-size-xs); /* Smallest font size for text */
+    }
+
+    .group-page-heading-row {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the left */
+    }
+}

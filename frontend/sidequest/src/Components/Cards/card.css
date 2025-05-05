@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  width: 240px;
+  width: 200px;
   height: 160px;
   padding: 16px 20px;
   flex-direction: column;
@@ -40,4 +40,49 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 1280px) {
+  .card {
+    width: 150px; /* Reduce width for smaller screens */
+    height: 140px; /* Adjust height */
+    padding: 12px 16px; /* Reduce padding */
+  }
+
+  .card-title {
+    font-size: 18px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 970px) {
+  .card {
+    width: 100%; /* Make cards take full width */
+    height: auto; /* Allow height to adjust based on content */
+    padding: 6px; /* Further reduce padding */
+  }
+
+  .card-title {
+    font-size: 16px; /* Smaller font size for titles */
+  }
+
+  .card-desc {
+    gap: 2px; /* Reduce gap between description elements */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* Full width for mobile */
+    padding: 8px; /* Minimal padding */
+    border-radius: 12px; /* Smaller border radius */
+  }
+
+  .card-title {
+    font-size: 14px; /* Smallest font size for titles */
+  }
+
+  .card-desc {
+    font-size: 12px; /* Smaller font size for descriptions */
+  }
 }

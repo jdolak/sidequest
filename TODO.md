@@ -30,8 +30,8 @@
     - [x] Bets
     - [x] Groups
 - [x] logging
-- [ ] bet resolution endpoints
-- [ ] buy bets/quests endpoints
+- [x] bet resolution endpoints
+- [x] buy bets/quests endpoints
 
 ### Patrick
 - [x] Help Create Pages
@@ -54,8 +54,8 @@
 - [x] alert users on login fail
 - [x] logout process
 - [x] enable theme change or light mode/dark mode
-- [ ] endpoints for bet resolution
-- [ ] accept quest / buy bet / resolve quest/bet functionality
+- [x] endpoints for bet resolution
+- [x] accept quest / buy bet / resolve quest/bet functionality
 
 # Bugs and improvements
 - Profile initial does not accurately reflect group name
@@ -78,3 +78,4 @@
 - [ ] pretty way to display alert and confirm popups
 - [ ] bet expected resolution date added through stack
 - [ ] add optional cost to accept a quest
+- [ ] create a leaderboard
