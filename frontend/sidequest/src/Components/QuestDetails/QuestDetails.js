@@ -88,6 +88,9 @@ const QuestDetails = () => {
                 console.log("Quest submitted:", response);
                 setSelectedFile(null);
                 setComment("");
+
+                setQuest((prevQuest) => ({ ...prevQuest, quest_status: "Resolved"}));
+
             }).catch((error) => {
                 console.error("Error submitting quest:", error);
             });
@@ -119,6 +122,7 @@ const QuestDetails = () => {
                 <div className="quest-details-subheading">Submission</div>
                 <div>Completed by {submission.username}</div>
                 <div>{submission.submission_photo}</div>
+                <div>{submission.comments}</div>
         </div>
         )
     }
@@ -156,10 +160,10 @@ const QuestDetails = () => {
                     </div>
                     {/* <MyQuestContent /> */}
                 </div>
-                {quest?.quest_status === 'Open' && <OpenQuestContent />}
+                {quest?.quest_status?.toLowerCase() === 'open' && <OpenQuestContent />}
             </div>
-            {quest?.quest_status === 'Accepted' && <AcceptedQuestContent />}
-            {quest?.quest_status === 'Resolved' && <MyQuestContent />}
+            {quest?.quest_status?.toLowerCase() === 'accepted' && <AcceptedQuestContent />}
+            {quest?.quest_status?.toLowerCase() === 'resolved' && <MyQuestContent />}
         </div>
     </div>
   )
