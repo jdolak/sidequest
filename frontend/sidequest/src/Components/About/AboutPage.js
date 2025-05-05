@@ -59,6 +59,10 @@ const AboutPage = () => {
           Higher odds indicate a higher chance of success.
         </li>
         <li>
+          <strong>Bet Resolution:</strong> Bets will be resolved Yes or No by the creator of the bet. When the bet is resolved,
+          the winner of the bet will receive 100*quantity of coins.
+        </li>
+        <li>
           <strong>Group Visibility:</strong> When creating a group, you can choose between "Public" (anyone can join) 
           or "Private" (invite-only).
         </li>
