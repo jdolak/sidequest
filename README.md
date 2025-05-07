@@ -53,7 +53,7 @@ DB_PASSWORD=mypass
 `S3_ACCESS_KEY` & `S3_SECRET_KEY`: The key access and secret keys, generated from minio, that has read/write access to the upload bucket  
 `MINIO_ROOT_USER` & `MINIO_ROOT_PASSWORD`: username and password for the minio object storage root account
 
-`RDMS`: the database system backend of choice, options of `oracle` and `sqlite`
+`RDMS`: the database system backend of choice, options of `oracle` and `sqlite`　　
 `DB_USER` & `DB_PASSWORD`: username and password of oracle account, if using
 
 ### Production Deployment
