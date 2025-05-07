@@ -43,6 +43,8 @@ S3_SECRET_KEY=your-secret-key
 MINIO_ROOT_USER=somerootuser
 MINIO_ROOT_PASSWORD=somerootpassword
 RDMS=oracle
+DB_USER=user
+DB_PASSWORD=mypass
 ```
 `HOST_PORT`: This determines the port in that will be exposed and take HTTP connections.  
 `FLASK_APP`: Needed for Flask  
@@ -52,6 +54,7 @@ RDMS=oracle
 `MINIO_ROOT_USER` & `MINIO_ROOT_PASSWORD`: username and password for the minio object storage root account
 
 `RDMS`: the database system backend of choice, options of `oracle` and `sqlite`
+`DB_USER` & `DB_PASSWORD`: username and password of oracle account, if using
 
 ### Production Deployment
 
