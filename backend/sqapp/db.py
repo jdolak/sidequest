@@ -10,9 +10,11 @@ load_dotenv()
 def db_connect():
 
     rdms = os.getenv("RDMS", "sqlite")
+    db_user = os.getenv("DB_USER")
+    db_pass = os.getenv("DB_PASSWORD")
 
     if rdms == "oracle":
-        engine = create_engine("oracle+oracledb://guest:guest@172.22.132.15:1539/XE")
+        engine = create_engine(f"oracle+oracledb://{db_user}:{db_pass}@172.22.132.15:1539/XE")
         #sqapp.LOG.info("Using Oracle DB")
 
     else:
