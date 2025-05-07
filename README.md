@@ -30,13 +30,41 @@ The following describes how to host sidequest yourself:
 Docker is not required but highly encouraged. The following instructions assume you have it installed.  
 Instructions on how to download docker can be found at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
+### Setup
+
+First, several environment variables need to be set in a `.env` file in the project's root directory:
+
+```
+HOST_PORT=8004
+FLASK_APP=run.py
+FLASK_SECRET_KEY=somerandomstring
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+MINIO_ROOT_USER=somerootuser
+MINIO_ROOT_PASSWORD=somerootpassword
+RDMS=oracle
+```
+`HOST_PORT`: This determines the port in that will be exposed and take HTTP connections.  
+`FLASK_APP`: Needed for Flask  
+`FLASK_SECRET_KEY`: The key used to sign session cookies, set this to something random and secure  
+
+`S3_ACCESS_KEY` & `S3_SECRET_KEY`: The key access and secret keys, generated from minio, that has read/write access to the upload bucket  
+`MINIO_ROOT_USER` & `MINIO_ROOT_PASSWORD`: username and password for the minio object storage root account
+
+`RDMS`: the database system backend of choice, options of `oracle` and `sqlite`
+
 ### Production Deployment
 
-To run the production ready version of sidequest, just run:
+To build the production ready version of sidequest, just run:
 ```sh
 make
 ```
 This optimizes the frontend with `npm run build` and serves the static files using nginx.
+
+This will build and attempt to run the containters, however, it will fail. To run, now execute:
+```sh
+make prod
+```
 
 ### Development Deployment
 
